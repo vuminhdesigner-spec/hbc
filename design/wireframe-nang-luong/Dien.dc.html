@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Điện — khung giờ và cây đồng hồ</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#106138}a:hover{color:#0b3f25}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; box-sizing: border-box; display: flex; background: #f5f5f1; color: #17201a; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13px; overflow: hidden">
+
+  <nav aria-label="Menu chính" style="width: 64px; flex-shrink: 0; background: #0b3f25; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 0">
+    <div style="width: 34px; height: 34px; border-radius: 8px; background: #c2a540; margin-bottom: 10px; display: grid; place-items: center; color: #0b3f25; font-weight: 700; font-size: 11px">LOGO</div>
+    <a href="#" aria-label="Năng lượng" aria-current="page" style="width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; color: #ffffff; background: #145233; box-shadow: inset 3px 0 0 #c2a540"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></a>
+  </nav>
+
+  <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column">
+    <header style="height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 24px; padding: 0 24px; background: #ffffff; border-bottom: 1px solid #e1e2da">
+      <div style="display: flex; flex-direction: column">
+        <span style="font-size: 11px; color: #5b645d">Báo cáo năng lượng</span>
+        <h1 style="margin: 0; font-size: 17px; font-weight: 600">Điện</h1>
+      </div>
+      <div role="tablist" style="display: flex; gap: 4px; height: 100%; align-items: stretch">
+        <a role="tab" href="Main.dc.html" style="display: flex; align-items: center; padding: 0 14px; color: #5b645d; text-decoration: none">Tổng quan</a>
+        <a role="tab" aria-selected="true" href="Dien.dc.html" style="display: flex; align-items: center; padding: 0 14px; color: #106138; font-weight: 600; text-decoration: none; box-shadow: inset 0 -2px 0 #106138">Điện</a>
+        <a role="tab" href="Nuoc.dc.html" style="display: flex; align-items: center; padding: 0 14px; color: #5b645d; text-decoration: none">Nước</a>
+        <a role="tab" href="#" style="display: flex; align-items: center; padding: 0 14px; color: #5b645d; text-decoration: none">Hơi</a>
+      </div>
+      <div style="flex-grow: 1"></div>
+      <span style="font-size: 11px; font-weight: 600; color: #9a4a00; background: #fdf0dc; padding: 3px 8px; border-radius: 999px">Số minh hoạ</span>
+      <button type="button" style="height: 34px; padding: 0 14px; border-radius: 8px; border: 0; background: #106138; color: #ffffff; font-weight: 600; font-family: inherit">Xuất báo cáo</button>
+    </header>
+    <div role="toolbar" aria-label="Bộ lọc" style="height: 52px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 0 24px; background: #ffffff; border-bottom: 1px solid #e1e2da">
+      <span style="height: 34px; padding: 0 12px; border: 1px solid #c9cbc2; border-radius: 8px; display: flex; align-items: center">Từ đầu năm · 01/01 – 30/09/2026</span>
+      <span style="height: 34px; padding: 0 12px; border: 1px solid #106138; border-radius: 8px; display: flex; align-items: center; gap: 6px"><span style="color: #5b645d">So với</span> Cùng kỳ 2025</span>
+      <span style="height: 34px; padding: 0 12px; border: 1px solid #c9cbc2; border-radius: 8px; display: flex; align-items: center; gap: 6px"><span style="color: #5b645d">Nhóm theo</span> Khu vực</span>
+      <span style="height: 30px; padding: 0 10px; border-radius: 999px; background: #0b3f25; color: #ffffff; display: flex; align-items: center">Nút cây: Toàn nhà máy</span>
+    </div>
+
+    <main style="flex-grow: 1; min-height: 0; display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 12px; padding: 14px 24px 16px">
+
+      <aside aria-label="Cây đồng hồ điện" style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; display: flex; flex-direction: column; min-height: 0">
+        <div style="padding: 12px 14px; border-bottom: 1px solid #e1e2da; display: flex; flex-direction: column; gap: 2px">
+          <span style="font-size: 13px; font-weight: 600">Cây đồng hồ điện</span>
+          <span style="font-size: 11px; color: #5b645d">Bấm một nút để lọc cả màn · MWh · % cao điểm</span>
+        </div>
+        <div style="padding: 6px 8px; display: flex; flex-direction: column; gap: 1px; overflow-y: auto">
+          <sc-for list="{{ tree }}" as="t" hint-placeholder-count="16">
+            <div style="display: grid; grid-template-columns: 1fr 56px 40px; align-items: center; gap: 6px; height: 28px; padding: 0 6px 0 {{ t.pad }}; border-radius: 6px; background: {{ t.bg }}; box-shadow: {{ t.ring }}; font-size: 12px">
+              <span style="display: flex; align-items: center; gap: 6px; min-width: 0">
+                <span style="width: 12px; color: #7a8279; flex-shrink: 0">{{ t.caret }}</span>
+                <span style="font-weight: {{ t.w }}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: {{ t.c }}">{{ t.name }}</span>
+              </span>
+              <span style="text-align: right; font-variant-numeric: tabular-nums; color: {{ t.c }}">{{ t.mwh }}</span>
+              <span style="text-align: right; font-variant-numeric: tabular-nums; font-size: 11px; color: #5b645d">{{ t.peak }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top: auto; padding: 10px 14px; border-top: 1px solid #e1e2da; font-size: 11px; color: #5b645d">Chênh lệch tổng – con: <b style="color: #17201a">MBA T1 − Σ con = 0,4%</b> (tổn hao, đồng hồ chưa đo)</div>
+      </aside>
+
+      <div style="display: grid; grid-template-rows: 104px 300px minmax(0, 1fr); gap: 12px; min-width: 0; min-height: 0">
+        <section aria-label="Chỉ số" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+          <div style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #5b645d">Tổng điện</span><span style="font-size: 22px; font-weight: 700">5.820 <span style="font-size: 12px; font-weight: 500; color: #5b645d">MWh</span></span><span style="font-size: 11.5px; color: #434b45">▲ 3,1% so cùng kỳ</span></div>
+          <div style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #5b645d">Tỷ trọng giờ cao điểm</span><span style="font-size: 22px; font-weight: 700">21,4 <span style="font-size: 12px; font-weight: 500; color: #5b645d">%</span></span><span style="font-size: 11.5px; color: #434b45">▲ 1,2 điểm so cùng kỳ</span></div>
+          <div style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #5b645d">Chi phí điện ước tính</span><span style="font-size: 22px; font-weight: 700; color: #7a8279">[cần biểu giá]</span><span style="font-size: 11.5px; color: #434b45">= Σ kWh từng khung × đơn giá khung</span></div>
+          <div style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #5b645d">Suất tiêu hao điện</span><span style="font-size: 22px; font-weight: 700">80,7 <span style="font-size: 12px; font-weight: 500; color: #5b645d">kWh/nghìn lít</span></span><span style="font-size: 11.5px; color: #434b45">▲ 1,0% so cùng kỳ</span></div>
+        </section>
+
+        <section style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 12px; min-height: 0">
+          <figure style="margin: 0; background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+            <figcaption style="display: flex; justify-content: space-between; align-items: baseline">
+              <span style="font-size: 13px; font-weight: 600">Cơ cấu khung giờ theo khu vực</span>
+              <span style="display: flex; gap: 12px; font-size: 11px; color: #5b645d">
+                <span><i style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #5f4300; margin-right: 4px"></i>Cao điểm</span>
+                <span><i style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #a87400; margin-right: 4px"></i>Bình thường</span>
+                <span><i style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #e6c56a; margin-right: 4px"></i>Thấp điểm</span>
+              </span>
+            </figcaption>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <sc-for list="{{ tou }}" as="r" hint-placeholder-count="8">
+                <div style="display: grid; grid-template-columns: 120px 1fr 44px; align-items: center; gap: 8px; font-size: 11.5px">
+                  <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ r.name }}</span>
+                  <span style="display: flex; height: 16px; gap: 2px">
+                    <i style="width: {{ r.c }}; background: #5f4300; border-radius: 3px 0 0 3px"></i>
+                    <i style="width: {{ r.b }}; background: #a87400"></i>
+                    <i style="width: {{ r.t }}; background: #e6c56a; border-radius: 0 3px 3px 0"></i>
+                  </span>
+                  <span style="text-align: right; font-weight: 600; font-variant-numeric: tabular-nums">{{ r.cl }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <span style="font-size: 11px; color: #5b645d">Số bên phải = % cao điểm. Sắp xếp theo % cao điểm giảm dần.</span>
+          </figure>
+          <div style="background: #fbf8ec; border: 1px solid #ebdc9c; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+            <span style="font-size: 13px; font-weight: 600; color: #5f4d1c">Ước tính dời giờ chạy</span>
+            <span style="font-size: 12px; color: #434b45">Chỉ áp cho khu vực dời được giờ chạy (cần nhà máy xác nhận).</span>
+            <label for="kv" style="font-size: 11px; color: #5b645d">Khu vực</label>
+            <select id="kv" style="height: 32px; border: 1px solid #c9cbc2; border-radius: 6px; font-family: inherit; background: #ffffff"><option>Lạnh, Khí nén, Xử lý nước</option></select>
+            <label for="pct" style="font-size: 11px; color: #5b645d">Dời từ cao điểm sang thấp điểm: <b style="color: #17201a">10%</b></label>
+            <input id="pct" type="range" min="0" max="30" value="10" style="accent-color: #106138">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px">
+              <div style="display: flex; flex-direction: column"><span style="font-size: 11px; color: #5b645d">Điện dời</span><span style="font-size: 18px; font-weight: 700">≈ 54 MWh</span></div>
+              <div style="display: flex; flex-direction: column"><span style="font-size: 11px; color: #5b645d">Tiết kiệm</span><span style="font-size: 18px; font-weight: 700; color: #7a8279">[cần biểu giá]</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section aria-label="Đồng hồ" style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; min-height: 0">
+          <div style="display: grid; grid-template-columns: 80px 1.6fr 1fr 0.8fr 0.8fr 0.8fr 0.9fr 0.6fr 1fr; gap: 8px; padding: 8px 14px; font-size: 11px; font-weight: 600; color: #5b645d; background: #f9f9f6; border-bottom: 1px solid #e1e2da">
+            <span>Mã</span><span>Đồng hồ</span><span>Khu vực</span><span style="text-align: right">Cao điểm</span><span style="text-align: right">Bình thường</span><span style="text-align: right">Thấp điểm</span><span style="text-align: right">Tổng (MWh)</span><span style="text-align: right">Hệ số</span><span>Ghi chỉ số tháng 9</span>
+          </div>
+          <sc-for list="{{ meters }}" as="m" hint-placeholder-count="5">
+            <div style="display: grid; grid-template-columns: 80px 1.6fr 1fr 0.8fr 0.8fr 0.8fr 0.9fr 0.6fr 1fr; gap: 8px; align-items: center; padding: 0 14px; height: 28px; border-bottom: 1px solid #f2f1ec; font-size: 12px; font-variant-numeric: tabular-nums">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px">{{ m.code }}</span><span>{{ m.name }}</span><span style="color: #5b645d">{{ m.area }}</span>
+              <span style="text-align: right">{{ m.c }}</span><span style="text-align: right">{{ m.b }}</span><span style="text-align: right">{{ m.t }}</span><span style="text-align: right; font-weight: 600">{{ m.sum }}</span><span style="text-align: right">{{ m.k }}</span>
+              <span style="display: inline-flex; align-items: center; gap: 4px; color: {{ m.sc }}; font-weight: 500">{{ m.st }}</span>
+            </div>
+          </sc-for>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    // Số minh hoạ; mã DHD và cây theo nhóm trong file chỉ số điện, chưa phải sơ đồ phân tầng thật.
+    var tree = [
+      ['MBA T1 · Toàn nhà máy', '5.820', '21%', 0, true, true],
+      ['Khu sản xuất', '3.280', '22%', 1, true, false],
+      ['Nấu', '520', '22%', 2, false, false],
+      ['Lọc – Men', '610', '18%', 2, false, false],
+      ['Chiết bia hơi (KEG)', '840', '26%', 2, false, false],
+      ['Chiết nước', '310', '25%', 2, false, false],
+      ['Khu phụ trợ', '1.790', '18%', 1, true, false],
+      ['Lạnh', '1.690', '17%', 2, false, false],
+      ['CO2', 'không đo riêng', '', 3, false, false],
+      ['Khí nén', '720', '21%', 2, false, false],
+      ['Xử lý nước', '380', '15%', 2, false, false],
+      ['Hành chính', '750', '30%', 1, true, false],
+      ['Hành chính nhà máy', '—', '', 2, false, false],
+      ['Nhà ăn, hội trường', 'cấp từ Nấu', '', 2, false, false]
+    ].map(function (r) {
+      return { name: r[0], mwh: r[1], peak: r[2], pad: (8 + r[3] * 14) + 'px', caret: r[4] ? '▾' : '', w: r[4] ? 600 : 400,
+        c: r[1].indexOf('không') === 0 || r[1].indexOf('cấp') === 0 || r[1] === '—' ? '#7a8279' : '#17201a',
+        bg: r[5] ? '#eef7f1' : 'transparent', ring: r[5] ? 'inset 3px 0 0 #106138' : 'none' };
+    });
+    var tou = [['Hành chính', 30, 62, 8], ['Chiết bia hơi (KEG)', 26, 58, 16], ['Chiết nước', 25, 60, 15], ['Nấu', 22, 55, 23], ['Khí nén', 21, 52, 27], ['Lọc – Men', 18, 50, 32], ['Lạnh', 17, 46, 37], ['Xử lý nước', 15, 45, 40]]
+      .map(function (r) { return { name: r[0], c: r[1] + '%', b: r[2] + '%', t: r[3] + '%', cl: r[1] + '%' }; });
+    var meters = [
+      ['DHD01', 'Tủ tổng trạm Lạnh', 'Lạnh', '41,2', '112,8', '89,6', '243,6', '200', 'Đã ghi · 30/09', '#16703f'],
+      ['DHD07', 'Máy nén khí 1–2', 'Khí nén', '17,0', '42,1', '21,9', '81,0', '120', 'Đã ghi · 30/09', '#16703f'],
+      ['DHD12', 'Dây chuyền KEG 1', 'Chiết bia hơi', '24,3', '54,2', '14,9', '93,4', '80', 'Đã ghi · 29/09', '#16703f'],
+      ['DHD18', 'Nhà nấu', 'Nấu', '—', '—', '—', '—', '160', 'Thiếu chỉ số', '#b42318'],
+      ['DHD23', 'Trạm xử lý nước thải', 'Xử lý nước', '6,1', '18,3', '16,2', '40,6', '40', 'Đã ghi · 30/09', '#16703f']
+    ].map(function (r) { return { code: r[0], name: r[1], area: r[2], c: r[3], b: r[4], t: r[5], sum: r[6], k: r[7], st: r[8], sc: r[9] }; });
+    return { tree: tree, tou: tou, meters: meters };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-10-09T11:00:00+07:00"},
+  "title": "Wireframe Báo cáo năng lượng",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 900, "title": "W1 · Tổng quan năng lượng", "is_interactive": true},
+    "Dien.dc.html": {"x": 1520, "y": 0, "w": 1440, "h": 900, "title": "W2 · Điện — khung giờ và cây đồng hồ"},
+    "Nuoc.dc.html": {"x": 3040, "y": 0, "w": 1440, "h": 900, "title": "W3 · Nước — cây đồng hồ và cân bằng nước"}
+  },
+  "order": ["Main.dc.html", "Dien.dc.html", "Nuoc.dc.html"],
+  "notes": {
+    "t1": {"x": 0, "y": -300, "text": "Báo cáo năng lượng · wireframe v0.1 · số minh hoạ", "kind": "title1", "maxW": 4480},
+    "n1": {"x": 0, "y": 980, "w": 680, "fill": "green", "size": "m", "text": "W1 trả lời: SEC có vượt trần không, và khu vực nào kéo lên?\n\n1. SEC đứng đầu, so với trần Bộ Công Thương, hai cấp: toàn nhà máy (số báo cáo) và chỉ khu sản xuất (bỏ hành chính, nhà ăn, hội trường).\n2. Tách SEC theo công thức: phần điện E1/Pe + phần nhiệt T1/Pt, cột chồng theo tháng, đường trần nét đứt, cùng kỳ là đường xám.\n3. Thanh phân kỳ: khu vực nào làm SEC tăng/giảm so với kỳ so sánh — câu hỏi đầu tiên khi vượt trần.\n4. Bảng theo khu vực = đóng góp vào SEC (MJ/hl), cộng lại đúng bằng SEC. Bấm dòng: thẻ và đồ thị lọc theo khu vực (cross-filter). Mũi tên mở xuống công đoạn/đồng hồ (drill 2 tầng)."},
+    "n2": {"x": 760, "y": 980, "w": 680, "fill": "orange", "size": "m", "text": "Giả định cần xác nhận (W1)\n\n- Trần SEC xét theo bình quân luỹ kế năm hay từng tháng? Wireframe hiện cả hai: thẻ = luỹ kế, đồ thị = tháng.\n- Trần từ 2026 là bao nhiêu? File chỉ có 196 MJ/hl (2021–2025).\n- Mức \"gần trần\" (đang vẽ 95%) do khách chốt.\n- Định mức theo từng khu vực chưa có, nên bảng không có cột trạng thái đạt/vượt — chỉ so cùng kỳ.\n- CO2 không có đồng hồ điện riêng: hiện \"không đo riêng\", không chia ước lượng."},
+    "n3": {"x": 1520, "y": 980, "w": 680, "fill": "green", "size": "m", "text": "W2 trả lời: tiền điện đang dồn vào giờ cao điểm ở đâu, dời được bao nhiêu?\n\nĐồng hồ chỉ cho tổng theo 3 khung giờ mỗi lần ghi, không có số theo từng giờ → không vẽ heatmap giờ trong ngày. Thay bằng: cột 100% theo khu vực (cao / bình thường / thấp điểm), quy ra chi phí theo biểu giá, và ô ước tính \"dời X% sang thấp điểm\". Cây đồng hồ bên trái là bộ lọc của cả màn."},
+    "n4": {"x": 2280, "y": 980, "w": 680, "fill": "orange", "size": "m", "text": "Cần cho W2\n\n- Biểu giá điện 3 khung giờ nhà máy đang áp dụng (cấp điện áp).\n- Sơ đồ phân tầng đồng hồ điện (buổi làm việc 05/10) — cây đang vẽ theo mã DHD minh hoạ.\n- Khu vực nào dời được giờ chạy (vd. Lạnh, Khí nén, Xử lý nước) — ô ước tính chỉ áp cho các khu đó."},
+    "n5": {"x": 3040, "y": 980, "w": 680, "fill": "green", "size": "m", "text": "W3 trả lời: nước thất thoát ở đâu?\n\nSơ đồ luồng (Sankey, Recharts có sẵn): giếng → xử lý → nước sạch / mềm / nấu → hộ tiêu thụ. Mỗi nút cha so với tổng các con: chênh lệch hiện thành nhánh \"chưa đo / thất thoát\" màu cảnh báo. Bấm một nút → cây đồng hồ bên phải mở đúng nhánh đó, bảng đối chiếu cha–con hiện chênh lệch m³ và %."},
+    "n6": {"x": 3800, "y": 980, "w": 680, "fill": "orange", "size": "m", "text": "Cần cho W3\n\n- Biên bản 02/10: cân bằng nước làm ở bước sau, chờ đồng hồ tổng nhà máy. Có đưa vào đợt này dưới dạng optional không?\n- Ngưỡng chênh lệch cha–con bao nhiêu % thì cảnh báo?\n- Đồng hồ \"đề xuất ảo\" (chưa có vật lý) có hiện trên sơ đồ không?"}
+  },
+  "designSystems": []
+}

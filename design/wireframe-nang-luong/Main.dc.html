@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Tổng quan năng lượng</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#106138}a:hover{color:#0b3f25}
+.wf button{font-family:inherit}
+.wf .row:hover{background:#f2f1ec}
+</style>
+</helmet>
+<div class="wf" style="width: 1440px; height: 900px; box-sizing: border-box; display: flex; background: #f5f5f1; color: #17201a; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13px; overflow: hidden">
+
+  <nav aria-label="Menu chính" style="width: 64px; flex-shrink: 0; background: #0b3f25; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 0">
+    <div style="width: 34px; height: 34px; border-radius: 8px; background: #c2a540; margin-bottom: 10px; display: grid; place-items: center; color: #0b3f25; font-weight: 700; font-size: 11px">LOGO</div>
+    <a href="#" aria-label="Sản xuất" style="width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; color: #a9c8b4"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V9l6 4V9l6 4V5h6v16z"/></svg></a>
+    <a href="#" aria-label="Kho" style="width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; color: #a9c8b4"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M9 7V3h6v4"/></svg></a>
+    <a href="#" aria-label="Chất lượng" style="width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; color: #a9c8b4"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v6L5 19a1 1 0 0 0 1 2h12a1 1 0 0 0 1-2l-5-10V3"/></svg></a>
+    <a href="#" aria-label="Năng lượng" aria-current="page" style="width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; color: #ffffff; background: #145233; box-shadow: inset 3px 0 0 #c2a540"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></a>
+    <a href="#" aria-label="Chi phí" style="width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; color: #a9c8b4"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M15 9h-4a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4H9M12 6v2M12 16v2"/></svg></a>
+    <div style="flex-grow: 1"></div>
+    <button type="button" aria-label="Mở rộng menu" style="width: 40px; height: 40px; border-radius: 8px; border: 0; background: transparent; color: #a9c8b4; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+  </nav>
+
+  <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column">
+
+    <header style="height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 24px; padding: 0 24px; background: #ffffff; border-bottom: 1px solid #e1e2da">
+      <div style="display: flex; flex-direction: column">
+        <span style="font-size: 11px; color: #5b645d">Báo cáo năng lượng</span>
+        <h1 style="margin: 0; font-size: 17px; font-weight: 600">Tổng quan</h1>
+      </div>
+      <div role="tablist" style="display: flex; gap: 4px; height: 100%; align-items: stretch">
+        <a role="tab" aria-selected="true" href="Main.dc.html" style="display: flex; align-items: center; padding: 0 14px; color: #106138; font-weight: 600; text-decoration: none; box-shadow: inset 0 -2px 0 #106138">Tổng quan</a>
+        <a role="tab" href="Dien.dc.html" style="display: flex; align-items: center; padding: 0 14px; color: #5b645d; text-decoration: none">Điện</a>
+        <a role="tab" href="Nuoc.dc.html" style="display: flex; align-items: center; padding: 0 14px; color: #5b645d; text-decoration: none">Nước</a>
+        <a role="tab" href="#" style="display: flex; align-items: center; padding: 0 14px; color: #5b645d; text-decoration: none">Hơi</a>
+      </div>
+      <div style="flex-grow: 1"></div>
+      <span style="font-size: 11px; font-weight: 600; color: #9a4a00; background: #fdf0dc; padding: 3px 8px; border-radius: 999px">Số minh hoạ</span>
+      <button type="button" aria-label="Đổi nền sáng/tối" style="width: 34px; height: 34px; border-radius: 8px; border: 1px solid #e1e2da; background: #ffffff; color: #434b45; display: grid; place-items: center; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg></button>
+      <button type="button" style="height: 34px; padding: 0 14px; border-radius: 8px; border: 0; background: #106138; color: #ffffff; font-weight: 600; display: flex; align-items: center; gap: 6px; cursor: pointer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Xuất báo cáo</button>
+    </header>
+
+    <div role="toolbar" aria-label="Bộ lọc" style="height: 52px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 0 24px; background: #ffffff; border-bottom: 1px solid #e1e2da">
+      <div style="display: flex; border: 1px solid #c9cbc2; border-radius: 8px; overflow: hidden">
+        <button type="button" style="height: 32px; padding: 0 10px; border: 0; background: #ffffff; color: #5b645d; cursor: pointer">Tháng</button>
+        <button type="button" style="height: 32px; padding: 0 10px; border: 0; border-left: 1px solid #e1e2da; background: #ffffff; color: #5b645d; cursor: pointer">Quý</button>
+        <button type="button" aria-pressed="true" style="height: 32px; padding: 0 10px; border: 0; border-left: 1px solid #e1e2da; background: #eef7f1; color: #0b3f25; font-weight: 600; cursor: pointer">Từ đầu năm</button>
+        <button type="button" style="height: 32px; padding: 0 10px; border: 0; border-left: 1px solid #e1e2da; background: #ffffff; color: #5b645d; cursor: pointer">Tuỳ chọn</button>
+      </div>
+      <button type="button" style="height: 34px; padding: 0 12px; border: 1px solid #c9cbc2; border-radius: 8px; background: #ffffff; display: flex; align-items: center; gap: 6px; cursor: pointer; color: #17201a"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>01/01 – 30/09/2026</button>
+      <button type="button" style="height: 34px; padding: 0 12px; border: 1px solid #106138; border-radius: 8px; background: #ffffff; display: flex; align-items: center; gap: 6px; cursor: pointer; color: #17201a"><span style="color: #5b645d">So với</span> Cùng kỳ 2025 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <span style="width: 1px; height: 24px; background: #e1e2da; margin: 0 4px"></span>
+      <button type="button" style="height: 34px; padding: 0 12px; border: 1px solid #c9cbc2; border-radius: 8px; background: #ffffff; display: flex; align-items: center; gap: 6px; cursor: pointer; color: #17201a"><span style="color: #5b645d">Nhóm theo</span> Khu vực <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button type="button" style="height: 34px; padding: 0 12px; border: 1px solid #c9cbc2; border-radius: 8px; background: #ffffff; display: flex; align-items: center; gap: 6px; cursor: pointer; color: #17201a"><span style="color: #5b645d">Phạm vi SEC</span> Toàn nhà máy <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ clear }}" style="height: 30px; padding: 0 10px; border: 0; border-radius: 999px; background: #0b3f25; color: #ffffff; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 500">Đang lọc: {{ selName }} <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </sc-if>
+      <div style="flex-grow: 1"></div>
+      <a href="#" style="display: flex; align-items: center; gap: 6px; text-decoration: none; color: #b42318; font-weight: 600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>3 cảnh báo</a>
+    </div>
+
+    <main style="flex-grow: 1; min-height: 0; display: grid; grid-template-rows: 132px 300px minmax(0, 1fr); gap: 12px; padding: 14px 24px 16px">
+
+      <section aria-label="Chỉ số" style="display: grid; grid-template-columns: 1.55fr 1fr 1fr 1fr; gap: 12px">
+        <div style="background: #fbf8ec; border: 1px solid #ebdc9c; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px">
+          <div style="display: flex; justify-content: space-between; align-items: baseline">
+            <span style="font-size: 12px; font-weight: 600; color: #5f4d1c">{{ secLabel }}</span>
+            <span style="font-size: 11px; color: #5f4d1c">Trần Bộ Công Thương 196 MJ/hl</span>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 10px">
+            <span style="font-size: 30px; font-weight: 700; letter-spacing: -0.02em; color: #5f4d1c; font-variant-numeric: tabular-nums">{{ secValue }}</span>
+            <span style="font-size: 12px; color: #5f4d1c">MJ/hl</span>
+            <span style="font-size: 12px; color: #434b45">▲ 3,9 · +2,1% so cùng kỳ</span>
+            <span style="margin-left: auto; display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: #fdf0dc; color: #9a4a00"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 4l9 16H3z"/></svg>Gần trần · 97%</span>
+          </div>
+          <div style="position: relative; height: 8px; border-radius: 4px; background: #ebdc9c">
+            <div style="position: absolute; left: 0; top: 0; bottom: 0; width: {{ secBar }}; border-radius: 4px; background: #806823"></div>
+            <div style="position: absolute; left: 97.1%; top: -4px; bottom: -4px; width: 2px; background: #d92d20"></div>
+          </div>
+          <div style="display: flex; gap: 14px; font-size: 11.5px; color: #434b45">
+            <span><i style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #a87400; margin-right: 4px"></i>Phần điện {{ secDien }}</span>
+            <span><i style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #b0479b; margin-right: 4px"></i>Phần nhiệt (hơi) {{ secNhiet }}</span>
+            <span style="margin-left: auto">Khu sản xuất: <b>186,8</b></span>
+          </div>
+        </div>
+        <sc-for list="{{ cards }}" as="c" hint-placeholder-count="3">
+          <div style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; min-width: 0">
+            <span style="font-size: 12px; color: #5b645d; display: flex; align-items: center; gap: 6px"><i style="width: 8px; height: 8px; border-radius: 2px; background: {{ c.color }}"></i>{{ c.name }}</span>
+            <span style="font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums">{{ c.value }} <span style="font-size: 12px; font-weight: 500; color: #5b645d">{{ c.unit }}</span></span>
+            <span style="font-size: 11.5px; color: #434b45">{{ c.delta }} · {{ c.rate }}</span>
+            <svg width="100%" height="30" viewBox="0 0 160 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="{{ c.spark }}" fill="none" stroke="{{ c.color }}" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
+          </div>
+        </sc-for>
+      </section>
+
+      <section aria-label="Đồ thị" style="display: grid; grid-template-columns: 1.55fr 1fr; gap: 12px; min-height: 0">
+        <figure style="margin: 0; background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px">
+          <figcaption style="display: flex; justify-content: space-between; align-items: baseline">
+            <span style="font-size: 13px; font-weight: 600">SEC theo tháng: phần điện + phần nhiệt{{ selSuffix }}</span>
+            <span style="display: flex; gap: 12px; font-size: 11px; color: #5b645d">
+              <span><i style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #a87400; margin-right: 4px"></i>Điện</span>
+              <span><i style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #b0479b; margin-right: 4px"></i>Nhiệt</span>
+              <span><i style="display: inline-block; width: 14px; height: 0; border-top: 2px solid #7a8279; margin-right: 4px; vertical-align: middle"></i>Cùng kỳ 2025</span>
+              <span><i style="display: inline-block; width: 14px; height: 0; border-top: 2px dashed #d92d20; margin-right: 4px; vertical-align: middle"></i>Trần 196</span>
+            </span>
+          </figcaption>
+          <svg width="100%" height="240" viewBox="0 0 760 240" role="img" aria-label="SEC theo tháng, cột chồng điện và nhiệt, kèm trần và cùng kỳ">
+            <sc-for list="{{ grid }}" as="g" hint-placeholder-count="5">
+              <line x1="40" x2="752" y1="{{ g.y }}" y2="{{ g.y }}" stroke="#ecece6" stroke-width="1"/>
+              <text x="32" y="{{ g.ty }}" font-size="10" fill="#7a8279" text-anchor="end">{{ g.v }}</text>
+            </sc-for>
+            <sc-for list="{{ bars }}" as="b" hint-placeholder-count="9">
+              <rect x="{{ b.x }}" y="{{ b.yN }}" width="44" height="{{ b.hN }}" rx="3" fill="#b0479b" fill-opacity="{{ b.op }}"/>
+              <rect x="{{ b.x }}" y="{{ b.yD }}" width="44" height="{{ b.hD }}" fill="#a87400" fill-opacity="{{ b.op }}"/>
+              <text x="{{ b.cx }}" y="{{ b.ty }}" font-size="10.5" font-weight="600" fill="{{ b.tc }}" text-anchor="middle">{{ b.label }}</text>
+              <text x="{{ b.cx }}" y="234" font-size="10.5" fill="#5b645d" text-anchor="middle">{{ b.m }}</text>
+            </sc-for>
+            <polyline points="{{ prior }}" fill="none" stroke="#7a8279" stroke-width="2" stroke-linejoin="round"/>
+            <line x1="40" x2="752" y1="{{ capY }}" y2="{{ capY }}" stroke="#d92d20" stroke-width="1.5" stroke-dasharray="5 4"/>
+          </svg>
+        </figure>
+        <figure style="margin: 0; background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+          <figcaption style="display: flex; flex-direction: column; gap: 2px">
+            <span style="font-size: 13px; font-weight: 600">Khu vực nào làm SEC thay đổi so cùng kỳ</span>
+            <span style="font-size: 11px; color: #5b645d">Chênh lệch đóng góp vào SEC, MJ/hl · bấm để lọc</span>
+          </figcaption>
+          <div style="display: flex; flex-direction: column; gap: 5px">
+            <sc-for list="{{ diverge }}" as="d" hint-placeholder-count="8">
+              <button type="button" onClick="{{ d.pick }}" style="display: grid; grid-template-columns: 112px 1fr 1fr 48px; align-items: center; gap: 0; height: 22px; border: 0; padding: 0; background: {{ d.bg }}; border-radius: 4px; cursor: pointer; font-size: 11.5px; color: #17201a; text-align: left">
+                <span style="padding-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ d.name }}</span>
+                <span style="display: flex; justify-content: flex-end; border-right: 1px solid #a1a69d; height: 100%; align-items: center"><i style="height: 12px; width: {{ d.neg }}; background: #7a8279; border-radius: 3px 0 0 3px"></i></span>
+                <span style="display: flex; justify-content: flex-start; height: 100%; align-items: center"><i style="height: 12px; width: {{ d.pos }}; background: #434b45; border-radius: 0 3px 3px 0"></i></span>
+                <span style="text-align: right; padding-right: 4px; font-variant-numeric: tabular-nums; font-weight: 600">{{ d.label }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </figure>
+      </section>
+
+      <section aria-label="Bảng theo khu vực" style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; display: flex; flex-direction: column; min-height: 0; overflow: hidden">
+        <div style="display: grid; grid-template-columns: 28px 1.6fr 1fr 1fr 1fr 1.1fr 1.3fr 1fr; gap: 8px; padding: 8px 14px; font-size: 11px; font-weight: 600; color: #5b645d; border-bottom: 1px solid #e1e2da; background: #f9f9f6">
+          <span></span><span>Khu vực</span><span style="text-align: right">Điện (MWh)</span><span style="text-align: right">Hơi (tấn)</span><span style="text-align: right">Nước (m³)</span><span style="text-align: right">Đóng góp SEC</span><span>So cùng kỳ (MJ/hl)</span><span>Ghi chú</span>
+        </div>
+        <div style="overflow-y: auto; min-height: 0">
+          <sc-for list="{{ rows }}" as="r" hint-placeholder-count="8">
+            <button type="button" class="row" onClick="{{ r.pick }}" aria-pressed="{{ r.sel }}" style="width: 100%; display: grid; grid-template-columns: 28px 1.6fr 1fr 1fr 1fr 1.1fr 1.3fr 1fr; gap: 8px; align-items: center; padding: 0 14px; height: 27px; border: 0; border-bottom: 1px solid #f2f1ec; background: {{ r.bg }}; box-shadow: {{ r.ring }}; font-size: 12px; color: #17201a; text-align: left; cursor: pointer; font-variant-numeric: tabular-nums">
+              <span style="color: #7a8279"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></span>
+              <span style="font-weight: 500">{{ r.name }}</span>
+              <span style="text-align: right">{{ r.dien }}</span>
+              <span style="text-align: right; color: {{ r.hoiColor }}">{{ r.hoi }}</span>
+              <span style="text-align: right">{{ r.nuoc }}</span>
+              <span style="text-align: right; font-weight: 600">{{ r.sec }}</span>
+              <span style="display: flex; align-items: center; gap: 6px"><i style="height: 8px; width: {{ r.dw }}; background: {{ r.dc }}; border-radius: 2px"></i>{{ r.delta }}</span>
+              <span style="font-size: 11px; color: #5b645d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ r.note }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display: grid; grid-template-columns: 28px 1.6fr 1fr 1fr 1fr 1.1fr 1.3fr 1fr; gap: 8px; padding: 6px 14px; font-size: 12px; font-weight: 600; border-top: 1px solid #e1e2da; background: #f9f9f6; font-variant-numeric: tabular-nums">
+          <span></span><span>Toàn nhà máy</span><span style="text-align: right">5.820</span><span style="text-align: right">31.950</span><span style="text-align: right">214.000</span><span style="text-align: right">190,4</span><span>+3,9</span><span></span>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var sel = this.state && this.state.sel;
+    // Số minh hoạ — không phải số nhà máy. Đóng góp SEC = điện×3,42/Pe + hơi×3674/Pe, Pe = 721.000 hl.
+    var areas = [
+      { id: 'nau', name: 'Nấu', dien: '520', hoi: '17.900', nuoc: '62.000', sec: 93.7, d: 2.1, note: '' },
+      { id: 'chietbh', name: 'Chiết bia hơi', dien: '840', hoi: '6.850', nuoc: '34.000', sec: 38.9, d: 1.4, note: '' },
+      { id: 'locmen', name: 'Lọc – Men', dien: '610', hoi: '4.200', nuoc: '38.000', sec: 24.3, d: -0.3, note: '' },
+      { id: 'chietnuoc', name: 'Chiết nước', dien: '310', hoi: '3.000', nuoc: '29.000', sec: 16.8, d: -0.2, note: '' },
+      { id: 'lanh', name: 'Lạnh (gồm CO2)', dien: '1.690', hoi: '—', nuoc: '21.000', sec: 8.0, d: 0.6, note: 'CO2 không đo riêng' },
+      { id: 'khinen', name: 'Khí nén', dien: '720', hoi: '—', nuoc: '2.000', sec: 3.4, d: 0.4, note: '' },
+      { id: 'hanhchinh', name: 'Hành chính', dien: '750', hoi: '—', nuoc: '16.000', sec: 3.6, d: -0.1, note: 'Không tính SEC khu SX' },
+      { id: 'xln', name: 'Xử lý nước', dien: '380', hoi: '—', nuoc: '12.000', sec: 1.8, d: 0.0, note: '' }
+    ];
+    var fmt = function (v) { return v.toFixed(1).replace('.', ','); };
+    var sgn = function (v) { return (v > 0 ? '+' : v < 0 ? '−' : '') + fmt(Math.abs(v)); };
+    var pick = function (id) { return function () { self.setState({ sel: self.state && self.state.sel === id ? null : id }); }; };
+    var selA = areas.filter(function (a) { return a.id === sel; })[0];
+    var rows = areas.map(function (a) {
+      var on = a.id === sel;
+      return {
+        name: a.name, dien: a.dien, hoi: a.hoi, nuoc: a.nuoc, sec: fmt(a.sec), delta: sgn(a.d), note: a.note,
+        hoiColor: a.hoi === '—' ? '#a1a69d' : '#17201a',
+        dw: Math.round(Math.abs(a.d) / 2.1 * 60) + 'px', dc: a.d > 0 ? '#434b45' : '#a1a69d',
+        bg: on ? '#eef7f1' : (sel ? '#ffffff' : '#ffffff'), ring: on ? 'inset 3px 0 0 #106138' : 'none',
+        sel: on ? 'true' : 'false', pick: pick(a.id)
+      };
+    });
+    var sorted = areas.slice().sort(function (x, y) { return y.d - x.d; });
+    var diverge = sorted.map(function (a) {
+      var w = Math.round(Math.abs(a.d) / 2.1 * 100) + '%';
+      return { name: a.name, label: sgn(a.d), pos: a.d > 0 ? w : '0', neg: a.d < 0 ? w : '0', bg: a.id === sel ? '#eef7f1' : 'transparent', pick: pick(a.id) };
+    });
+    // SEC tháng T1–T9; phần điện ~27–28
+    var sec = [188, 182, 179, 185, 191, 199, 203, 197, 190];
+    var dien = [27.2, 27.4, 27.8, 27.9, 28.0, 27.9, 27.8, 27.5, 27.0];
+    var prior = [185, 180, 178, 183, 187, 193, 195, 190, 187];
+    var share = selA ? selA.sec / 190.4 : 1;
+    var H0 = 12, PH = 200, MAX = 220;
+    var y = function (v) { return H0 + (MAX - v) / MAX * PH; };
+    var bars = sec.map(function (v, i) {
+      var tot = v * share, d = dien[i] * share, n = tot - d;
+      var x = 52 + i * 78;
+      var over = !selA && v > 196;
+      return {
+        x: x, cx: x + 22, m: 'T' + (i + 1),
+        yD: y(tot), hD: (d / MAX) * PH, yN: y(n), hN: (n / MAX) * PH,
+        ty: y(tot) - 5, label: fmt(tot), tc: over ? '#b42318' : '#434b45', op: '1'
+      };
+    });
+    var grid = [0, 50, 100, 150, 200].map(function (v) { return { y: y(v), ty: y(v) + 3, v: v }; });
+    var priorPts = prior.map(function (v, i) { return (74 + i * 78) + ',' + y(v * share).toFixed(1); }).join(' ');
+    var spark = function (arr) {
+      var mn = Math.min.apply(null, arr), mx = Math.max.apply(null, arr);
+      return arr.map(function (v, i) { return (i * 20) + ',' + (27 - (v - mn) / (mx - mn || 1) * 24).toFixed(1); }).join(' ');
+    };
+    var cards = [
+      { name: 'Điện', color: '#a87400', value: selA ? selA.dien : '5.820', unit: 'MWh', delta: '▲ 3,1% cùng kỳ', rate: '80,7 kWh/nghìn lít', spark: spark([610, 590, 600, 640, 680, 700, 720, 680, 600]) },
+      { name: 'Nước', color: '#1f7ae0', value: selA ? selA.nuoc : '214.000', unit: 'm³', delta: '▼ 1,2% cùng kỳ', rate: '2,97 m³/nghìn lít', spark: spark([22, 21, 22, 24, 25, 26, 26, 25, 23]) },
+      { name: 'Hơi', color: '#b0479b', value: selA ? selA.hoi : '31.950', unit: 'tấn', delta: '▲ 0,8% cùng kỳ', rate: '443 kg/nghìn lít', spark: spark([3.6, 3.4, 3.3, 3.5, 3.6, 3.7, 3.8, 3.6, 3.45]) }
+    ];
+    return {
+      hasSel: !!selA, selName: selA ? selA.name : '', selSuffix: selA ? ' — ' + selA.name : '',
+      clear: function () { self.setState({ sel: null }); },
+      secLabel: selA ? 'Đóng góp vào SEC · ' + selA.name : 'SEC luỹ kế từ đầu năm · toàn nhà máy',
+      secValue: selA ? fmt(selA.sec) : '190,4',
+      secBar: selA ? (selA.sec / 196 * 100).toFixed(1) + '%' : '97.1%',
+      secDien: selA ? '—' : '27,6', secNhiet: selA ? '—' : '162,8',
+      cards: cards, rows: rows, diverge: diverge, bars: bars, grid: grid, prior: priorPts, capY: y(196 * (selA ? 0 : 1)) + (selA ? -1000 : 0)
+    };
+  }
+}
+</script>
+</body>
+</html>
