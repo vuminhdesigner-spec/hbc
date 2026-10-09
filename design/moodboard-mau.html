@@ -1,0 +1,278 @@
+<title>Bảng màu Habeco Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Bố cục: trang tài liệu quyết định — nguồn màu → 3 hướng (mock sáng/tối) → thang đề xuất → so sánh → đề xuất */
+:root{
+  --bg:#f4f4ef; --surface:#ffffff; --fg:#17201a; --muted:#5b645d; --line:#e1e2da;
+  --brand:#106138; --gold:#a3862c; --chip:#eef3ee;
+  --font:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1310;--surface:#151d18;--fg:#eaf0eb;--muted:#9aa59d;--line:#27312b;--brand:#5fae7f;--gold:#d6b95a;--chip:#1c2620;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1310;--surface:#151d18;--fg:#eaf0eb;--muted:#9aa59d;--line:#27312b;--brand:#5fae7f;--gold:#d6b95a;--chip:#1c2620;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.55;padding-inline:20px;padding-block:32px 64px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;gap:48px}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.25}
+h1{font-size:30px;font-weight:700;letter-spacing:-.01em}
+h2{font-size:21px;font-weight:600}
+h3{font-size:16px;font-weight:600}
+p{margin:0;max-width:72ch}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.lead{color:var(--muted);margin-top:8px}
+section{display:grid;gap:18px}
+.mono{font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--muted)}
+/* nguồn màu */
+.src{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.sw{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.sw i{display:block;height:64px}
+.sw div{padding:10px 12px;display:grid;gap:2px;font-size:13px}
+.sw b{font-weight:600}
+/* hướng */
+.dirs{display:grid;gap:28px}
+.dir{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:16px}
+.dir.rec{border:2px solid var(--brand)}
+.dir header{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between}
+.fit{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--chip);white-space:nowrap}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:14px}
+.specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 20px;font-size:13.5px}
+.specs dt{color:var(--muted);font-size:12px}
+.specs dd{margin:0 0 6px}
+/* mock — mọi màu đến từ biến --m-* đặt inline theo hướng */
+.mock{border-radius:10px;overflow:hidden;border:1px solid var(--m-line);background:var(--m-page);color:var(--m-fg);display:grid;grid-template-columns:52px 1fr;min-height:300px;font-size:12px}
+.mock .side{background:var(--m-side);display:flex;flex-direction:column;align-items:center;gap:10px;padding:12px 0}
+.mock .logo{width:26px;height:26px;border-radius:7px;background:var(--m-logo);margin-bottom:6px}
+.mock .nav{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:var(--m-sidefg)}
+.mock .nav.on{background:var(--m-navon);color:var(--m-navonfg);box-shadow:inset 3px 0 0 var(--m-navbar)}
+.mock .nav svg{width:16px;height:16px}
+.mock main{padding:12px;display:grid;gap:10px;align-content:start;min-width:0}
+.mock .top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.mock .crumb{font-weight:600;font-size:13px}
+.mock .btn{background:var(--m-pri);color:var(--m-prifg);border-radius:6px;padding:4px 10px;font-weight:600;font-size:11px}
+.mock .filters{display:flex;gap:6px;flex-wrap:wrap}
+.mock .f{border:1px solid var(--m-line);background:var(--m-card);border-radius:6px;padding:3px 8px;font-size:11px;color:var(--m-muted)}
+.mock .f.on{border-color:var(--m-pri);color:var(--m-fg)}
+.mock .grid{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr;gap:8px}
+.mock .card{background:var(--m-card);border:1px solid var(--m-line);border-radius:8px;padding:8px;display:grid;gap:3px;min-width:0}
+.mock .hero{background:var(--m-hero);border-color:var(--m-heroline)}
+.mock .lbl{font-size:10.5px;color:var(--m-muted);display:flex;align-items:center;gap:5px}
+.mock .dot{width:7px;height:7px;border-radius:2px;display:inline-block}
+.mock .val{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.mock .hero .val{color:var(--m-herofg)}
+.mock .unit{font-size:10px;font-weight:500;color:var(--m-muted)}
+.mock .delta{font-size:10px;font-variant-numeric:tabular-nums;color:var(--m-muted)}
+.mock .st{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;padding:1px 6px;border-radius:999px;width:fit-content}
+.mock .st svg{width:10px;height:10px}
+.mock .chart{background:var(--m-card);border:1px solid var(--m-line);border-radius:8px;padding:8px;display:grid;gap:4px}
+.mock svg.c{width:100%;height:96px;display:block}
+.mock .legend{display:flex;gap:10px;font-size:10px;color:var(--m-muted);flex-wrap:wrap}
+.cap{font-size:12px;color:var(--muted);margin-top:4px}
+/* thang */
+.ramp{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.ramp div{height:58px;padding:6px;display:flex;flex-direction:column;justify-content:flex-end;font-family:var(--mono);font-size:10px;line-height:1.25}
+.ramp .k{outline:2px solid var(--fg);outline-offset:-2px}
+.row2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.tok{display:flex;align-items:center;gap:8px;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--bg)}
+.tok i{width:18px;height:18px;border-radius:5px;display:inline-block;border:1px solid rgba(0,0,0,.08)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:13.5px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.02em}
+tr:last-child td{border-bottom:0}
+ul.take{margin:0;padding-left:20px;display:grid;gap:8px;max-width:80ch}
+.src-list{font-size:13px;color:var(--muted);display:grid;gap:4px}
+.src-list a{color:var(--brand)}
+.theme-toggle{justify-self:start;font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;padding:6px 12px;cursor:pointer}
+.theme-toggle:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+@media (max-width:640px){.mock{grid-template-columns:40px 1fr}.mock .grid{grid-template-columns:1fr 1fr}.ramp div{font-size:0}}
+</style>
+
+<div class="wrap">
+  <header style="display:grid;gap:10px">
+    <div class="eyebrow">Moodboard · Base · màu</div>
+    <h1>Bảng màu cho dashboard báo cáo Habeco</h1>
+    <p class="lead">Một câu hỏi: dùng xanh lá đậm, vàng và đỏ của Habeco ở đâu trên giao diện, để vẫn nhận ra thương hiệu mà không lẫn với màu trạng thái đạt / cảnh báo / vượt ngưỡng. Mỗi hướng vẽ cùng một màn: trang tổng quan năng lượng, thẻ SEC so với trần, ở nền sáng và nền tối. Số trên mock là số minh hoạ.</p>
+  </header>
+
+  <section>
+    <h2>Màu gốc lấy từ nhận diện</h2>
+    <p class="note">Đo pixel trên logo, bao bì và CSS website habeco.com.vn. Xanh logo và xanh web lệch nhau một nấc; vàng thương hiệu là vàng kim ngả ô-liu, không phải vàng cảnh báo.</p>
+    <div class="src" id="src"></div>
+  </section>
+
+  <section>
+    <h2>Ba hướng và giao diện hiện tại</h2>
+    <button class="theme-toggle" id="tt" type="button">Đổi nền trang: sáng / tối</button>
+    <div class="dirs" id="dirs"></div>
+  </section>
+
+  <section>
+    <h2>Thang màu đề xuất</h2>
+    <p class="note">Ô viền đậm là màu gốc của thương hiệu. Tên bước theo thang 50–950 để app team đưa thẳng vào Tailwind v4 và Figma variables.</p>
+    <h3>Xanh Habeco — màu chủ đạo</h3>
+    <div class="ramp" id="r-green"></div>
+    <h3>Vàng kim — màu phụ, dùng cho điểm nhấn</h3>
+    <div class="ramp" id="r-gold"></div>
+    <h3>Trung tính ấm ngả xanh</h3>
+    <div class="ramp" id="r-neutral"></div>
+    <div class="row2">
+      <div class="box">
+        <h3>Màu trạng thái — tách khỏi màu thương hiệu</h3>
+        <div class="chips" id="status"></div>
+        <p class="note">Trạng thái luôn đi kèm icon và nhãn chữ. "Đạt" mặc định không tô màu, chỉ hiện dấu tích: dashboard chỉ làm nổi những gì cần xử lý, và xanh thương hiệu không bị đọc nhầm thành "đạt". Đỏ thương hiệu (#C00000) không dùng trong dữ liệu; đỏ chỉ có nghĩa "vượt".</p>
+      </div>
+      <div class="box">
+        <h3>Màu biểu đồ: điện · nước · hơi</h3>
+        <div class="chips" id="series"></div>
+        <p class="note">Đã chạy kiểm tra mù màu (ΔE OKLab, mọi cặp): nền sáng tệ nhất 12,4 (protan), nền tối 13,7; khác biệt với mắt thường ≥ 19,9; tương phản ≥ 3:1 cả hai nền. Điện vàng hổ phách gần màu cảnh báo, nên cảnh báo trên biểu đồ là đường ngưỡng có nhãn, không tô màu vùng.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>So sánh</h2>
+    <div class="scroll"><table id="cmp"></table></div>
+  </section>
+
+  <section>
+    <h2>Đề xuất</h2>
+    <ul class="take">
+      <li><b>Chọn hướng A cho khung app</b>: menu trái xanh đậm mang thương hiệu, vùng nội dung trung tính để dữ liệu và màu trạng thái nổi lên. Dark mode lấy cách xử lý của hướng C (nền xanh-đen, vàng kim cho số chính) để chiếu phòng họp.</li>
+      <li><b>Vàng kim chỉ cho một việc mỗi màn</b>: số chính (SEC), mục menu đang chọn. Không dùng vàng kim làm nền nút hay màu dữ liệu.</li>
+      <li><b>Token shadcn</b>: <span class="mono">--primary</span> = xanh 700, <span class="mono">--accent</span> = vàng kim 100/700, <span class="mono">--destructive</span> = đỏ trạng thái, <span class="mono">--chart-1..3</span> = điện/nước/hơi, thêm <span class="mono">--warning</span>, <span class="mono">--success</span>, <span class="mono">--sidebar*</span> theo hướng A.</li>
+      <li><b>Font</b>: Be Vietnam Pro, thiết kế cho tiếng Việt có dấu, chữ số đều cột (tabular) cho bảng và thẻ chỉ số.</li>
+      <li><b>Cần app team xác nhận</b>: logo dùng bản trên nền xanh (chữ trắng + hoa vàng kim) ở menu trái; Recharts vẽ được đường trần và vùng dự báo như mock.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Nguồn</h2>
+    <div class="src-list">
+      <div>Logo, bao bì, ảnh gian hàng do người dùng cung cấp (đo pixel, 2026-10-09).</div>
+      <div>CSS website: <a href="https://habeco.com.vn/?page=home">habeco.com.vn</a> — màu xuất hiện nhiều nhất #154F28, #D6A733, #F2F1EC.</div>
+      <div>JD UI/UX Designer (app team): xanh lá đậm chủ đạo, đỏ và vàng phụ, light + dark, tách khỏi màu trạng thái.</div>
+      <div>Kiểm tra màu biểu đồ: script validate_palette (OKLab ΔE, mô phỏng deutan/protan/tritan, tương phản WCAG).</div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  var ico={
+    home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>',
+    bolt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>',
+    drop:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/></svg>',
+    box:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16"/></svg>',
+    flask:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v6L5 19a1 1 0 0 0 1 2h12a1 1 0 0 0 1-2l-5-10V3"/></svg>',
+    tri:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4l9 16H3z"/><path d="M12 10v4"/></svg>',
+    oct:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"/><path d="M12 8v5"/></svg>',
+    ok:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5 9-10"/></svg>'
+  };
+  var src=[
+    ['#106138','Xanh logo','chữ HABECO, nền gian hàng'],
+    ['#154F28','Xanh website','màu chính CSS habeco.com.vn'],
+    ['#C2A540','Vàng kim logo','hoa bia, slogan'],
+    ['#D6A733','Vàng kim website','nút, gạch chân'],
+    ['#FCD242','Vàng Bia Hà Nội','kệ, thùng, lon'],
+    ['#C00000','Đỏ Bia Hà Nội','chữ trên lon'],
+    ['#F2F1EC','Kem website','nền khối nội dung']
+  ];
+  document.getElementById('src').innerHTML=src.map(function(s){return '<div class="sw"><i style="background:'+s[0]+'"></i><div><b>'+s[1]+'</b><span class="mono">'+s[0]+'</span><span class="note">'+s[2]+'</span></div></div>'}).join('');
+
+  // SEC minh hoạ theo tháng (MJ/hl), trần 196 — số minh hoạ, không phải số nhà máy
+  var sec=[188,182,179,185,191,199,203,197,190];
+  function chart(t){
+    var w=300,h=96,pl=6,pr=6,pt=8,pb=14,min=160,max=215;
+    var x=function(i){return pl+i*(w-pl-pr)/(sec.length-1)};
+    var y=function(v){return pt+(max-v)*(h-pt-pb)/(max-min)};
+    var pts=sec.map(function(v,i){return x(i).toFixed(1)+','+y(v).toFixed(1)}).join(' ');
+    var area='M'+x(0)+','+(h-pb)+' L'+pts.replace(/ /g,' L')+' L'+x(sec.length-1)+','+(h-pb)+' Z';
+    var grid=[180,200].map(function(v){return '<line x1="'+pl+'" x2="'+(w-pr)+'" y1="'+y(v)+'" y2="'+y(v)+'" stroke="'+t.grid+'" stroke-width="1"/>'}).join('');
+    var dots=sec.map(function(v,i){return v>196?'<circle cx="'+x(i)+'" cy="'+y(v)+'" r="3.5" fill="'+t.crit+'" stroke="'+t.card+'" stroke-width="2"/>':''}).join('');
+    var months=['T1','T3','T5','T7','T9'].map(function(m,j){return '<text x="'+x(j*2)+'" y="'+(h-2)+'" font-size="9" fill="'+t.muted+'" text-anchor="'+(j==0?'start':j==4?'end':'middle')+'">'+m+'</text>'}).join('');
+    return '<svg class="c" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none" role="img" aria-label="SEC theo tháng so với trần 196">'+grid+
+      '<path d="'+area+'" fill="'+t.pri+'" fill-opacity=".12"/>'+
+      '<polyline points="'+pts+'" fill="none" stroke="'+t.pri+'" stroke-width="2" stroke-linejoin="round"/>'+
+      '<line x1="'+pl+'" x2="'+(w-pr)+'" y1="'+y(196)+'" y2="'+y(196)+'" stroke="'+t.crit+'" stroke-width="1.5" stroke-dasharray="4 3"/>'+
+      '<text x="'+(w-pr)+'" y="'+(y(196)-4)+'" font-size="9" font-weight="600" fill="'+t.crit+'" text-anchor="end">Trần 196</text>'+dots+months+'</svg>';
+  }
+  function mock(t,label){
+    var v=Object.keys(t).map(function(k){return '--m-'+k+':'+t[k]}).join(';');
+    var nav=['home','bolt','drop','box','flask'].map(function(n,i){return '<span class="nav'+(i==1?' on':'')+'">'+ico[n]+'</span>'}).join('');
+    function kpi(c,name,val,unit,d){return '<div class="card"><span class="lbl"><i class="dot" style="background:'+c+'"></i>'+name+'</span><span class="val">'+val+' <span class="unit">'+unit+'</span></span><span class="delta">'+d+'</span></div>'}
+    return '<figure style="margin:0"><div class="mock" style="'+v+'"><div class="side"><span class="logo"></span>'+nav+'</div><main>'+
+      '<div class="top"><span class="crumb">Năng lượng / Tổng quan</span><span class="btn">Xuất báo cáo</span></div>'+
+      '<div class="filters"><span class="f on">01/01 – 30/09/2026</span><span class="f on">So cùng kỳ 2025</span><span class="f">Khu vực: tất cả</span></div>'+
+      '<div class="grid"><div class="card hero"><span class="lbl">SEC luỹ kế · MJ/hl</span><span class="val">190,4 <span class="unit">/ trần 196</span></span>'+
+      '<span class="st" style="background:'+t.warnbg+';color:'+t.warnfg+'">'+ico.tri+'Gần trần · 97%</span></div>'+
+      kpi(t.s1,'Điện','5,82','tr kWh','▲ 3,1% cùng kỳ')+kpi(t.s2,'Nước','214','nghìn m³','▼ 1,2% cùng kỳ')+kpi(t.s3,'Hơi','21,6','nghìn tấn','▲ 0,8% cùng kỳ')+'</div>'+
+      '<div class="chart"><div class="legend"><span>SEC theo tháng · MJ/hl</span><span style="display:inline-flex;align-items:center;gap:4px"><i class="dot" style="background:'+t.crit+'"></i>Tháng vượt trần</span></div>'+chart(t)+'</div>'+
+      '</main></div><figcaption class="cap">'+label+'</figcaption></figure>';
+  }
+  var S={s1:'#a87400',s2:'#1f7ae0',s3:'#b0479b'}, SD={s1:'#b8860b',s2:'#3d8ef0',s3:'#d0609a'};
+  function m(a,b){var o={};for(var k in a)o[k]=a[k];for(var k2 in b)o[k2]=b[k2];return o}
+  var L={page:'#f5f5f1',card:'#ffffff',line:'#e1e2da',fg:'#17201a',muted:'#5b645d',grid:'#ecece6',crit:'#d92d20',warnbg:'#fdf0dc',warnfg:'#9a4a00'};
+  var D={page:'#0d1310',card:'#151d18',line:'#27312b',fg:'#eaf0eb',muted:'#9aa59d',grid:'#202a24',crit:'#f0625a',warnbg:'#3a2a10',warnfg:'#f6b45a'};
+  var dirs=[
+    {id:'A',name:'Hướng A · Menu xanh đậm, nội dung trung tính',fit:'Rất hợp',rec:true,
+     why:'Thương hiệu nằm ở khung (menu trái, logo), vùng dữ liệu trung tính nên màu trạng thái và màu biểu đồ không bị lẫn. Giống cách gian hàng dùng nền xanh làm khung, sản phẩm làm điểm nhấn.',
+     light:m(L,m(S,{side:'#0b3f25',sidefg:'#a9c8b4',logo:'#c2a540',navon:'#145233',navonfg:'#ffffff',navbar:'#c2a540',pri:'#106138',prifg:'#ffffff',hero:'#fbf8ec',heroline:'#ebdc9c',herofg:'#5f4d1c',line2:'',line:'#e1e2da'})),
+     dark:m(D,m(SD,{side:'#08251a',sidefg:'#8fb19c',logo:'#d6b95a',navon:'#123a26',navonfg:'#ffffff',navbar:'#d6b95a',pri:'#5fae7f',prifg:'#08251a',hero:'#1d2117',heroline:'#4a4120',herofg:'#e3c86a',line:'#27312b'})),
+     specs:[['Menu trái','Xanh 800 #0B3F25, mục chọn có vạch vàng kim'],['Nút chính','Xanh 700 #106138 (tương phản 7,5:1 với chữ trắng)'],['Số chính','Nền vàng kim 50, chữ vàng kim 800'],['Nền trang','Trung tính ấm #F5F5F1']]},
+    {id:'B',name:'Hướng B · Trung tính toàn bộ, xanh chỉ ở nút và mục chọn',fit:'Hợp một phần',
+     why:'Gọn và gần Power BI nhất, nhưng thương hiệu gần như biến mất: đặt cạnh app hiện tại chỉ khác màu nút. Khó đạt yêu cầu "đổi tông sang xanh lá đậm" mà khách nhìn thấy ngay.',
+     light:m(L,m(S,{side:'#ffffff',sidefg:'#6b746d',logo:'#106138',navon:'#e7f2eb',navonfg:'#106138',navbar:'#106138',pri:'#106138',prifg:'#ffffff',hero:'#ffffff',heroline:'#e1e2da',herofg:'#17201a'})),
+     dark:m(D,m(SD,{side:'#151d18',sidefg:'#9aa59d',logo:'#5fae7f',navon:'#1c2a21',navonfg:'#7cc497',navbar:'#5fae7f',pri:'#5fae7f',prifg:'#08251a',hero:'#151d18',heroline:'#27312b',herofg:'#eaf0eb'})),
+     specs:[['Menu trái','Trắng, mục chọn nền xanh 50'],['Nút chính','Xanh 700'],['Số chính','Không nhấn màu'],['Nền trang','Trung tính ấm']]},
+    {id:'C',name:'Hướng C · Xanh-đen và vàng kim, tối là chính',fit:'Hợp một phần',
+     why:'Đúng không khí gian hàng và banner 135 năm, rất "wow" khi chiếu phòng họp. Dùng hằng ngày ở nền sáng thì vàng kim nhiều quá dễ bị đọc như cảnh báo, và JD vẽ bản sáng là chính.',
+     light:m(L,m(S,{page:'#f2f1ec',side:'#0b3f25',sidefg:'#c9b56e',logo:'#c2a540',navon:'#c2a540',navonfg:'#0b3f25',navbar:'#c2a540',pri:'#806823',prifg:'#ffffff',hero:'#0b3f25',heroline:'#0b3f25',herofg:'#e3c86a'})),
+     dark:m(D,m(SD,{page:'#07140d',card:'#0e2016',line:'#1f3a2a',side:'#051009',sidefg:'#c9b56e',logo:'#d6b95a',navon:'#d6b95a',navonfg:'#051009',navbar:'#d6b95a',pri:'#d6b95a',prifg:'#051009',hero:'#13301f',heroline:'#3c5a2a',herofg:'#e9cf74'})),
+     specs:[['Menu trái','Xanh-đen, mục chọn nền vàng kim'],['Nút chính','Vàng kim 700'],['Số chính','Khối xanh đậm, số vàng kim'],['Nền trang','Kem #F2F1EC / xanh-đen']]},
+    {id:'H',name:'Hiện tại · App đang chạy (tông đỏ)',fit:'Ít hợp',
+     why:'Đỏ chủ đạo trùng với màu "vượt ngưỡng": nút, tab đang chọn và cảnh báo cùng một màu, người xem phải đọc chữ mới biết cái nào là lỗi. Đây là lý do JD yêu cầu đổi tông.',
+     light:m(L,m(S,{side:'#ffffff',sidefg:'#6b7280',logo:'#c8102e',navon:'#fdecef',navonfg:'#c8102e',navbar:'#c8102e',pri:'#c8102e',prifg:'#ffffff',hero:'#ffffff',heroline:'#e5e7eb',herofg:'#111827',page:'#f5f6f7',line:'#e5e7eb',muted:'#6b7280',fg:'#111827',s1:'#ea580c',s2:'#2563eb',s3:'#16a34a'})),
+     dark:null,
+     specs:[['Menu trái','Trắng, mục chọn đỏ'],['Nút chính','Đỏ #C8102E'],['Số chính','Không nhấn'],['Dark mode','Chưa có']]}
+  ];
+  document.getElementById('dirs').innerHTML=dirs.map(function(d){
+    return '<article class="dir'+(d.rec?' rec':'')+'"><header><h3>'+d.name+(d.rec?' · Đề xuất':'')+'</h3><span class="fit">Độ hợp: '+d.fit+'</span></header>'+
+      '<div class="pair">'+mock(d.light,'Nền sáng')+(d.dark?mock(d.dark,'Nền tối'):'<div class="note" style="display:grid;place-items:center;border:1px dashed var(--line);border-radius:10px;padding:20px">Chưa có nền tối</div>')+'</div>'+
+      '<p>'+d.why+'</p><dl class="specs">'+d.specs.map(function(s){return '<div><dt>'+s[0]+'</dt><dd>'+s[1]+'</dd></div>'}).join('')+'</dl></article>';
+  }).join('');
+
+  function ramp(id,steps,key){
+    document.getElementById(id).innerHTML=steps.map(function(s,i){
+      var dark=i>=5;return '<div class="'+(s[0]===key?'k':'')+'" style="background:'+s[1]+';color:'+(dark?'#ffffff':'#17201a')+'"><b>'+s[0]+'</b>'+s[1]+'</div>'}).join('');
+  }
+  ramp('r-green',[['50','#eef7f1'],['100','#d6ecdd'],['200','#aed8bd'],['300','#7dbd95'],['400','#4a9d6c'],['500','#24804f'],['600','#16703f'],['700','#106138'],['800','#0b3f25'],['900','#08301c'],['950','#041b10']],'700');
+  ramp('r-gold',[['50','#fbf8ec'],['100','#f5eecd'],['200','#ebdc9c'],['300','#dec66a'],['400','#d0b14b'],['500','#c2a540'],['600','#a3862c'],['700','#806823'],['800','#5f4d1c'],['900','#403415'],['950','#241d0b']],'500');
+  ramp('r-neutral',[['50','#f9f9f6'],['100','#f2f1ec'],['200','#e1e2da'],['300','#c9cbc2'],['400','#a1a69d'],['500','#7a8279'],['600','#5b645d'],['700','#434b45'],['800','#27312b'],['900','#151d18'],['950','#0d1310']],'100');
+  document.getElementById('status').innerHTML=[
+    ['#5b645d','Đạt',ico.ok,'không tô nền, chỉ dấu tích'],
+    ['#d97706','Gần ngưỡng',ico.tri,'cam #D97706'],
+    ['#d92d20','Vượt ngưỡng',ico.oct,'đỏ #D92D20']
+  ].map(function(s){return '<span class="tok"><i style="background:'+s[0]+'"></i><span style="display:inline-flex;width:14px;height:14px;color:'+s[0]+'">'+s[2]+'</span>'+s[1]+' <span class="note">'+s[3]+'</span></span>'}).join('');
+  document.getElementById('series').innerHTML=[['Điện','#a87400','#b8860b'],['Nước','#1f7ae0','#3d8ef0'],['Hơi','#b0479b','#d0609a']].map(function(s){
+    return '<span class="tok"><i style="background:'+s[1]+'"></i><i style="background:'+s[2]+'"></i>'+s[0]+' <span class="mono">'+s[1]+' / '+s[2]+'</span></span>'}).join('');
+  var rows=[
+    ['Phương án','Menu trái','Nút chính','Số chính (SEC)','Thương hiệu nhận ra','Lẫn với trạng thái','Chiếu phòng họp','Độ hợp'],
+    ['A · Đề xuất','Xanh 800','Xanh 700','Vàng kim nhạt','Cao','Thấp','Tốt (dark từ C)','Rất hợp'],
+    ['B','Trắng','Xanh 700','Không nhấn','Thấp','Thấp','Trung bình','Hợp một phần'],
+    ['C','Xanh-đen','Vàng kim 700','Khối xanh, số vàng','Rất cao','Trung bình (vàng nhiều)','Rất tốt','Hợp một phần'],
+    ['Hiện tại','Trắng','Đỏ','Không nhấn','Thấp (sai tông)','Cao (đỏ = vượt)','Chưa có dark','Ít hợp']
+  ];
+  document.getElementById('cmp').innerHTML='<thead><tr>'+rows[0].map(function(c){return '<th>'+c+'</th>'}).join('')+'</tr></thead><tbody>'+rows.slice(1).map(function(r){return '<tr>'+r.map(function(c,i){return i?'<td>'+c+'</td>':'<td><b>'+c+'</b></td>'}).join('')+'</tr>'}).join('')+'</tbody>';
+
+  var tt=document.getElementById('tt');
+  tt.addEventListener('click',function(){
+    var r=document.documentElement,cur=r.getAttribute('data-theme');
+    var dark=cur?cur==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+    r.setAttribute('data-theme',dark?'light':'dark');
+  });
+})();
+</script>
