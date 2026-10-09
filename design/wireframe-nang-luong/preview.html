@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Wireframe preview</title>
+<style>body{margin:0}</style>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+<div id="root"></div>
+<script>
+// Xem trước .dc.html ngoài canvas: render {{hole}}, sc-for, sc-if — đủ cho wireframe này, không phải runtime đầy đủ.
+(async function () {
+  var board = new URLSearchParams(location.search).get('board') || 'Main';
+  var src = await (await fetch(board + '.dc.html')).text();
+  src = src.replace(/\/_blob\/7852d35d575d094203ff871916e69c97/g, 'logo-ic.png');
+  var doc = new DOMParser().parseFromString(src, 'text/html');
+  document.title = doc.title;
+  function DCLogic(props) { this.props = props || {}; this.state = {}; }
+  DCLogic.prototype.setState = function (s) { Object.assign(this.state, s); };
+  var code = doc.querySelector('script[data-dc-script]').textContent;
+  var Comp = new Function('DCLogic', code + '\n;return Component;')(DCLogic);
+  var vals = new Comp({}).renderVals();
+  var get = function (scope, path) {
+    return path.trim().split('.').reduce(function (o, k) { return o == null ? undefined : o[k]; }, scope);
+  };
+  var interp = function (s, scope) {
+    return s.replace(/\{\{\s*([^}]+?)\s*\}\}/g, function (_, p) { var v = get(scope, p); return v == null ? '' : String(v); });
+  };
+  function render(node, scope, parent) {
+    if (node.nodeType === 3) { parent.appendChild(document.createTextNode(interp(node.nodeValue, scope))); return; }
+    if (node.nodeType !== 1) return;
+    var tag = node.localName;
+    if (tag === 'helmet') { Array.from(node.children).forEach(function (c) { document.head.appendChild(document.importNode(c, true)); }); return; }
+    if (tag === 'sc-for') {
+      var m = (node.getAttribute('list') || '').match(/\{\{\s*([^}]+?)\s*\}\}/);
+      var list = m ? get(scope, m[1]) || [] : [];
+      var as = node.getAttribute('as');
+      list.forEach(function (it, i) {
+        var s = Object.create(scope); s[as] = it; s.$index = i;
+        Array.from(node.childNodes).forEach(function (c) { render(c, s, parent); });
+      });
+      return;
+    }
+    if (tag === 'sc-if') {
+      var mv = (node.getAttribute('value') || '').match(/\{\{\s*([^}]+?)\s*\}\}/);
+      if (mv && get(scope, mv[1])) Array.from(node.childNodes).forEach(function (c) { render(c, scope, parent); });
+      return;
+    }
+    var el = node.namespaceURI === 'http://www.w3.org/2000/svg' ? document.createElementNS(node.namespaceURI, tag) : document.createElement(tag);
+    Array.from(node.attributes).forEach(function (a) {
+      if (/^on[A-Z]/.test(a.name) || /^on/.test(a.name)) return;
+      el.setAttribute(a.name, interp(a.value, scope));
+    });
+    Array.from(node.childNodes).forEach(function (c) { render(c, scope, el); });
+    parent.appendChild(el);
+  }
+  var root = document.getElementById('root');
+  Array.from(doc.querySelector('x-dc').childNodes).forEach(function (c) { render(c, vals, root); });
+})();
+</script>
+</body>
+</html>
