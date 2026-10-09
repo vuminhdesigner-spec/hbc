@@ -1,0 +1,173 @@
+/* avatar.css — the circular identity mark for a person or an organisation.
+   Source: DS component set `Avatar` (19:1012) in OMEU Design System V2, read
+   2026-08-14. See design-system/components/avatar.md.
+
+   One box, three mutually exclusive contents (photo, initials, placeholder
+   glyph) and two optional status marks (online indicator, company logo). Every
+   metric steps with the size modifier through the local `--avatar-*` custom
+   properties below, which the size classes set from the `--utui-avatar-*`
+   tokens. Consumers set the size class, never the local properties. */
+
+.avatar {
+  /* md is the base, matching badge.css — the DS set's own default variant is
+     xs, but md is the size the screens will use most and the one every other V2
+     component's unmodified class resolves to. Recorded in design-system/components/avatar.md. */
+  --avatar-size: var(--utui-avatar-size-md);
+  --avatar-font-size: var(--utui-font-size-text-md);
+  --avatar-line-height: var(--utui-line-height-text-md);
+  --avatar-icon-size: var(--utui-avatar-icon-size-md);
+  --avatar-indicator-size: var(--utui-avatar-indicator-size-md);
+  --avatar-company-size: var(--utui-avatar-company-size-md);
+
+  position: relative;
+  display: inline-grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: var(--app-radius-pill);
+  background: var(--utui-avatar-bg);
+  color: var(--utui-avatar-text);
+  font-size: var(--avatar-font-size);
+  /* Medium at every size — the DS uses one weight across the whole ladder. */
+  font-weight: var(--utui-font-weight-medium);
+  line-height: var(--avatar-line-height);
+  /* No clip here on purpose. A clip on a pill-radius box follows the CIRCLE, so
+     it would eat the corner of the online indicator and all of the company
+     badge, which sits 2px outside. The photo clips itself instead, via the
+     radius it inherits in .avatar__image. */
+}
+
+.avatar--xs {
+  --avatar-size: var(--utui-avatar-size-xs);
+  --avatar-font-size: var(--utui-font-size-text-xs);
+  --avatar-line-height: var(--utui-line-height-text-xs);
+  --avatar-icon-size: var(--utui-avatar-icon-size-xs);
+  --avatar-indicator-size: var(--utui-avatar-indicator-size-xs);
+  --avatar-company-size: var(--utui-avatar-company-size-xs);
+}
+
+.avatar--sm {
+  --avatar-size: var(--utui-avatar-size-sm);
+  --avatar-font-size: var(--utui-font-size-text-sm);
+  --avatar-line-height: var(--utui-line-height-text-sm);
+  --avatar-icon-size: var(--utui-avatar-icon-size-sm);
+  --avatar-indicator-size: var(--utui-avatar-indicator-size-sm);
+  --avatar-company-size: var(--utui-avatar-company-size-sm);
+}
+
+.avatar--md {
+  --avatar-size: var(--utui-avatar-size-md);
+  --avatar-font-size: var(--utui-font-size-text-md);
+  --avatar-line-height: var(--utui-line-height-text-md);
+  --avatar-icon-size: var(--utui-avatar-icon-size-md);
+  --avatar-indicator-size: var(--utui-avatar-indicator-size-md);
+  --avatar-company-size: var(--utui-avatar-company-size-md);
+}
+
+.avatar--lg {
+  --avatar-size: var(--utui-avatar-size-lg);
+  --avatar-font-size: var(--utui-font-size-text-lg);
+  --avatar-line-height: var(--utui-line-height-text-lg);
+  --avatar-icon-size: var(--utui-avatar-icon-size-lg);
+  --avatar-indicator-size: var(--utui-avatar-indicator-size-lg);
+  --avatar-company-size: var(--utui-avatar-company-size-lg);
+}
+
+.avatar--xl {
+  --avatar-size: var(--utui-avatar-size-xl);
+  --avatar-font-size: var(--utui-font-size-text-xl);
+  --avatar-line-height: var(--utui-line-height-text-xl);
+  --avatar-icon-size: var(--utui-avatar-icon-size-xl);
+  --avatar-indicator-size: var(--utui-avatar-indicator-size-xl);
+  --avatar-company-size: var(--utui-avatar-company-size-xl);
+}
+
+/* 2xl is the only step whose type leaves the text ramp for display-xs. */
+.avatar--2xl {
+  --avatar-size: var(--utui-avatar-size-2xl);
+  --avatar-font-size: var(--utui-font-size-display-xs);
+  --avatar-line-height: var(--utui-line-height-display-xs);
+  --avatar-icon-size: var(--utui-avatar-icon-size-2xl);
+  --avatar-indicator-size: var(--utui-avatar-indicator-size-2xl);
+  --avatar-company-size: var(--utui-avatar-company-size-2xl);
+}
+
+/* Initials carry no rules of their own: the type, weight and colour are all on
+   .avatar and the grid centres them. The class exists as the markup hook the
+   contract names, and as the place any future initials-only rule belongs. */
+
+/* Photo. Fills the circle regardless of the source aspect ratio; the grid
+   centring of the parent is irrelevant to it. */
+.avatar__image {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+/* Placeholder `user` glyph. Material Symbols `person`, matching the rest of this
+   package — the DS draws its own Untitled UI user icon, recorded as a deviation
+   in design-system/components/avatar.md. The glyph overrides the 20px base of
+   .material-symbols-outlined because avatar glyph size steps with the circle. */
+.avatar__icon {
+  color: var(--utui-avatar-icon-color);
+  font-size: var(--avatar-icon-size);
+  line-height: 1;
+}
+
+/* `_Avatar online indicator` — flush in the bottom-right corner box, so the ring
+   overlaps the circle's own edge and nothing overhangs. */
+.avatar__status {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: var(--avatar-indicator-size);
+  height: var(--avatar-indicator-size);
+  border: var(--utui-avatar-status-ring-width) solid var(--utui-avatar-status-ring);
+  border-radius: var(--app-radius-pill);
+}
+
+.avatar__status--online {
+  background: var(--utui-avatar-indicator-online);
+}
+
+/* `_Avatar company icon` — a logo image 2px outside the circle on both axes, so
+   unlike the indicator it DOES overhang its parent's box. A consumer with tight
+   padding has to leave room for it; that overhang is the drawn look. Needs its
+   own overflow clip because .avatar's clip stops at the circle. */
+.avatar__company {
+  position: absolute;
+  right: var(--utui-avatar-company-offset);
+  bottom: var(--utui-avatar-company-offset);
+  width: var(--avatar-company-size);
+  height: var(--avatar-company-size);
+  border: var(--utui-avatar-status-ring-width) solid var(--utui-avatar-status-ring);
+  border-radius: var(--app-radius-pill);
+  overflow: hidden;
+}
+
+.avatar__company-image {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+/* An avatar that is itself the control — a profile menu trigger, a row link.
+   The DS `State=Focused` ring is painted OUTSIDE the box as a shadow rather
+   than as the variant's inside stroke, so the ring never crops the photo and
+   the circle never changes size. See design-system/components/avatar.md.
+
+   There is no hover rule because the DS `State=Hover` variant is pixel-identical
+   to Default; that gap is recorded in the contract rather than filled here. */
+.avatar:is(button, a) {
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.avatar:is(button, a):focus-visible {
+  outline: none;
+  box-shadow: var(--utui-avatar-focus-ring);
+}

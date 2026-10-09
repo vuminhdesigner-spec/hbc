@@ -1,0 +1,107 @@
+/* Inform — thông báo tĩnh theo ngữ cảnh. Source: OMEU DS V2 `Inform` 11297:36733. Contract: ds/components/inform.md. Tô nền theo tone (modifier trên block), không viền/shadow. */
+
+.inform {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--utui-inform-gap);
+  width: 100%;
+  padding: var(--utui-inform-padding);
+  border-radius: var(--utui-inform-radius);
+  background: var(--utui-inform-bg);
+}
+
+/* Tone: mặc định (không class) = neutral/info xám. */
+.inform--warning {
+  --utui-inform-bg: var(--utui-inform-bg-warning);
+  --utui-inform-icon: var(--utui-inform-icon-warning);
+}
+
+.inform--error {
+  --utui-inform-bg: var(--utui-inform-bg-error);
+  --utui-inform-icon: var(--utui-inform-icon-error);
+}
+
+.inform--success {
+  --utui-inform-bg: var(--utui-inform-bg-success);
+  --utui-inform-icon: var(--utui-inform-icon-success);
+}
+
+.inform--brand {
+  --utui-inform-bg: var(--utui-inform-bg-brand);
+  --utui-inform-icon: var(--utui-inform-icon-brand);
+}
+
+/* Glyph 20px không vòng; aria-hidden trong markup. */
+.inform__icon {
+  flex: none;
+  color: var(--utui-inform-icon);
+  font-size: var(--utui-inform-icon-size);
+}
+
+.inform__content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--utui-inform-content-gap);
+  min-width: 0;
+}
+
+.inform__text {
+  display: grid;
+  gap: var(--utui-inform-text-gap);
+}
+
+.inform__title {
+  margin: 0;
+  color: var(--utui-inform-title);
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-semibold);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+.inform__supporting {
+  margin: 0;
+  color: var(--utui-inform-supporting);
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-regular);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+/* Actions nằm dưới text (không bên phải), kể cả ở màn hẹp. */
+.inform__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--utui-spacing-04);
+}
+
+/* Đóng: tuỳ chọn, góc trên phải; cùng luật close của .drawer__close / .modal__close. */
+.inform__close {
+  position: absolute;
+  top: var(--utui-inform-close-inset);
+  inset-inline-end: var(--utui-inform-close-inset);
+  display: grid;
+  place-items: center;
+  width: var(--utui-inform-close-size);
+  height: var(--utui-inform-close-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--app-radius);
+  background: transparent;
+  color: var(--utui-color-icon-default);
+  cursor: pointer;
+}
+
+.inform__close:hover {
+  background: var(--utui-color-bg-surface-hover);
+  color: var(--utui-color-icon-strong);
+}
+
+.inform__close .material-symbols-outlined {
+  font-size: 20px;
+}
+
+/* Chừa chỗ cho nút đóng ở dòng tiêu đề. */
+.inform:has(> .inform__close) .inform__title {
+  padding-inline-end: var(--utui-spacing-08);
+}

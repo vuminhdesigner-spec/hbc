@@ -1,0 +1,58 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component page-tab. Hướng dẫn dùng nằm ở page-tab.md.",
+  "name": "page-tab",
+  "block": ".page-tab",
+  "sources": {
+    "stylesheet": "ds/styles/page-tab.css",
+    "contract": "ds/components/page-tab.md"
+  },
+  "api": {
+    "modifiers": [],
+    "parts": [
+      ".page-tab__close",
+      ".page-tab__icon",
+      ".page-tab__label",
+      ".page-tab-group",
+      ".page-tab-group--transparent"
+    ],
+    "stateClasses": [
+      ".is-active"
+    ],
+    "pseudoStates": [
+      ":focus",
+      ":hover"
+    ],
+    "attributes": []
+  },
+  "tokens": [
+    "--utui-color-bg-surface-hover",
+    "--utui-color-brand-500",
+    "--utui-font-size-text-sm",
+    "--utui-font-weight-medium",
+    "--utui-font-weight-regular",
+    "--utui-line-height-text-sm",
+    "--utui-page-tab-active-bg",
+    "--utui-page-tab-close-icon",
+    "--utui-page-tab-close-icon-size",
+    "--utui-page-tab-close-size",
+    "--utui-page-tab-gap",
+    "--utui-page-tab-group-bg",
+    "--utui-page-tab-group-border",
+    "--utui-page-tab-height",
+    "--utui-page-tab-icon",
+    "--utui-page-tab-padding-x",
+    "--utui-page-tab-padding-y",
+    "--utui-page-tab-radius",
+    "--utui-page-tab-split",
+    "--utui-page-tab-split-height",
+    "--utui-page-tab-text",
+    "--utui-page-tab-text-active",
+    "--utui-page-tab-width",
+    "--utui-radius-sm"
+  ],
+  "breakpoints": [],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

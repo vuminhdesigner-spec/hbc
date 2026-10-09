@@ -1,0 +1,1085 @@
+/* ============================================================
+   responsive.css — the breakpoint ladder.
+
+   The contract is .claude/skills/responsive/SKILL.md. Read it before editing this file.
+
+   This file owns two things and nothing else:
+
+   1. The per-tier values of the layout tokens declared in
+      design-system/tokens/css/untitled-ui-component.css. This is the ONLY file allowed to
+      redefine them, so a page's gutters, sticky offsets and bounded scroll
+      regions all step together and no screen carries its own padding query.
+   2. Tier behaviour for SHARED chrome — the shell, the nav, the pinned block,
+      the tab strips, pagination, coarse-pointer hit areas.
+
+   Screen- or pattern-specific reflow (which grid collapses when, how many
+   metric columns) stays in that screen's own bundle, at the same boundaries.
+
+   Tiers — max-width, desktop-down. Four boundaries, no others:
+
+     2xl  >= 1536px   wide desktop
+     xl   1280-1535   desktop; the 1440px design baseline lives here
+     lg   1024-1279   small laptop / tablet landscape; nav becomes a rail
+     md    768-1023   tablet portrait; two-column bodies stack
+     sm     <= 767    phone; single column
+
+   Custom properties cannot be used in a media query condition, so the literal
+   px below are the source of truth for the queries and
+   --utui-breakpoint-* mirrors them for JS and docs. Change both together, plus
+   the matchMedia call in ../scripts/nav-collapse.js.
+
+   Rule order is the cascade and this file must stay LAST in app.css.
+   Overrides for the retired index.html shell moved to
+   legacy/responsive-legacy.css on 2026-08-11.
+   ============================================================ */
+
+/* ============================================================
+   1. Layout token ladder
+   ============================================================ */
+
+@media (max-width: 1279px) {
+  :root {
+    /* Nav is a rail from here down, so the pinned chrome loses a row of
+       breathing room and anything anchored below it moves up with it. */
+    --utui-sticky-chrome-offset: 112px;
+  }
+}
+
+@media (max-width: 1023px) {
+  :root {
+    /* No gutter step here any more: the base gutter is the component's own
+       20px since 2026-09-04, and this tier used to step 32px down to 24px.
+       The sm tier still steps it to 16px. Since 2026-09-05 the vertical gutter
+       and the block gap are that same 20px, and they do not step here either. */
+    /* Half the design system's 80px: the two blocks are still side by side here,
+       but a 768px content column cannot spend 80px on the space between a title
+       and its actions. */
+    --utui-page-header-gap: var(--utui-spacing-10);
+    /* The drawer's left gutter is the only thing that says a page is still
+       behind it; it steps with the page's own gutters rather than holding 40px
+       against a 768px viewport. */
+    --utui-drawer-gutter: var(--utui-spacing-06);
+    /* 160px of block padding centres the empty state on a 1727px page and
+       strands it below the fold on a short one. */
+    --utui-empty-page-padding-y: var(--utui-spacing-16);
+    /* 176px is the widest minimum a 5-up row fits in the 1088px baseline column
+       (design-system/components/metric-item.md), which is a statement about the design width
+       and stops being useful the moment the row scrolls — and from here down it
+       always scrolls. 160px is the floor a tile still reads at: with the padding
+       stepped to 20px below it leaves the label and the display-md figure 120px
+       of content box against the 128px a 176px tile had at 24px, so the row buys
+       most of a sixth tile of visible width and no figure loses a line it was
+       not already going to lose. Stepped as a token because `flex-basis` and
+       `min-width` both read it in metric-item.css and a rule here would have to
+       restate both. */
+    --utui-metric-tile-min-width: 160px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    /* The page's 20px rung steps to 16px whole — all three values together,
+       the way they are declared. */
+    --utui-page-gutter-x: var(--utui-spacing-04);
+    --utui-page-gutter-y: var(--utui-spacing-04);
+    --utui-page-block-gap: var(--utui-spacing-04);
+    --utui-page-header-gap: var(--utui-spacing-04);
+    --utui-sticky-chrome-offset: 96px;
+    --utui-scroll-region-offset: 220px;
+    /* Full-bleed sheet. At 375px a gutter buys a 16px strip of a page nobody
+       can interact with while the drawer is modal, and costs the picker table
+       16px of the width it has least of. */
+    --utui-drawer-gutter: 0px;
+    /* Dock (minimized drafts) spans the foot edge to edge, one item per row. */
+    --utui-dock-offset: 0px;
+    --utui-empty-page-padding-y: var(--utui-spacing-08);
+  }
+}
+
+/* ============================================================
+   2. Shared chrome
+   ============================================================ */
+
+/* --- lg and below: the rail is the layout, expanding is an overlay ---
+   ../scripts/nav-collapse.js collapses the nav at this same boundary
+   (matchMedia), which adds .is-collapsed and switches the shell column via the
+   :has() rule in app-shell.css. The `.mdm-shell` declaration is the no-JS
+   floor: without it the shell would keep reserving 288px for a nav that the
+   user cannot see the point of at this width.
+
+   THE COLUMN STAYS 64px EVEN WHEN THE NAV IS EXPANDED, and that is the whole
+   point of the block below. Until 2026-09-17 this tier set the rail column and
+   stopped there, so an expanded nav — the state nine screens were permanently
+   in, having no collapse JS at all, and the state any screen reached by
+   pressing the toggle — composed at 288px inside a 64px column and was cut off
+   by the nav's own `overflow: hidden`: labels, the search field and the module
+   trigger all sliced down the middle, with no way back.
+
+   Giving the column the 288px instead would fix the clipping and cost the page
+   what it has least of: at 768px the content region would drop to 480px, which
+   is under the narrowest data table this package draws. So the expanded nav
+   leaves the grid entirely and paints over the page as an overlay with a scrim,
+   the way the drawer does — the page keeps its width, and the nav gets its own.
+
+   This tier replaces the previous `.side-nav { display: none }` at 1180px. That
+   rule hid the navigation outright while the shell still reserved a column for
+   it, so between 761px and 1180px every screen rendered an empty rail-width
+   gutter and had no navigation at all. */
+@media (max-width: 1279px) {
+  .mdm-shell {
+    grid-template-columns: var(--utui-nav-width-collapsed) minmax(0, 1fr);
+  }
+
+  /* `fixed`, so the nav contributes nothing to the document's scrollWidth —
+     the same reason drawer.css and filter-panel.css give. z-index 56 puts it
+     over the pinned page chrome (40) and the filter popover (50) and under the
+     modal and drawer (60), which must still paint above it. */
+  .mdm-shell > .side-nav:not(.is-collapsed) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 56;
+    width: var(--utui-nav-width);
+    height: 100dvh;
+    box-shadow: var(--utui-shadow-xl);
+  }
+
+  /* Taking the nav out of flow leaves column 1 empty, and `.main` would be
+     auto-placed into it — sliding the page under the rail. It is pinned to
+     column 2 for exactly as long as the nav is out of the grid. */
+  .mdm-shell:has(> .side-nav:not(.is-collapsed)) > .main {
+    grid-column: 2;
+  }
+
+  /* The scrim. A pseudo-element rather than an element because the nav is a
+     descendant of the shell, so its own clicks never pass through this layer —
+     the condition that forces drawer.css to author a real one. Dismissal is
+     ../scripts/nav-collapse.js; a click on the scrim is reported on the shell. */
+  .mdm-shell:has(> .side-nav:not(.is-collapsed))::before {
+    content: "";
+    position: fixed;
+    z-index: 55;
+    inset: 0;
+    background: var(--utui-scrim-bg);
+    backdrop-filter: blur(var(--utui-scrim-blur));
+  }
+}
+
+/* --- sm: the rail is still the default, and now it is reversible ---
+   At 375px an expanded 288px nav left 87px of content, so this tier used to
+   force the rail composition on `.side-nav` with no class and hide the collapse
+   toggle outright — a phone could never read a nav label, and the nav search
+   field was inert because there was nothing to expand into. Both were recorded
+   as the missing off-canvas drawer.
+
+   The overlay in the lg tier above IS that drawer, and it applies here: an
+   expanded nav paints over the page instead of squeezing it, so 375px never
+   pays the 87px. That leaves this tier with nothing of its own to say —
+   `.side-nav.is-collapsed` in side-navigation.css already draws the rail, and
+   ../scripts/nav-collapse.js sets that class at this width on every screen.
+   The rules that used to be here were a second copy of that block, so they are
+   gone rather than re-scoped; the shell column is the lg tier's, unchanged.
+   Removed 2026-09-17. */
+
+/* --- Metric row ---------------------------------------------
+   NO tier rule, deliberately, since 2026-08-14. The strip used to step 4-up →
+   2-up → 1-up here, with every screen that changed the column count owning a
+   copy of the ladder — and a copy that was missing a rung is what pushed the
+   page into horizontal overflow at 375px, the one thing the contract forbids.
+
+   `.metric-group` is now a single non-wrapping row that scrolls sideways inside
+   itself (metric-item.css): the tiles flex above a min-width token and stop
+   there, so the row reflows at every width without a breakpoint and there is no
+   per-screen ladder left to get wrong. Overflow stays inside the scroller, which
+   is how `.data-table-wrap` and `.media-gallery__strip` already comply.
+
+   The block below is NOT that ladder coming back. The count is still layout: no
+   rule here sets a column, a template or a tile count, and the row is still one
+   scrolling line at every tier. What steps is the padding inside a tile and the
+   space around the strip's head — compaction, which cannot be got wrong by a
+   missing rung because a rung that is missing simply leaves the drawn value.
+
+   Note when adding to it that a screen's own single-class selector still
+   outranks this file. */
+
+/* --- md and below: the strip compacts -----------------------
+   Added 2026-08-16. From here down the row always scrolls inside
+   `.metric-scroller`, so the tile's drawn spacing is being spent on a strip the
+   user is already paying a horizontal scroll for: 24px of padding on each side
+   of a 160px tile is 30% of it, and 12px above the strip is a header band as
+   tall as a table row. Both come down one step.
+
+   Guidance order is regions before components (.claude/skills/responsive/SKILL.md § Principles (2));
+   this is what the strip looks like at a width it was not drawn for, not an
+   alternative to hiding it — the app-shell fullscreen mode does that now.
+
+   One rung, not two: sm gets the same composition as md, which is what §6
+   already records for this row. A second step would have to come out of the
+   figure's own type, and a metric tile whose number is smaller than the one
+   beside it on the next screen is worse than a tile with less air. */
+@media (max-width: 1023px) {
+  /* Was 24px at base and stepped to 20px here. Since the 2026-09-04 re-sync the
+     base padding IS 16px/20px, so only the horizontal axis has anywhere left to
+     go — the vertical one would step up, not down. The `.metric-tile__menu`
+     override that used to sit here went with it: the menu's 20px inset now
+     matches the base horizontal padding at every tier, so there is nothing for
+     this query to keep in step. */
+  .metric-tile {
+    padding: var(--utui-spacing-04);
+  }
+
+  /* The superseded tile on item-listing.html, still 20px/16px behind the one
+     above. It carries no absolutely positioned child, so padding is all of it. */
+  .metric-item {
+    padding: var(--utui-spacing-04);
+  }
+}
+
+/* --- Label / value rows -------------------------------------
+   The label column is fixed (90px, or 180px for --wide). Once a section card is
+   narrow the value gets whatever is left, and at 180px that is too little for a
+   company name to reach a second word per line. --wide stacks as soon as the
+   section grid goes two-up; the 90px default holds one tier longer because
+   240px of value still reads. Owned here rather than in item-detail.css because
+   data-viewer is a component, not one screen's glue.
+
+   --label-md joined the two-up step on 2026-08-14, but only inside a section
+   card. Below 1024 the section grid is two equal columns, so EVERY card —
+   including `--full` — is about 312px wide and its body about 264px. A 120px
+   label plus the 16px gap leaves ~128px of value, which is the same
+   one-word-per-line failure that moved --wide up a tier, and `Thông tin kinh
+   doanh` in project-investor.js runs an 85-character value against it.
+   `overflow-wrap: anywhere` on the value only converts the overflow into
+   Vietnamese words broken mid-syllable, so it is not a substitute for stacking.
+
+   Scoped to `.section-card` because the tier is a proxy for the card's width,
+   not for the viewport's: the same `--label-md` list also composes inside the
+   modal on investor-address.html, whose panel is a fixed 538px (modal.css) and
+   still has ~354px of value at md. Stacking it there would drop a drawn layout
+   for a width problem it does not have.
+
+   The 90px default still holds to sm: at a 264px body it keeps ~158px, which is
+   the tightest step the ladder tolerates side by side. */
+/* RETARGETED 2026-09-16, when the label column stopped being a ladder and began
+   hugging its longest label (../styles/data-viewer.css). The three selectors here
+   named ladder steps that no longer exist; the condition they were really
+   expressing is "a label/value row inside a section card, at a tier where the
+   card is ~312px wide". That is now said directly. Rows outside a card — the
+   modal on a 538px panel, the upload summary — keep two columns, which is the
+   scoping the previous rule's comment argued for and this one keeps. */
+@media (max-width: 1023px) {
+  .section-card .data-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* The row becomes a box again to stack: the list's single column carries the
+     16px between rows, and the row's own grid carries the 4px between a label and
+     its value. One grid cannot hold both gaps, which is why `display: contents`
+     is a two-column arrangement only. */
+  .section-card .data-viewer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: var(--utui-spacing-01);
+  }
+}
+
+@media (max-width: 767px) {
+  .data-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Same reason as the 1023 rung above — see the note there. */
+  .data-viewer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: var(--utui-spacing-01);
+  }
+}
+
+/* --- Modal: the mobile composition (design-system/components/modal.md) -----
+   `Breakpoint=Mobile` in the DS set (SFo9P9PCVQiuOk2SqjZYKQ, 933:39265, read from
+   `Type=Horizontal, Breakpoint=Mobile` 1103:64656) is NOT a narrower desktop
+   panel. It is a bottom sheet, and four things change together:
+
+     - the overlay anchors the panel to the end of the block axis, with 16px side
+       gutters and an 80px bottom offset;
+     - the panel is full width, with its own smaller insets (20 / 16 / 16) and a
+       24px gap instead of 32px;
+     - every layout collapses to the centred stack — including `Horizontal`, whose
+       icon-beside-text row is a desktop-only arrangement;
+     - the action row stacks full width AND the primary comes first.
+
+   The reversed action order is a decision, not a slip: on a sheet the primary sits
+   nearest the thumb. It is done with `order` so the DOM keeps
+   secondary-then-primary — the desktop reading order and the tab order both stay
+   as authored, and one markup serves both breakpoints.
+
+   This is a component reflow and it lives here rather than in modal.css because it
+   steps with the tier, per the ownership table at the head of this file. The form
+   size's body reflow is the opposite case and correctly does NOT live here: it
+   keys off the panel's own width, not the viewport's — see modal.css. */
+@media (max-width: 767px) {
+  .modal {
+    /* Overrides `place-items: center` from modal.css. Declared as the pair rather
+       than as `place-items: end center` so only the block axis moves. */
+    align-items: end;
+    justify-items: center;
+    padding: var(--utui-modal-sheet-inset) var(--utui-modal-sheet-inset)
+      var(--utui-modal-sheet-offset);
+  }
+
+  .modal__panel {
+    inline-size: 100%;
+    gap: var(--utui-modal-gap-sm);
+    padding: var(--utui-modal-padding-block-start-sm) var(--utui-modal-padding-inline-sm)
+      var(--utui-modal-padding-block-end-sm);
+  }
+
+  /* `.modal__close`'s text-row reserve (modal.css) keys off the panel's own
+     inline padding, which is 16px here, not the desktop 24px — recomputed so
+     the reserve still matches the X's real footprint at this tier. */
+  .modal__panel:has(> .modal__close) > .modal__content > .modal__text:first-child,
+  .modal__panel:has(> .modal__close) > .modal__content > .modal__heading:first-child {
+    padding-inline-end: calc(var(--utui-touch-target-min) + var(--utui-spacing-03) - var(--utui-modal-padding-inline-sm));
+  }
+
+  /* Expand + close corner group: reserve recomputed at the sheet's inset; expand is desktop-only (the sheet is already full width). */
+  .modal__panel:has(> .modal__controls) > .modal__content > .modal__text:first-child,
+  .modal__panel:has(> .modal__controls) > .modal__content > .modal__heading:first-child {
+    padding-inline-end: calc(var(--utui-touch-target-min) + var(--utui-spacing-03) - var(--utui-modal-padding-inline-sm));
+  }
+
+  .modal[data-modal-expandable]:has(> .modal__panel--table) .modal__expand,
+  .drawer[data-drawer-expandable] .drawer__expand,
+  .drawer[data-drawer-minimizable] .drawer__minimize,
+  .doc-detail__minimize {
+    display: none;
+  }
+
+  /* Horizontal's icon moves above the (now centred) text at this tier, so the
+     text is no longer the row under the X — cancel the reserve with it. */
+  .modal__panel--horizontal:has(> .modal__close) > .modal__content > .modal__text:first-child,
+  .modal__panel--horizontal:has(> .modal__close) > .modal__content > .modal__heading:first-child {
+    padding-inline-end: 0;
+  }
+
+  /* Horizontal collapses to the stack: one column, and the icon — which is a panel
+     child in that layout only — centres itself like the stacked layouts' icon. */
+  .modal__panel--horizontal {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--utui-modal-gap-sm);
+  }
+
+  .modal__panel--horizontal > .featured-icon {
+    justify-self: center;
+  }
+
+  .modal__panel--horizontal > .modal__content,
+  .modal__panel--horizontal > .modal__actions {
+    grid-column: 1;
+  }
+
+  .modal__content {
+    gap: var(--utui-modal-content-gap-sm);
+  }
+
+  /* Centring is scoped away from every panel WHOSE BODY IS A LAYOUT rather than
+     prose. A dialog with no body at all — the confirms, which are a title, a
+     supporting line and two buttons — is the composition the set draws centred at
+     `Breakpoint=Mobile`, and it keeps it.
+
+     THE KEY IS THE BODY, NOT THE PANEL SIZE — rewritten 2026-08-27d, and this is
+     the third pass at one guard. It was
+     `:not(.modal__panel--form):not(.modal__panel--table)`, i.e. a list of SIZES,
+     and design-system/components/modal.md said so out loud: "A new size with a
+     layout in its body has to be added to that `:not()` list". That sentence is
+     the contract admitting the guard was on the wrong axis, and the hazard proved
+     it twice — `--table` was missing on 2026-08-19, and then
+     `screens/du-an/ho-so/chi-tiet.html`'s reject dialog walked straight
+     past the whole exclusion: it is `--horizontal --md` with a real
+     `Lý do từ chối` field in its body, so it is neither excluded size. MEASURED at
+     375 before this change: `#rejectForm` is 311px against a 311px
+     `.modal__content`, so it did not shrink — the hint string's max-content saved
+     it by accident — but `justify-items: center` and the centred `.modal__text`
+     WERE applied over a form that is `text-align: start`, so the panel drew a
+     centred title and supporting line above a left-aligned label, control and
+     hint. Two alignments in one panel, the same defect `--table` had.
+
+     What the sizes could never express: `.modal__body--form` and
+     `.modal__body--table` are the two layout bodies the package HAS, but a body
+     may be a layout while wearing the base class — modal.md's 2026-08-22 note
+     records an 848px panel deliberately composing its own rows inside the base
+     body, and this reject dialog and `screens/du-an/ho-so/tai-len.html`'s summary
+     panel do the same at other sizes. So the test is not "which class is on the
+     body", it is "is there a body at all, and has it SAID it is prose".
+
+     THE DEFAULT IS THE SAFE ONE, which is the whole reason to invert it: a body
+     that says nothing is treated as a layout and simply does not get the centring,
+     which is never worse than left-aligned text. Only a body that really is prose
+     opts back in, with `.modal__body--prose`. The read size's `Data viewer` list
+     is what that is for — it has had no consumer since 2026-08-19, so nothing in
+     the package carries the class today, and modal.md records it against that
+     size so the next read dialog does not have to rediscover it.
+
+     Why the sizing half still matters: a body child that is not a scroll container
+     is sized from its max-content contribution when the grid item goes
+     fit-content, and a wide one would push the horizontal scroll up to
+     `.modal__content`, which is the one place
+     .claude/skills/responsive/SKILL.md says it must never be — and where no
+     page-overflow check can see it, because the overlay is `fixed`. */
+  .modal__content:not(:has(> .modal__body:not(.modal__body--prose))) {
+    justify-items: center;
+  }
+
+  .modal__content:not(:has(> .modal__body:not(.modal__body--prose))) > .modal__text {
+    text-align: center;
+  }
+
+  /* ONE ALIGNMENT PER PANEL, and this is the third rule that predicate governs.
+     `--horizontal` is the only layout whose featured icon is a child of the PANEL
+     rather than of `.modal__content`, so it is the only one that has to be told:
+     a stacked panel's icon sits inside the content band and the `justify-items`
+     above already decides it. Without this, the reject dialog drew a CENTRED icon
+     over a left-aligned title — the same two-axes-in-one-panel defect one part
+     up, arriving the moment the text stopped centring. Where the text stays as
+     drawn, the icon stays with it. */
+  .modal__panel--horizontal:has(> .modal__content > .modal__body:not(.modal__body--prose))
+    > .featured-icon {
+    justify-self: start;
+  }
+
+  .modal__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* `.button--destructive` is the primary of a destructive dialog and takes the
+     same position. */
+  .modal__actions > .button--primary,
+  .modal__actions > .button--destructive {
+    order: -1;
+  }
+}
+
+/* --- Section card grid --------------------------------------
+   The 6-column grid of design-system/patterns/item-detail.md, declared in ./section-card.css.
+   Collapse the grid before any card's internals: spans hold through lg (rows
+   stay full); at md two equal columns, --wide/--full take the row; one at sm. Cards keep their
+   reading order at every tier. */
+@media (max-width: 1023px) {
+  .section-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .section-grid > .section-card {
+    grid-column: span 1;
+  }
+
+  .section-grid > .section-card--wide,
+  .section-grid > .section-card--full {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 767px) {
+  .section-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* --- Two-up field rows --------------------------------------
+   `.form-field-row` (./form-field.css) pairs two fields on one row. It holds
+   down to md, where the form's panel is already full width; at sm the content
+   column is 279px, so two columns leave ~131px each — narrower than
+   `Nhập thông tin` and too narrow for a date. One column, same reading order.
+   Owned here rather than in a screen file: the row belongs to
+   design-system/components/inputs.md and no screen declares its template. */
+@media (max-width: 767px) {
+  .form-field-row {
+    --form-field-row-columns: minmax(0, 1fr);
+    --form-field-row-gap: var(--utui-spacing-04);
+    --form-field-row-rows: none;
+    --form-field-row-tracks: none;
+    --form-field-row-span: auto;
+    --form-field-row-child-gap: var(--utui-spacing-02);
+    --form-field-row-child-margin: 0;
+  }
+}
+
+/* --- Attachment ---------------------------------------------
+   The pane's own reflow, owned here rather than in a screen bundle because it
+   belongs to design-system/components/attachment.md and no screen file declares
+   these properties on it. Two things change at `md` and below, and both follow
+   from the same fact: from `md` the responsive contract stacks two-column bodies
+   (§6), so every consumer of this card is full width from there down.
+
+   ONE THING SINCE 2026-08-26, not two. The second was the collapsed rail turning
+   from a vertical strip into a horizontal bar, and there is no rail any more — the
+   node's `Collapse=True` variant is a 40px square button, which is the same box in
+   a tall narrow column as in a wide short row and so has nothing to reorient. That
+   also retires this block's container-query caveat (the orientation was the only
+   thing standing in for a container query here).
+
+   Nothing about the collapse is undone at any tier. It is the user deciding, which
+   §7 distinguishes from a layout hiding a region to make itself fit; the collapsed
+   control carries a name, a state and the way back at every width. */
+@media (max-width: 1023px) {
+  /* Stacked, the card's container has no definite height, so the `minmax(0, 1fr)`
+     body track has no free space to resolve against and every row must size
+     itself. Whoever places the card caps the BODY at this tier — that cap is
+     design-system/components/file-upload.md's obligation, not this rule's. */
+  .attachment-pane {
+    grid-template-rows: auto auto auto;
+  }
+
+  /* No `.is-collapsed` rung here any more: the base rule is already `auto` for the
+     collapsed pane, because a 40px control has one row at every width. */
+}
+
+/* --- Media gallery ------------------------------------------
+   The filmstrip's tiles keep their designed 450 x 250 size at every tier the
+   content column can show one in: the strip is a scroll container, so a tile
+   wider than the column costs nothing but a scroll. At sm it does cost
+   something — a 450px tile in a 279px column means no tile is ever fully
+   visible — so the tile becomes the width of the strip and the gallery reads as
+   one image per snap. See design-system/components/media-gallery.md. */
+@media (max-width: 767px) {
+  :root {
+    --utui-media-gallery-tile-width: 100%;
+  }
+}
+
+/* --- Folder grid --------------------------------------------
+   The grid is `repeat(auto-fill, 144px)`, so it sheds a column on its own down
+   to md with no rule at all — the card keeps its
+   designed size, which is the "collapse the region, not the component" rule
+   applied to a wrapping grid.
+
+   sm is where that stops working: the content column is 279px at 375px, and the
+   panel's own padding leaves too little for two 144px tracks. One full-width
+   track instead. Owned here rather than in
+   du-an/ho-so/danh-sach.css because the grid belongs to design-system/components/folder-grid.md and no
+   screen file declares these properties on it. */
+@media (max-width: 767px) {
+  .folder-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Cây xếp lên trên list ở md: divider dọc thành divider ngang. */
+@media (max-width: 1023px) {
+  .folder--bare {
+    border-inline-end: 0;
+    border-block-end: 1px solid var(--utui-color-border-default);
+  }
+
+  /* Cột không còn đứng cạnh list: không có gì để kéo. */
+  .resize-handle {
+    display: none;
+  }
+}
+
+/* --- md and below: strips scroll rather than clip -----------
+   Both strips are fixed-item-width chrome (page tabs are 200px each, section
+   tabs size to their label). .page-tab-group clips with overflow: hidden, so
+   past the third tab the rest simply vanish. Below the design widths they
+   become a horizontal scroller instead: nothing is unreachable, and the
+   scrollbar is hidden because the strip's own edge fade already signals it. */
+@media (max-width: 1023px) {
+  .page-tab-group__slot,
+  .tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .page-tab-group__slot::-webkit-scrollbar,
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .page-tab-group__slot > .page-tab,
+  .tabs > .tab {
+    flex-shrink: 0;
+  }
+}
+
+/* --- sm: the fixed-viewport page goes back to scrolling -----
+   Added 2026-08-16 with the mode itself (design-system/components/app-shell.md). The listing
+   screens lock to one viewport at md and above; at sm they must not.
+
+   The tier decides it the same way it decided the toolbar's pinning on
+   project-docs: the pinned block is 322px here and the toolbar wraps to three
+   rows, so a locked 667px viewport would leave the table reading through a slot
+   roughly one row tall. Every part of the mode has to come off together — a
+   shell that still clips overflow while the page inside it scrolls normally
+   would simply cut the page off at the fold.
+
+   This is the mode's only rung. Everything else about it is tier-independent,
+   which is the point of expressing it as a height chain rather than as offsets. */
+@media (max-width: 767px) {
+  .mdm-shell--fixed {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .mdm-shell--fixed > .main {
+    display: block;
+    overflow: visible;
+  }
+
+  /* Back to a grid, because that is what every screen bundle's own page rule
+     assumes when it declares `gap` and (on project-docs) a two-column body. */
+  .page.page--fixed {
+    display: grid;
+    overflow: visible;
+  }
+
+  /* The table gets its bounded-scroll behaviour back: with the document
+     scrolling again there is no leftover height to fill, so the tiered estimate
+     in data-table.css is once more the right rule. It is restated rather than
+     un-set because the fill rule wins on specificity. */
+  .table-panel--fill {
+    display: block;
+    height: auto;
+  }
+
+  .table-panel--fill > .table-panel__body {
+    display: block;
+  }
+
+  .table-panel--fill .data-table-wrap {
+    max-height: calc(100dvh - var(--utui-scroll-region-offset));
+  }
+}
+
+/* --- sm: page-level chrome stacks --------------------------- */
+@media (max-width: 767px) {
+  /* The wash is painted with `background-attachment: fixed` on both the shell
+     and the pinned block. iOS Safari resolves fixed layers against the layout
+     viewport and repaints them on every scroll frame, which shows up as a
+     visibly juddering gradient on exactly the devices in this tier. Scroll
+     attachment costs the alignment between the pinned slice and the region
+     behind it — invisible here, because at this width the pinned block spans
+     the full content column. */
+  .mdm-shell,
+  .page-sticky {
+    background-attachment: scroll;
+  }
+
+  /* Title-and-actions bands: actions drop below the title and align left
+     rather than fighting it for the same row. Two compositions to cover — the
+     base header is a `1fr auto` grid (app-shell.css), `--docs` is a flex row
+     (`./page-header.css`) — so both the column count and the direction are set
+     here. */
+  .page-header {
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: var(--utui-page-header-gap);
+    row-gap: var(--utui-page-header-gap);
+  }
+
+  /* Direction only — `--docs`'s own gap (`./page-header.css`) already steps
+     with `--utui-page-header-gap` and this file is imported after it, so
+     restating the gap here would cost nothing but a duplicate declaration. */
+  .page-header--docs {
+    flex-direction: column;
+  }
+
+  .header-actions,
+  .toolbar-actions {
+    justify-content: flex-start;
+  }
+
+  /* The sub-title is a nowrap flex row by design: description clamped to one
+     line, trailing link never separated from it. That only holds while the
+     description can shrink. Where the description is a bare text node with an
+     intrinsic minimum (item-detail's provenance line) the row cannot fit, and
+     the `flex-shrink: 0` link hung 29px past the content column at 375px —
+     measured 2026-08-12, and the one thing this contract forbids. The row wraps
+     at sm: the link drops under the text instead of off the page.
+
+     Found while measuring project-overview, which does not have the bug (its
+     description is a `__description` span with `min-width: 0`). Fixed here
+     rather than in a screen file because the row belongs to
+     design-system/components/page-header.md. */
+  .page-header__subtitle {
+    flex-wrap: wrap;
+  }
+
+  /* One step down the display scale; the ladder stops here, no fluid type.
+     `.page-header__title` left this rule on 2026-09-04: the component draws it
+     at Text xl (20/30), and display-xs is 24/32 — a step UP at the narrowest
+     tier. It holds one size at every tier now. */
+  .page-title {
+    font-size: var(--utui-font-size-display-xs);
+    line-height: var(--utui-line-height-display-xs);
+  }
+
+  /* Pagination: the desktop composition is `showing x of y` on one side and the
+     page group on the other. Stacked, both stay legible instead of the group
+     being pushed off the panel edge. See design-system/components/pagination.md. */
+  .table-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--utui-spacing-03);
+  }
+
+  /* The three utility actions are a nowrap row of ~106px buttons — 317px with
+     their gaps, against a 279px content column at 375px. `.table-panel` is
+     `overflow: hidden`, so 38px of `Tải xuống` was clipped with no way to reach
+     it: measured 2026-08-13 on project-hierarchy and confirmed identical on
+     project-docs, item-listing and project-list, so it is a component defect and
+     not a new screen's problem. Stacking the footer alone did not fix it, because
+     the row inside it still could not shrink.
+
+     Wrapping, not shrinking: a compact button's label is already at its minimum,
+     and the alternative — hiding the third action — is exactly what
+     .claude/skills/responsive/SKILL.md forbids. Owned here rather than in pagination.css
+     because it is tier behaviour, and no screen file declares `flex-wrap` on this
+     selector, so equal specificity is enough. See design-system/components/pagination.md. */
+  .pagination-actions {
+    flex-wrap: wrap;
+  }
+
+  /* The pager and its count. The joined 360px page group that used to need a
+     scroller here was deleted from the DS on 2026-09-05, and what replaced it is
+     two ~130px buttons plus a range count — which still does not fit beside
+     nothing at 375px once the footer has stacked, because `.pagination-pager` is
+     itself a nowrap row of three items. It wraps instead of scrolling: unlike
+     the group, these are three detached boxes with no shared strokes to unpick,
+     so wrapping costs nothing and keeps every control on screen at its full
+     label. `margin-left: auto` comes off, or the wrapped count sits alone
+     against the right edge of a stacked column. */
+  .pagination-pager {
+    flex-wrap: wrap;
+    margin-left: 0;
+  }
+}
+
+/* --- Coarse pointers ----------------------------------------
+   Applied by input capability, not viewport: a touch laptop at xl needs the
+   same hit area as a phone. --utui-touch-target-min is 44px.
+
+   Two documented exceptions keep their Figma sizes because the surrounding
+   layout is width-locked: .cell-action stays 40px (2 x 40 + 4px gap is exactly
+   the 116px action column minus its padding) and .side-profile__more stays 24px
+   (fixed 32px/1fr/24px nav grid). Both are recorded as gaps in
+   .claude/skills/responsive/SKILL.md. */
+/* ============================================================
+   Snack bar — the selection action bar.
+   See design-system/components/snack-bar.md
+   ============================================================ */
+
+/* THE GAP STEPS, BECAUSE THE COUNT IS WHAT YIELDS OTHERWISE.
+
+   `--utui-snack-bar-gap` is a flex `gap`, and flex gaps never shrink. The CTA
+   and the two icon squares are `flex-shrink: 0`, so `.snack-bar__message` is the
+   ONLY item that can give — which means at narrow widths the bar preserves 64px
+   of deliberately empty space and truncates the count, the one thing the
+   component exists to say. At 375 the region is capped at 343px and the message
+   is left under 100px: the same shape as the `.inform` defect recorded in
+   .claude/skills/responsive/SKILL.md.
+
+   The 64px is a separation device, not a measurement — its job is to stop the
+   count reading as part of the button group, and 16px with the actions hard
+   against the right edge still does that. So it steps rather than the message
+   losing its content.
+
+   NO FIGMA EVIDENCE FOR THE sm COMPOSITION. The frame draws one width. Stepping
+   the token is the mechanism the ladder already provides and is the smallest
+   thing that can be done here; whether the bar should instead drop its CTA label
+   or wrap at sm is a design decision and is recorded as an open question in the
+   contract. */
+@media (max-width: 767px) {
+  :root {
+    --utui-snack-bar-gap: var(--utui-spacing-04); /* 64px -> 16px */
+  }
+
+  /* AND THE COUNT WRAPS, because the step alone is not enough. Measured at 375:
+     the bar gets 327px, the step raises the message from ~59px to 111px, and
+     `Đang chọn 10 dự án` needs 147px — so 16px buys most of the deficit and not
+     all of it. Truncating the count is the one outcome this component cannot
+     accept; it is the whole payload.
+
+     So the bar stops being one row at sm. It is the component's shape and giving
+     it up is a real cost, taken deliberately over the alternatives: dropping the
+     CTA to an icon would unlabel the primary bulk action at the width where
+     labels matter most (and the frame draws no icon for it), and a shortened
+     count would be the consumer's string to get right, which the component
+     cannot guarantee.
+
+     `align-items: flex-start` on the actions, not the default `center`: with a
+     two-line count the row is ~76px tall and centred buttons would float in the
+     middle of it, reading as unrelated to either line. Aligned to the top they
+     stay with the first line, which is the one carrying the number.
+     See design-system/components/snack-bar.md, Responsive. */
+  .snack-bar__message {
+    overflow: visible;
+    text-overflow: clip;
+    /* `flex: 1` with the wrap, not the wrap alone. A wrapping flex item shrinks
+       to its min-content width unless told otherwise — the count would break one
+       word per line and take the bar to five rows. It has to CLAIM the space the
+       gap just gave up, which means the bar must claim the row first (below). */
+    flex: 1 1 auto;
+    white-space: normal;
+  }
+
+  /* The bar stops being content-sized and fills its row, so there is a width for
+     the message to wrap inside. Above sm it stays content-sized, which is what
+     gives the frame its resting shape. */
+  .snack-bar-region {
+    width: 100%;
+  }
+
+  .snack-bar {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .snack-bar__actions,
+  .snack-bar__icons {
+    align-items: flex-start;
+  }
+}
+
+@media (pointer: coarse) {
+  /* The pager. `.pagination__item` sat in this list until 2026-08-19 and matched
+     nothing; `.pagination-group__item` / `.pagination-group__arrow` replaced it
+     and were themselves deleted on 2026-09-05 with the joined group. The set
+     draws the two buttons that replaced them at 36px, which is still under the
+     target, so they grow the same way — the box, not a pseudo hit area, since
+     nothing width-locks this pager the way the 116px action column locks
+     `.cell-action`, and the footer wraps at sm rather than clipping.
+
+     The `.button--compact` utility actions beside them stay 36px, as they have
+     since the group was numbered. Recorded as a gap in
+     design-system/components/pagination.md, not fixed here: it is every compact
+     button in the package, not this component's to settle. */
+  .button--sm,
+  .nav-collapse,
+  /* The `Attachment` pane's collapsed control — its whole clickable surface once
+     the pane is shut, drawn 40px by the node. The box grows because nothing
+     width-locks it: both consumers give the collapsed pane an `auto` column, so a
+     44px control just makes a 44px column. See components/attachment.md. */
+  .attachment-pane__expand,
+  .button-group__item,
+  .pagination-nav .button,
+  .tab,
+  .page-tab__close {
+    min-width: var(--utui-touch-target-min);
+    min-height: var(--utui-touch-target-min);
+  }
+
+  /* The metric strip's scroll arrows. 40px circles overlaying a tile, so the box
+     itself is a drawn size and must not grow — the hit area does. This is the
+     tier where they matter most: a coarse pointer is also the pointer that swipes,
+     and the strip scrolls at every width below the design one.
+     The arrow is already `position: absolute` in metric-item.css, so it is
+     already the containing block this pseudo needs.
+     See design-system/components/metric-item.md. */
+  .metric-scroller__arrow::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--utui-touch-target-min);
+    height: var(--utui-touch-target-min);
+    transform: translate(-50%, -50%);
+    content: "";
+  }
+
+  /* The toggle switch. Its 36 x 20 track is a drawn size — the whole control IS
+     the state indicator, so growing the box would redraw the component rather
+     than make it easier to hit. Hit area instead, and on `::before` because the
+     component owns `::after` for the thumb (../styles/toggle.css). It is already
+     `position: relative` there, so the pseudo has a containing block without
+     restating it. Centred on both axes, not a full-width band: a switch sits on
+     the trailing edge of a header row beside a title, and a 100%-wide hit area
+     would only be 36px anyway.
+     See design-system/components/toggle.md. */
+  .toggle::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--utui-touch-target-min);
+    height: var(--utui-touch-target-min);
+    transform: translate(-50%, -50%);
+    content: "";
+  }
+
+  /* The close affordance is a 16px glyph in a 40px tab; growing the box would
+     break the tab. Grow the hit area instead, which costs no layout. */
+  .page-tab__close {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .page-tab__close::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--utui-touch-target-min);
+    height: var(--utui-touch-target-min);
+    transform: translate(-50%, -50%);
+    content: "";
+  }
+
+  /* Same trick for the notification's close control, for a different reason: its
+     36px box is not width-locked, but it is absolutely positioned over the card
+     and the text block reserves exactly 32px for it (../styles/notification.css).
+     Growing the box to 44px would put the button over the title; growing only the
+     hit area costs no layout. The button is already `position: absolute`, so the
+     pseudo-element has a containing block without restating it.
+     See design-system/components/notification.md. */
+  .notification__close::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--utui-touch-target-min);
+    height: var(--utui-touch-target-min);
+    transform: translate(-50%, -50%);
+    content: "";
+  }
+
+  /* And again for the search field's clear control, for a third reason: its
+     32px box sits INSIDE a field whose height the consumer sets. `.search-field`
+     declares 48px and project-docs' toolbar pins 44px, which with a 1px border
+     is a 42px content box — so growing the box to 44px would make the field
+     taller on some screens and not others. The hit area is free.
+     See design-system/components/inputs.md. */
+  .search-field__clear::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--utui-touch-target-min);
+    height: var(--utui-touch-target-min);
+    transform: translate(-50%, -50%);
+    content: "";
+  }
+
+  /* The same treatment for the two controls INSIDE a `.select`
+     (design-system/components/select.md): the 20px clear of the typed types and
+     the 16px remove of a tag. Same reasoning as the clear above — the boxes are
+     drawn sizes inside a 44px field and a 16px chip, so growing them would push
+     the field taller or break the chip's rhythm; the hit area grows instead and
+     costs no layout. `.select__tag-remove` is the smallest interactive box in the
+     package, so it is the one that needs this most. */
+  .select__clear::after,
+  .select__tag-remove::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--utui-touch-target-min);
+    height: var(--utui-touch-target-min);
+    transform: translate(-50%, -50%);
+    content: "";
+  }
+
+  /* The section card's two navigations — the trailing header icon and the
+     "Xem thêm N+" footer link (design-system/components/section-header.md). Since 2026-08-14
+     these are real <a href> navigations on the `Địa chỉ` section, and on a touch
+     device they are the ONLY way into its sub-page, so a 40px icon box and a
+     bare 20px text row are not enough.
+
+     Hit area, not box, for both — but for the opposite reason to .cell-action:
+     nothing here is width-locked, the 40px icon is a drawn size from the source
+     frame and the footer link's box is its own text. Growing either box would
+     re-space a card the frame pins at 24px padding / 24px gap.
+     The footer link keeps its own width (the shortest string it carries,
+     `Xem thêm 10+`, is well past 44px) and takes height only. */
+  .section-action,
+  .section-more {
+    position: relative;
+  }
+
+  .section-action::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--utui-touch-target-min);
+    height: var(--utui-touch-target-min);
+    transform: translate(-50%, -50%);
+    content: "";
+  }
+
+  .section-more::after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: var(--utui-touch-target-min);
+    transform: translateY(-50%);
+    content: "";
+  }
+
+  /* The attachment pane's `Thu gọn` disclosure. Its box is the frame's 40px, four
+     short of the target. HIT AREA RATHER THAN BOX: growing the box
+     pushes the section header down and takes that height off the body it heads.
+     Width is already well past the target — the control is ~94px with its label —
+     so this takes height only.
+
+     This rule lived in screens/du-an/ho-so/tai-len.css until 2026-08-26, where its
+     own comment said it would move here when `Attachment` was built. It has.
+     See design-system/components/attachment.md. */
+  .attachment-pane__collapse {
+    position: relative;
+  }
+
+  .attachment-pane__collapse::after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: var(--utui-touch-target-min);
+    transform: translateY(-50%);
+    content: "";
+  }
+
+  /* The pager's two icon-only buttons, 36px square. BOX, not hit area, unlike the
+     disclosure above: nothing width-locks the footer row the way the 116px action
+     column locks `.cell-action`, the row already wraps, and a square control whose
+     hit area is bigger than its own paint is the one case where the pseudo trick
+     misleads — there is no label to aim at. `min-width` beats the `width` in
+     ../styles/attachment.css in the used-value calculation, which is why that
+     declaration is `width` and not `inline-size` with a matching min. */
+  .attachment-pane__page {
+    min-width: var(--utui-touch-target-min);
+    min-height: var(--utui-touch-target-min);
+  }
+
+  /* The snack bar's two icon squares, 36px. BOX, not hit area, and for exactly
+     the reason `.attachment-pane__page` above gives: they are icon-only, so
+     there is no label to aim at and a hit area larger than the paint would
+     mislead. Nothing width-locks them either — the bar is content-sized and
+     floats, so the 8px cost on each axis is a slightly taller bar and no
+     displaced neighbour. This is what closes the frame's 36px target rather than
+     recording it as a permanent gap.
+     See design-system/components/snack-bar.md. */
+  .snack-bar__icon-button {
+    width: var(--utui-touch-target-min);
+    height: var(--utui-touch-target-min);
+  }
+
+  /* The CTA, the opposite call, and for the reason `.section-more` above makes
+     it: this control HAS a label, so the hit area can be bigger than the paint
+     without misleading anyone. Height only and full width of its own box — the
+     bar's height is set by the squares beside it, which have just grown to 44px,
+     so the CTA's 36px box now sits inside a row that is already tall enough.
+     `position: relative` is declared here rather than in snack-bar.css: it is
+     needed only for this pseudo-element. */
+  .snack-bar__cta {
+    position: relative;
+  }
+
+  .snack-bar__cta::after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: var(--utui-touch-target-min);
+    transform: translateY(-50%);
+    content: "";
+  }
+}

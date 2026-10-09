@@ -1,0 +1,16 @@
+{
+  "name": "habeco-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Thiết kế dashboard báo cáo tự động Nhà máy bia Hoàng Hoa Thám (Habeco): ds/ + screens/, output cuối là Figma.",
+  "scripts": {
+    "handoff": "node tools/handoff.mjs",
+    "build": "node tools/build_flow.mjs",
+    "verify": "node tools/verify_flow.mjs",
+    "index": "node tools/registry_index.mjs",
+    "snapshot": "node tools/style_snapshot.mjs",
+    "angular:draft": "node tools/angular_map_draft.mjs",
+    "seshat": "node tools/seshat_upload.mjs"
+  }
+}

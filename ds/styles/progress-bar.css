@@ -1,0 +1,27 @@
+/* progress-bar.css — see ds/components/progress-bar.md
+   Determinate bar: a 4px track and a fill whose width follows --progress. AUTHORED, no Figma frame (gap). */
+
+.progress-bar {
+  inline-size: 100%;
+  block-size: var(--utui-progress-bar-height);
+  overflow: hidden;
+  border-radius: var(--utui-progress-bar-radius);
+  background: var(--utui-progress-bar-track);
+}
+
+/* The consumer sets --progress (a percentage) on the block; nothing here computes it. */
+.progress-bar__fill {
+  display: block;
+  inline-size: var(--progress, 0%);
+  block-size: 100%;
+  border-radius: inherit;
+  background: var(--utui-progress-bar-fill);
+}
+
+.progress-bar.is-complete .progress-bar__fill {
+  background: var(--utui-progress-bar-fill-complete);
+}
+
+.progress-bar.is-failed .progress-bar__fill {
+  background: var(--utui-progress-bar-fill-error);
+}

@@ -1,0 +1,503 @@
+/* drawer.css — the right-anchored slide-out panel.
+   Source: MDM V2 `Slide out menu` (tS8dUB2qWLc28gZbtj8IIL, 12035:57167), the
+   investor picker opened from the `Chủ đầu tư` card: panel 1221 wide with a
+   40px gutter to its left, right-aligned footer actions.
+   Contract: design-system/components/drawer.md. Added 2026-08-14.
+
+   NODE ID, corrected 2026-08-19. This file was written against 11357:48413 and
+   then carried a note saying that node had been deleted and nothing in Figma
+   drew the surface any more. Both halves of that note are now wrong: the
+   drawer is drawn again, as `Slide out menu` 12035:57167 in the `Chủ đầu tư`
+   section (12022:55515), with the same geometry and one addition — the toolbar's
+   `Bộ lọc` trigger, which the re-read confirms rather than invents. A stale
+   "re-verify, nothing draws this" note is worse than no note at all.
+
+   SHELL SPACING re-read 2026-09-29 off OMEU Design System V2
+   (`SFo9P9PCVQiuOk2SqjZYKQ`, `9974:35089`) — USER DECISION, same split
+   filter-panel.md's Source table already makes: `12035:57167` is still the
+   authority for what this component IS (the 1221px picker composition),
+   `9974:35089` is now the authority for the four bands' own padding and the
+   gap between them, for every drawer this file draws. See the token comment
+   in tokens/untitled-ui-component.css for the same split stated once more at
+   the values themselves.
+
+   This is the COMPONENT layer: the overlay, the panel and its four bands
+   (header / toolbar / body / footer — the footer is optional, see its own
+   rule below). What goes in the body — here a 9-column picker table and its
+   pagination — belongs to the screen bundle.
+
+   The panel is a modal surface: it takes focus, traps it, and returns it to the
+   trigger on close. Those parts are behaviour and live in ../scripts/modal.js,
+   which the centred dialog already shares — see the panel rule below. */
+
+/* --- Overlay ------------------------------------------------
+   `position: fixed`, so the box contributes nothing to the document's
+   scrollWidth at any width — the same reason filter-panel.css gives. It is a
+   flex row aligned to the end because the panel is right-anchored; the gutter
+   on its left is the panel's own max-inline-size, not a margin, so the panel
+   still fills the viewport minus the gutter once the design width is gone. */
+.drawer {
+  position: fixed;
+  z-index: 60;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Author `display: flex` above would otherwise beat the UA's
+   `[hidden] { display: none }` and leave a modal painted over the page while it
+   is marked closed — the failure filter-panel.css records. */
+.drawer[hidden] {
+  display: none;
+}
+
+/* `bg overlay`: the scrim is the dismiss target as well as the dimming layer,
+   so it is a real element rather than a pseudo — a pseudo-element cannot carry
+   the click handler without the panel's own clicks passing through it. */
+.drawer__scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: var(--utui-drawer-scrim);
+  backdrop-filter: blur(var(--utui-drawer-scrim-blur));
+}
+
+/* Scroll lock. Declared in CSS rather than by writing `style.overflow` from the
+   screen's JS: the drawer is a modal surface, so "the page behind does not
+   scroll" is part of what the component IS, and a rule cannot be forgotten by
+   the next consumer the way a pair of JS assignments can. `:has` is already
+   used in this package (data-table.css); a UA without it simply keeps the page
+   scrollable behind the panel, which is a degradation, not a break. */
+body:has(.drawer:not([hidden])) {
+  overflow: hidden;
+}
+
+/* --- Panel --------------------------------------------------
+   dvh, not vh: a panel measured against the largest viewport puts its footer —
+   the only place `Xác nhận` exists — under a mobile browser's toolbar.
+   See .claude/skills/responsive/SKILL.md.
+
+   FLEX COLUMN, not grid — changed 2026-09-29 alongside the 9974:35089 spacing
+   pass, for a reason a grid cannot give the footer's new optional-ness (see
+   `.drawer__footer` below): a grid's `row-gap` still opens a gap on either
+   side of a named row-track that ends up with no item in it (an omitted
+   footer, an empty `.drawer__status`), because the track exists whether or
+   not anything is placed there. A flex child that is absent from the DOM, or
+   `display: none` while `[hidden]`, is not a flex item at all and consumes no
+   `gap` on either side — which is exactly "no footer, no gap" and "status
+   hidden, no gap" without a second rule for each. `.drawer__body`'s own two
+   rows (the table wrap, its footer) keep their internal grid below; only the
+   panel's OWN four-to-five bands moved. */
+.drawer__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--utui-spacing-05); /* 20px, 9974:35089, between every band that is actually present */
+  inline-size: var(--utui-drawer-width);
+  max-inline-size: calc(100vw - var(--utui-drawer-gutter));
+  /* The panel is a flex item (of `.drawer`), so `min-width: auto` lets its
+     widest descendant — a 2058px picker table — push it past its own
+     max-inline-size and past the viewport. Measured 2026-08-14: 592px of page
+     scrollWidth at 375px before this line. The table is meant to scroll
+     inside the wrap, not to size the panel. Same reason on .drawer__body
+     below, which needs the equivalent `min-block-size: 0` on the other axis
+     now that it is a flex child rather than a grid item. */
+  min-inline-size: 0;
+  block-size: 100dvh;
+  background: var(--utui-drawer-bg);
+  box-shadow: var(--utui-drawer-shadow);
+  /* USER: the ds's own neutral border, not 9974:35089's Gray/200 — this
+     package's border tokens already read through one shared ramp
+     (`--app-border`), and the drawer is not a case for a second one. */
+  border-inline-start: 1px solid var(--app-border);
+}
+
+/* --- Size: sm ------------------------------------------------ */
+
+/* A 400px panel, opt-in. The default is the 1221px investor picker, which is a
+   table surface; a form or a settings list beside it is three times too wide.
+   `Table Setting` (11320:65276) is the first consumer.
+
+   WIDTH ONLY. Everything else — the row template, the header, the footer's
+   right-aligned actions, the scrim, the escape and focus handling — is the same
+   component, which is the point of a size variant rather than a second drawer.
+   The `max-inline-size` above still applies, so below xl this panel is the
+   viewport minus the gutter exactly as the wide one is, and it needs no rung in
+   ../styles/responsive.css. */
+.drawer--sm .drawer__panel {
+  inline-size: var(--utui-drawer-width-sm);
+}
+
+/* --- Size: md — 560px (MDM-1209, move-folder picker); width only, like --sm. --- */
+.drawer--md .drawer__panel {
+  inline-size: var(--utui-drawer-width-md);
+}
+
+/* --- Size: lg — 1341px (partner create wizard); width only, like --sm. --- */
+.drawer--lg .drawer__panel {
+  inline-size: var(--utui-drawer-width-lg);
+}
+
+/* --- Size: fit — rộng theo nội dung (sàn --sm, trần viewport trừ gutter), để nhãn không xuống dòng (Thiết lập bảng, USER DECISION 2026-10-07). --- */
+.drawer--fit .drawer__panel {
+  inline-size: max-content;
+  min-inline-size: min(var(--utui-drawer-width-sm), 100vw - var(--utui-drawer-gutter));
+}
+
+/* --md toolbar stacks its two fields full width (SPEC "6-rename-move.png") — not a listing-toolbar row. R5, review 2026-09-29. */
+.drawer--md .drawer__toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--utui-drawer-toolbar-gap);
+}
+
+/* The panel is a focus LANDING target, not a control: ../scripts/modal.js
+   focuses it so the drawer is announced from its title, and Chrome paints its UA
+   ring on a programmatically focused `tabindex="-1"` box. Suppressed here only —
+   every control inside keeps the app ring from base.css. Same rule, same
+   reasoning, as `.modal__panel:focus` in ./modal.css. */
+.drawer__panel:focus {
+  outline: none;
+}
+
+/* --- Header -------------------------------------------------
+   `_Slide out menu header`: featured icon then the title (optionally with a supporting line).
+
+   20px top, 8px bottom (9974:35089, 2026-09-29) — was 40/24 off the investor
+   picker alone, and the band no longer carries an explicit minimum height with
+   it: the 112px figure was arithmetic against the old paddings plus a 48px
+   icon, not a drawn minimum, and nothing in this file read it once the
+   paddings changed under it. A title that wraps still just grows the band. */
+.drawer__header {
+  display: flex;
+  align-items: center;
+  gap: var(--utui-drawer-header-gap);
+  padding: var(--utui-spacing-05) var(--utui-drawer-padding-x) var(--utui-spacing-02);
+}
+
+/* `flex: 1 1 auto` — added 2026-09-29 with `.drawer__close` — is what pushes
+   BOTH the optional `.drawer__header-actions` and the optional `.drawer__close`
+   to the header's trailing edge, in one declaration instead of one
+   `margin-inline-start: auto` per optional part (two auto margins in the same
+   row would split the free space between them instead of grouping both parts
+   at the end). `min-width: 0` is unchanged and still what lets a long title
+   wrap instead of pushing those parts off the panel. */
+.drawer__title {
+  flex: 1 1 auto;
+  margin: 0;
+  min-width: 0;
+  color: var(--utui-color-text-primary);
+  font-size: var(--utui-font-size-text-xl);
+  font-weight: var(--utui-font-weight-semibold);
+  line-height: var(--utui-line-height-text-xl);
+}
+
+/* Name inside the title ("Chuyển vị trí <tên>"): the lead text stays whole, the name ellipsizes (full name via data-tooltip-overflow). */
+.drawer__title:has(> .drawer__title-name) {
+  display: flex;
+  gap: var(--utui-spacing-01);
+  white-space: nowrap;
+}
+
+.drawer__title-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* AUTHORED, no Figma frame draws it — see drawer.md Anatomy. Optional, and
+   `.drawer__title`'s own `flex: 1 1 auto` above is what places it at the
+   header's trailing edge now — this part carries no margin of its own, so it
+   sits flush against `.drawer__close` when both are present. */
+.drawer__header-actions {
+  flex-shrink: 0;
+}
+
+/* Wizard stepper takes the supporting slot: title / steps stacked beside the icon, no supporting line (USER DECISION 2026-10). AUTHORED, no Figma frame (gap). */
+.drawer__header:has(> .drawer__header-steps) {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) repeat(4, auto);
+  align-items: center;
+  gap: 0;
+  container: drawer-header / inline-size;
+}
+
+/* Empty control columns stay 0px: spacing is a margin on each present control, not a column gap. */
+/* Icon and controls span title + steps, centred on that block; they would otherwise make row 1 taller than the title. */
+.drawer__header:has(> .drawer__header-steps) > :is(.drawer__header-actions, .drawer__minimize, .drawer__expand, .drawer__close) {
+  grid-row: 1 / span 2;
+  margin-inline-start: var(--utui-drawer-header-gap);
+}
+
+.drawer__header:has(> .drawer__header-steps) > :is(.drawer__minimize, .drawer__expand, .drawer__close) + :is(.drawer__expand, .drawer__close) {
+  margin-inline-start: 0;
+}
+
+.drawer__header:has(> .drawer__header-steps) > .featured-icon {
+  grid-row: 1 / span 2;
+  margin-inline-end: var(--utui-drawer-header-gap);
+}
+
+.drawer__header:has(> .drawer__header-steps) > .drawer__heading {
+  display: contents;
+}
+
+.drawer__header:has(> .drawer__header-steps) .drawer__title {
+  grid-area: 1 / 2;
+}
+
+.drawer__header-steps {
+  grid-area: 2 / 2;
+  margin-block-start: var(--utui-spacing-01);
+}
+
+/* Fallback: too narrow for the longest chain (#createDrawer, 4 steps) beside the icon and controls → steps drop to their own full-width row. Literal: @container cannot read tokens. */
+@container drawer-header (max-width: 1023px) {
+  .drawer__header-steps {
+    grid-area: 3 / 1 / auto / -1;
+    margin-block-start: var(--utui-spacing-04);
+  }
+}
+
+/* Title + supporting line stacked; takes the title's `flex: 1 1 auto` when present. */
+.drawer__heading {
+  display: grid;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Supporting slot of 9974:35089 (hidden in source); same type as `.modal__supporting`. */
+.drawer__supporting {
+  margin: 0;
+  color: var(--utui-color-text-secondary);
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-regular);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+/* AUTHORED, no Figma frame draws it — see drawer.md Anatomy and Known Gaps.
+   Bare glyph trigger like `.cell-action` (styles/data-table.css); `.section-action` now composes `.button` instead. `--utui-button-height-md` hit area, no border, semantic icon/hover tokens shared with `.modal__close`. Outermost on the
+   header's trailing edge, i.e. last in source order after
+   `.drawer__header-actions`. `data-modal-close` on the element in markup is
+   what wires it to ../scripts/modal.js — the same attribute the scrim already
+   carries, so no script change was needed to add this control. */
+.drawer__close,
+.drawer__expand,
+.drawer__minimize,
+.doc-detail__close,
+.doc-detail__minimize,
+.dock__restore,
+.dock__expand,
+.dock__close {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: var(--utui-button-height-md);
+  height: var(--utui-button-height-md);
+  padding: 0;
+  border: 0;
+  border-radius: var(--app-radius);
+  background: transparent;
+  color: var(--utui-color-icon-default);
+  cursor: pointer;
+}
+
+.drawer__close:hover,
+.drawer__expand:hover,
+.drawer__minimize:hover,
+.doc-detail__close:hover,
+.doc-detail__minimize:hover,
+.dock__restore:hover,
+.dock__expand:hover,
+.dock__close:hover {
+  background: var(--utui-color-bg-surface-hover);
+  color: var(--utui-color-icon-strong);
+}
+
+/* The dock's icon buttons (dock.css) share the two rules above. */
+
+/* Button cluster: cancel the header's flex gap between adjacent icon buttons so the group reads as one; the title-to-cluster gap is untouched. */
+.drawer__minimize + .drawer__expand,
+.drawer__minimize + .drawer__close,
+.drawer__expand + .drawer__close {
+  margin-inline-start: calc(-1 * var(--utui-drawer-header-gap));
+}
+
+/* AUTHORED, no Figma frame (gap): minimize to the dock; before .drawer__expand, opt-in per drawer via data-drawer-minimizable. Hidden at sm (responsive.css). */
+.drawer__minimize {
+  display: none;
+}
+
+.drawer[data-drawer-minimizable] .drawer__minimize {
+  display: grid;
+}
+
+/* The author display above would beat the UA `[hidden]`: a consumer can hide the control (nothing left to wait for, `#importDrawer`). */
+.drawer[data-drawer-minimizable] .drawer__minimize[hidden] {
+  display: none;
+}
+
+/* AUTHORED, no Figma frame (gap): full-screen toggle; between .drawer__header-actions and .drawer__close, opt-in per drawer via data-drawer-expandable. */
+.drawer__expand {
+  display: none;
+}
+
+.drawer[data-drawer-expandable] .drawer__expand {
+  display: grid;
+}
+
+/* State: panel fills the viewport, gutter dropped; specificity beats the --sm/--md/--lg width rules without !important. */
+.drawer.is-expanded .drawer__panel {
+  inline-size: 100%;
+  max-inline-size: 100%;
+}
+
+/* --- Toolbar ---------------------------------------------
+   Inset only. A search + Bộ lọc row composes `.listing-toolbar
+   .listing-toolbar--wrap` on the same element (controls 36, search 400px);
+   --md stacks fields instead (above). No bottom padding (9974:35089). */
+.drawer__toolbar {
+  padding: 0 var(--utui-drawer-padding-x);
+}
+
+/* --- Body ---------------------------------------------------
+   The only band that scrolls. `flex: 1 1 auto` is what gives it the panel's
+   remaining space now that the panel is a flex column (see `.drawer__panel`
+   above); `min-block-size: 0` is still what actually lets it scroll instead
+   of pushing an optional footer off the panel — a flex item's block-size
+   floor is its content's, same trap `min-width: auto` is on the inline axis.
+
+   No block padding of its own (9974:35089, 2026-09-29) — was `0` top and
+   `--utui-drawer-body-gap` (24px) bottom. The panel's own 20px `row-gap` now
+   opens the space above the body (against the toolbar or `.drawer__status`)
+   and below it (against an optional footer); the table's own footer still
+   draws its own top rule, which is what separates the body's two internal
+   rows from each other, unchanged. */
+.drawer__body {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  flex: 1 1 auto;
+  min-block-size: 0;
+  min-inline-size: 0;
+  padding: 0 var(--utui-drawer-padding-x);
+}
+
+/* Grid items default to `min-width: auto`, so the body's own rows — the table
+   wrap and the pagination footer — size to their widest content and hang out of
+   the panel even though the body itself is bounded. Measured 2026-08-14 at
+   375px: the footer was 434px wide and its last pagination arrow was clipped by
+   the panel with nothing able to scroll to it. Both rows must be allowed to be
+   narrower than their content; each then handles its own overflow (the wrap
+   scrolls, the page group scrolls at sm per ../styles/responsive.css). */
+.drawer__body > * {
+  min-inline-size: 0;
+  /* Same trap on the other axis (R5, review 2026-09-29): without this, `folder--compact`'s min-height default is its full, unclamped tree height, so `.folder__nav`'s own `overflow: auto` never has less room than its content and never scrolls. */
+  min-block-size: 0;
+}
+
+/* data-table.css bounds its scroll wrap against the viewport
+   (`100dvh - --utui-scroll-region-offset`), which is the right rule on a page
+   and the wrong one inside a panel that is already bounded: the wrap would keep
+   a height the panel cannot give it and the pagination footer would leave the
+   panel. Two classes, so it wins on specificity — not `!important`, and not a
+   second copy of the wrap's rules. */
+.drawer__body .data-table-wrap {
+  max-block-size: 100%;
+}
+
+/* The panel is white, so .table-panel's shadow-xs alone draws no edge; border as .section-card does. */
+.drawer__body .table-panel {
+  border: 1px solid var(--app-border);
+}
+
+/* A listing drawer has no footer band, so nothing keeps the panel off the drawer's bottom edge. */
+.drawer__panel:not(:has(> .drawer__footer)) > .drawer__body {
+  padding-block-end: var(--utui-drawer-padding-x);
+}
+
+/* --- Footer (OPTIONAL) ---------------------------------------
+   `Footer`, actions right-aligned. The border is what separates it from a
+   table that scrolls up underneath it.
+
+   A picker keeps this band — it is the only place its commit action exists
+   (drawer.md States: "the confirm action is the only thing that commits").
+   USER DECISION, 2026-09-29: a LISTING drawer (a section card's full
+   sub-collection — see Purpose) has no commit action to put here and drops
+   the band entirely; dismissal moves to `.drawer__close` in the header. The
+   panel does not need to know which case it is: an omitted flex child
+   contributes no `row-gap` on either side of the gap it would have taken
+   (see the flex-column comment on `.drawer__panel`), so nothing here reserves
+   space for a footer that a listing drawer never renders. */
+.drawer__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--utui-drawer-footer-gap);
+  padding: var(--utui-drawer-footer-padding-y) var(--utui-drawer-padding-x);
+  border-top: 1px solid var(--app-border);
+}
+
+/* --- Status line: a message of the drawer's own content (a notification would paint behind the scrim); no float, no timeout, no focus. */
+/* Not a live region when the surface already has one: write the text here to be seen, route the same sentence through the surface's own `role="status"` (drawer.md). */
+.drawer__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--utui-spacing-02);
+  margin: 0;
+  color: var(--utui-color-text-secondary);
+  font-size: var(--utui-font-size-text-sm);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+/* In the footer the status shares the actions' row (USER DECISION 2026-10-05): text at the start, actions at the end; `flex-basis: 0` keeps it from wrapping onto its own line, a long sentence wraps inside it. Source order = reading order, so no `order` here. */
+.drawer__footer > .drawer__status {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Direct child of the panel (the listing-drawer position, no footer) — the
+   inline inset the other bands already carry via their own padding. Not
+   applied inside `.drawer__footer`, which already insets the whole row. */
+.drawer__panel > .drawer__status {
+  padding-inline: var(--utui-drawer-padding-x);
+}
+
+/* Bước của drawer nhiều bước ẩn toolbar/body bằng [hidden]. */
+.drawer__toolbar[hidden],
+.drawer__body[hidden] {
+  display: none;
+}
+
+.drawer__status[hidden] {
+  display: none;
+}
+
+/* The confirmation glyph, at the 20px every other inline icon in the package
+   uses. It is never the only signal — the sentence beside it says what
+   happened. */
+.drawer__status .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--utui-color-icon-default);
+}
+
+/* The status line's optional action — a row-table's `Hoàn tác`. Mirrors
+   ../styles/modal.css's `.modal__status-action` exactly (components/drawer.md's
+   OPEN QUESTION on merging the two parts); a fix to one belongs on both. */
+.drawer__status-action {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-block-size: var(--utui-touch-target-min);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--utui-button-link-color);
+  font-weight: var(--utui-font-weight-semibold);
+}
+
+.drawer__status-action:hover {
+  text-decoration: underline;
+}

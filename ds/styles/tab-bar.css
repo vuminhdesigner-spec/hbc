@@ -1,0 +1,91 @@
+/* tab-bar.css — see design-system/components/tab-bar.md
+   Extracted from the former monolithic app.css, 2026-08-03.
+   Rule order is unchanged. */
+
+/* Tab bar — in-page tabs. See design-system/components/tab-bar.md */
+
+.tabs {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--utui-tab-bar-border);
+  background: var(--utui-tab-bar-bg);
+}
+
+/* Type=Transparent — identical to Default except the strip has no fill, so the
+   page background or wash shows through. The bottom rule stays. */
+.tabs--transparent {
+  background: transparent;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--utui-tab-bar-height);
+  padding: 0 var(--utui-tab-bar-padding-x);
+  border: 0;
+  border-bottom: var(--utui-tab-bar-indicator-height) solid transparent;
+  background: transparent;
+  color: var(--utui-tab-bar-text);
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-semibold);
+  line-height: var(--utui-line-height-text-sm);
+  white-space: nowrap;
+}
+
+.tab.is-active {
+  border-bottom-color: var(--utui-tab-bar-indicator);
+  color: var(--utui-tab-bar-text-active);
+}
+
+/* The one remaining Tab Bar in this package navigates between screens, so a tab
+   with a real target is an <a href>, not a <button> with a handler. Everything
+   else in .tab already applies to a link; only the underline and the inherited
+   link colour have to be reset. Added 2026-08-12 — see design-system/components/tab-bar.md. */
+a.tab {
+  color: var(--utui-tab-bar-text);
+  text-decoration: none;
+}
+
+a.tab.is-active {
+  color: var(--utui-tab-bar-text-active);
+}
+
+/* Not currently rendered by any screen. A tab whose screen doesn't exist yet is
+   now a <button> that shows a notification on click (see the click handler in each
+   screen's JS and the 2026-08-12 revision in design-system/components/tab-bar.md) — clickable
+   beats a dead end, same as the workspace tabs already did. This rule is kept
+   for a genuinely disabled tab (e.g. permission-gated), which is a real,
+   different case from "not built in this demo" and would still want no cursor. */
+.tab[aria-disabled="true"] {
+  cursor: default;
+}
+
+/* --- Overflow variant, opt-in ------------------------------- */
+
+/* A BAR WITH MORE TABS THAN FIT, at every tier. The default bar neither wraps
+   nor scrolls above `md` — ../styles/responsive.css turns scrolling on at
+   ≤1023px and no higher — which was right while three tabs were the only case.
+   The company record draws six and they do not fit 1440px.
+
+   Opt-in, so the three-tab record bars are untouched: this is ADR 0008's rule,
+   a shared contract is extended by a variant rather than forked.
+
+   THE SCROLLBAR IS THIN, NOT HIDDEN, and that is the one deliberate difference
+   from the `md` rung. That rung hides it because a touch strip is swiped and its
+   edge fade already signals more content. A desktop bar has no swipe: hiding the
+   scrollbar there leaves a mouse user with nothing saying the strip continues,
+   which is the discoverability problem the rung does not have.
+
+   Keyboard reach needs no `tabindex` here, unlike `.data-table-wrap`: every tab
+   is an <a>, so tabbing moves through them and the browser scrolls each into
+   view. Adding a focusable region around focusable children would only add a
+   stop that does nothing. */
+.tabs--overflow {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.tabs--overflow > .tab {
+  flex-shrink: 0;
+}

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="668.0 132.0 40 40" fill="none">
+<g xmlns="http://www.w3.org/2000/svg" id="file-icon">
+<g id="Page">
+<path id="Page background" d="M672 136C672 133.791 673.791 132 676 132H692L704 144V168C704 170.209 702.209 172 700 172H676C673.791 172 672 170.209 672 168V136Z" fill="#444CE7" />
+<path id="Earmark" opacity="0.3" d="M692 132L704 144H696C693.791 144 692 142.209 692 140V132Z" fill="white" />
+</g>
+<g id="Icon wrap">
+<path id="Icon" d="M691.333 159.333L694.667 156L691.333 152.667M684.667 152.667L681.333 156L684.667 159.333M689.333 150L686.667 162" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+</g>
+
+</svg>

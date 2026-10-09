@@ -1,0 +1,249 @@
+/* Selection action bar. Port từ mdm-portal; contract: ds/components/snack-bar.md. */
+
+.snack-bar-region {
+  position: fixed;
+  bottom: var(--utui-spacing-06);
+  left: 50%;
+  z-index: 35;
+  display: flex;
+  justify-content: center;
+  max-width: calc(100% - var(--utui-spacing-06) * 2);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.snack-bar-region > * {
+  pointer-events: auto;
+}
+
+.snack-bar-region--inline {
+  position: static;
+
+  max-width: 100%;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* Neo trong container của vùng cuộn (cần position: relative): nổi ở đáy container, ngay trên footer của bảng. */
+.snack-bar-region--anchored {
+  position: absolute;
+  bottom: var(--utui-spacing-04);
+}
+
+.snack-bar {
+  position: relative;
+  display: flex;
+  gap: var(--utui-snack-bar-gap);
+  align-items: center;
+  max-width: 100%;
+  padding:
+    var(--utui-snack-bar-padding-y) var(--utui-snack-bar-padding-right)
+    var(--utui-snack-bar-padding-y) var(--utui-snack-bar-padding-left);
+  border: 1px solid var(--utui-snack-bar-border);
+  border-radius: var(--utui-snack-bar-radius);
+  background: var(--utui-snack-bar-bg);
+  color: var(--utui-snack-bar-text);
+  box-shadow: var(--utui-snack-bar-shadow);
+}
+
+.snack-bar[hidden] {
+  display: none;
+}
+
+.snack-bar--light {
+  border-color: var(--utui-snack-bar-border-light);
+  background: var(--utui-snack-bar-bg-light);
+  color: var(--utui-snack-bar-text-light);
+}
+
+.snack-bar__message {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  font-size: var(--utui-font-size-text-md);
+  font-weight: var(--utui-font-weight-medium);
+  line-height: var(--utui-line-height-text-md);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.snack-bar__actions {
+  display: flex;
+  gap: var(--utui-snack-bar-actions-gap);
+  align-items: center;
+  margin-left: auto;
+}
+
+.snack-bar__cta {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+
+  min-height: var(--utui-snack-bar-icon-button-size);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--utui-snack-bar-cta);
+  font-size: var(--utui-font-size-text-md);
+  font-weight: var(--utui-font-weight-semibold);
+  line-height: var(--utui-line-height-text-md);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.snack-bar--light .snack-bar__cta {
+  color: var(--utui-snack-bar-cta-light);
+}
+
+.snack-bar__cta:hover {
+  text-decoration: underline;
+}
+
+.snack-bar__icons {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.snack-bar__icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--utui-snack-bar-icon-button-size);
+  height: var(--utui-snack-bar-icon-button-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--utui-snack-bar-icon-button-radius);
+  background: transparent;
+  color: var(--utui-snack-bar-icon);
+  cursor: pointer;
+}
+
+.snack-bar--light .snack-bar__icon-button {
+  color: var(--utui-snack-bar-icon-light);
+}
+
+.snack-bar__icon-button:hover {
+  background: var(--utui-snack-bar-icon-hover-bg);
+}
+
+.snack-bar--light .snack-bar__icon-button:hover {
+  background: var(--utui-snack-bar-icon-hover-bg-light);
+}
+
+.snack-bar__icon-button:focus-visible,
+.snack-bar__cta:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.snack-bar__icon-button .material-symbols-outlined {
+  font-size: var(--utui-snack-bar-icon-size);
+}
+
+.snack-bar__menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + var(--utui-snack-bar-menu-offset));
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: var(--utui-snack-bar-menu-width);
+
+  max-height: calc(100dvh - var(--utui-snack-bar-menu-offset) - var(--utui-spacing-06) * 2 - var(--utui-snack-bar-icon-button-size) - var(--utui-spacing-04));
+  padding: 0;
+  overflow: hidden auto;
+  border: 1px solid var(--utui-snack-bar-menu-border);
+  border-radius: var(--utui-snack-bar-menu-radius);
+  background: var(--utui-snack-bar-menu-bg);
+  box-shadow: var(--utui-snack-bar-menu-shadow);
+}
+
+.snack-bar__menu[hidden] {
+  display: none;
+}
+
+.snack-bar--light .snack-bar__menu {
+  background: var(--utui-snack-bar-menu-bg-light);
+}
+
+.snack-bar__menu-item {
+  display: flex;
+  gap: var(--utui-snack-bar-menu-item-gap);
+  align-items: center;
+  width: 100%;
+  padding: var(--utui-snack-bar-menu-item-padding-y) var(--utui-snack-bar-menu-item-padding-x);
+  border: 0;
+  background: transparent;
+  color: var(--utui-snack-bar-menu-text);
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-medium);
+  line-height: var(--utui-line-height-text-sm);
+  text-align: left;
+  cursor: pointer;
+}
+
+.snack-bar--light .snack-bar__menu-item {
+  color: var(--utui-snack-bar-menu-text-light);
+}
+
+.snack-bar__menu-item:hover {
+  background: var(--utui-snack-bar-menu-hover-bg);
+}
+
+.snack-bar--light .snack-bar__menu-item:hover {
+  background: var(--utui-snack-bar-menu-hover-bg-light);
+}
+
+.snack-bar__menu-item:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+.snack-bar__menu-item .material-symbols-outlined {
+  flex-shrink: 0;
+  font-size: var(--utui-snack-bar-menu-item-icon-size);
+}
+
+.snack-bar__menu-divider {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: var(--utui-snack-bar-menu-divider);
+}
+
+.snack-bar--light .snack-bar__menu-divider {
+  background: var(--utui-snack-bar-menu-divider-light);
+}
+
+/* Vô hiệu: aria-disabled (không dùng disabled) để vẫn focus được và hiện tooltip lý do. */
+.snack-bar__cta[aria-disabled="true"],
+.snack-bar__menu-item[aria-disabled="true"],
+.snack-bar__icon-button[aria-disabled="true"] {
+  color: var(--utui-snack-bar-disabled);
+  cursor: not-allowed;
+}
+
+.snack-bar--light .snack-bar__cta[aria-disabled="true"],
+.snack-bar--light .snack-bar__menu-item[aria-disabled="true"] {
+  color: var(--utui-snack-bar-disabled-light);
+}
+
+.snack-bar--light .snack-bar__icon-button[aria-disabled="true"] {
+  color: var(--utui-snack-bar-disabled-light);
+}
+
+.snack-bar__icon-button[aria-disabled="true"]:hover {
+  background: transparent;
+}
+
+.snack-bar__cta[aria-disabled="true"]:hover {
+  text-decoration: none;
+}
+
+.snack-bar__menu-item[aria-disabled="true"]:hover {
+  background: transparent;
+}

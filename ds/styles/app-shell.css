@@ -1,0 +1,241 @@
+/* app-shell.css — see design-system/components/app-shell.md
+   Extracted from the former monolithic app.css, 2026-08-03.
+   Rule order is unchanged. */
+
+/* --- OneHub shell -------------------------------------------
+   Moved here from the three screen bundles on 2026-08-11 as part of applying
+   .claude/skills/responsive/SKILL.md. The definition was byte-identical in all three, and
+   the ladder in responsive.css has to be able to override it: a screen imports
+   app.css first, so any `.mdm-shell` rule left in a screen file wins the
+   cascade at equal specificity and the tier overrides would never apply.
+   See design-system/components/app-shell.md. */
+
+/* The page background IS the `BG Gradient` style — see the --utui-page-wash
+   token. It is painted here, on the shell, not on .main: the style is the
+   page's background, and the nav column's own opaque fill covers its half. */
+.mdm-shell {
+  display: grid;
+  grid-template-columns: var(--utui-nav-width) minmax(0, 1fr);
+  /* dvh, not vh: on mobile browsers vh resolves against the largest viewport,
+     so the shell runs under the retracting toolbar and the page gains a
+     phantom scroll. See .claude/skills/responsive/SKILL.md. */
+  min-height: 100dvh;
+  background-color: var(--utui-page-wash-base);
+  background-image: var(--utui-page-wash);
+  background-size: var(--utui-page-wash-size);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.mdm-shell:has(.side-nav.is-collapsed) {
+  grid-template-columns: var(--utui-nav-width-collapsed) minmax(0, 1fr);
+}
+
+/* The navigation is persistent chrome — it must not scroll away with the page.
+   align-self: start stops the grid stretching it past one viewport. */
+.mdm-shell > .side-nav {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100dvh;
+}
+
+/* Transparent so the page background painted on .mdm-shell shows through.
+   .main otherwise inherits an opaque fill from the rule below. */
+.mdm-shell > .main {
+  background: transparent;
+}
+
+/* Sticky region: workspace tabs, page header and section tab bar pin as one
+   element. One sticky block rather than three stacked ones keeps the offsets
+   trivial and stops content showing through the gaps.
+
+   The pinned block still needs to be opaque, but it must not be flat white —
+   that would cut a hard band out of the wash. Painting the same gradient with
+   `background-attachment: fixed` solves both: the layer is positioned against
+   the viewport, so the sticky slice and the region behind it stay aligned at
+   every scroll offset. This is what lets the header read as Transparent.
+   responsive.css drops the fixed attachment at sm — see that file. */
+.page-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: var(--utui-page-wash-base);
+  background-image: var(--utui-page-wash);
+  background-size: var(--utui-page-wash-size);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.main {
+  min-width: 0;
+  background: var(--app-content-bg);
+}
+
+/* The page frame is the layout tokens, not a set of local steps: 20px gutters
+   on every side and 20px between blocks, stepped once at sm by responsive.css.
+   This rule declared 32/40/48 of its own until 2026-09-05, so a screen that
+   used `.page` sat on a different rung from every screen that built its body
+   out of --utui-page-gutter-*. See .claude/skills/responsive/SKILL.md. */
+.page {
+  display: grid;
+  gap: var(--utui-page-block-gap);
+  padding: var(--utui-page-gutter-y) var(--utui-page-gutter-x);
+}
+
+/* `top`: the heading column and the action group. The gap is the component's own
+   token, not a local spacing step — this rule declared 24px while
+   --utui-page-header-gap existed beside it and was consumed only by the sm
+   ladder and the two flex variants, so three values described one gap. The token
+   is now the design system's 80px and responsive.css steps it. Corrected
+   2026-08-14; see design-system/components/page-header.md. */
+.page-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  /* Column gap only: the token describes the separation between the heading
+     column and the action group. The row gap matters once a header stacks — at
+     sm, or when a back link takes a row of its own — and page-header.css owns
+     that case. */
+  column-gap: var(--utui-page-header-gap);
+  row-gap: var(--utui-page-header-gap);
+}
+
+.eyebrow {
+  margin: 0 0 var(--utui-spacing-01);
+  color: var(--app-brand-strong);
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-semibold);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+.page-title {
+  margin: 0;
+  color: var(--app-text);
+  font-size: var(--utui-font-size-display-md);
+  font-weight: var(--utui-font-weight-semibold);
+  line-height: var(--utui-line-height-display-md);
+}
+
+.page-subtitle {
+  max-width: 760px;
+  margin: var(--utui-spacing-02) 0 0;
+  color: var(--app-text-muted);
+  font-size: var(--utui-font-size-text-lg);
+  line-height: var(--utui-line-height-text-lg);
+}
+
+.header-actions,
+.toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--utui-spacing-03);
+}
+
+/* --- Fixed-viewport layout mode -----------------------------
+   Added 2026-08-16. Opt in with `.mdm-shell--fixed` on the shell and
+   `.page--fixed` on the page container; the one region that absorbs the leftover
+   height carries `.page-fill`.
+
+   The listing pattern used to be a normally-scrolling document with two pinned
+   bands over it (`.page-sticky`, and the toolbar on project-docs) and a table
+   region bounded by `calc(100dvh - --utui-scroll-region-offset)`. That arrangement
+   cannot be made exact: the offset is a tiered constant standing in for chrome
+   whose height is content-dependent, so the bound is either short (dead space
+   under the footer) or long (the page scrolls and the pinned bands paper over
+   it). Publishing the measured chrome height per screen — three copies of the
+   same workaround by 2026-08-15 — only moved the guess.
+
+   The height chain removes the guess. The shell is exactly one viewport, `.main`
+   is a column, and every block above the fill region takes its natural height, so
+   whatever is left over IS the fill region's height. Nothing is subtracted,
+   nothing is measured, and no JS runs. The consequences the pattern wants fall
+   out of it: the document cannot scroll, so the pinned bands are unnecessary
+   (they stay declared but inert — sticky needs a scrolling ancestor); a table's
+   pagination footer sits outside the scroller and is frozen by construction
+   rather than by a second sticky element; and collapsing the metric strip gives
+   its height to the table body instead of to blank page.
+
+   `min-height: 0` on every link is what makes it work — a flex item's default
+   `min-height: auto` refuses to shrink below its content, which would push the
+   overflow back onto the document one level up.
+
+   This is a mode, not a tier: responsive.css reverts it at sm, where a locked
+   viewport spends more on chrome than it leaves for data. See
+   design-system/components/app-shell.md and .claude/skills/responsive/SKILL.md § Fixed-viewport listing pages. */
+
+.mdm-shell--fixed {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Flex rather than a two-row grid template: `.main` holds the pinned block and
+   the page today, and a template would have to be re-counted the moment a screen
+   adds a third child. */
+.mdm-shell--fixed > .main {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Doubled class so this wins against a screen bundle's own `.docs-page` /
+   `.project-list-page` rule: a screen file is imported after app.css, so at equal
+   specificity its `display: grid` would win the cascade. Gap and padding are
+   deliberately not restated here — `gap` applies to flex containers unchanged, so
+   each screen keeps its own block rhythm. */
+/* `hidden auto`, not `hidden`: horizontally the page must never scroll — that is
+   what the table's own wrap is for — but vertically this is the release valve for
+   the floor below. On any viewport that can afford the floor nothing scrolls
+   here, which is the whole point of the mode; on one that cannot, the page column
+   scrolls rather than the shell, so the nav and the pinned chrome still hold
+   still and only the page's own blocks move. */
+.page.page--fixed {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden auto;
+}
+
+/* Every block is its natural height... */
+.page--fixed > * {
+  flex: 0 0 auto;
+}
+
+/* ...except the one that takes what is left. A page may declare several (the
+   browse body, the search-results table and the folder grid on project-docs) as
+   long as only one is unhidden at a time — `hidden` takes the others out of flow
+   entirely.
+
+   The floor is not optional. "What is left" is a subtraction, and at 1024x768
+   with the metric strip open it came out at roughly zero: the table rendered as a
+   column header, a horizontal scrollbar and a frozen footer with no rows between
+   them. A region that is exactly its leftover height is right until the leftover
+   is nothing. 320px is a header, three rows and the footer — the least that still
+   reads as a table rather than as chrome. Below that the page column scrolls
+   (see `overflow` above), which is the behaviour the whole package had before
+   this mode and a fair thing to fall back to. */
+.page--fixed > .page-fill {
+  flex: 1 1 auto;
+  min-height: 320px;
+}
+
+/* Chế độ toàn màn hình listing (ds/components/app-shell.md § Fullscreen mode). */
+.mdm-shell.is-fullscreen > .side-nav,
+.mdm-shell.is-fullscreen .page-sticky,
+.mdm-shell.is-fullscreen .page--fixed > .metric-region {
+  display: none;
+}
+
+/* Nav ẩn → .main phủ cả hai cột; thắng cả luật nav overlay ≤1279 ở responsive.css. */
+.mdm-shell.is-fullscreen > .main,
+.mdm-shell.is-fullscreen:has(> .side-nav:not(.is-collapsed)) > .main {
+  grid-column: 1 / -1;
+}
+
+.mdm-shell.is-fullscreen:has(> .side-nav:not(.is-collapsed))::before {
+  content: none;
+}

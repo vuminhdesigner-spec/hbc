@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#FFFFFF">
+    <title>Màn mẫu</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        /* GAP: literal fallback — the ds token isn't loaded yet at this point in <head>. */
+        background: var(--utui-page-wash-base, #f8fafc);
+      }
+
+      body {
+        margin: 0;
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./danh-sach.css">
+  </head>
+  <body>
+
+
+    <div class="mdm-shell mdm-shell--fixed">
+      <aside class="side-nav" id="sideNav" aria-label="Điều hướng OneHub">
+        <img class="side-nav__backdrop" src="../../ds/assets/nav-backdrop.webp" alt="" aria-hidden="true">
+        <div class="side-nav__brand">
+          <span class="side-nav__mark">
+            <img src="../../ds/assets/brand-mark.svg" alt="One Mount">
+          </span>
+          <button class="nav-collapse" id="navCollapse" type="button" aria-label="Thu gọn điều hướng" aria-expanded="true">
+            <span class="material-symbols-outlined" aria-hidden="true">left_panel_close</span>
+          </button>
+        </div>
+        <div class="nav-module">
+          <button class="nav-module__trigger" id="moduleTrigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="moduleMenu">
+            <span class="material-symbols-outlined" aria-hidden="true">auto_stories</span>
+            <span class="nav-module__label" id="moduleLabel">[MDM] Quản lý dữ liệu</span>
+            <span class="material-symbols-outlined" aria-hidden="true">unfold_more</span>
+          </button>
+          <div class="nav-module__menu" id="moduleMenu" role="menu" aria-label="Chọn module" hidden></div>
+        </div>
+        <div class="side-nav__section" id="navSection"></div>
+        <div class="side-nav__footer">
+          <div class="side-profile">
+            <span class="side-profile__avatar" aria-hidden="true">AD</span>
+            <div class="side-profile__body">
+              <span class="side-profile__name">admin</span>
+              <span class="side-profile__mail">admin@company.com</span>
+            </div>
+            <button class="side-profile__more" type="button" aria-label="Tùy chọn tài khoản">
+              <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="page">
+          <header class="page-header">
+            <div>
+              <div class="page-header__heading">
+                <h1 class="page-header__title">Màn mẫu</h1>
+              </div>
+            </div>
+            <div class="header-actions">
+              <button class="button button--compact button--primary" type="button">Tạo mới</button>
+            </div>
+          </header>
+
+          <section class="empty-page" id="emptyState" hidden>
+            <span class="empty-illustration" aria-hidden="true"></span>
+            <div class="empty-page__text">
+              <p class="empty-page__title">Chưa có dữ liệu</p>
+              <p class="empty-page__supporting">Bấm Tạo mới để thêm bản ghi đầu tiên.</p>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script src="../../ds/scripts/module-nav.js"></script>
+    <script src="../../ds/scripts/nav-collapse.js"></script>
+    <script src="./danh-sach.js"></script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component dock. Hướng dẫn dùng nằm ở dock.md.",
+  "name": "dock",
+  "block": ".dock",
+  "sources": {
+    "stylesheet": "ds/styles/dock.css",
+    "contract": "ds/components/dock.md"
+  },
+  "api": {
+    "modifiers": [],
+    "parts": [
+      ".dock__close",
+      ".dock__expand",
+      ".dock__item",
+      ".dock__list",
+      ".dock__progress",
+      ".dock__restore",
+      ".dock__title"
+    ],
+    "stateClasses": [],
+    "pseudoStates": [],
+    "attributes": [
+      "[hidden]",
+      "[role=region]"
+    ]
+  },
+  "tokens": [
+    "--app-border",
+    "--utui-color-bg-surface-hover",
+    "--utui-color-bg-surface-subtle",
+    "--utui-color-text-primary",
+    "--utui-dock-clearance",
+    "--utui-dock-gap",
+    "--utui-dock-item-height",
+    "--utui-dock-item-width",
+    "--utui-dock-offset",
+    "--utui-dock-radius",
+    "--utui-dock-shadow",
+    "--utui-dock-z",
+    "--utui-font-size-text-sm",
+    "--utui-font-weight-semibold",
+    "--utui-line-height-text-sm",
+    "--utui-spacing-01",
+    "--utui-spacing-04"
+  ],
+  "breakpoints": [
+    "max-width: 767px"
+  ],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

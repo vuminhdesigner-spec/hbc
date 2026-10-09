@@ -1,0 +1,65 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component button-group. Hướng dẫn dùng nằm ở button-group.md.",
+  "name": "button-group",
+  "block": ".button-group",
+  "sources": {
+    "stylesheet": "ds/styles/button-group.css",
+    "contract": "ds/components/button-group.md"
+  },
+  "api": {
+    "modifiers": [
+      ".button-group--icon-only",
+      ".button-group--md",
+      ".button-group--sm",
+      ".button-group--xl"
+    ],
+    "parts": [
+      ".button-group__item",
+      ".button-group__more",
+      ".button-group__menu",
+      ".button-group__menu-item",
+      ".button-group__dot"
+    ],
+    "stateClasses": [
+      ".is-active"
+    ],
+    "pseudoStates": [
+      ":first-child",
+      ":hover",
+      ":last-child"
+    ],
+    "attributes": [
+      "[hidden]",
+      "[aria-expanded]",
+      "[aria-checked]",
+      "[data-active]"
+    ]
+  },
+  "tokens": [
+    "--utui-button-group-menu-border",
+    "--utui-button-group-menu-offset",
+    "--utui-button-group-menu-padding-block",
+    "--utui-button-group-menu-radius",
+    "--utui-button-group-menu-shadow",
+    "--utui-button-group-menu-z",
+    "--utui-button-height-md",
+    "--utui-button-height-sm",
+    "--utui-button-height-xl",
+    "--utui-color-bg-surface",
+    "--utui-color-brand-50",
+    "--utui-color-brand-600",
+    "--utui-color-icon-warning",
+    "--utui-color-neutral-50",
+    "--utui-field-dot-size",
+    "--utui-font-weight-semibold",
+    "--utui-radius-pill",
+    "--utui-shadow-xs",
+    "--utui-spacing-02",
+    "--utui-spacing-04"
+  ],
+  "breakpoints": [],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

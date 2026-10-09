@@ -1,0 +1,85 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component file-upload. Hướng dẫn dùng nằm ở file-upload.md.",
+  "name": "file-upload",
+  "block": ".file-upload",
+  "sources": {
+    "stylesheet": "ds/styles/file-upload.css",
+    "contract": "ds/components/file-upload.md"
+  },
+  "api": {
+    "modifiers": [
+      ".file-upload--fill"
+    ],
+    "parts": [
+      ".file-upload__caption",
+      ".file-upload__dropzone",
+      ".file-upload__filename",
+      ".file-upload__hint",
+      ".file-upload__hint-action",
+      ".file-upload__input",
+      ".file-upload__line",
+      ".file-upload__line--gap",
+      ".file-upload__line--short",
+      ".file-upload__line--title",
+      ".file-upload__preview",
+      ".file-upload__prompt",
+      ".file-upload__sheet",
+      ".file-upload__status",
+      ".file-upload__swap",
+      ".file-upload__tile",
+      ".file-upload__trigger",
+      ".file-upload__unsupported",
+      ".file-upload__viewport"
+    ],
+    "stateClasses": [
+      ".is-dragover",
+      ".is-filled",
+      ".is-unsupported"
+    ],
+    "pseudoStates": [
+      ":hover"
+    ],
+    "attributes": []
+  },
+  "tokens": [
+    "--utui-file-upload-fill-min-block-size",
+    "--utui-file-upload-fill-border",
+    "--utui-file-upload-hover-bg",
+    "--utui-file-upload-hover-tile-bg",
+    "--utui-file-upload-dragover-border",
+    "--utui-color-border-brand",
+    "--utui-color-bg-surface-hover",
+    "--utui-button-height-lg",
+    "--utui-color-bg-brand-subtle",
+    "--utui-color-bg-surface",
+    "--utui-color-bg-surface-muted",
+    "--utui-color-bg-surface-subtle",
+    "--utui-color-border-brand-subtle",
+    "--utui-color-brand-100",
+    "--utui-color-icon-default",
+    "--utui-color-text-brand",
+    "--utui-field-border-error",
+    "--utui-font-size-text-sm",
+    "--utui-font-size-text-xs",
+    "--utui-font-weight-medium",
+    "--utui-font-weight-semibold",
+    "--utui-line-height-text-sm",
+    "--utui-line-height-text-xs",
+    "--utui-radius-lg",
+    "--utui-radius-pill",
+    "--utui-shadow-lg",
+    "--utui-shadow-sm",
+    "--utui-spacing-01",
+    "--utui-spacing-02",
+    "--utui-spacing-03",
+    "--utui-spacing-04",
+    "--utui-spacing-06",
+    "--utui-spacing-08",
+    "--utui-spacing-10"
+  ],
+  "breakpoints": [],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

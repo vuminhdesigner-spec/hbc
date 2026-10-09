@@ -1,0 +1,113 @@
+/* notification.css — thẻ thông báo cấp trang, 4 tone: alert / warning / success / info.
+   Nguồn: OMEU Design System V2 (SFo9P9PCVQiuOk2SqjZYKQ) node 9984:54071. Contract: ds/components/notification.md
+   Announcement là markup, không phải CSS: script append thẻ RỖNG rồi ghi chữ sau một nhịp (role="status"; alert dùng role="alert").
+   Không có chuyển động nào ở đây; nếu thêm entrance/exit thì phải kèm prefers-reduced-motion. */
+
+/* Lớp định vị, không phải thẻ: pointer-events none để cột trống không nuốt click của trang. */
+.notification-stack {
+  position: fixed;
+  top: var(--utui-spacing-06);
+  right: var(--utui-spacing-06);
+  z-index: 40;
+  display: grid;
+  gap: var(--utui-spacing-03);
+  /* 400px là bề rộng Figma của thẻ (literal một nơi dùng); kẹp theo viewport để không tràn ngang. */
+  width: min(400px, calc(100vw - var(--utui-spacing-06) * 2));
+  pointer-events: none;
+}
+
+.notification {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--utui-spacing-04);
+  padding: var(--utui-spacing-04);
+  border: 1px solid var(--app-border);
+  border-radius: var(--utui-radius-lg);
+  background: var(--utui-color-bg-surface);
+  box-shadow: var(--utui-shadow-lg);
+  pointer-events: auto;
+}
+
+/* Figma: chỉ alert đổi viền (Gray/300); gap: chưa có token gray-300, dùng border-strong (Neutral/300). */
+.notification--alert {
+  border-color: var(--utui-color-border-strong);
+}
+
+/* Cột nội dung: chữ ở trên, hành động ở dưới, cách nhau 12px. */
+.notification__body {
+  display: grid;
+  flex: 1;
+  gap: var(--utui-spacing-03);
+  /* min-width 0: tên tệp dài không được nong thẻ. */
+  min-width: 0;
+  /* Chừa cột nút đóng (Figma: padding-right 32). */
+  padding-right: var(--utui-spacing-08);
+}
+
+.notification__text {
+  display: grid;
+  gap: var(--utui-spacing-01);
+}
+
+.notification__title {
+  margin: 0;
+  color: var(--utui-color-gray-900);
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-medium);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+/* Tối đa 2 dòng rồi ellipsis; chuỗi đầy đủ vẫn nằm trong DOM. */
+.notification__description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: var(--utui-color-gray-600);
+  font-size: var(--utui-font-size-text-sm);
+  line-height: var(--utui-line-height-text-sm);
+  /* Tên tệp không có khoảng trắng: phải cho ngắt ở bất kỳ đâu. */
+  overflow-wrap: anywhere;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* display của rule trên thắng [hidden] của UA. */
+.notification__description[hidden] {
+  display: none;
+}
+
+/* Hàng hành động: nút .button--link / .button--link-gray, cách nhau 12px. */
+.notification__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--utui-spacing-03);
+}
+
+.notification__actions[hidden] {
+  display: none;
+}
+
+/* Hộp 36px (Figma) quanh glyph 20px; gap: lệch 1px so với Figma (7px) vì chưa có token 7px. */
+.notification__close {
+  position: absolute;
+  top: var(--utui-spacing-02);
+  right: var(--utui-spacing-02);
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--app-radius);
+  background: transparent;
+  color: var(--utui-color-gray-400);
+}
+
+.notification__close:hover {
+  background: var(--utui-color-bg-surface-subtle);
+  color: var(--app-text);
+}
+
+/* Focus: vòng chung của base.css `button:focus-visible`, không khai báo lại. */

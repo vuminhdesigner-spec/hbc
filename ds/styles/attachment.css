@@ -1,0 +1,181 @@
+/* attachment.css — thẻ hiện MỘT tài liệu đính kèm (header + body + footer + thu gọn). Khác attachment-list.css (danh sách nhiều file, không chung selector). Xem ds/components/attachment.md. */
+
+/* Card 3 hàng (auto/1fr/auto): body co giãn theo consumer đặt nó, panel không có kích thước riêng. */
+.attachment-pane {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: var(--utui-attachment-padding);
+  min-height: 0;
+  padding: var(--utui-attachment-padding);
+  border-radius: var(--utui-attachment-radius);
+  background: var(--utui-attachment-bg);
+  box-shadow: var(--utui-attachment-shadow);
+}
+
+/* --bare: bỏ surface/shadow, giữ nhịp gap+padding — dùng khi ghép cạnh panel trắng khác đã có nền riêng (ds/components/attachment.md § "The card, and --bare"). */
+.attachment-pane--bare {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Thu gọn còn 40px control; áp cho mọi state (collapse là trục độc lập với state của body). */
+.attachment-pane.is-collapsed {
+  grid-template-rows: auto;
+  justify-items: start;
+  align-content: start;
+  /* Panel tự co theo control — nếu không, hit area vẫn chiếm cả cột dù chỉ vẽ 40px. */
+  align-self: start;
+  justify-self: start;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* display:none (không phải visibility/inert) — không có animation cần giữ subtree trong DOM/tab order. */
+.attachment-pane.is-collapsed .attachment-pane__header,
+.attachment-pane.is-collapsed .attachment-pane__body,
+.attachment-pane.is-collapsed .attachment-pane__footer {
+  display: none;
+}
+
+/* Header: leading group giãn hết (flex:1), action bị đẩy ra bằng chỗ trống thừa — không dùng space-between (tránh xô lệch khi icon lỗi render). */
+.attachment-pane__header {
+  display: flex;
+  align-items: center;
+  gap: var(--utui-attachment-bar-gap);
+  min-height: 0;
+}
+
+/* min-width:0 — tên file dài không được đẩy nút thu gọn ra khỏi card. */
+.attachment-pane__lead {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--utui-attachment-lead-gap);
+  min-width: 0;
+}
+
+/* Ring 6px riêng cho icon này qua biến publish sẵn của featured-icon.css — ds/components/featured-icon.md. */
+.attachment-pane__icon {
+  --featured-icon-ring-width: var(--utui-attachment-icon-ring);
+}
+
+.attachment-pane__heading {
+  display: grid;
+  gap: var(--utui-attachment-text-gap);
+  min-width: 0;
+}
+
+/* Text lg/28 semibold, --app-text (không phải Gray/900 tĩnh). */
+.attachment-pane__title {
+  margin: 0;
+  color: var(--app-text);
+  font-size: var(--utui-font-size-text-lg);
+  font-weight: var(--utui-font-weight-semibold);
+  line-height: var(--utui-line-height-text-lg);
+}
+
+/* Tên file/placeholder — ellipsis 1 dòng; chuỗi đầy đủ vẫn ở DOM cho screen reader. */
+.attachment-pane__file {
+  margin: 0;
+  overflow: hidden;
+  color: var(--utui-attachment-supporting-text);
+  font-size: var(--utui-font-size-text-sm);
+  line-height: var(--utui-line-height-text-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* GAP: Figma vẽ "Thu gọn" là tertiary-gray nhưng button.md chưa có hierarchy này — viết tay như part riêng, không compose từ button.md. Nếu button.md có tertiary-gray, chuyển rule này thành composition. */
+.attachment-pane__collapse {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--utui-attachment-text-gap);
+  min-height: var(--utui-attachment-collapse-height);
+  padding: 0 var(--utui-attachment-collapse-padding-x);
+  border: 0;
+  border-radius: var(--app-radius);
+  background: transparent;
+  color: var(--utui-attachment-collapse-text);
+  font: inherit;
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-semibold);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+.attachment-pane__collapse:hover {
+  background: var(--utui-color-bg-surface-hover);
+  color: var(--app-text);
+}
+
+/* Slot cho 1 file-upload instance; hàng auto thứ hai chừa cho .form-field__error nếu pane từ chối lưu. */
+.attachment-pane__body {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  gap: var(--utui-spacing-02);
+  min-height: 0;
+}
+
+/* flex-end, pager đẩy trái bằng margin-inline-end:auto (không space-between) — 2 nút hành động không tách xa khi ẩn pager. */
+.attachment-pane__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--utui-attachment-footer-gap);
+}
+
+/* [hidden] phải khai display:none tường minh để thắng display:flex ở trên (bẫy chung với button-group/form-field__error). */
+.attachment-pane__footer[hidden] {
+  display: none;
+}
+
+.attachment-pane__pager {
+  display: flex;
+  align-items: center;
+  gap: var(--utui-attachment-footer-gap);
+  margin-inline-end: auto;
+}
+
+/* Nút vuông từ button.css; min-height (không phải height) để coarse-pointer rung nới lên 44px mà không bị height cố định chặn. */
+.attachment-pane__page {
+  flex-shrink: 0;
+  width: var(--utui-attachment-page-size);
+  min-height: var(--utui-attachment-page-size);
+  padding: 0;
+  border-radius: var(--utui-attachment-page-radius);
+}
+
+/* Control 40px khi collapsed — nút thật trong luồng Tab, thay cho rail dọc cũ (đã bỏ vì Figma vẽ nút vuông, không phải rail). */
+.attachment-pane__expand {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  /* width + min-height (không dùng cặp logical) — khớp cơ chế coarse-pointer ở responsive.css: min-width thắng width, min-block-size trùng min-height nên phải chọn cùng một trục thắng. */
+  width: var(--utui-attachment-expand-size);
+  min-height: var(--utui-attachment-expand-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--utui-attachment-radius);
+  background: var(--utui-attachment-bg);
+  box-shadow: var(--utui-attachment-shadow);
+  color: var(--utui-attachment-collapse-text);
+  font: inherit;
+}
+
+.attachment-pane.is-collapsed .attachment-pane__expand {
+  display: inline-flex;
+}
+
+.attachment-pane__expand:hover {
+  background: var(--utui-color-bg-surface-hover);
+  color: var(--app-text);
+}
+
+/* Ghép ring focus với shadow-md sẵn có (không thay thế) — base.css đặt --app-focus ở specificity cao hơn, nếu không control mất elevation đúng lúc đang được focus. */
+.attachment-pane__expand:focus-visible {
+  box-shadow: var(--app-focus), var(--utui-attachment-shadow);
+}

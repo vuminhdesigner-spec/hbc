@@ -1,0 +1,68 @@
+{
+  "$schema": "https://design-system.local/pattern.schema.json",
+  "$description": "Registry của pattern item-detail. Hướng dẫn nằm ở item-detail.md.",
+  "name": "item-detail",
+  "contract": "ds/patterns/item-detail.md",
+  "composes": [
+    "anchor-nav",
+    "app-shell",
+    "attachment-list",
+    "data-viewer",
+    "drawer",
+    "empty-state",
+    "entity-row",
+    "featured-icon",
+    "folder",
+    "inform",
+    "metric-item",
+    "page-header",
+    "section-card",
+    "section-header",
+    "side-navigation",
+    "tab-bar"
+  ],
+  "relatedPatterns": [
+    "item-listing"
+  ],
+  "implementedIn": [
+    "doi-tac/chi-tiet",
+    "doi-tac/ho-so-nang-luc",
+    "du-an/chi-tiet"
+  ],
+  "tokens": [
+    "--utui-page-block-gap",
+    "--utui-page-gutter-x",
+    "--utui-page-gutter-y",
+    "--utui-spacing-05"
+  ],
+  "sections": [
+    "Purpose",
+    "Source",
+    "Shell Context",
+    "Anatomy",
+    "Composition Rules",
+    "Record specifics (du-an/chi-tiet)",
+    "Content Slots",
+    "States",
+    "Tokens",
+    "Usage",
+    "Accessibility",
+    "Known Gaps",
+    "Code Mapping"
+  ],
+  "contractCheck": {
+    "required": [
+      "Purpose",
+      "Source",
+      "Anatomy",
+      "Composition Rules",
+      "Content Slots",
+      "States",
+      "Accessibility",
+      "Code Mapping",
+      "Known Gaps"
+    ],
+    "missing": []
+  },
+  "lines": 386
+}

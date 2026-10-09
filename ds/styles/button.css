@@ -1,0 +1,242 @@
+/* button.css — see design-system/components/button.md
+   Synced 2026-08-04 against `Buttons/Button` (SFo9P9PCVQiuOk2SqjZYKQ,
+   1038:34411): Hierarchy x Size x Icon x State. */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--utui-spacing-02);
+  /* Was a literal 44px until 2026-09-03. `--utui-button-height-lg` resolves to
+     the same 44 — the literal was pre-existing, not a value the package lacks.
+     It is worth holding as a token because it is what `.search-field` aligns
+     against: both are 44 now, and the drawer row on du-an/chi-tiet is
+     flush only because they agree. */
+  min-height: var(--utui-button-height-lg);
+  padding: 0 var(--utui-spacing-04);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  background: var(--utui-button-bg-secondary);
+  color: var(--utui-button-text-secondary);
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-semibold);
+  line-height: var(--utui-line-height-text-sm);
+  text-decoration: none;
+  box-shadow: var(--utui-shadow-xs);
+}
+
+/* `display: inline-flex` above beats the UA's `[hidden] { display: none }`, so
+   a button the script has hidden — an empty-state recovery action that does
+   not apply to the current case — would stay painted. Same trap, and the same
+   one-line answer, as `.button-group[hidden]`. */
+.button[hidden] {
+  display: none;
+}
+
+.button:hover {
+  background: var(--utui-button-bg-secondary-hover);
+  color: var(--utui-button-text-secondary-hover);
+}
+
+.button:disabled {
+  color: var(--utui-button-text-disabled);
+}
+
+/* Busy (USER DECISION 2026-10-05, AUTHORED, GAP: no Figma frame): the button keeps its look (not greyed like :disabled) and its focus; the script guards the click and sets `aria-disabled="true"`. The glyph gives way to `.button__spinner`. */
+.button[aria-busy="true"] {
+  cursor: progress;
+}
+
+.button[aria-busy="true"] > .material-symbols-outlined {
+  display: none;
+}
+
+/* Ring in the colour of the label, so every variant reads; GAP: the 2px stroke has no token. */
+.button__spinner {
+  display: inline-block;
+  flex: none;
+  inline-size: var(--utui-button-spinner-size);
+  block-size: var(--utui-button-spinner-size);
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--app-radius-pill);
+  animation: button-spin 800ms linear infinite;
+}
+
+/* Reduced motion: slower, not stopped, so "working" stays visible. */
+@media (prefers-reduced-motion: reduce) {
+  .button__spinner {
+    animation-duration: 1600ms;
+  }
+}
+
+@keyframes button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hierarchy=Primary — Brand/500 fill with a Brand/600 border, not fill alone. */
+.button--primary {
+  border-color: var(--utui-button-border-primary);
+  background: var(--utui-button-bg-primary);
+  color: var(--utui-button-text-primary);
+}
+
+.button--primary:hover {
+  border-color: var(--utui-button-bg-primary-hover);
+  background: var(--utui-button-bg-primary-hover);
+  color: var(--utui-button-text-primary);
+}
+
+.button--primary:disabled {
+  border-color: var(--utui-button-bg-primary-disabled);
+  background: var(--utui-button-bg-primary-disabled);
+  color: var(--utui-button-text-primary);
+}
+
+/* Hierarchy=Destructive — the confirm action of a destructive dialog. Added
+   2026-08-14 from the `Modal` set (SFo9P9PCVQiuOk2SqjZYKQ, 933:39265): its three
+   `Destructive …` types draw Red/600 as both fill and border with a white label.
+
+   Fill and border are the same value here, unlike Primary (Brand/500 fill,
+   Brand/600 border), so this is not the primary rule with a different ramp — it
+   is its own hierarchy and gets its own token set.
+
+   It exists before its first modal consumer because the same button answers the
+   row-delete confirmation left open in design-system/components/data-table.md, and a
+   destructive action styled as Primary is the failure that question is about. */
+.button--destructive {
+  border-color: var(--utui-button-border-destructive);
+  background: var(--utui-button-bg-destructive);
+  color: var(--utui-button-text-destructive);
+}
+
+.button--destructive:hover {
+  border-color: var(--utui-button-bg-destructive-hover);
+  background: var(--utui-button-bg-destructive-hover);
+  color: var(--utui-button-text-destructive);
+}
+
+/* Hierarchy=Secondary destructive — a red-tinted fill with a red label and no
+   visible border. Added 2026-08-27 from the DC read of `Chi tiết hồ sơ thay đổi
+   theo trạng thái` (tS8dUB2qWLc28gZbtj8IIL, 12684:19630), where the header offers
+   `Từ chối lưu trữ` between a plain `Lưu chỉnh sửa` and the brand
+   `Đồng ý lưu trữ hồ sơ`. Measured off that frame: Red/50 fill (#FEF2F2),
+   Red/700 label (#B91C1C).
+
+   IT IS NOT `.button--destructive`, and the difference is the point. That one is
+   a Red/600 FILL with a white label — the confirm of a destructive dialog, the
+   most emphatic control on its surface. This is the destructive act sitting in a
+   page header BESIDE the brand primary, where a second solid fill would compete
+   with the action the screen actually recommends. Same relationship
+   `.button--secondary-color` has to `.button--primary`, one ramp over.
+
+   Its own hierarchy for the same reason `.button--destructive` is: a refusal
+   offered in a header is not modal-specific.
+
+   NOT IN THE DS SET. `Buttons/Button` (SFo9P9PCVQiuOk2SqjZYKQ, 1038:34411) draws
+   seven hierarchies and this is none of them, the same way `Destructive` was read
+   off the `Modal` set rather than the button set. Hover is INFERRED — Red/100
+   under a Red/700 label, following `.button--secondary-color`'s Brand/50 → Brand/100
+   step — because the frame draws one state. Disabled is not drawn and is not
+   implemented. Both need design confirmation; see design-system/components/button.md.
+
+   The border is `transparent`, not absent, for the reason the block below states:
+   a border-less button is 2px shorter and 2px narrower than the `Lưu chỉnh sửa`
+   beside it, and the three-button row shows that immediately. */
+.button--secondary-destructive {
+  border-color: transparent;
+  background: var(--utui-color-bg-error-subtle);
+  color: var(--utui-color-text-error);
+}
+
+.button--secondary-destructive:hover {
+  background: var(--utui-color-red-100);
+  color: var(--utui-color-text-error);
+}
+
+/* Hierarchy=Secondary color — a brand-tinted fill with a brand label, no
+   border. Added 2026-08-14 for the `Thêm dòng` footer action of `Tạo dự án mới`
+   (tS8dUB2qWLc28gZbtj8IIL, 10838:66444), the first V2 frame to draw this
+   hierarchy; the contract listed it as authored-but-unimplemented.
+
+   The border is transparent rather than absent so the box metrics stay identical
+   to every other hierarchy — a border-less button is 2px shorter and 2px
+   narrower, which shows immediately in a row beside `Thiết lập`. The frame draws
+   no visible border; whether the DS's own Secondary color carries a Brand/300
+   one could not be confirmed from this instance. See design-system/components/button.md. */
+.button--secondary-color {
+  border-color: transparent;
+  background: var(--utui-color-bg-brand-subtle);
+  color: var(--utui-button-text-tertiary);
+}
+
+.button--secondary-color:hover {
+  background: var(--utui-color-brand-100);
+  color: var(--utui-button-text-tertiary);
+}
+
+/* Hierarchy=Tertiary color — no box until hover. */
+.button--tertiary {
+  border-color: transparent;
+  background: transparent;
+  color: var(--utui-button-text-tertiary);
+  box-shadow: none;
+}
+
+.button--tertiary:hover {
+  background: var(--utui-button-bg-tertiary-hover);
+  color: var(--utui-button-text-tertiary);
+}
+
+/* Hierarchy=Link color / Link gray — label only. No fill, border, shadow or
+   vertical padding: the control is 20px tall, the height of its own text. */
+.button--link,
+.button--link-gray {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.button--link {
+  color: var(--utui-button-link-color);
+}
+
+.button--link-gray {
+  color: var(--utui-button-link-gray);
+}
+
+.button--link:hover,
+.button--link-gray:hover {
+  background: transparent;
+  text-decoration: underline;
+}
+
+.button--link:hover {
+  color: var(--utui-button-link-color);
+}
+
+.button--link-gray:hover {
+  color: var(--utui-button-link-gray-hover);
+}
+
+.button--link:disabled,
+.button--link-gray:disabled {
+  color: var(--utui-button-text-disabled);
+  text-decoration: none;
+}
+
+.button--ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--app-brand-strong);
+  box-shadow: none;
+}
+
+.button--compact {
+  min-height: var(--utui-button-height-sm);
+  padding: 0 var(--utui-button-padding-x-sm);
+}

@@ -1,0 +1,13 @@
+/* toolbar.css — Legacy toolbar row. Only demo was index.html (removed).
+   Extracted from the former monolithic app.css, 2026-08-03.
+   Rule order is unchanged. */
+
+.toolbar {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) auto;
+  align-items: center;
+  gap: var(--utui-spacing-04);
+  padding: var(--utui-spacing-04);
+  border-radius: var(--app-radius);
+  background: var(--utui-color-neutral-50);
+}

@@ -1,0 +1,601 @@
+/* modal.css — the centred dialog.
+   Source: MDM V2 `Modal` (tS8dUB2qWLc28gZbtj8IIL, 11415:67308), the read-only
+   `Địa chỉ` record opened from the `Chủ đầu tư` tab: overlay 1440 x 960, panel
+   538 x 556 centred, 24px inset, 12px radius, Shadow/xl, 32px between the
+   content block and the action row, 20px inside the content block.
+   Contract: design-system/components/modal.md. Added 2026-08-14.
+
+   This is the COMPONENT layer: the overlay, the panel and its four parts
+   (featured icon / title + supporting / body / actions). What goes in the body —
+   here a `Data viewer` list — belongs to the screen bundle.
+
+   Same modal obligations as design-system/components/drawer.md, and for the same reason: the
+   panel takes focus, traps it, makes the page behind it inert and returns focus
+   to the trigger on close. Those parts are behaviour and live in
+   ../scripts/modal.js, which every consumer shares rather than reimplementing. */
+
+/* --- Overlay ------------------------------------------------
+   `position: fixed`, so the box contributes nothing to the document's
+   scrollWidth at any width — the same reason drawer.css and filter-panel.css
+   give. Centred on both axes, with 32px of padding so the panel never touches
+   the viewport edge on a short window. */
+.modal {
+  position: fixed;
+  z-index: 60;
+  inset: 0;
+  display: grid;
+  /* `minmax(0, 1fr)` is load-bearing, not tidiness. An `auto` column track is
+     sized from its item's max-content contribution, so a panel declaring
+     `inline-size: 848px` made the TRACK 848px wide inside a 311px overlay — and
+     the panel's own `max-inline-size: 100%` then resolved against that 848px grid
+     area and clamped nothing. Measured 2026-08-14 in Chrome: the form panel was
+     848px at every width from 375 up, overflowing the viewport on both sides,
+     and the document did not report it because the overlay is `fixed` and the
+     scroll lock below puts `overflow: hidden` on the body. The 538px read
+     variant has the same latent bug below a ~602px viewport.
+     Pinning the track to the padding box is what makes `max-inline-size: 100%`
+     mean what design-system/components/modal.md says it means. */
+  grid-template-columns: minmax(0, 1fr);
+  place-items: center;
+  padding: var(--utui-spacing-08);
+}
+
+/* Author `display: grid` above would otherwise beat the UA's
+   `[hidden] { display: none }` and leave a modal painted over the page while it
+   is marked closed — the failure filter-panel.css records. */
+.modal[hidden] {
+  display: none;
+}
+
+/* `bg overlay`: the scrim is the dismiss target as well as the dimming layer, so
+   it is a real element rather than a pseudo — a pseudo-element cannot carry the
+   click handler without the panel's own clicks passing through it. A <button>,
+   because it is operable; ../scripts/modal.js also closes on Escape, so this is
+   not the only route out for a keyboard user. */
+.modal__scrim {
+  /* `fixed`, not `absolute`: an absolutely-positioned child resolves `inset: 0`
+     against its containing block's PADDING box, and .modal above carries 32px of
+     padding — so the scrim would leave a 32px unscrimmed frame around the
+     viewport, un-dimmed and not a dismiss target. drawer.css can use `absolute`
+     because its overlay has no padding. */
+  position: fixed;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: var(--utui-scrim-bg);
+  backdrop-filter: blur(var(--utui-scrim-blur));
+}
+
+/* Scroll lock. In CSS rather than by writing `style.overflow` from a screen's JS:
+   "the page behind does not scroll" is part of what a modal IS, and a rule cannot
+   be forgotten by the next consumer the way a pair of assignments can. Same
+   construction as drawer.css. */
+body:has(.modal:not([hidden])) {
+  overflow: hidden;
+}
+
+/* --- Panel --------------------------------------------------
+   538px as drawn, and never wider than the overlay's padding box, so the panel
+   shrinks with the viewport instead of overflowing it. Height is content-driven:
+   the source's 556px is one record's worth of rows, not a fixed box. */
+.modal__panel {
+  position: relative;
+  display: grid;
+  gap: var(--utui-modal-gap);
+  /* Two sizes now share this rule. The width goes through a component-local
+     custom property with the read variant's token as its fallback — the same
+     construction data-viewer.css uses for its label column — so a size variant
+     is one declaration in a modifier and this rule never grows a second
+     `inline-size`. */
+  /* Two rows, declared rather than implicit. `auto` rows are sized from their
+     max-content contribution and do NOT shrink when the container is capped, so
+     with implicit rows a content band taller than `100dvh - 64px` overflowed the
+     panel and pushed the action row off the bottom of the screen — measured
+     2026-08-14 in Chrome at 375x667, where the form variant's band was 1292px
+     inside a 603px panel and `Đóng`/`Lưu` were unreachable. `minmax(0, 1fr)`
+     lets the band take the leftover and shrink to it, which is what makes
+     "the content band, not the panel, is the scroll region" true instead of
+     true-for-short-records. Height stays content-driven: with an indefinite
+     panel height an `fr` row still sizes to its content. */
+  grid-template-rows: minmax(0, 1fr) auto;
+  inline-size: var(--modal-panel-width, var(--utui-modal-width));
+  max-inline-size: 100%;
+  /* dvh, not vh: a panel measured against the largest viewport puts its action
+     row under a mobile browser's toolbar. See .claude/skills/responsive/SKILL.md. */
+  max-block-size: calc(100dvh - var(--utui-spacing-16));
+  padding: var(--utui-modal-padding);
+  border-radius: var(--utui-modal-radius);
+  background: var(--utui-modal-bg);
+  box-shadow: var(--utui-modal-shadow);
+}
+
+/* AUTHORED per Untitled UI web (modal.md Anatomy/Known Gaps) — no MDM frame draws an ×; first child of `.modal__panel` so it never scrolls away with `.modal__content`. */
+.modal__close,
+.modal__expand {
+  display: grid;
+  place-items: center;
+  width: var(--utui-touch-target-min);
+  height: var(--utui-touch-target-min);
+  padding: 0;
+  border: 0;
+  border-radius: var(--utui-radius-md);
+  background: transparent;
+  color: var(--utui-color-icon-default);
+  cursor: pointer;
+}
+
+.modal__close {
+  position: absolute;
+  top: var(--utui-spacing-03);
+  inset-inline-end: var(--utui-spacing-03);
+}
+
+/* Expand toggle: hidden unless a --table modal opts in via data-modal-expandable. */
+.modal__expand {
+  display: none;
+}
+
+.modal[data-modal-expandable]:has(> .modal__panel--table) .modal__expand {
+  display: grid;
+}
+
+.modal__close:hover,
+.modal__expand:hover {
+  background: var(--utui-color-bg-surface-hover);
+  color: var(--utui-color-icon-strong);
+}
+
+/* AUTHORED (gap, no Figma frame): corner group for expand + close; takes over the absolute position .modal__close has on its own. */
+.modal__controls {
+  position: absolute;
+  top: var(--utui-spacing-03);
+  inset-inline-end: var(--utui-spacing-03);
+  display: flex;
+  align-items: center;
+}
+
+.modal__controls > .modal__close {
+  position: static;
+}
+
+/* 20px, this package's default inline glyph size (`.modal__status` uses the
+   same). GAP: Untitled's spec draws the close glyph at 24px and there is no
+   shared icon-size token to carry that difference. */
+.modal__close .material-symbols-outlined,
+.modal__expand .material-symbols-outlined {
+  font-size: 20px;
+}
+
+/* Text-row reserve for the two-button corner group (expand + close). */
+.modal__panel:has(> .modal__controls) > .modal__content > .modal__text:first-child,
+.modal__panel:has(> .modal__controls) > .modal__content > .modal__heading:first-child {
+  padding-inline-end: calc(2 * var(--utui-touch-target-min) + var(--utui-spacing-03) - var(--utui-modal-padding));
+}
+
+/* State: panel fills the viewport; the overlay's padding is dropped so 100% is the viewport, not the padding box. */
+.modal:has(> .modal__panel.is-expanded) {
+  padding: 0;
+}
+
+.modal__panel.is-expanded {
+  inline-size: 100%;
+  block-size: 100dvh;
+  max-block-size: 100dvh;
+  border-radius: 0;
+}
+
+/* Expanded content band is taller than its rows; keep them packed at the top instead of spreading. */
+.modal__panel.is-expanded > .modal__content {
+  align-content: start;
+}
+
+/* --- Content ------------------------------------------------
+   `Content`: featured icon, then the title over its supporting line, then the
+   body slot. This is the part that scrolls when a record is longer than the
+   window — the action row must stay reachable, which is the whole reason the
+   panel is a two-row grid rather than one scrolling box. */
+/* The panel is a focus LANDING target, not a control: ../scripts/modal.js focuses
+   it so the dialog is announced from its title, and Chrome paints its UA ring on a
+   programmatically focused `tabindex="-1"` box. Suppressed here only — every
+   control inside keeps the app ring from base.css, so nothing focusable loses its
+   indicator. Same treatment as `.investor-content:focus` in
+   ../screens/project-investor.css. */
+.modal__panel:focus {
+  outline: none;
+}
+
+.modal__content {
+  display: grid;
+  gap: var(--utui-modal-content-gap);
+  min-block-size: 0;
+  overflow-y: auto;
+  /* `overflow-y: auto` computes the inline axis to `auto` too (an `overflow`
+     axis pair cannot mix `visible` with anything else), so this box clips on
+     BOTH axes at its own padding edge. The stacked layouts' featured icon
+     (`.featured-icon--ring`, always `--lg` per this file's Content row) is the
+     first thing painted here, flush with the inline-start/block-start corner,
+     and its ring is a `box-shadow` that paints outside the icon's border box —
+     so the corner ring was clipped clean off. `--utui-featured-icon-ring` is
+     the lg ring step (same alias `.metric-tile__icon` reads for the same
+     reason: a shadow/border ring needs its OWN room, stated once, not folded
+     into the neighbour's gap). Padding that room onto the two clipped sides,
+     then pulling the box back by the same amount, keeps every row exactly
+     where it already sat — the buffer exists only for the overflow clip edge,
+     not for layout.
+     Considered moving the icon out to `.modal__panel`, the way the horizontal
+     layout already does: rejected, because the Layouts table is explicit that
+     the icon is a child of `.modal__content` in every OTHER layout, and
+     relocating it would rewrite that contract for a clipping bug the padding
+     trick fixes without touching the DOM. */
+  padding-inline-start: var(--utui-featured-icon-ring);
+  padding-block-start: var(--utui-featured-icon-ring);
+  margin-inline-start: calc(-1 * var(--utui-featured-icon-ring));
+  margin-block-start: calc(-1 * var(--utui-featured-icon-ring));
+}
+
+/* Optional control beside the title (e.g. `Thiết lập thông tin` on a form-body dialog) — GAP: attribute-field.md doesn't exist in ds/. `flex-start` aligns it to the title, not the middle of a two-line block; wraps rather than shrinks so a narrow panel doesn't clip the label. */
+.modal__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--utui-spacing-04);
+}
+
+.modal__heading > .modal__text {
+  min-width: 0;
+}
+
+.modal__text {
+  display: grid;
+  gap: var(--utui-spacing-02);
+}
+
+/* Reserves room for `.modal__close` over the top text/heading row when it has no icon above it (incl. horizontal, whose icon is a sibling of `.modal__content`). */
+.modal__panel:has(> .modal__close) > .modal__content > .modal__text:first-child,
+.modal__panel:has(> .modal__close) > .modal__content > .modal__heading:first-child {
+  padding-inline-end: calc(var(--utui-touch-target-min) + var(--utui-spacing-03) - var(--utui-modal-padding));
+}
+
+.modal__title {
+  margin: 0;
+  color: var(--utui-color-text-primary);
+  font-size: var(--utui-font-size-text-lg);
+  font-weight: var(--utui-font-weight-semibold);
+  line-height: var(--utui-line-height-text-lg);
+}
+
+/* Text sm/Regular, `--text/secondary`. Not the tertiary grey the section header's
+   supporting line uses — the modal draws this one a step darker. */
+.modal__supporting {
+  margin: 0;
+  color: var(--utui-color-text-secondary);
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-regular);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+/* The `content` slot. 16px between rows in this instance (`Frame 753`); the slot
+   itself is authored with a 24px gap for consumers that stack several groups. */
+.modal__body {
+  display: grid;
+  gap: var(--utui-modal-body-gap);
+  min-inline-size: 0;
+}
+
+/* --- Sizes ---------------------------------------------------
+   Synced 2026-08-14 against the DS component set `Modal`
+   (SFo9P9PCVQiuOk2SqjZYKQ, 933:39265). It draws three widths and no others:
+   400px for the stacked layouts, 544px for Horizontal, 848px for Form. A size is
+   a modifier on the panel, never a width in a screen file — see the Sizes section
+   of design-system/components/modal.md.
+
+   The base rule's 538px is the MDM read instance, which is none of the three;
+   `.modal__panel--read` names it so a consumer states which size it means rather
+   than inheriting an unexplained number by default. */
+.modal__panel--read {
+  --modal-panel-width: var(--utui-modal-width);
+}
+
+.modal__panel--sm {
+  --modal-panel-width: var(--utui-modal-width-sm);
+}
+
+.modal__panel--md {
+  --modal-panel-width: var(--utui-modal-width-md);
+}
+
+/* --- Layout: horizontal (544px) ------------------------------
+   `Type=Horizontal` (933:37839) and its Warning / Destructive tones. The panel is
+   a ROW: the 48px featured icon, then a column holding the text block and the
+   action row 32px below it.
+
+   One markup difference from the stacked layouts, and it is the only one in this
+   component: the featured icon is a child of the PANEL, not of `.modal__content`.
+   That is how the set builds it (the icon is a sibling of `Content`), and it is
+   what puts the action row in the second column — indented past the icon, which a
+   full-width action row would not be.
+
+   Column 2 is `minmax(0, 1fr)` for the same reason the overlay's track is: an
+   `auto` track would take the text's max-content width and stop the panel's
+   `max-inline-size: 100%` from meaning anything. */
+.modal__panel--horizontal {
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--utui-spacing-06);
+  row-gap: var(--utui-modal-gap);
+}
+
+.modal__panel--horizontal > .featured-icon {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* `.modal__status` is in this list since it became a panel child on 2026-08-19:
+   it is a sibling of the content band, so in this layout it belongs in the same
+   indented column as the band and the actions, not under the icon. No horizontal
+   consumer raises a status today — the selector is here so that when one does,
+   it does not have to discover this by looking at it. */
+.modal__panel--horizontal > .modal__content,
+.modal__panel--horizontal > .modal__status,
+.modal__panel--horizontal > .modal__actions {
+  grid-column: 2;
+}
+
+/* --- Layout: centred (400px) --------------------------------
+   `Type=Stacked centered` (172:4346) and its tones. Same DOM as the stacked
+   left-aligned default; the axis is alignment only. `justify-items` centres the
+   featured icon, which is a grid item of the content column, and `text-align`
+   carries the title and its supporting line. */
+.modal__content--centered {
+  justify-items: center;
+  text-align: center;
+}
+
+/* --- Size: form (848px) -------------------------------------
+   Source: MDM V2 `pat-listing` (tS8dUB2qWLc28gZbtj8IIL, 11491:30254) → modal
+   instance 11491:30275, panel I11491:30275;9883:83198 — 848 x 808 with an 800px
+   two-column body. Added 2026-08-14 for the section-edit dialog on
+   du-an/chi-tiet.html.
+
+   This is the SAME component at form width, so it is a modifier and not a
+   second surface: identical 24px inset, 12px radius, Shadow/xl, 32px between
+   the content band and the action row, identical scroll behaviour. Everything
+   the size changes is in this block. See the Sizes section of
+   design-system/components/modal.md.
+
+   848px is a pinned literal. design-system/tokens/css/untitled-ui-component.css carries
+   `--utui-modal-width` (538px) and no form width, and adding a token is not this
+   pass's to make — recorded as a token gap in design-system/components/modal.md, next to the
+   `--utui-modal-radius` precedent. The local property above is where
+   `--utui-modal-width-form` drops in when it exists. */
+.modal__panel--form {
+  --modal-panel-width: var(--utui-modal-width-form);
+}
+
+/* --- Size: table (1096px) -----------------------------------
+   Source: MDM V2 `Các giai đoạn chính` (tS8dUB2qWLc28gZbtj8IIL, 12022:53364) →
+   modal 12022:53366, panel I12022:53366;9883:83198 — 1096 x 664 with a 1048px
+   body holding one table. Added 2026-08-19 for the phase editor on
+   du-an/chi-tiet.html.
+
+   Same component, same inset, radius, shadow and scroll behaviour as every size
+   above; only the width differs. It is a separate size rather than the form's
+   848px because the body is a TABLE and its four columns are sized by the
+   record, not by a reading measure — at 848px the two date columns would sit
+   under a horizontal scroll inside a dialog that has room for them. */
+.modal__panel--table {
+  --modal-panel-width: var(--utui-modal-width-table);
+}
+
+/* The same `#sectionModalForm` element carries `--form` for a field grid and
+   `--table` for the phase editor, so this modifier only has to undo the grid:
+   one full-width child, and the body's own 16px row gap between the table and
+   anything a later revision puts beside it.
+
+   `minmax(0, 1fr)` is the load-bearing half, and it is the same trap the overlay
+   records one level up. `.modal__body`'s implicit column is `auto`, and an auto
+   track is sized from its item's max-content contribution — so a table wider than
+   the body makes the TRACK that wide, stretches everything beside it and moves the
+   horizontal scroll off `.data-table-wrap` and onto `.modal__content`: the whole
+   dialog scrolls sideways instead of the table doing it. Measured at 1440 in the
+   investor dialog before the rule existed: body clientWidth 800, scrollWidth 2058.
+   No page-overflow check catches it — the overlay is `position: fixed`, so it
+   contributes nothing to `documentElement.scrollWidth`, and the scroll lock puts
+   `overflow: hidden` on the body.
+
+   It lived as `.investor-modal .modal__body` in screens/du-an/chi-tiet.css until
+   2026-08-19, scoped to one dialog because this file was out of scope for that
+   pass. Both of this package's table-bodied dialogs carry `--table`, so the rule
+   is the size's and the screen copy is gone. */
+.modal__body--table {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* --- Status line ---------------------------------------------
+   A message raised BY the dialog's own content, sitting between the content band
+   and the action row as the panel's THIRD row. Added 2026-08-19 for the phase
+   table's delete and its `Hoàn tác`.
+
+   Third row, not the last child of `.modal__content`, and that is the whole point
+   of the part: the content band scrolls, so a message written into it while the
+   band was scrolled could be painted below the fold with nothing to bring it back
+   — measured at 1440 x 520 with ten rows, the band was 1122px inside 332px and the
+   undo sat 790px down it. Scrolling it into view was the other answer and was
+   rejected: it drags the table out from under the control the editor has just
+   focused. Out here the message is always visible, nothing moves, and the part
+   sits where `.drawer__status` sits in a picker drawer's footer (or, since
+   2026-09-29, between a listing drawer's toolbar and body when that drawer has
+   no footer at all — see drawer.md).
+
+   The two declared panel rows (`minmax(0, 1fr) auto`) do not need a third: an
+   implicit row is `auto`, which is what this one wants. And `[hidden]` below is
+   `display: none`, so a closed status contributes neither a row nor a gap.
+
+   It exists because ./notification.css is z-index 40 and this overlay is 60, so
+   the screen's notification cannot be seen — or its action reached — while a dialog is
+   open. Recorded in design-system/components/modal.md Known Gaps; this is the
+   surface that works around it for a dialog whose content can act.
+
+   Not a notification: it does not float, does not time out, takes no focus.
+   It is UNSTYLED as a container on purpose: no border, no card. The dialog is the
+   surface; a second box inside it would read as a nested panel.
+
+   ITS MARKUP OBLIGATIONS, corrected 2026-08-19. This comment used to read
+   "`hidden` toggled AFTER the text is written", which is the one order that
+   guarantees silence: a `role="status"` mutated while it is still `hidden` —
+   `display: none`, i.e. outside the accessibility tree — announces nothing. The
+   opposite order (reveal, then write) is the rule for every live region here, and
+   the only consumer of this part (`phaseStatus()` in
+   ../screens/du-an/chi-tiet.js) has always followed it. So:
+
+     * `role="status"` on the element, and it is this surface's ONLY live region —
+       two polite regions on one panel interleave unpredictably;
+     * reveal it (`hidden = false`) BEFORE writing its text;
+     * `hidden` again only to clear it.
+
+   A surface that already publishes a live region of its own does not add a
+   second one here: ./drawer.css's `.drawer__status` is that case and states it. */
+.modal__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--utui-spacing-02);
+  margin: 0;
+  color: var(--utui-color-text-secondary);
+  font-size: var(--utui-font-size-text-sm);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+.modal__status[hidden] {
+  display: none;
+}
+
+/* The glyph, at the 20px every other inline icon in the package uses. NEUTRAL
+   tone, the same `--utui-color-icon-default` ../styles/drawer.css gives
+   `.drawer__status`, and the change is a correction: this rule pinned
+   `--utui-color-icon-success` until 2026-08-19, which made the PART carry the
+   tone instead of the message. The phase table routes both a completed delete
+   and `Thiết lập cột (chưa có trong bản demo)` through this one line, so a
+   success tone here had a control that did nothing reporting success in green.
+   A message that needs a tone of its own says so in its glyph — which is the
+   consumer's to choose — and never in colour alone. */
+.modal__status .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--utui-color-icon-default);
+}
+
+/* The status line's optional action — the phase table's `Hoàn tác`. It used to
+   borrow a link-styled action from a floating component: a modal internal styled by a
+   component it is not part of, with no entry in either contract, and `padding: 0`
+   at Text sm gave it a ~20px hit target for the one control that recovers a
+   deleted row.
+
+   Named `-action` rather than `__action`: it is a part of `.modal__status`, which
+   is itself a part, and the package writes one `__` level (`.section-header__bar`,
+   `.picker-selection__label`).
+
+   `--utui-touch-target-min` on the block axis, unconditionally rather than under
+   `@media (pointer: coarse)`. The line has the room — it grows from ~20px to 44px
+   in a dialog that is otherwise 664px tall — and gating it on pointer type would
+   leave a mouse user aiming at 20px for an undo whose window closes when the
+   dialog does. It is deliberately not a step down from the 40px `.cell-action`
+   exception .claude/skills/responsive/SKILL.md records. No inline padding, so
+   the label stays flush against the sentence it follows and the hit area is the
+   label's own width, which is wider than 44px for `Hoàn tác`.
+
+   Link colour and the hover underline match the notification CTA (`.button--link`), so the surfaces' undo reads the same; `font: inherit` from base.css already takes the
+   line's Text sm, so only the weight is stated. */
+.modal__status-action {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-block-size: var(--utui-touch-target-min);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--utui-button-link-color);
+  font-weight: var(--utui-font-weight-semibold);
+}
+
+.modal__status-action:hover {
+  text-decoration: underline;
+}
+
+/* The 800px body draws two columns per row. The frame is inconsistent about the
+   gutter — rows 1 and 3 are 388px columns 24px apart, rows 2, 4 and 5 are 392px
+   columns 16px apart, both adding to 800 — so one value ships and the source
+   inconsistency is recorded in design-system/patterns/project-overview.md rather than
+   reproduced. 24px is also the row gap: the frame's 94px row pitch is a 70px
+   field plus 24px.
+
+   `auto-fit` rather than a tier query, and this is the one place in the package
+   where that is the honest tool. A modal panel's width is NOT the viewport's:
+   it is 848px inside an overlay with 32px of padding, so a `max-width: 1023px`
+   rung would stack the body at 1024 where the panel is still full width, and
+   leave it two-up at 375 where the panel is 311px. auto-fit resolves against
+   this box, which is what a container query would do — see gap 5 in
+   .claude/skills/responsive/SKILL.md, and note that this adds no rung to
+   ../styles/responsive.css and no query to any screen.
+
+   Below `2 x 340px + 24px` of body the grid is one column: the field stays its
+   designed width and the REGION collapses, per .claude/skills/responsive/SKILL.md § Principles (2).
+   `min(340px, 100%)` is load-bearing — a bare 340px minimum would make a single
+   track wider than a 263px body on a 375px phone and overflow the panel.
+
+   `align-items: start` because the last row of a section holds a single field
+   in the leading column and must not stretch to a row height set by nothing. */
+.modal__body--form {
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+  align-items: start;
+  gap: var(--utui-spacing-06);
+}
+
+/* A field that takes the whole row of that grid. Added 2026-08-22 with the two
+   controls the `Thông tin dự án` dialog gained (`Ảnh dự án`, `Mô tả dự án`):
+   both are drawn the full width of the panel in the source, and a 128px
+   textarea sharing a row with a 44px input would leave the input floating
+   against the top of a box three times its height. `1 / -1` rather than a
+   column count, because the grid is `auto-fit` and how many columns it resolves
+   to is the viewport's business. */
+.modal__body--form .form-field--full {
+  grid-column: 1 / -1;
+}
+
+/* --- Actions ------------------------------------------------
+   `Actions`, right-aligned. Wraps rather than shrinks: a button narrower than
+   its label stops saying what it does. The read variant draws one secondary
+   `Đóng` and hides the second slot; the form variant fills both, `Đóng` then a
+   primary `Lưu`. Both sizes draw 44px buttons, which is `.button`'s own height,
+   so neither carries a size modifier. */
+.modal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--utui-modal-actions-gap);
+}
+
+/* `_Modal actions` in the two stacked layouts: both buttons take an equal half of
+   the row (`flex: 1 0 0` each in the set, 172:4346 / 1105:65365 / 1111:1774), not
+   the hugging right-aligned pair the horizontal and form layouts draw. A 400px
+   panel has no room for a right-aligned pair to read as a hierarchy, so the set
+   splits the row and relies on order and fill instead.
+
+   `min-inline-size: 0` because a flex item's floor is its content width, and two
+   long Vietnamese labels would otherwise refuse to halve. `flex-wrap` from the
+   base rule still applies: if the two labels cannot fit side by side they stack
+   rather than clip. */
+.modal__actions--split > .button {
+  flex: 1 0 0;
+  min-inline-size: 0;
+}
+
+/* The horizontal layout's optional leading control — `Don't show again` in the set
+   (`Checkbox` inside `_Modal actions`, 933:37839). The row becomes
+   `space-between`: the control at the start, the buttons at the end. Compose the
+   real `.choice` control from design-system/components/inputs.md; the set draws a 16px box
+   with a 4px radius and a Text sm/Medium label, which is what `.choice--sm`
+   already is. */
+.modal__actions--between {
+  justify-content: space-between;
+}

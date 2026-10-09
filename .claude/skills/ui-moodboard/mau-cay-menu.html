@@ -1,0 +1,308 @@
+<title>Moodboard cây menu</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400;500&display=block">
+<style>
+/* Bố cục: lưới thẻ mẫu cùng một dữ liệu du-an → so sánh ngang; cuối trang là so sánh nền stage. */
+:root {
+  --bg: #f6f5f2; --surface: #ffffff; --ink: #1d1c1a; --ink-2: #57534c; --ink-3: #8a857c;
+  --line: #e4e1da; --accent: #a8743a; --accent-soft: #f6ecdf; --sel: #2f6fdb; --sel-soft: #e6eefc;
+  --canvas: #ecebe7; --dot: #c9c5bc; --shadow: 0 1px 2px rgb(0 0 0 / .06), 0 8px 24px rgb(0 0 0 / .06);
+  --f-body: "Be Vietnam Pro", system-ui, sans-serif; --f-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #171614; --surface: #211f1c; --ink: #f1eee8; --ink-2: #c3beb4; --ink-3: #8f8a80;
+  --line: #36332e; --accent: #d6a066; --accent-soft: #3a2d1f; --sel: #7aa7f5; --sel-soft: #1f2c44;
+  --canvas: #2a2825; --dot: #4a4640; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #171614; --surface: #211f1c; --ink: #f1eee8; --ink-2: #c3beb4; --ink-3: #8f8a80;
+  --line: #36332e; --accent: #d6a066; --accent-soft: #3a2d1f; --sel: #7aa7f5; --sel-soft: #1f2c44;
+  --canvas: #2a2825; --dot: #4a4640; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 15px/1.55 var(--f-body); }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 40px 20px 64px; display: grid; gap: 48px; }
+header { display: grid; gap: 10px; max-width: 70ch; }
+.eyebrow { font: 500 12px/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+h1 { font-size: clamp(28px, 4vw, 40px); line-height: 1.15; margin: 0; font-weight: 700; text-wrap: balance; }
+h2 { font-size: 22px; margin: 0; font-weight: 600; text-wrap: balance; }
+h3 { font-size: 16px; margin: 0; font-weight: 600; }
+p { margin: 0; color: var(--ink-2); }
+section { display: grid; gap: 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; display: grid; grid-template-rows: auto 1fr auto; min-width: 0; overflow: hidden; }
+.card__head { padding: 14px 16px 10px; display: grid; gap: 2px; }
+.card__src { font: 400 12px/1.4 var(--f-mono); color: var(--ink-3); }
+.mock { margin: 0 16px; border: 1px solid var(--line); border-radius: 6px; padding: 8px; background: var(--surface); font-size: 13px; line-height: 1.4; min-width: 0; }
+.notes { padding: 12px 16px 16px; display: grid; gap: 6px; font-size: 13px; }
+.notes dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 10px; margin: 0; }
+.notes dt { color: var(--ink-3); font: 400 12px/1.6 var(--f-mono); }
+.notes dd { margin: 0; color: var(--ink-2); min-width: 0; }
+.fit { display: inline-flex; gap: 6px; align-items: center; font-weight: 600; font-size: 13px; }
+.fit i { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-3); }
+.fit--hi i { background: #3c9a5f; } .fit--mid i { background: #d39b2a; } .fit--lo i { background: #c4553f; }
+.ms { font-family: "Material Symbols Outlined"; font-size: 16px; line-height: 1; width: 16px; height: 16px; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; flex: none; font-variation-settings: "wght" 400, "opsz" 20; }
+.row { display: flex; align-items: center; gap: 6px; min-width: 0; border-radius: 4px; }
+.row span.t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mute { color: var(--ink-3); }
+
+/* 1. MDM hiện tại */
+.s-mdm .row { padding: 4px 8px; color: var(--ink-2); }
+.s-mdm .l0 { font-weight: 600; color: var(--ink); padding: 8px; }
+.s-mdm .l1.g { color: var(--ink); font-weight: 500; }
+.s-mdm .div { border-top: 1px solid var(--line); margin: 6px 0; }
+.s-mdm .cur { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.s-mdm .chev { margin-left: auto; color: var(--ink-3); }
+/* 2. Storybook */
+.s-sb .sec { font: 700 11px/1 var(--f-body); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); padding: 12px 8px 6px; }
+.s-sb .row { padding: 3px 8px; min-height: 26px; }
+.s-sb .cur { background: var(--sel); color: #fff; } .s-sb .cur .ms { color: #fff; }
+.s-sb .ic-c { color: #2f8fd0; } .s-sb .ic-s { color: #3c9a5f; }
+/* 3. VS Code explorer */
+.s-vs { font: 13px/22px var(--f-body); }
+.s-vs .row { height: 22px; padding-right: 6px; border-radius: 0; position: relative; }
+.s-vs .guide { width: 8px; align-self: stretch; border-left: 1px solid var(--line); margin-left: 8px; flex: none; }
+.s-vs .cur { background: var(--sel-soft); outline: 1px solid var(--sel); outline-offset: -1px; }
+/* 4. Carbon tree view */
+.s-cb .row { height: 32px; padding: 0 12px; border-radius: 0; border-left: 3px solid transparent; }
+.s-cb .row.xs { height: 24px; }
+.s-cb .cur { background: var(--canvas); border-left-color: var(--sel); font-weight: 600; }
+/* 5. Atlassian expandable menu item */
+.s-at .row { height: 32px; padding: 0 8px; }
+.s-at .row:hover .ic { display: none; } .s-at .row .hv { display: none; } .s-at .row:hover .hv { display: inline-flex; }
+.s-at .cur { background: var(--sel-soft); color: var(--sel); font-weight: 500; }
+.s-at .cur::before { content: ""; width: 3px; height: 16px; background: var(--sel); border-radius: 2px; margin-left: -6px; }
+/* 6. Untitled UI / Figma pages */
+.s-uu .sec { padding: 10px 8px 4px; letter-spacing: .02em; text-transform: uppercase; font-size: 12px; color: var(--ink); }
+.s-uu .row { padding: 5px 8px 5px 28px; color: var(--ink); }
+.s-uu .div { border-top: 1px solid var(--line); margin: 8px 0; }
+.s-uu .cur { background: var(--canvas); font-weight: 600; }
+/* 7. Notion sidebar */
+.s-no .row { height: 28px; padding: 0 8px; color: var(--ink-2); }
+.s-no .row .tg { color: var(--ink-3); width: 18px; height: 18px; border-radius: 4px; }
+.s-no .cur { background: var(--canvas); color: var(--ink); font-weight: 500; }
+.s-no .add { margin-left: auto; color: var(--ink-3); opacity: 0; } .s-no .row:hover .add { opacity: 1; }
+/* 8. Cloudscape / Linear: heading tĩnh + mục phẳng */
+.s-cs .sec { font: 600 12px/1 var(--f-body); color: var(--ink-3); padding: 12px 8px 6px; }
+.s-cs .row { padding: 5px 8px; color: var(--ink-2); }
+.s-cs .cur { color: var(--sel); font-weight: 600; }
+.s-cs .cur::before { content: ""; width: 2px; height: 18px; background: var(--sel); margin-left: -8px; margin-right: 4px; }
+.s-cs .chip { margin-left: auto; font: 500 11px/1 var(--f-mono); color: var(--ink-3); border: 1px solid var(--line); border-radius: 99px; padding: 3px 6px; }
+/* 9. Đề xuất lai */
+.s-mix .row { padding: 4px 8px; color: var(--ink-2); }
+.s-mix .l0 { font-weight: 600; color: var(--ink); padding: 8px; }
+.s-mix .g { color: var(--ink); font-weight: 500; }
+.s-mix .div { border-top: 1px solid var(--line); margin: 6px 0; }
+.s-mix .cur { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.s-mix .kids { margin-left: 15px; padding-left: 8px; border-left: 1px solid var(--line); display: grid; }
+.s-mix .kids.on { border-left-color: var(--accent); }
+.s-mix .chev { margin-left: auto; color: var(--ink-3); }
+
+/* Bảng so sánh */
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 13px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+th { font: 500 12px/1.4 var(--f-mono); color: var(--ink-3); background: var(--bg); }
+td:first-child { font-weight: 600; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; font-family: var(--f-mono); }
+
+/* Nền stage */
+.stages { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.stage { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); display: grid; }
+.stage__view { aspect-ratio: 16 / 10; display: grid; place-items: center; padding: 18px; max-width: 100%; }
+.stage__screen { width: 82%; aspect-ratio: 16 / 9; background: #ffffff; border-radius: 6px; display: grid; grid-template-columns: 22% 1fr; overflow: hidden; }
+.stage__screen i { background: #26262b; } .stage__screen b { padding: 10%; display: grid; gap: 8%; align-content: start; }
+.stage__screen b span { height: 7px; border-radius: 4px; background: #e6e5e1; } .stage__screen b span:first-child { width: 50%; background: #cfccc5; }
+.v-white { background: #ffffff; } .v-white .stage__screen { box-shadow: 0 0 0 1px #e9e7e2; }
+.v-gray { background: var(--canvas); } .v-gray .stage__screen { box-shadow: var(--shadow); }
+.v-dot { background-color: var(--canvas); background-image: radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: 16px 16px; } .v-dot .stage__screen { box-shadow: var(--shadow); }
+.v-dark { background: #2c2c2c; } .v-dark .stage__screen { box-shadow: 0 8px 24px rgb(0 0 0 / .4); }
+.stage__cap { padding: 12px 14px 14px; display: grid; gap: 4px; font-size: 13px; }
+.rec { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: 10px; padding: 16px 18px; display: grid; gap: 8px; max-width: 80ch; }
+.rec h3 { color: var(--accent); }
+.rec ul { margin: 0; padding-left: 18px; color: var(--ink-2); display: grid; gap: 4px; }
+.src { font-size: 13px; color: var(--ink-3); } .src a { color: var(--ink-2); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Viewer bàn giao · hvSteps</div>
+    <h1>Moodboard cây menu phân cấp</h1>
+    <p>9 kiểu cây điều hướng, dựng lại bằng cùng một đoạn dữ liệu của flow du-an: màn <b>Chi tiết dự án</b> › luồng <b>Chọn người phê duyệt</b> › trạng thái <b>Lỗi tải danh sách</b> đang xem. Mỗi thẻ ghi chiều cao dòng, cách thụt và dấu hiệu phân cấp, rồi đánh giá độ hợp với viewer MDM. Hình là bản vẽ lại để so sánh, không phải ảnh chụp sản phẩm.</p>
+  </header>
+
+  <section aria-labelledby="h-tree">
+    <h2 id="h-tree">Các kiểu cây</h2>
+    <div class="grid" id="cards"></div>
+  </section>
+
+  <section aria-labelledby="h-cmp">
+    <h2 id="h-cmp">So sánh nhanh</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Kiểu</th><th>Dòng</th><th>Thụt/bậc</th><th>Phân cấp bằng</th><th>Mục đang xem</th><th>Hợp với MDM</th></tr></thead>
+      <tbody id="cmp"></tbody>
+    </table></div>
+  </section>
+
+  <section aria-labelledby="h-stage">
+    <h2 id="h-stage">Nền khung xem (hv-stage)</h2>
+    <p>Câu hỏi: có nên đổi nền stage sang kiểu canvas như FigJam? Màn MDM nền trắng, đặt trên stage trắng thì mép màn chìm vào nền (ảnh chụp viewer hiện tại cho thấy rõ ở vùng trên và dưới iframe).</p>
+    <div class="stages">
+      <figure class="stage" style="margin:0"><div class="stage__view v-white"><div class="stage__screen"><i></i><b><span></span><span></span><span></span></b></div></div>
+        <figcaption class="stage__cap"><h3>Trắng · hiện tại</h3><p>Mép màn lẫn vào nền; khó biết đâu là hết khung 1440 × 695.</p></figcaption></figure>
+      <figure class="stage" style="margin:0"><div class="stage__view v-gray"><div class="stage__screen"><i></i><b><span></span><span></span><span></span></b></div></div>
+        <figcaption class="stage__cap"><h3>Xám nhạt + bóng · kiểu canvas Figma</h3><p>Màn nổi như một artboard. Một token nền + một bóng; không gây nhiễu.</p></figcaption></figure>
+      <figure class="stage" style="margin:0"><div class="stage__view v-dot"><div class="stage__screen"><i></i><b><span></span><span></span><span></span></b></div></div>
+        <figcaption class="stage__cap"><h3>Lưới chấm · kiểu FigJam</h3><p>Nói rõ "đây là canvas, không phải trang". Chấm 1px / 16px đủ nhạt để không cạnh tranh với màn.</p></figcaption></figure>
+      <figure class="stage" style="margin:0"><div class="stage__view v-dark"><div class="stage__screen"><i></i><b><span></span><span></span><span></span></b></div></div>
+        <figcaption class="stage__cap"><h3>Tối · kiểu chế độ trình chiếu</h3><p>Tương phản cao nhất, nhưng modal có lớp phủ tối trong màn sẽ lẫn vào nền.</p></figcaption></figure>
+    </div>
+    <div class="rec">
+      <h3>Đề xuất: lưới chấm trên nền xám nhạt</h3>
+      <ul>
+        <li>Nên đổi. Nền khác màn là cách các công cụ thiết kế tách "nội dung đang xem" khỏi "khung công cụ", và giúp đọc đúng biên của từng độ phân giải 1024/1440/1920.</li>
+        <li>Lưới chấm hợp nhất với vai trò của stage (khung đặt màn, có scale), xám nhạt + bóng là phương án tối thiểu nếu muốn yên hơn.</li>
+        <li>Tránh nền tối: lớp phủ của modal/drawer trong màn (rất nhiều step của flow) sẽ không còn tách khỏi nền.</li>
+        <li>Token: nền <code>--utui-color-bg-page</code> hoặc <code>bg-surface-muted</code>, chấm từ <code>--utui-color-border-default</code>; bóng dùng <code>--utui-shadow-*</code> có sẵn — cần kiểm lại tên token khi dựng.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-take">
+    <h2 id="h-take">Rút ra cho hvSteps</h2>
+    <div class="rec">
+      <h3>Lặp ↳ ở mọi cấp đang là dấu hiệu phân cấp yếu nhất</h3>
+      <ul>
+        <li>Các hệ thống cây sâu (VS Code, GitHub, Carbon) không lặp icon mũi tên ở mỗi cấp; họ dùng <b>đường dẫn thụt (indent guide)</b> hoặc chỉ thụt lề. ↳ trong Untitled UI chỉ có một cấp con.</li>
+        <li>Thẻ "Đề xuất lai" ở trên: giữ icon màn + divider giữa màn (điểm mạnh hiện tại), bỏ ↳ ở cấp 2–3, thay bằng một đường dọc mảnh nối các con; đường của nhánh đang xem tô màu accent để dẫn mắt tới step hiện tại.</li>
+        <li>Không cần quay lại số đếm: Atlassian, Notion, VS Code đều không đếm ở cây điều hướng.</li>
+        <li>Nếu cây còn dài: cân nhắc cỡ dòng "extra small" 24px như Carbon cho cấp 3, vẫn giữ 14px chữ.</li>
+      </ul>
+    </div>
+    <p class="src">Nguồn thông số: <a href="https://carbondesignsystem.com/components/tree-view/usage/">Carbon — Tree view</a> (32px mặc định, 24px extra small) · <a href="https://www.meziantou.net/improve-the-tree-view-settings-in-visual-studio-code.htm">VS Code tree settings</a> (indent mặc định 8px, indent guides) · <a href="https://atlaskit.atlassian.com/packages/navigation/side-nav-items">Atlassian side nav items</a> (expandable menu item, chevron thay icon khi hover) · <a href="https://cloudscape.design/patterns/general/service-navigation/side-navigation/">Cloudscape side navigation</a> · <a href="https://ishadeed.com/article/tree-view-css-indent/">Ahmad Shadeed — tree view indent</a>. Các số khác (Storybook, Notion, Untitled UI) đo ước lượng theo giao diện công khai.</p>
+  </section>
+</div>
+
+<script>
+(function () {
+  var I = function (n, c) { return '<span class="ms' + (c ? " " + c : "") + '" aria-hidden="true">' + n + '</span>'; };
+  var T = function (t) { return '<span class="t">' + t + '</span>'; };
+  var GROUP = ["Mặc định", "Đang tải danh sách", "Lỗi tải danh sách", "Chưa có quyền T&W"];
+  var CUR = 2;
+
+  var styles = [
+    { k: "mdm", name: "MDM viewer · hiện tại", src: "tools/runtime/viewer.css", fit: ["mid", "Đang dùng"],
+      row: "28 / 36px", ind: "24px", cue: "Icon màn, ↳ mọi cấp con, divider giữa màn", curr: "Nền brand nhạt, chữ đậm",
+      note: "Ba cấp đều có ↳ nên cấp 2 và 3 khó tách nếu chỉ nhìn icon.",
+      html: function () {
+        return '<div class="row l0">' + I("web") + T("Danh sách dự án") + '</div><div class="div"></div>' +
+          '<div class="row l0">' + I("web") + T("Chi tiết dự án") + I("expand_less", "chev") + '</div>' +
+          '<div style="padding-left:24px;display:grid;gap:1px">' +
+          '<div class="row l1">' + I("subdirectory_arrow_right", "mute") + T("Mặc định") + '</div>' +
+          '<div class="row l1 g">' + I("subdirectory_arrow_right", "mute") + T("Chọn người phê duyệt") + I("expand_less", "chev") + '</div>' +
+          '<div style="padding-left:24px;display:grid;gap:1px">' + GROUP.map(function (g, i) { return '<div class="row' + (i === CUR ? " cur" : "") + '">' + I("subdirectory_arrow_right", i === CUR ? "" : "mute") + T(g) + '</div>'; }).join("") + '</div>' +
+          '<div class="row l1 g">' + I("subdirectory_arrow_right", "mute") + T("Trạng thái phê duyệt") + I("stat_minus_1", "chev") + '</div></div>' +
+          '<div class="div"></div><div class="row l0">' + I("web") + T("Hồ sơ dự án (danh mục)") + I("stat_minus_1", "chev") + '</div>';
+      } },
+    { k: "sb", name: "Kiểu Storybook", src: "Sidebar component › story", fit: ["hi", "Rất hợp"],
+      row: "~26px", ind: "~16px", cue: "Nhãn nhóm VIẾT HOA nhỏ, icon theo loại (component / story)", curr: "Nền xanh đặc, chữ trắng",
+      note: "Cùng bài toán \"một component, nhiều trạng thái\" như flow MDM. Icon theo loại nói cấp nào là màn, cấp nào là trạng thái.",
+      html: function () {
+        return '<div class="sec">Dự án</div>' +
+          '<div class="row">' + I("chevron_right", "mute") + I("grid_view", "ic-c") + T("Danh sách dự án") + '</div>' +
+          '<div class="row">' + I("expand_more", "mute") + I("grid_view", "ic-c") + T("Chi tiết dự án") + '</div>' +
+          '<div style="padding-left:16px;display:grid">' +
+          '<div class="row">' + I("expand_more", "mute") + I("folder_open", "ic-c") + T("Chọn người phê duyệt") + '</div>' +
+          '<div style="padding-left:22px;display:grid">' + GROUP.map(function (g, i) { return '<div class="row' + (i === CUR ? " cur" : "") + '">' + I("bookmark", "ic-s") + T(g) + '</div>'; }).join("") + '</div>' +
+          '<div class="row">' + I("chevron_right", "mute") + I("folder", "ic-c") + T("Trạng thái phê duyệt") + '</div></div>' +
+          '<div class="sec">Hồ sơ</div><div class="row">' + I("chevron_right", "mute") + I("grid_view", "ic-c") + T("Hồ sơ dự án (danh mục)") + '</div>';
+      } },
+    { k: "vs", name: "Kiểu VS Code explorer", src: "workbench.tree.indent = 8, indent guides", fit: ["mid", "Hợp một phần"],
+      row: "22px", ind: "8px", cue: "Chevron trái + đường dẫn thụt dọc", curr: "Nền nhạt + viền focus",
+      note: "Rất gọn, chịu được cây sâu. Dòng 22px chật cho chữ tiếng Việt có dấu và cho thao tác chuột.",
+      html: function () {
+        var g = function (n) { var s = ""; for (var i = 0; i < n; i++) s += '<span class="guide"></span>'; return s; };
+        return '<div class="row">' + I("chevron_right", "mute") + T("Danh sách dự án") + '</div>' +
+          '<div class="row">' + I("expand_more", "mute") + T("Chi tiết dự án") + '</div>' +
+          '<div class="row">' + g(1) + '<span class="ms"></span>' + T("Mặc định") + '</div>' +
+          '<div class="row">' + g(1) + I("expand_more", "mute") + T("Chọn người phê duyệt") + '</div>' +
+          GROUP.map(function (t, i) { return '<div class="row' + (i === CUR ? " cur" : "") + '">' + g(2) + '<span class="ms"></span>' + T(t) + '</div>'; }).join("") +
+          '<div class="row">' + g(1) + I("chevron_right", "mute") + T("Trạng thái phê duyệt") + '</div>' +
+          '<div class="row">' + I("chevron_right", "mute") + T("Hồ sơ dự án (danh mục)") + '</div>';
+      } },
+    { k: "cb", name: "Kiểu Carbon tree view", src: "IBM Carbon · small 32px / xs 24px", fit: ["hi", "Rất hợp"],
+      row: "32px · 24px", ind: "tăng padding trái", cue: "Chevron trái, chỉ thụt lề", curr: "Vạch màu trái + nền",
+      note: "Hai cỡ dòng: 32px cho cấp trên, 24px khi cây nhiều cấp. Vạch trái là dấu hiệu không chỉ bằng màu nền.",
+      html: function () {
+        return '<div class="row">' + I("chevron_right", "mute") + T("Danh sách dự án") + '</div>' +
+          '<div class="row">' + I("expand_more", "mute") + T("Chi tiết dự án") + '</div>' +
+          '<div class="row" style="padding-left:36px">' + T("Mặc định") + '</div>' +
+          '<div class="row" style="padding-left:20px">' + I("expand_more", "mute") + T("Chọn người phê duyệt") + '</div>' +
+          GROUP.map(function (t, i) { return '<div class="row xs' + (i === CUR ? " cur" : "") + '" style="padding-left:56px">' + T(t) + '</div>'; }).join("") +
+          '<div class="row" style="padding-left:20px">' + I("chevron_right", "mute") + T("Trạng thái phê duyệt") + '</div>' +
+          '<div class="row">' + I("chevron_right", "mute") + T("Hồ sơ dự án (danh mục)") + '</div>';
+      } },
+    { k: "at", name: "Kiểu Atlassian side nav", src: "Expandable menu item", fit: ["mid", "Hợp một phần"],
+      row: "32px", ind: "token spacing", cue: "Icon trước chữ; khi hover icon đổi thành chevron", curr: "Nền + vạch dọc ngắn",
+      note: "Gọn vì icon và chevron dùng chung một chỗ. Nhưng chevron chỉ hiện khi hover — khó thấy mục nào mở được. Rê chuột lên dòng để xem.",
+      html: function () {
+        var ex = function (ic, t, open) { return '<div class="row">' + I(ic, "ic mute") + I(open ? "expand_more" : "chevron_right", "hv mute") + T(t) + '</div>'; };
+        return ex("web", "Danh sách dự án") + ex("web", "Chi tiết dự án", 1) +
+          '<div style="padding-left:22px;display:grid">' + ex("account_tree", "Chọn người phê duyệt", 1) +
+          '<div style="padding-left:22px;display:grid">' + GROUP.map(function (t, i) { return '<div class="row' + (i === CUR ? " cur" : "") + '">' + T(t) + '</div>'; }).join("") + '</div>' +
+          ex("account_tree", "Trạng thái phê duyệt") + '</div>' + ex("web", "Hồ sơ dự án (danh mục)");
+      } },
+    { k: "uu", name: "Kiểu trang Figma (Untitled UI)", src: "Ảnh mẫu bạn gửi", fit: ["mid", "Hợp cho 2 cấp"],
+      row: "~32px", ind: "~28px", cue: "❖ + VIẾT HOA cho mục, ↳ cho con, divider giữa mục", curr: "Nền xám",
+      note: "Đẹp và thoáng vì chỉ có 2 cấp. Flow MDM có 3 cấp và nhiều trạng thái nên khó giữ được độ thoáng này.",
+      html: function () {
+        return '<div class="sec">❖ Danh sách dự án</div><div class="div"></div>' +
+          '<div class="sec">❖ Chi tiết dự án</div>' +
+          ['Mặc định', 'Chọn người phê duyệt — lỗi tải', 'Chọn người phê duyệt — đang tải', 'Trạng thái phê duyệt'].map(function (t, i) { return '<div class="row' + (i === 1 ? " cur" : "") + '">↳ ' + T(t) + '</div>'; }).join("") +
+          '<div class="div"></div><div class="sec">❖ Hồ sơ dự án</div>';
+      } },
+    { k: "no", name: "Kiểu Notion sidebar", src: "Page tree", fit: ["lo", "Ít hợp"],
+      row: "28px", ind: "~12px", cue: "Tam giác bật tắt + icon trang, mọi cấp như nhau", curr: "Nền xám nhạt",
+      note: "Hợp cây tài liệu tự do, ai cũng thêm trang. Mọi cấp giống nhau nên không nói được đâu là màn, đâu là trạng thái.",
+      html: function () {
+        var r = function (pad, tg, ic, t, cur) { return '<div class="row' + (cur ? " cur" : "") + '" style="padding-left:' + pad + 'px">' + I(tg, "tg") + I(ic, "mute") + T(t) + I("add", "add") + '</div>'; };
+        return r(8, "chevron_right", "description", "Danh sách dự án") + r(8, "expand_more", "description", "Chi tiết dự án") +
+          r(20, "expand_more", "description", "Chọn người phê duyệt") +
+          GROUP.map(function (t, i) { return r(32, "chevron_right", "description", t, i === CUR); }).join("") +
+          r(20, "chevron_right", "description", "Trạng thái phê duyệt") + r(8, "chevron_right", "description", "Hồ sơ dự án (danh mục)");
+      } },
+    { k: "cs", name: "Kiểu Cloudscape / Linear", src: "Heading tĩnh + mục phẳng", fit: ["mid", "Hợp khi ít trạng thái"],
+      row: "~28px", ind: "0–12px", cue: "Tiêu đề nhóm chữ nhỏ xám, không thu gọn", curr: "Chữ màu + vạch trái",
+      note: "Ít chi tiết nhất, dễ quét. Không thu gọn được nên luồng 22 trạng thái (Nhập Excel) sẽ dài.",
+      html: function () {
+        return '<div class="sec">Chi tiết dự án</div>' +
+          '<div class="row">' + T("Mặc định") + '</div>' +
+          '<div class="sec">Chọn người phê duyệt</div>' +
+          GROUP.map(function (t, i) { return '<div class="row' + (i === CUR ? " cur" : "") + '">' + T(t) + (i === 3 ? '<span class="chip">quyền</span>' : "") + '</div>'; }).join("") +
+          '<div class="sec">Trạng thái phê duyệt</div><div class="row">' + T("Chờ phê duyệt") + '</div>';
+      } },
+    { k: "mix", name: "Đề xuất lai cho MDM", src: "Icon màn + divider + indent guide", fit: ["hi", "Đề xuất"],
+      row: "28 / 36px", ind: "24px", cue: "Icon màn, đường dọc nối con (thay ↳), divider giữa màn", curr: "Nền brand + đường dọc của nhánh tô accent",
+      note: "Giữ phần đang tốt (icon màn, divider, chevron cuối dòng). Đường dọc cho thấy step nào thuộc luồng nào mà không cần icon lặp lại.",
+      html: function () {
+        return '<div class="row l0">' + I("web") + T("Danh sách dự án") + '</div><div class="div"></div>' +
+          '<div class="row l0">' + I("web") + T("Chi tiết dự án") + I("expand_less", "chev") + '</div>' +
+          '<div class="kids on"><div class="row">' + T("Mặc định") + '</div>' +
+          '<div class="row g">' + T("Chọn người phê duyệt") + I("expand_less", "chev") + '</div>' +
+          '<div class="kids on">' + GROUP.map(function (g, i) { return '<div class="row' + (i === CUR ? " cur" : "") + '">' + T(g) + '</div>'; }).join("") + '</div>' +
+          '<div class="row g">' + T("Trạng thái phê duyệt") + I("stat_minus_1", "chev") + '</div></div>' +
+          '<div class="div"></div><div class="row l0">' + I("web") + T("Hồ sơ dự án (danh mục)") + I("stat_minus_1", "chev") + '</div>';
+      } }
+  ];
+
+  document.getElementById("cards").innerHTML = styles.map(function (s) {
+    return '<article class="card"><div class="card__head"><h3>' + s.name + '</h3><div class="card__src">' + s.src + '</div></div>' +
+      '<div class="mock s-' + s.k + '">' + s.html() + '</div>' +
+      '<div class="notes"><span class="fit fit--' + s.fit[0] + '"><i></i>' + s.fit[1] + '</span><p>' + s.note + '</p>' +
+      '<dl><dt>dòng</dt><dd>' + s.row + '</dd><dt>thụt</dt><dd>' + s.ind + '</dd><dt>phân cấp</dt><dd>' + s.cue + '</dd></dl></div></article>';
+  }).join("");
+  document.getElementById("cmp").innerHTML = styles.map(function (s) {
+    return '<tr><td>' + s.name + '</td><td class="num">' + s.row + '</td><td class="num">' + s.ind + '</td><td>' + s.cue + '</td><td>' + s.curr + '</td><td><span class="fit fit--' + s.fit[0] + '"><i></i>' + s.fit[1] + '</span></td></tr>';
+  }).join("");
+})();
+</script>

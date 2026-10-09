@@ -1,0 +1,240 @@
+/* section-card.css — the repeating unit of design-system/patterns/item-detail.md.
+   Source: MDM V2 `Section` + `Section header` (10287:10813): 16px radius, header
+   gap 20, content gap 16, title 18/28 Semibold, supporting 14/20, then a 1px
+   divider.
+
+   PADDING AND THE CARD'S OWN GAP ARE 20px, NOT THE FRAME'S 24 (2026-09-16,
+   product decision). .claude/skills/design-rules/SKILL.md fixes page layout at
+   "one 20px rung" — `--utui-page-gutter-x`, `--utui-page-gutter-y` and
+   `--utui-page-block-gap` are all `--utui-spacing-05` — and a card is page
+   layout by the same argument. Applied to the component rather than to one
+   pattern's grid, so every record screen reads alike; the card grid's gutter
+   moved with it.
+   See design-system/components/section-header.md */
+
+/* --- The 6-column card grid --------------------------------- */
+/* 6 columns, 20px gutter. Cards span 2 / 3 / 4 / 6 columns — 349 / 534 / 719 /
+   1088px at the 1088px content width. Rows stretch to equal height, so a short
+   card pads instead of shrinking and row baselines stay aligned.
+
+   THE GUTTER IS 20px, NOT THE SOURCE FRAME'S 32 (2026-09-16, product decision).
+   .claude/skills/design-rules/SKILL.md fixes page layout at "one 20px rung" —
+   `--utui-page-gutter-x`, `--utui-page-gutter-y` and `--utui-page-block-gap` are
+   all `--utui-spacing-05` — and the card grid is page layout by the same
+   argument: it is the gap between a page's blocks, drawn six columns wide. The
+   frame's 32 put the one region that is not on the rung right in the middle of
+   the page. Card padding and the card's own internal gap move with it, below. Tier collapses live in ./responsive.css. */
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--utui-spacing-05);
+  align-items: stretch;
+}
+
+.section-grid > .section-card {
+  grid-column: span 2;
+}
+
+.section-grid > .section-card--wide {
+  grid-column: span 4;
+}
+
+/* A card that takes the whole row on its own — `Frame 609` in `Chủ đầu tư`
+   (10840:73734), a 1088px card holding a two-column data body. */
+.section-grid > .section-card--full {
+  grid-column: span 6;
+}
+
+.section-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--utui-spacing-05);
+  min-width: 0;
+  padding: var(--utui-spacing-05);
+  border: 1px solid var(--app-border);
+  border-radius: var(--utui-radius-xl);
+  background: var(--utui-color-bg-surface, #ffffff);
+  box-shadow: var(--utui-shadow-xs);
+}
+
+/* Section the active anchor pill points at; JS toggles it with the pill's .is-active. */
+.section-card.is-anchor-target {
+  box-shadow: var(--utui-focus-brand);
+}
+
+/* --form (ex .form-panel, 2026-09-28): nhịp 24px + shadow-xl; head chỉ .section-header__bar/__lead, control đuôi nằm phải nhờ space-between. */
+.section-card--form {
+  gap: var(--utui-spacing-06);
+  padding: var(--utui-spacing-06);
+  box-shadow: var(--utui-shadow-xl);
+}
+
+/* Thân bật/tắt bằng switch: gap 24px như card. */
+.section-card--form > .section-body {
+  gap: var(--utui-spacing-06);
+}
+
+/* Tiêu đề xl semibold như .form-panel__title cũ. */
+.section-card--form .section-header__title {
+  color: var(--app-text);
+  font-size: var(--utui-font-size-text-xl);
+  line-height: var(--utui-line-height-text-xl);
+}
+
+/* Tiêu đề bọc <label for> của switch — nêu rõ con trỏ. */
+.section-card--form .section-header__title label {
+  cursor: pointer;
+}
+
+.section-header {
+  display: grid;
+  gap: var(--utui-spacing-05);
+}
+
+.section-header__content {
+  display: grid;
+  gap: var(--utui-spacing-04);
+}
+
+.section-header__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--utui-spacing-04);
+}
+
+.section-header__text {
+  display: grid;
+  gap: var(--utui-spacing-01);
+  min-width: 0;
+}
+
+/* `Type=Horizontal` — icon and text on ONE row, the action trailing it.
+   Added 2026-09-09, when `Chi tiết dự án` (13314:69886) became the first frame
+   to use the variant: all five of its `Section header` instances read
+   `Type=Horizontal` where they read `Vertical` before, and the contract had
+   recorded the horizontal composition as authored-but-unused since 2026-08-04.
+
+   Same DOM as the vertical default plus one wrapper: `.section-header__lead`
+   holds the mark and the text block, `.section-header__bar` keeps its
+   space-between so the action still trails. The two gaps are the source's —
+   12px between mark and text inside `Frame 1`, 16px between that and the action
+   `Slot` (the bar's own gap, unchanged). See design-system/components/section-header.md. */
+.section-header__lead {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--utui-spacing-03);
+  min-width: 0;
+}
+
+.section-header__title {
+  margin: 0;
+  color: var(--utui-color-gray-900);
+  font-size: var(--utui-font-size-text-lg);
+  font-weight: var(--utui-font-weight-semibold);
+  line-height: var(--utui-line-height-text-lg);
+}
+
+/* ONE LINE, ELLIPSIS (2026-09-16). The supporting line states the section's
+   PURPOSE, so a second line buys nothing a reader needs and costs the card's
+   body the height instead — and in a span-2 card it wrapped to two and pushed
+   every card in the row taller under `align-items: stretch`. The frame clamps it
+   too: `Người liên hệ` (10282:8548) draws `Liên hệ, giao dịch và quản lý thô…`
+   in a 365px card, and the same string fits whole in the 750px `Địa chỉ` card
+   (10280:807) — one rule, and the card's width decides whether it bites.
+
+   `min-width: 0` is already on `.section-header__text`, which is what lets the
+   ellipsis resolve inside a grid item rather than the text forcing the track
+   wider.
+
+   THE FULL STRING STAYS IN THE ACCESSIBILITY TREE: `text-overflow` is a visual
+   clip, so a screen reader still announces the whole line. What is lost is
+   sighted reading, which is why the copy on a narrow card should be written to
+   fit rather than written long and trimmed here. */
+.section-header__supporting {
+  margin: 0;
+  overflow: hidden;
+  color: var(--utui-color-gray-500);
+  font-size: var(--utui-font-size-text-sm);
+  line-height: var(--utui-line-height-text-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.section-header__divider {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: var(--utui-color-gray-200);
+}
+
+/* Trailing action. `edit` means the section is editable in place;
+   `arrow_forward` opens its drawer, `chevron_right` a sub-page. The icon is contractual —
+   see design-system/patterns/item-detail.md Composition Rules. */
+/* Both controls take an <a href> wherever the section's sub-page exists (the
+   `Địa chỉ` section of project-investor.js does, since 2026-08-14), so neither may
+   inherit the anchor's underline. `text-decoration` is inert on the <button>
+   form. */
+.section-action,
+.section-more {
+  text-decoration: none;
+}
+
+/* Composed with .button (Secondary gray): fill, border, colour and hover come from there; this is only the 40px square. */
+.section-action {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: var(--utui-button-height-md);
+  height: var(--utui-button-height-md);
+  min-height: 0;
+  padding: 0;
+}
+
+/* `display: grid` above beats the UA `[hidden]` rule at equal specificity — same trap `.button[hidden]` (styles/button.css) already fixes. */
+.section-action[hidden] {
+  display: none;
+}
+
+/* --- Bodies ------------------------------------------------- */
+
+.section-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--utui-spacing-04);
+  min-width: 0;
+}
+
+/* [hidden] phải thắng display:flex để thân ẩn rời tab order. */
+.section-body[hidden] {
+  display: none;
+}
+
+/* Body: entity list moved to ./entity-row.css (ds/components/entity-row.md). */
+
+/* Footer link — "Xem thêm N+". PLACEMENT ONLY since 2026-09-16.
+   It used to restyle a label-only link from scratch — brand colour, semibold,
+   its own hover underline, its own border and background resets — which is a
+   second, quieter copy of `design-system/components/button.md`'s `Link color`
+   type. The CTA now COMPOSES that component (`.button.button--link`) and this
+   class says only where the label sits: at the card's bottom edge, whatever the
+   row's tallest card does to the height.
+
+   That composition is also why nothing here may set colour or weight: ./button.css
+   is imported BEFORE this file, so a declaration here would silently beat the
+   component at equal specificity — the exact failure this change is undoing. */
+.section-more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--utui-spacing-02);
+  /* `.section-card` is a flex COLUMN, so a stretched item is as wide as the
+     card and `.button`'s own `justify-content: center` then centres the label
+     mid-card. `align-self: start` gives the CTA back its own width, which is
+     also what ../styles/responsive.css's `.section-more::after` hit area
+     assumes when it takes `left: 0; width: 100%` — stretched, that 44px band
+     spans the whole card and arms a navigation the label does not cover. */
+  align-self: start;
+  margin-top: auto;
+}

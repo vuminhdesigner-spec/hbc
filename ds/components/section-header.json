@@ -1,0 +1,52 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component section-header. Hướng dẫn dùng nằm ở section-header.md.",
+  "name": "section-header",
+  "block": ".section-header",
+  "sources": {
+    "stylesheet": "ds/styles/section-card.css",
+    "contract": "ds/components/section-header.md"
+  },
+  "api": {
+    "modifiers": [],
+    "parts": [
+      ".section-header__bar",
+      ".section-header__content",
+      ".section-header__divider",
+      ".section-header__lead",
+      ".section-header__supporting",
+      ".section-header__text",
+      ".section-header__title",
+      ".section-action",
+      ".section-more"
+    ],
+    "stateClasses": [],
+    "pseudoStates": [
+      ":hover"
+    ],
+    "attributes": [
+      "[hidden]"
+    ]
+  },
+  "tokens": [
+    "--utui-color-brand-600",
+    "--utui-color-gray-500",
+    "--utui-color-gray-900",
+    "--utui-color-neutral-50",
+    "--utui-font-size-text-lg",
+    "--utui-font-size-text-sm",
+    "--utui-font-weight-semibold",
+    "--utui-line-height-text-lg",
+    "--utui-line-height-text-sm",
+    "--utui-spacing-01",
+    "--utui-spacing-03",
+    "--utui-spacing-04",
+    "--utui-spacing-05"
+  ],
+  "breakpoints": [],
+  "audit": {
+    "hardcodedColors": [
+      "#e4e7ec"
+    ]
+  }
+}

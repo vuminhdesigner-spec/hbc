@@ -1,0 +1,39 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component toggle. Hướng dẫn dùng nằm ở toggle.md.",
+  "name": "toggle",
+  "block": ".toggle",
+  "sources": {
+    "stylesheet": "ds/styles/toggle.css",
+    "contract": "ds/components/toggle.md"
+  },
+  "api": {
+    "modifiers": [],
+    "parts": [],
+    "stateClasses": [],
+    "pseudoStates": [
+      ":checked",
+      ":disabled",
+      ":hover"
+    ],
+    "attributes": []
+  },
+  "tokens": [
+    "--utui-toggle-height",
+    "--utui-toggle-thumb-bg",
+    "--utui-toggle-thumb-inset",
+    "--utui-toggle-thumb-shadow",
+    "--utui-toggle-thumb-size",
+    "--utui-toggle-track-bg",
+    "--utui-toggle-track-bg-checked",
+    "--utui-toggle-track-bg-checked-disabled",
+    "--utui-toggle-track-bg-checked-hover",
+    "--utui-toggle-track-bg-disabled",
+    "--utui-toggle-track-bg-hover",
+    "--utui-toggle-width"
+  ],
+  "breakpoints": [],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

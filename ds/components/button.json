@@ -1,0 +1,74 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component button. Hướng dẫn dùng nằm ở button.md.",
+  "name": "button",
+  "block": ".button",
+  "sources": {
+    "stylesheet": "ds/styles/button.css",
+    "contract": "ds/components/button.md"
+  },
+  "api": {
+    "modifiers": [
+      ".button--compact",
+      ".button--destructive",
+      ".button--ghost",
+      ".button--link",
+      ".button--link-gray",
+      ".button--primary",
+      ".button--secondary-color",
+      ".button--secondary-destructive",
+      ".button--tertiary"
+    ],
+    "parts": [
+      ".button__spinner"
+    ],
+    "stateClasses": [],
+    "pseudoStates": [
+      ":disabled",
+      ":hover"
+    ],
+    "attributes": [
+      "[hidden]",
+      "[aria-busy=\"true\"]",
+      "[aria-disabled=\"true\"]"
+    ]
+  },
+  "tokens": [
+    "--utui-button-bg-destructive",
+    "--utui-button-bg-destructive-hover",
+    "--utui-button-bg-primary",
+    "--utui-button-bg-primary-disabled",
+    "--utui-button-bg-primary-hover",
+    "--utui-button-bg-secondary",
+    "--utui-button-bg-secondary-hover",
+    "--utui-button-bg-tertiary-hover",
+    "--utui-button-border-destructive",
+    "--utui-button-border-primary",
+    "--utui-button-height-lg",
+    "--utui-button-link-color",
+    "--utui-button-link-gray",
+    "--utui-button-link-gray-hover",
+    "--utui-button-spinner-size",
+    "--utui-button-text-destructive",
+    "--utui-button-text-disabled",
+    "--utui-button-text-primary",
+    "--utui-button-text-secondary",
+    "--utui-button-text-secondary-hover",
+    "--utui-button-text-tertiary",
+    "--utui-color-bg-brand-subtle",
+    "--utui-color-bg-error-subtle",
+    "--utui-color-brand-100",
+    "--utui-color-red-100",
+    "--utui-color-text-error",
+    "--utui-font-weight-semibold",
+    "--utui-line-height-text-sm",
+    "--utui-shadow-xs",
+    "--utui-spacing-02",
+    "--utui-spacing-03",
+    "--utui-spacing-04"
+  ],
+  "breakpoints": [],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

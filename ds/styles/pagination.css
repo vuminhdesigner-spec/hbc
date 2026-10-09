@@ -1,0 +1,143 @@
+/* pagination.css — see design-system/components/pagination.md
+   Extracted from the former monolithic app.css, 2026-08-03.
+   Re-synced against the DS component set `Pagination` (1115:68622) on
+   2026-09-05; see that contract's Source table for the node ids. */
+
+/* The footer band all three types share: SPACE_BETWEEN / CENTER, 12px inside
+   24px sides, one Neutral/200 rule along the top. `min-height` is a 60px floor,
+   not a fixed height — every type is a 36px button row now, so the floor and the
+   drawn height agree; it was 64 while the set drew 12/16, and 68 before that
+   because `Multi-page` held a 40px joined page group. */
+.table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Wraps rather than squeezes, added 2026-09-05 with the prev/next pager below:
+     that composition puts two LABELLED buttons and a range count where the joined
+     group put one 360px control, and the first thing a flex row gives up when it
+     runs short is the buttons' own text — `Tải lại` broke onto two lines at md
+     before this. Wrapping is inert at every width where the row fits, so no
+     screen that fit before changes; the sm rung in ../styles/responsive.css that
+     stacks this row outright still owns the narrow end. */
+  flex-wrap: wrap;
+  column-gap: var(--utui-spacing-04);
+  row-gap: var(--utui-spacing-03);
+  min-height: var(--utui-table-footer-height);
+  padding: var(--utui-pagination-footer-padding-top) var(--utui-pagination-footer-padding-x)
+    var(--utui-pagination-footer-padding-bottom);
+  border-top: 1px solid var(--utui-pagination-footer-border);
+}
+
+/* The Actions slot. Its contents are per instance, not per type — `One page` and
+   `Multi-page` draw `Tải lại` / `Thiết lập` / `Tải xuống`, `Table Edit` draws
+   `Thêm dòng` (Secondary color) + `Thiết lập`, and a consumer may switch any of
+   them off. See design-system/components/pagination.md. */
+.pagination-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--utui-pagination-actions-gap);
+}
+
+/* Result count — the footer's `Details` text. Every type draws one since the
+   2026-09-05 re-read: `6 kết quả` in `One page` and `Table Edit`, and a RANGE,
+   `1-50/500 kết quả`, in `Multi-page`, where it is the only thing that says
+   where in the set the reader is. `.table-footer` is already the space-between
+   row, so a count with no pager beside it needs no positioning of its own. */
+.pagination-count {
+  margin: 0;
+  color: var(--utui-pagination-count-text);
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-medium);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+/* ---------- The pager (`Type=Multi-page`) ----------
+
+   Re-read 2026-09-05 against the DS set itself (SFo9P9PCVQiuOk2SqjZYKQ,
+   1115:68618), which now draws what the product frame `Danh sách dự án`
+   (tS8dUB2qWLc28gZbtj8IIL, 10471:29236) drew first: two SEPARATE bordered
+   buttons — `Trang trước` with a leading `arrow-left`, `Trang sau` with a
+   trailing `arrow-right`, from `_Pagination button group base`
+   Hierarchy=Leading / Trailing — 8px apart, then 24px of air, then a RANGE count
+   (`1-50/500 kết quả`) rather than the bare total the other types show.
+
+   The joined page group this file used to carry is gone, and not deprecated:
+   `Pagination button group` (1114:69397) no longer exists in the DS file, and
+   the segment atom lost its `Middle` hierarchy and both of its number-cell
+   `Icon` values in the same redraw. There is no numbered cell in the component
+   any more, so `.pagination-group*` and the twelve tokens under it came out
+   here rather than being left as spec nobody can point at.
+
+   ONE COMPOSITION IN EVERY STATE. The type this replaced needed a `One page`
+   sibling because a joined pager holding a single cell between two dead arrows
+   cannot say where the reader is; the range count already says `1-50/50`, and
+   both buttons are `disabled` at the ends. `One page` remains the type for a
+   footer that does no paging at all. */
+/* The landmark, and the 24px gap between the button pair and the count. Both are
+   class hooks: `.pagination-pager` is the `<nav>` and `.pagination-nav` a plain
+   `<div>` inside it, because the count belongs INSIDE the landmark — a nav around
+   the two buttons alone announced no position at all, and this composition has no
+   `aria-current` cell to announce one. See design-system/components/pagination.md. */
+.pagination-pager {
+  display: flex;
+  align-items: center;
+  gap: var(--utui-pagination-pager-gap);
+  /* Keeps the far edge on a wrapped line too, where `space-between` on the
+     footer has only one item left to place. */
+  margin-left: auto;
+}
+
+.pagination-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--utui-pagination-nav-gap);
+}
+
+/* The two buttons are `.button`s in the markup — what the frame draws is a
+   bordered secondary control, which is the button component — but the set draws
+   them at its OWN geometry, not the app's default one, and three things differ:
+   36px rather than 44px, so the pager matches the utility actions across the
+   band the way the set has both at 36; no Shadow/xs, which `Buttons/Button`
+   carries and `_Pagination button group base` does not; and a `text/primary`
+   label where a secondary button is `text/secondary`. Held here rather than as a
+   button hierarchy: it is this component's rendering of the button, and nothing
+   outside a table footer draws it. */
+.pagination-nav .button {
+  min-height: var(--utui-pagination-nav-height);
+  padding: 0 var(--utui-pagination-nav-padding-x);
+  border-color: var(--utui-pagination-nav-border);
+  border-radius: var(--utui-pagination-nav-radius);
+  background: var(--utui-pagination-nav-bg);
+  color: var(--utui-pagination-nav-text);
+  /* `Trang trước` / `Trang sau` are two words each and the box is already at its
+     content width — a break puts the arrow on a line of its own. */
+  white-space: nowrap;
+  box-shadow: none;
+}
+
+/* `State=Active/hover` and `State=Focused` are one paint in the set: Neutral/50,
+   with the label unchanged. Hover is not a step towards anything — there is no
+   current-page cell left for it to lead to. */
+.pagination-nav .button:not(:disabled):hover,
+.pagination-nav .button:focus-visible {
+  background: var(--utui-pagination-nav-active-bg);
+  color: var(--utui-pagination-nav-text);
+}
+
+/* The fill above is 1.03:1 against Default and cannot carry focus by itself, so
+   the set's `Focused` needs an indicator the set does not draw. It is the app's
+   ordinary outer halo from base.css, restated here only because the rule above
+   sets `box-shadow: none` on the resting button and would otherwise win by
+   source order. Outer, not the inset ring the joined group needed: these two
+   buttons are detached, and nothing clips them. */
+.pagination-nav .button:focus-visible {
+  box-shadow: var(--app-focus);
+}
+
+/* The set has no Disabled state; the package adds one, because the first and
+   last page leave a direction with nowhere to go and `disabled` is how that is
+   announced rather than only painted. */
+.pagination-nav .button:disabled {
+  color: var(--utui-pagination-nav-disabled-text);
+  cursor: not-allowed;
+}

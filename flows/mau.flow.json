@@ -1,0 +1,8 @@
+{
+  "id": "mau",
+  "title": "Flow mẫu",
+  "steps": [
+    { "id": "danh-sach", "screen": "mau/danh-sach" },
+    { "id": "danh-sach-trong", "screen": "mau/danh-sach", "query": "?state=empty", "title": "Màn mẫu — chưa có dữ liệu", "case": "edge" }
+  ]
+}

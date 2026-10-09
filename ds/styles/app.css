@@ -1,0 +1,114 @@
+/* ============================================================
+   V2 demo stylesheet — barrel.
+
+   Was a single 2,882-line file until 2026-08-03. It is now one file per
+   component, mirroring design-system/components/*.md so each contract's Code Mapping points
+   at a real file.
+
+   IMPORT ORDER IS THE CASCADE. It reproduces the original file's rule order
+   exactly; reordering these lines changes which rules win. `responsive.css`
+   must stay last.
+
+   `legacy/` holds rules whose only demo was index.html, removed 2026-08-03.
+   Nothing in the current screens uses them. They are still imported so the
+   cascade is byte-identical to before the split; they are safe to drop once
+   confirmed. `legacy/responsive-legacy.css` joined them on 2026-08-11 — it was
+   the bulk of the old responsive.css, all of it index.html selectors.
+
+   `responsive.css` is the breakpoint ladder and the only file that redefines the
+   layout tier tokens. See .claude/skills/responsive/SKILL.md.
+   ============================================================ */
+
+@import "../tokens/untitled-ui-primitive.css";
+@import "../tokens/untitled-ui-semantic.css";
+@import "../tokens/untitled-ui-component.css";
+
+@import "./base.css";
+@import "./legacy/two-tier-shell.css";
+@import "./side-navigation.css";
+@import "./app-shell.css";
+@import "./button.css";
+@import "./page-tab.css";
+@import "./metric-item.css";
+@import "./data-table.css";
+@import "./legacy/toolbar.css";
+@import "./form-field.css";
+/* After form-field.css: the combobox shell consumes the same --utui-field-*
+   roles and sits inside a `.form-field`, so it must be able to win at equal
+   specificity. See design-system/components/select.md. */
+@import "./select.css";
+/* After form-field.css: the filter row's controls ARE `.form-field__control`
+   instances and this file only adjusts their column behaviour, so it has to be
+   able to win at equal specificity. See design-system/components/filter-panel.md. */
+@import "./filter-panel.css";
+/* After both form-field.css and filter-panel.css: this file composes
+   `.search-field` and `.filter-trigger` into one toolbar row and needs both
+   already defined. See design-system/components/listing-toolbar.md. */
+@import "./listing-toolbar.css";
+@import "./badge.css";
+@import "./pagination.css";
+@import "./legacy/detail-and-forms.css";
+@import "./tab-bar.css";
+@import "./button-group.css";
+@import "./folder.css";
+@import "./resize-handle.css";
+@import "./breadcrumbs.css";
+@import "./folder-grid.css";
+@import "./page-header.css";
+@import "./featured-icon.css";
+@import "./anchor-nav.css";
+@import "./section-card.css";
+/* Directly after section-card.css, which is where these rules lived until
+   2026-09-16: the entity row is one of that card's body shapes, so it keeps its
+   cascade position exactly. See design-system/components/entity-row.md. */
+@import "./entity-row.css";
+@import "./data-viewer.css";
+@import "./attachment-list.css";
+@import "./file-upload.css";
+/* Sau file-upload.css + button.css: .attachment-pane thắng specificity ngang nhau cho body (file-upload) và pager (.button); không phải attachment-list.css (khác component) — ds/components/attachment.md. */
+@import "./attachment.css";
+/* After attachment.css + file-upload.css: doc-detail composes both (reading order, not specificity). */
+@import "./doc-detail.css";
+@import "./empty-state.css";
+/* After data-table.css and pagination.css: the drawer body bounds a
+   `.data-table-wrap` that data-table.css sizes against the viewport, and it has
+   to be able to win that at higher specificity rather than with !important.
+   See design-system/components/drawer.md. */
+@import "./drawer.css";
+/* Beside drawer.css: the other modal surface, and the same reason to sit after
+   data-table.css. See design-system/components/modal.md. */
+@import "./modal.css";
+@import "./notification.css";
+@import "./progress-steps.css";
+@import "./progress-bar.css";
+/* Appended for the same reason avatar.css is, and with the same effect on the
+   cascade: `.toggle` is a selector no file above declares, so adding it here
+   introduces the component without moving one existing rule's position. Its
+   sibling by anatomy is `.choice` in form-field.css — a styled native input —
+   but the two share nothing, so it does not have to sit beside it.
+   See design-system/components/toggle.md. */
+@import "./toggle.css";
+/* Last before responsive.css: avatar.css shares no selector with any file above
+   it, so appending it here adds the component without moving one existing rule's
+   position in the cascade. See design-system/components/avatar.md. */
+@import "./avatar.css";
+/* The role switch injected into .side-profile by ../scripts/role-switch.js.
+   After avatar.css and before responsive.css: it overrides one property on
+   .side-profile (a containing block for its popover) so it has to follow
+   side-navigation.css, and responsive.css must still get the last word on the
+   collapsed rail. See design-system/components/side-navigation.md. */
+@import "./role-switch.css";
+/* After button.css and after notification.css: the selection bar borrows the
+   link button's colour role and sits in the same floating-surface family as the
+   notification stack, and it shares a selector with none of them.
+   Appended here, so it adds the component without moving one existing rule's
+   position in the cascade. See ds/components/snack-bar.md. */
+@import "./snack-bar.css";
+/* Sau featured-icon.css/button.css (cùng dùng trong .inform); không chung selector với file nào ở trên. See ds/components/inform.md. */
+@import "./inform.css";
+/* GAP: dead reference — attribute-field.css/.md was never promoted into ds/; the screens that need it carry the rule locally (see screens/doi-tac/tao-moi.css). */
+/* Last before responsive.css, same reasoning as avatar.css/toggle.css: `.tooltip` shares no selector with any file above it. See ds/components/tooltip.md. */
+@import "./tooltip.css";
+/* After drawer.css/modal.css (its z-index sits under theirs) and tooltip.css; shares no selector with any file above. See ds/components/dock.md. */
+@import "./dock.css";
+@import "./responsive.css";

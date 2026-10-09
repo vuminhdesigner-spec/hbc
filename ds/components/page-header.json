@@ -1,0 +1,59 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component page-header. Hướng dẫn dùng nằm ở page-header.md.",
+  "name": "page-header",
+  "block": ".page-header",
+  "sources": {
+    "stylesheet": "ds/styles/page-header.css",
+    "contract": "ds/components/page-header.md"
+  },
+  "api": {
+    "modifiers": [
+      ".page-header--docs"
+    ],
+    "parts": [
+      ".page-sticky",
+      ".page-header-block",
+      ".page-header-block--padded",
+      ".page-header__avatar",
+      ".page-header__back-icon",
+      ".page-header__content",
+      ".page-header__description",
+      ".page-header__heading",
+      ".page-header__identity",
+      ".page-header__subtitle",
+      ".page-header__title"
+    ],
+    "stateClasses": [
+      ".is-collapsed",
+      ".is-expanded",
+      ".is-ready"
+    ],
+    "pseudoStates": [
+      ":hover"
+    ],
+    "attributes": []
+  },
+  "tokens": [
+    "--utui-color-icon-default",
+    "--utui-color-icon-strong",
+    "--utui-color-text-tertiary",
+    "--utui-font-size-text-sm",
+    "--utui-line-height-text-sm",
+    "--utui-page-gutter-x",
+    "--utui-page-gutter-y",
+    "--utui-page-header-avatar-size",
+    "--utui-page-header-gap",
+    "--utui-page-header-identity-gap",
+    "--utui-page-header-title-line",
+    "--utui-page-header-title-size",
+    "--utui-page-header-title-weight",
+    "--utui-spacing-02",
+    "--utui-spacing-03",
+    "--utui-spacing-04"
+  ],
+  "breakpoints": [],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

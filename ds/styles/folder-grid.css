@@ -1,0 +1,96 @@
+/* folder-grid.css — chế độ hiển thị lưới của danh sách tài liệu (duyệt theo danh mục thay vì cột bảng), trộn thư mục con + tài liệu trong một lưới. Xem ds/components/folder-grid.md. Nguồn: MDM V2 `pat-listing/view-mode/folder` (11099:28736). */
+
+/* Grid thay vì flex-wrap của Figma: track cố định 144px nên khai 1 lần; justify-content:start giữ hàng ngắn căn trái thay vì dàn đều. */
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--utui-folder-card-width));
+  justify-content: start;
+  gap: var(--utui-folder-grid-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Cả thẻ là control (không phải link tên trong box trang trí) — một target, một tên gọi, Enter/Space chạy được luôn. */
+.folder-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--utui-folder-card-gap);
+  width: 100%;
+  height: var(--utui-folder-card-height);
+  padding: var(--utui-folder-card-padding-top) var(--utui-folder-card-padding-x)
+    var(--utui-folder-card-padding-bottom);
+  /* Viền trong suốt, không phải bỏ hẳn — hover thêm viền 1px mà không xê dịch nội dung. */
+  border: 1px solid transparent;
+  border-radius: var(--utui-folder-card-radius);
+  background: transparent;
+  color: var(--utui-color-neutral-700);
+  font-family: inherit;
+  text-align: center;
+}
+
+.folder-card:hover {
+  border-color: var(--utui-folder-card-hover-border);
+  background: var(--utui-folder-card-hover-bg);
+}
+
+/* Focus không có trong Figma — theo button:focus-visible chung của base.css, khai lại ở đây chỉ để ring bo theo radius 16px của thẻ. */
+.folder-card:focus-visible {
+  border-color: var(--utui-folder-card-hover-border);
+  background: var(--utui-folder-card-hover-bg);
+}
+
+.folder-card__figure {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: var(--utui-folder-card-figure-size);
+  height: var(--utui-folder-card-figure-size);
+  /* Không rộng hơn thẻ — để thẻ sống được ở track full-width tại sm. */
+  max-width: 100%;
+}
+
+.folder-card__icon {
+  width: var(--utui-folder-card-icon-folder);
+  height: var(--utui-folder-card-icon-folder);
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Glyph loại file vẽ nhỏ hơn minh hoạ thư mục, cùng khung figure 80px. */
+.folder-card__icon--file {
+  --utui-file-chip-count-size: var(--utui-font-size-text-sm);
+  width: var(--utui-folder-card-icon-file);
+  height: var(--utui-folder-card-icon-file);
+}
+
+/* Text sm/20 regular — clamp 2 dòng vì tên danh mục có thể dài ~60 ký tự, không được đẩy lệch lưới. */
+.folder-card__name {
+  display: -webkit-box;
+  width: 100%;
+  min-width: 0;
+  /* Luôn giữ chỗ 2 dòng — tên 1 dòng không kéo icon lệch hàng khi thẻ căn giữa dọc. */
+  min-height: calc(var(--utui-line-height-text-sm) * 2);
+  overflow: hidden;
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-regular);
+  line-height: var(--utui-line-height-text-sm);
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* "Thư mục"/"Tệp PDF" — Figma phân biệt 2 loại chỉ bằng minh hoạ (màu/hình), nên viết bằng text để control tự nói sẽ mở ra cái gì. */
+.folder-card__kind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

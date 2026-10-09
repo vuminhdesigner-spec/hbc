@@ -1,0 +1,51 @@
+{
+  "$schema": "https://design-system.local/pattern.schema.json",
+  "$description": "Registry của pattern filter. Hướng dẫn nằm ở filter.md.",
+  "name": "filter",
+  "contract": "ds/patterns/filter.md",
+  "composes": [
+    "empty-state",
+    "filter-panel",
+    "inputs",
+    "metric-item"
+  ],
+  "relatedPatterns": [
+    "item-listing",
+    "search-results"
+  ],
+  "implementedIn": [
+    "du-an/ho-so/danh-sach"
+  ],
+  "tokens": [
+    "--utui-filter-field-",
+    "--utui-filter-panel-"
+  ],
+  "sections": [
+    "Purpose",
+    "Source",
+    "Anatomy",
+    "Content Slots",
+    "States",
+    "Composition Rules",
+    "Responsive",
+    "Accessibility",
+    "Code Mapping",
+    "Known Gaps",
+    "Revision History"
+  ],
+  "contractCheck": {
+    "required": [
+      "Purpose",
+      "Source",
+      "Anatomy",
+      "Composition Rules",
+      "Content Slots",
+      "States",
+      "Accessibility",
+      "Code Mapping",
+      "Known Gaps"
+    ],
+    "missing": []
+  },
+  "lines": 393
+}

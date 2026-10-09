@@ -1,0 +1,73 @@
+{
+  "$schema": "https://design-system.local/pattern.schema.json",
+  "$description": "Registry của pattern item-listing. Hướng dẫn nằm ở item-listing.md.",
+  "name": "item-listing",
+  "contract": "ds/patterns/item-listing.md",
+  "composes": [
+    "app-shell",
+    "dashboard-kpi",
+    "data-table",
+    "filter-panel",
+    "folder",
+    "listing-toolbar",
+    "metric-item",
+    "page-header",
+    "page-tab",
+    "pagination",
+    "resize-handle",
+    "side-navigation",
+    "tab-bar"
+  ],
+  "relatedPatterns": [
+    "filter",
+    "item-detail",
+    "search-results"
+  ],
+  "implementedIn": [
+    "du-an/danh-sach"
+  ],
+  "tokens": [
+    "--utui-color-brand-100",
+    "--utui-color-brand-50",
+    "--utui-color-slate-50",
+    "--utui-metric-tile-min-width",
+    "--utui-page-wash",
+    "--utui-page-wash-base",
+    "--utui-page-wash-cool",
+    "--utui-page-wash-glow",
+    "--utui-page-wash-size",
+    "--utui-page-wash-warm",
+    "--utui-spacing-03",
+    "--utui-sticky-chrome-offset"
+  ],
+  "sections": [
+    "Purpose",
+    "Source",
+    "Shell Context",
+    "Anatomy",
+    "Composition Rules",
+    "Content Slots",
+    "States",
+    "Tokens",
+    "Usage",
+    "Accessibility",
+    "Code Mapping",
+    "Known Gaps",
+    "Revision History"
+  ],
+  "contractCheck": {
+    "required": [
+      "Purpose",
+      "Source",
+      "Anatomy",
+      "Composition Rules",
+      "Content Slots",
+      "States",
+      "Accessibility",
+      "Code Mapping",
+      "Known Gaps"
+    ],
+    "missing": []
+  },
+  "lines": 498
+}

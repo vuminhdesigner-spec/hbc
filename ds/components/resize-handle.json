@@ -1,0 +1,46 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component resize-handle. Hướng dẫn dùng nằm ở resize-handle.md.",
+  "name": "resize-handle",
+  "block": ".resize-handle",
+  "sources": {
+    "stylesheet": "ds/styles/resize-handle.css",
+    "script": "ds/scripts/resize-handle.js",
+    "contract": "ds/components/resize-handle.md"
+  },
+  "api": {
+    "modifiers": [],
+    "parts": [],
+    "stateClasses": [
+      ".is-dragging",
+      ".is-resizing"
+    ],
+    "pseudoStates": [
+      ":hover",
+      ":focus-visible"
+    ],
+    "attributes": [
+      "[role=separator]",
+      "[aria-orientation]",
+      "[aria-controls]",
+      "[aria-valuenow]",
+      "[aria-valuemin]",
+      "[aria-valuemax]",
+      "[data-resize-target]",
+      "[data-resize-storage-key]"
+    ]
+  },
+  "tokens": [
+    "--utui-spacing-03",
+    "--utui-spacing-04",
+    "--utui-spacing-64",
+    "--utui-color-brand-500",
+    "--utui-color-brand-600"
+  ],
+  "breakpoints": [
+    "max-width: 1023px"
+  ],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

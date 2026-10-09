@@ -1,0 +1,51 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component empty-state. Hướng dẫn dùng nằm ở empty-state.md.",
+  "name": "empty-state",
+  "block": ".empty-block",
+  "sources": {
+    "stylesheet": "ds/styles/empty-state.css",
+    "contract": "ds/components/empty-state.md",
+    "assets": [
+      "ds/assets/empty-illustration.svg"
+    ],
+    "figma": "SFo9P9PCVQiuOk2SqjZYKQ:9966:18715"
+  },
+  "api": {
+    "modifiers": [],
+    "parts": [
+      ".empty-illustration",
+      ".empty-block__title",
+      ".empty-block__text",
+      ".empty-page",
+      ".empty-page__text",
+      ".empty-page__title",
+      ".empty-page__supporting"
+    ],
+    "stateClasses": [],
+    "pseudoStates": [],
+    "attributes": [
+      "[hidden]"
+    ]
+  },
+  "tokens": [
+    "--utui-color-text-primary",
+    "--utui-color-text-tertiary",
+    "--utui-empty-illustration-size",
+    "--utui-empty-page-gap",
+    "--utui-empty-page-padding-y",
+    "--utui-empty-page-width",
+    "--utui-empty-text-measure",
+    "--utui-font-size-text-md",
+    "--utui-font-size-text-sm",
+    "--utui-font-weight-semibold",
+    "--utui-line-height-text-md",
+    "--utui-line-height-text-sm",
+    "--utui-spacing-01",
+    "--utui-spacing-04"
+  ],
+  "breakpoints": [],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

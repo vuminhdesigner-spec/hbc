@@ -1,0 +1,127 @@
+/* dock.css — tray of minimized drawer drafts, bottom-right, tabs flush with the viewport foot. AUTHORED, no Figma frame (gap); visual reference: Gmail minimized compose. Contract: ds/components/dock.md. Behaviour: ds/scripts/modal.js (minimize/restore) + the screen that renders the items. */
+
+.dock {
+  position: fixed;
+  z-index: var(--utui-dock-z);
+  inset-block-end: 0;
+  inset-inline-end: var(--utui-dock-offset);
+  /* Follows the .main column: clear of the side navigation. */
+  inset-inline-start: calc(var(--utui-nav-width) + var(--utui-dock-offset));
+  /* The layer is empty space between items; only items take the pointer. */
+  pointer-events: none;
+}
+
+.dock[hidden] {
+  display: none;
+}
+
+body:has(.side-nav.is-collapsed) .dock {
+  inset-inline-start: calc(var(--utui-nav-width-collapsed) + var(--utui-dock-offset));
+}
+
+/* Row of items, DOM order = visual order; the screen inserts the newest FIRST so drafts fill from the right edge leftwards. */
+.dock__list {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--utui-dock-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dock__item {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  inline-size: var(--utui-dock-item-width);
+  min-inline-size: 0;
+  min-block-size: var(--utui-dock-item-height);
+  padding-inline-end: var(--utui-spacing-01);
+  border: 1px solid var(--app-border);
+  border-block-end: 0;
+  border-radius: var(--utui-dock-radius) var(--utui-dock-radius) 0 0;
+  background: var(--utui-color-bg-surface-subtle);
+  box-shadow: var(--utui-dock-shadow);
+  pointer-events: auto;
+}
+
+/* The title is the primary restore target (a real button, whole leading area). */
+.dock__title {
+  align-self: stretch;
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  overflow: hidden;
+  padding: 0 var(--utui-spacing-04);
+  border: 0;
+  background: transparent;
+  color: var(--utui-color-text-primary);
+  font: inherit;
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-semibold);
+  line-height: var(--utui-line-height-text-sm);
+  text-align: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Icon buttons: box, colour and hover come from the drawer header rule (drawer.css); only the fit is local. */
+.dock__restore,
+.dock__expand,
+.dock__close {
+  flex-shrink: 0;
+}
+
+/* Aggregate progress of a background task (ds/components/progress-bar.md), flush with the item's foot; the item takes `position` only when it carries one. */
+.dock__item:has(> .dock__progress) {
+  position: relative;
+}
+
+.dock__progress {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+}
+
+.dock__progress .progress-bar {
+  border-radius: 0;
+}
+
+/* Keep the page's foot clear of the dock so it never covers pagination; the hook is the item, not a class the screen sets. */
+body:has(.dock__item) .main {
+  padding-block-end: var(--utui-dock-clearance);
+}
+
+/* sm: full width at the foot, one item per row (no sideways scroll, no extra tab stop). */
+/* Below xl the rail is always the collapsed one (expanded nav overlays the page). */
+@media (max-width: 1279px) {
+  .dock {
+    inset-inline-start: calc(var(--utui-nav-width-collapsed) + var(--utui-dock-offset));
+  }
+}
+
+@media (max-width: 767px) {
+  .dock,
+  body:has(.side-nav.is-collapsed) .dock {
+    inset-inline-start: 0;
+  }
+
+  .dock__list {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .dock__item {
+    inline-size: auto;
+    border-radius: 0;
+    border-inline: 0;
+  }
+
+  body:has(.dock__item:nth-child(2)) .main {
+    padding-block-end: calc(2 * var(--utui-dock-item-height));
+  }
+
+  body:has(.dock__item:nth-child(3)) .main {
+    padding-block-end: calc(3 * var(--utui-dock-item-height));
+  }
+}

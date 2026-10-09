@@ -1,0 +1,45 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component app-shell. Hướng dẫn dùng nằm ở app-shell.md.",
+  "name": "app-shell",
+  "block": ".mdm-shell",
+  "sources": {
+    "stylesheet": "ds/styles/app-shell.css",
+    "contract": "ds/components/app-shell.md"
+  },
+  "api": {
+    "modifiers": [],
+    "parts": [],
+    "stateClasses": [
+      ".is-collapsed",
+      ".is-fullscreen"
+    ],
+    "pseudoStates": [],
+    "attributes": []
+  },
+  "tokens": [
+    "--utui-font-size-display-md",
+    "--utui-font-size-text-lg",
+    "--utui-font-size-text-sm",
+    "--utui-font-weight-semibold",
+    "--utui-line-height-display-md",
+    "--utui-line-height-text-lg",
+    "--utui-line-height-text-sm",
+    "--utui-nav-width",
+    "--utui-nav-width-collapsed",
+    "--utui-page-block-gap",
+    "--utui-page-gutter-x",
+    "--utui-page-gutter-y",
+    "--utui-page-header-gap",
+    "--utui-page-wash",
+    "--utui-page-wash-base",
+    "--utui-page-wash-size",
+    "--utui-spacing-01",
+    "--utui-spacing-02",
+    "--utui-spacing-03"
+  ],
+  "breakpoints": [],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

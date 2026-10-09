@@ -1,0 +1,62 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component filter-panel. Hướng dẫn dùng nằm ở filter-panel.md.",
+  "name": "filter-panel",
+  "block": ".filter-panel",
+  "sources": {
+    "stylesheet": "ds/styles/filter-panel.css",
+    "contract": "ds/components/filter-panel.md"
+  },
+  "api": {
+    "modifiers": [],
+    "parts": [
+      ".filter-panel__footer",
+      ".filter-panel__rows",
+      ".filter-panel__scroll",
+      ".filter-op-static"
+    ],
+    "stateClasses": [
+      ".has-filters"
+    ],
+    "pseudoStates": [
+      ":focus"
+    ],
+    "attributes": [
+      "[hidden]"
+    ]
+  },
+  "tokens": [
+    "--utui-color-bg-surface",
+    "--utui-field-height",
+    "--utui-field-padding-x",
+    "--utui-field-radius",
+    "--utui-filter-field-bg",
+    "--utui-filter-field-border",
+    "--utui-filter-field-text",
+    "--utui-filter-field-width",
+    "--utui-filter-operator-width",
+    "--utui-filter-panel-border",
+    "--utui-filter-panel-gap",
+    "--utui-filter-panel-max-height",
+    "--utui-filter-panel-padding",
+    "--utui-filter-panel-radius",
+    "--utui-filter-panel-shadow",
+    "--utui-filter-panel-width",
+    "--utui-filter-trigger-active-border",
+    "--utui-filter-trigger-active-border-width",
+    "--utui-filter-trigger-active-shadow",
+    "--utui-font-size-text-sm",
+    "--utui-line-height-text-sm",
+    "--utui-page-gutter-x",
+    "--utui-spacing-01",
+    "--utui-spacing-03",
+    "--utui-spacing-08",
+    "--utui-sticky-chrome-offset"
+  ],
+  "breakpoints": [
+    767
+  ],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

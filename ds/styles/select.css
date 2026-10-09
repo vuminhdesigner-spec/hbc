@@ -1,0 +1,705 @@
+/* select.css — the combobox of the DS `Select` set.
+   Source: `SFo9P9PCVQiuOk2SqjZYKQ`, node 9825:59933, read 2026-08-19.
+   Contract: design-system/components/select.md. Behaviour: ../scripts/select.js.
+
+   WHY THIS EXISTS BESIDE THE NATIVE `<select>`. ./form-field.css already styles
+   a native `<select>` inside `.form-field__control`, and that control stays: it
+   is the right answer for a short list of plain strings, it needs no script, and
+   the platform gives it a scroll, a typeahead and a mobile picker for free. What
+   it cannot do is draw the frame's own list — an avatar or a status dot per
+   option, a supporting handle beside the label, a tick on the selected row, a
+   typed filter, or removable tags for a multi-select — because a native
+   `<option>` renders text and nothing else. Those five types are this file.
+
+   So the rule for a consumer is: if the options are strings, keep the native
+   select; reach for `.select` only when an option carries something a string
+   cannot. The two are meant to be visually indistinguishable when closed, which
+   is why the shell below consumes the --utui-field-* roles rather than restating
+   values of its own.
+
+   The trigger comes in two shapes and the type decides which:
+     * `.select__control` as a <button> — Default / Icon leading / Avatar leading
+       / Dot leading. Nothing is typed, so nothing needs a text entry.
+     * `.select__control` as a <div> wrapping `.select__input` — Search / Tags.
+       The user types to filter, so the control has to hold a real input.
+   Both carry the same class and the same box; only their contents differ. */
+
+.select {
+  /* The menu is absolutely positioned against this box. Absolute, not the fixed
+     positioning ./filter-panel.css uses: that panel is 698px hung off a
+     mid-toolbar button, so it would contribute page overflow at 375px, while
+     this menu is exactly as wide as its own trigger and can contribute none. */
+  position: relative;
+  display: grid;
+  min-width: 0;
+}
+
+/* --- Closed control -----------------------------------------
+   The same box `.form-field__control` draws, through the same tokens, so a
+   select and a text input in one form cannot drift apart. */
+.select__control {
+  display: flex;
+  align-items: center;
+  gap: var(--utui-field-gap);
+  width: 100%;
+  /* `min-width: 0`, and it is load-bearing rather than tidying. This button is a
+     GRID ITEM of `.select`, and a grid item's automatic minimum is its
+     min-content size — so `width: 100%` was overruled by the widest option's
+     label and the control grew past its own column. `.select` and `.form-field`
+     both already carry `min-width: 0`; an ancestor's does nothing for an item's
+     own automatic minimum, which is the trap. Measured 2026-08-20 in Chrome at
+     375px: `project-edit` documentElement.scrollWidth 421 against a 375 client
+     area and `project-doc-upload` 435 — horizontal PAGE overflow, which
+     .claude/skills/responsive/SKILL.md § Principles forbids outright. Both are 375/375
+     with this declaration.
+
+     Nothing inside it needed changing: `.select__value` already floors at 0 and
+     `.select__label` already truncates with an ellipsis, which is the shrink this
+     component authored for exactly this case. */
+  min-width: 0;
+  min-height: var(--utui-field-height);
+  padding: 0 var(--utui-field-padding-x);
+  border: 1px solid var(--utui-field-border);
+  border-radius: var(--utui-field-radius);
+  background: var(--utui-field-bg);
+  color: var(--utui-color-icon-default);
+  box-shadow: var(--utui-field-shadow);
+  font: inherit;
+  text-align: start;
+}
+
+/* The `:has()` half is what covers the typed types: their shell is a <div>, and
+   `:not(:disabled)` is always true on a <div>, so a disabled Search or Tags box
+   used to step its border under the pointer.
+
+   Both guards are wrapped in `:where()`, which contributes NO specificity. Without
+   it this selector is (0,4,0) and outranks `.select--open > .select__control`
+   (0,2,0) — measured: an open menu under the pointer showed the hover grey instead
+   of the brand rim. A guard must not be able to outrank a state. */
+.select__control:hover:where(:not(:disabled)):where(:not(:has(.select__input:disabled))) {
+  border-color: var(--utui-field-border-hover);
+}
+
+/* Open and focused are ONE treatment in the frame — a 2px Brand/300 rim, with no
+   4px halo. That is a deliberate difference from `.form-field__control`, which
+   adds --utui-field-focus-shadow: this control's menu is the thing that says it
+   is open, and a halo under an open 320px menu reads as two overlapping cards.
+
+   The second pixel is an INSET shadow rather than a 2px border, so the value
+   text does not jump 1px inward the moment the menu opens. `:focus-visible`
+   covers the <button> trigger, `:focus-within` the typed variants (the input is
+   what takes focus there), and `.select--open` keeps the rim while the pointer
+   drives the menu and focus is on a row rather than the control.
+
+   base.css puts --app-focus on `button:focus-visible`; it is overridden here
+   because that ring is the generic one and this control's rim is drawn. */
+.select__control:has(.select__input:focus),
+.select--open > .select__control {
+  border-color: var(--utui-select-border-open);
+  outline: none;
+  box-shadow:
+    inset 0 0 0 1px var(--utui-select-border-open),
+    var(--utui-field-shadow);
+}
+
+/* KEYBOARD focus is a stronger rim than the frame's, and this is a deliberate
+   departure. Brand/300 `#d9b287` on a white field measures 1.97:1 — WCAG 2.1
+   SC 1.4.11 asks 3:1 of a focus indicator, and this control dropped the 4px halo
+   `.form-field__control` carries, so the rim is the whole indicator. Brand/600
+   is the same hue at 5.83:1.
+
+   The frame's own rim is kept for the states a designer drew it for: the open
+   menu, and the pointer. `:focus-visible` is exactly the split — it matches a Tab
+   and not a click. Recorded in design-system/components/select.md. */
+.select__control:focus-visible,
+.select__control:has(.select__input:focus-visible) {
+  border-color: var(--utui-select-border-focus);
+  outline: none;
+  box-shadow:
+    inset 0 0 0 1px var(--utui-select-border-focus),
+    var(--utui-field-shadow);
+}
+
+.select__input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Disabled. The frame fills Gray/50 and keeps the 1px rim; the package's
+   --utui-field-bg-disabled (Neutral/100) is one step darker and is the fill
+   every other disabled control in the package already uses, so it is used here
+   too rather than pinning a second disabled grey. Recorded in
+   design-system/components/select.md.
+
+   `:has()` is what lets one rule cover both trigger shapes: the button IS the
+   control and takes `:disabled` itself, while the typed variants hold a disabled
+   input inside a <div> that cannot. */
+/* SPLIT from the `:has()` rule below on purpose. A selector list is invalid as a
+   whole if any selector in it is unsupported, so pairing them would mean an engine
+   without `:has()` losing the disabled fill on the BUTTON trigger too — the half
+   that never needed `:has()`. */
+.select__control:disabled {
+  background: var(--utui-field-bg-disabled);
+  color: var(--utui-color-icon-muted);
+  cursor: not-allowed;
+}
+
+.select__control:has(.select__input:disabled) {
+  background: var(--utui-field-bg-disabled);
+  color: var(--utui-color-icon-muted);
+  cursor: not-allowed;
+}
+
+.select__control:disabled .select__value {
+  color: var(--utui-select-text-disabled);
+}
+
+.select__control:has(.select__input:disabled) .select__input {
+  color: var(--utui-select-text-disabled);
+}
+
+/* --- Inside a table cell (`.select--cell`) ------------------
+   The cell atom is a SMALLER box than the form control: 8px/12px padding and no
+   44px floor, per the `Input field` instance inside `Table cell` `1222:107305`
+   (see design-system/components/data-table.md, which records the same sync for
+   `.cell-input`). Only the box changes — the menu, the rows, the tick and every
+   behaviour are the component's.
+
+   `min-height` is dropped rather than lowered: the cell's own row height is what
+   sets the rhythm there, and a floor inside a 72px row is a second opinion about
+   it. The focus rim keeps this component's Brand/600, which is also what the
+   cell's native controls already draw (`--utui-color-border-brand`). */
+.select--cell > .select__control {
+  min-height: 0;
+  padding: var(--utui-table-cell-input-padding-y) var(--utui-table-cell-input-padding-x);
+  border-radius: var(--utui-table-cell-input-radius);
+}
+
+/* Cell value pins 14/20 itself so it never depends on the field token. */
+.select--cell .select__value {
+  font-size: var(--utui-font-size-text-sm);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+/* Error state. The frame draws none for this control — `.form-field__control--error`
+   is the field's, and a `.select` is its own shell, so the same treatment is
+   restated here rather than borrowed by class. Built because a required combobox
+   has to be able to say it is empty: `[data-select-required]` fields are swept by
+   the screens' validators, which paint this class alongside the message row and
+   `aria-invalid`.
+
+   The rim is the weakest of the three signals, as in ./form-field.css: the text
+   under the field carries the words, the glyph carries a shape. Declared after the
+   hover and focus rules so an errored field keeps its red rim while it is focused,
+   instead of the focus ring quietly reporting that the problem is gone. */
+.select__control--error,
+.select__control--error:hover {
+  border-color: var(--utui-field-border-error);
+}
+
+.select__control--error:focus-visible,
+.select__control--error:has(.select__input:focus),
+.select--open > .select__control--error {
+  border-color: var(--utui-field-border-error);
+  box-shadow:
+    inset 0 0 0 1px var(--utui-field-border-error),
+    var(--utui-field-shadow);
+}
+
+/* A cell trigger in error carries a 20px glyph (data-table.css) left of the chevron; keep the value clear of it. */
+.select--cell > .select__control--error .select__value {
+  margin-right: calc(20px + var(--utui-spacing-02));
+}
+
+/* --- Value row ----------------------------------------------
+   One line, ellipsised. The row is filled by ../scripts/select.js, which clones
+   the chosen option's `.select__option-body` into it — so a leading avatar or
+   dot is authored ONCE, in the option, and the trigger cannot show a different
+   mark from the row it came from. */
+.select__value {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--utui-field-gap);
+  min-width: 0;
+  overflow: hidden;
+  color: var(--utui-field-text);
+  font-size: var(--utui-field-font-size);
+  line-height: var(--utui-field-line-height);
+  white-space: nowrap;
+}
+
+.select__value > * {
+  flex-shrink: 0;
+}
+
+/* The label is the one part allowed to shrink, so a long name truncates and the
+   handle, the dot and the tick stay whole. */
+.select__label {
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The `@olivia` beside the name. Secondary, never the only copy of the value:
+   the label carries the name a user is looking for. */
+.select__support {
+  color: var(--utui-select-support-text);
+}
+
+/* Nothing chosen yet (state=Placeholder). Text colour only — the box does not
+   change, because an empty select is not an error. */
+.select__placeholder {
+  overflow: hidden;
+  color: var(--utui-field-placeholder);
+  text-overflow: ellipsis;
+}
+
+/* --- Leading marks ------------------------------------------
+   Three types differ only by what sits at the head of the row, so each is a slot
+   rather than a variant of the whole control. All three are decoration: the
+   label beside them says the same thing in words. */
+
+/* type=Icon leading, and the magnifier of type=Search. */
+.select__lead {
+  flex-shrink: 0;
+  color: var(--utui-color-icon-default);
+  font-size: var(--utui-select-lead-size);
+}
+
+/* type=Avatar leading. The consumer drops a `.avatar.avatar--xs` in the slot —
+   24px is the avatar set's own smallest step and exactly what the frame draws,
+   so there is no select-specific avatar.
+
+   `--avatar-size` and not `width`/`height`: ../styles/avatar.css derives the
+   photo, the initials, the placeholder glyph, the online indicator and the
+   company mark from that one variable, so overriding the box alone left a 24px
+   circle with a 24px glyph inside it and md-sized initials. The size class stays
+   the contract — this is the belt for a consumer who forgets it. */
+.select__value > .avatar {
+  --avatar-size: var(--utui-select-avatar-size);
+  --avatar-font-size: var(--utui-font-size-text-xs);
+  --avatar-line-height: var(--utui-line-height-text-xs);
+  --avatar-icon-size: var(--utui-avatar-icon-size-xs);
+  --avatar-indicator-size: var(--utui-avatar-indicator-size-xs);
+  --avatar-company-size: var(--utui-avatar-company-size-xs);
+}
+
+/* type=Dot leading. Same 8px dot `.form-field__dot` draws, and the same rule
+   about it: the tone qualifies a value the text already states. Tones are added
+   per frame, not pre-invented — see ./form-field.css. */
+.select__dot {
+  flex-shrink: 0;
+  width: var(--utui-select-dot-size);
+  height: var(--utui-select-dot-size);
+  border-radius: var(--app-radius-pill);
+  /* The untoned dot is MUTED, not inherited: `currentcolor` alone would take the
+     option row's text colour and paint a near-black disc that reads as a bullet
+     rather than a status. `Ngừng hoạt động` on `Tạo dự án mới` is the first
+     consumer of the untoned dot and that is exactly what it wants — a state with
+     no tone is not a state with no dot, because then the rows would not line up. */
+  color: var(--utui-color-icon-muted);
+  background: currentcolor;
+}
+
+.select__dot--success {
+  color: var(--utui-field-dot-success);
+}
+
+/* --- Trailing controls --------------------------------------
+   The chevron is decoration on a control whose `aria-expanded` already reports
+   the state, so it is aria-hidden and it does not rotate: the frame draws the
+   same downward glyph open and closed. */
+.select__chevron {
+  flex-shrink: 0;
+  color: var(--utui-color-icon-default);
+  font-size: var(--utui-select-lead-size);
+}
+
+/* `×` on the typed variants — clears the query, and on type=Tags every chip with
+   it. A real <button> with a real name, because it is the only way back to an
+   empty control for a keyboard: the chips' own remove buttons clear one each.
+   It is hidden while the control is empty, so it never offers to clear nothing. */
+.select__clear {
+  position: relative;
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  /* Its own token, not `--utui-select-lead-size`: that one sizes the LEADING
+     glyph, and a component where changing the search icon resizes the clear
+     button is a component with one token doing two jobs. */
+  width: var(--utui-select-clear-size);
+  height: var(--utui-select-clear-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--utui-radius-sm);
+  background: transparent;
+  color: var(--utui-color-icon-default);
+  cursor: pointer;
+}
+
+.select__clear[hidden] {
+  display: none;
+}
+
+.select__clear:hover:not(:disabled) {
+  color: var(--utui-field-text);
+}
+
+.select__clear:disabled {
+  cursor: not-allowed;
+}
+
+/* A disabled Tags control offers no way to edit: no remove, no clear-all, no search glyph inviting a query. */
+.select__tag-remove:disabled,
+.select__clear:disabled,
+.select__control--tags:has(.select__input:disabled) > .select__lead {
+  display: none;
+}
+
+.select__clear .material-symbols-outlined {
+  font-size: var(--utui-select-clear-glyph);
+}
+
+/* --- Typed variants (type=Search, type=Tags) ----------------
+   The input is bare: the shell above owns the border, the fill and the rim, so a
+   second box inside it would draw a field in a field. Same arrangement
+   ./form-field.css uses for the controls inside `.form-field__control`. */
+.select__input {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--utui-field-text);
+  font: inherit;
+  font-size: var(--utui-field-font-size);
+  line-height: var(--utui-field-line-height);
+}
+
+.select__input::placeholder {
+  color: var(--utui-field-placeholder);
+}
+
+/* The UA's own clear button would sit beside `.select__clear`. Blink/WebKit
+   only, as in ./form-field.css. */
+.select__input[type="search"]::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+/* --- Tags (type=Tags) --------------------------------------- */
+
+/* ONE ROW, AND CHIPS THAT DO NOT FIT COLLAPSE INTO `+N` — the set's own answer
+   (`Type=Tags, State=Default`, 9825:60087: magnifier, three chips, `+4`, then
+   the clear-all, all inside 44px). This control wrapped instead until
+   2026-09-22, on the reasoning that a row which refuses to wrap either clips a
+   chosen value or scrolls sideways, and both hide a selection the user made.
+   `+N` hides neither: the count says how many are folded, the values stay in the
+   model and stay ticked in the menu, and ../scripts/select.js names them on the
+   chip.
+
+   `overflow: hidden` is load-bearing, not cosmetic: it is what makes
+   `scrollWidth` report the row's true content width, which is how the script
+   decides how many chips fit. It does not clip the focus ring — an outline
+   paints outside the padding box — and the menu is `position: fixed`. */
+.select__control--tags {
+  flex-wrap: nowrap;
+  overflow: hidden;
+  /* 6px, the frame's chip gap. It applies to EVERY gap in this control, not only
+     between chips — `.select__tags` is `display: contents`, so the magnifier, the
+     chips, the query and the clear button are all items of this one flex box. The
+     frame draws 8px from the magnifier to the first chip and 6px between chips;
+     one flex `gap` cannot be both, and 6px is the one that repeats.
+   * Block padding is 4px rather than the frame's 10px: this control WRAPS, which
+     the frame never draws, and 10px on a three-line box is 20px of dead height
+     inside a form. The single-line control is still 44px, so the divergence is
+     invisible until it wraps. Recorded in design-system/components/select.md. */
+  gap: var(--utui-select-tag-gap);
+  padding-block: var(--utui-spacing-01);
+}
+
+/* The query takes what is left of the row, and asks for nothing while there are
+   chips: the set draws no query text beside chips at all, and a floor that
+   applies there is exactly what used to push the row into a second line. */
+.select__control--tags .select__input {
+  flex: 1 1 0;
+  min-inline-size: 0;
+}
+
+/* THE FLOOR STILL APPLIES IN THE TWO STATES THAT NEED IT — an empty control,
+   where the placeholder is the whole content (`Type=Tags, State=Placeholder`,
+   9825:60123), and a control the user is typing into, where a query squeezed to
+   a few pixels is unreadable. `ch` because the floor is about how much of the
+   query stays legible, not about a pixel.
+
+   Asking for the floor while typing is what makes chips fold as the user starts
+   a query and unfold when they leave: ../scripts/select.js re-runs its fit pass
+   on focus and blur, and the floor is what it has to make room for. */
+.select__control--tags:not(:has(.select__tag:not([hidden]))) .select__input,
+.select--querying .select__control--tags .select__input {
+  min-inline-size: var(--utui-select-query-min-width);
+}
+
+/* Neither a chip nor the `+N` chip may be squeezed: a chip narrower than its own
+   text is a value the user cannot read, which is the thing folding exists to
+   avoid. */
+.select__control--tags .select__tag {
+  flex-shrink: 0;
+}
+
+/* `+N`. A chip with no avatar and no remove control — it stands for the values
+   the row could not fit, so there is nothing on it to remove. It is ordered last
+   among the chips by the script, which appends it after them. */
+.select__tag--more {
+  font-variant-numeric: tabular-nums;
+}
+
+/* `display: contents`, so the chips are flex items of the CONTROL rather than of
+   a box inside it. That is what lets one wrapping row read
+   `glyph | chip | chip | query | ×`, with the magnifier staying on the first line
+   and the clear button on the last — the arrangement the frame draws. A nested
+   flex list cannot do it: the list box is one unshrinkable item, so it drops to a
+   line of its own the moment the chips outgrow the space beside the input.
+
+   `display: contents` strips the implicit list semantics in every engine, so
+   ../scripts/select.js writes `role="list"` here and `role="listitem"` on each
+   chip. Explicit roles survive it; the implicit ones do not. */
+.select__tags {
+  display: contents;
+}
+
+/* `[hidden]` FIRST, and it has to be declared: the author `display` below beats
+   the UA's `[hidden] { display: none }`, so a folded chip would stay painted and
+   keep its width — which is the one thing fitTags() depends on not happening.
+   The same trap `../styles/modal.css` records for `.modal[hidden]`. */
+.select__tag[hidden] {
+  display: none;
+}
+
+.select__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--utui-select-tag-inner-gap);
+  padding: var(--utui-select-tag-padding);
+  border: 1px solid var(--utui-select-tag-border);
+  border-radius: var(--utui-select-tag-radius);
+  background: var(--utui-select-tag-bg);
+  color: var(--utui-select-tag-text);
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-medium);
+  line-height: var(--utui-line-height-text-sm);
+  white-space: nowrap;
+}
+
+.select__tag-body {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--utui-select-tag-body-gap);
+  min-width: 0;
+}
+
+/* 16px, below the avatar set's 24px floor, so the chip sizes the avatar down
+   rather than the set gaining a step no other component asks for. Driven through
+   the set's own variables for the same reason as the value row above. */
+.select__tag .avatar {
+  --avatar-size: var(--utui-select-tag-avatar-size);
+  --avatar-font-size: var(--utui-select-tag-avatar-font-size);
+  --avatar-line-height: var(--utui-select-tag-avatar-font-size);
+  --avatar-icon-size: var(--utui-select-tag-avatar-size);
+  --avatar-indicator-size: var(--utui-select-tag-avatar-indicator-size);
+  --avatar-company-size: var(--utui-select-tag-avatar-indicator-size);
+}
+
+.select__tag-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Removes one value. Named for the value it removes — `Xoá Olivia`, not
+   `Xoá` — because a screen reader reads these buttons out of context, in a row
+   of near-identical siblings. ../scripts/select.js writes that name. */
+.select__tag-remove {
+  /* `position: relative` for the coarse-pointer hit area ../styles/responsive.css
+     hangs off it — the same arrangement `.search-field__clear` uses. */
+  position: relative;
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: var(--utui-select-tag-remove-size);
+  height: var(--utui-select-tag-remove-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--utui-select-tag-remove-radius);
+  background: transparent;
+  color: var(--utui-color-icon-default);
+  cursor: pointer;
+}
+
+.select__tag-remove:disabled {
+  cursor: not-allowed;
+}
+
+.select__tag-remove:hover:not(:disabled) {
+  background: var(--utui-color-bg-surface-hover);
+  color: var(--utui-field-text);
+}
+
+.select__tag-remove .material-symbols-outlined {
+  font-size: var(--utui-select-tag-remove-glyph);
+}
+
+/* --- Menu ---------------------------------------------------
+   4px under the trigger, exactly as wide as it, and never taller than the
+   frame's 320px. `hidden` is what closes it, so a closed menu is out of the tab
+   order and out of the accessibility tree — not merely invisible.
+
+   `fixed`, and PLACED BY ../scripts/select.js — top, left and width are inline
+   styles, which is why nothing here positions it. It was `absolute` until
+   2026-08-20, on the reasoning that a menu exactly as wide as its trigger cannot
+   contribute page overflow the way ./filter-panel.css's 698px panel would. True,
+   and beside the point: an absolutely positioned menu is CLIPPED by any ancestor
+   with `overflow`, and the first modal consumer proved it — the `Trạng thái`
+   field is the last one in the `Thông tin đự án` dialog, whose `.modal__body`
+   scrolls, so the open list was cut off 4px below the trigger. A fixed box is
+   clipped by nothing (no ancestor of a `.select` in this package establishes a
+   containing block for it), and it costs a reposition on scroll and resize —
+   the same deal `.filter-panel` and `.row-menu` already take. */
+.select__menu {
+  position: fixed;
+  z-index: var(--utui-select-menu-z);
+  max-block-size: var(--utui-select-menu-max-height);
+  margin: 0;
+  padding: var(--utui-select-menu-padding-block) 0;
+  overflow-y: auto;
+  border: 1px solid var(--utui-select-menu-border);
+  border-radius: var(--utui-select-menu-radius);
+  background: var(--utui-color-bg-surface);
+  box-shadow: var(--utui-select-menu-shadow);
+  list-style: none;
+  /* The frame draws a custom 8px bar. The native one is kept: it is the only
+     scroll affordance that reports position without a script, and no other
+     scroll region in this package restyles it either. */
+}
+
+.select__menu[hidden] {
+  display: none;
+}
+
+/* `[data-placement]` on the container records which side the script put the menu
+   on — `below` normally, `above` when the room under the trigger has run out. It
+   carries no style: the placement itself is the inline `top` the script writes.
+   It is in the DOM so a test, a review or a future flip-specific treatment has
+   something to read. */
+
+/* --- Option -------------------------------------------------
+   The row is padded inline so its tinted body stops short of the menu's edge, as
+   the frame draws it — 6px, the frame's own value, which is off the 4/8/12 spacing
+   ladder and therefore a pinned literal in the token block. It read 4px until
+   2026-08-20, with a comment beside it claiming the frame drew 6. */
+.select__option {
+  display: flex;
+  align-items: center;
+  gap: var(--utui-field-gap);
+  padding: 1px var(--utui-select-option-gutter);
+  cursor: pointer;
+}
+
+.select__option[hidden] {
+  display: none;
+}
+
+.select__option-body {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--utui-field-gap);
+  min-width: 0;
+  padding: var(--utui-select-option-padding-y) var(--utui-select-option-padding-end)
+    var(--utui-select-option-padding-y) var(--utui-select-option-padding-start);
+  border-radius: var(--utui-select-option-radius);
+  color: var(--utui-field-text);
+  font-size: var(--utui-font-size-text-md);
+  line-height: var(--utui-line-height-text-md);
+  white-space: nowrap;
+}
+
+.select__option-body > * {
+  flex-shrink: 0;
+}
+
+.select__option-text {
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* With a support line the name never truncates; the support line gives way first. */
+.select__option-body:has(.select__option-support) .select__option-text {
+  flex-shrink: 0;
+}
+
+.select__option-support {
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--utui-select-support-text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* One highlight, two ways in. `data-active` is the KEYBOARD's position — the row
+   `aria-activedescendant` points at — and hover is the pointer's; the frame
+   draws the same Gray/50 tint for both and there is never more than one active
+   row, so they cannot both paint. Focus never leaves the control, so `:focus`
+   plays no part in this. */
+.select__option[data-active] > .select__option-body,
+.select__option:hover > .select__option-body {
+  background: var(--utui-select-option-bg-active);
+}
+
+/* The tick on the chosen row, drawn rather than set as a glyph — same reason
+   `.choice` in ./form-field.css draws its own: the icon font comes from a CDN,
+   and a list that shows no tick until a webfont arrives is a list that misreports
+   which row is selected. Two borders rotated 45° is the whole mark.
+
+   It hangs off `aria-selected`, so there is no class to forget and no way for the
+   mark and the announced state to disagree. */
+.select__option[aria-selected="true"] > .select__option-body::after {
+  flex-shrink: 0;
+  margin-inline-start: auto;
+  border: solid var(--utui-select-check-color);
+  border-width: var(--utui-select-check-stroke);
+  block-size: var(--utui-select-check-height);
+  content: "";
+  inline-size: var(--utui-select-check-width);
+  transform: translateY(-2px) rotate(45deg);
+}
+
+/* Disabled option. Still announced and still in the list — a row a user cannot
+   pick is information, so it is not removed. */
+.select__option[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+.select__option[aria-disabled="true"] > .select__option-body {
+  color: var(--utui-field-placeholder);
+}
+
+.select__option[aria-disabled="true"]:hover > .select__option-body {
+  background: transparent;
+}
+
+/* Nothing matched the typed query. A row, not an empty box: the menu stays open
+   and says why it is empty. Authored once in the markup and unhidden by
+   ../scripts/select.js, so its text is the screen's own words. */
+.select__empty {
+  padding: var(--utui-select-option-padding-y) var(--utui-spacing-03);
+  color: var(--utui-color-text-secondary);
+  font-size: var(--utui-font-size-text-sm);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+.select__empty[hidden] {
+  display: none;
+}

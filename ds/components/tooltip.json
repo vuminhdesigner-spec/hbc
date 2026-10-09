@@ -1,0 +1,51 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component tooltip. Hướng dẫn dùng nằm ở tooltip.md.",
+  "name": "tooltip",
+  "block": ".tooltip",
+  "sources": {
+    "stylesheet": "ds/styles/tooltip.css",
+    "contract": "ds/components/tooltip.md"
+  },
+  "api": {
+    "modifiers": [
+      ".tooltip--bottom",
+      ".tooltip--end",
+      ".tooltip--start"
+    ],
+    "parts": [
+      ".tooltip__arrow",
+      ".tooltip__text"
+    ],
+    "stateClasses": [],
+    "pseudoStates": [],
+    "attributes": [
+      "[data-tooltip-overflow]",
+      "[data-tooltip-place]",
+      "[data-tooltip]",
+      "[hidden]",
+      "[role=tooltip]"
+    ]
+  },
+  "tokens": [
+    "--utui-tooltip-arrow-inset",
+    "--utui-tooltip-arrow-width",
+    "--utui-tooltip-bg",
+    "--utui-tooltip-max-width",
+    "--utui-tooltip-offset",
+    "--utui-tooltip-padding-x",
+    "--utui-tooltip-padding-y",
+    "--utui-tooltip-radius",
+    "--utui-tooltip-shadow",
+    "--utui-tooltip-text",
+    "--utui-tooltip-z",
+    "--utui-font-family-body",
+    "--utui-font-size-text-xs",
+    "--utui-font-weight-semibold",
+    "--utui-line-height-text-xs"
+  ],
+  "breakpoints": [],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

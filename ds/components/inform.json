@@ -1,0 +1,78 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Viết tay. Hướng dẫn dùng nằm ở inform.md.",
+  "name": "inform",
+  "block": ".inform",
+  "sources": {
+    "stylesheet": "ds/styles/inform.css",
+    "contract": "ds/components/inform.md"
+  },
+  "api": {
+    "modifiers": [
+      ".inform--brand",
+      ".inform--error",
+      ".inform--success",
+      ".inform--warning"
+    ],
+    "parts": [
+      ".inform__actions",
+      ".inform__close",
+      ".inform__content",
+      ".inform__icon",
+      ".inform__supporting",
+      ".inform__text",
+      ".inform__title"
+    ],
+    "stateClasses": [],
+    "pseudoStates": [
+      ":hover"
+    ],
+    "attributes": []
+  },
+  "tokens": [
+    "--utui-color-bg-brand-subtle",
+    "--utui-color-bg-error-subtle",
+    "--utui-color-bg-success-subtle",
+    "--utui-color-bg-surface-hover",
+    "--utui-color-bg-surface-subtle",
+    "--utui-color-bg-warning-subtle",
+    "--utui-color-icon-brand",
+    "--utui-color-icon-default",
+    "--utui-color-icon-error",
+    "--utui-color-icon-strong",
+    "--utui-color-icon-success",
+    "--utui-color-icon-warning",
+    "--utui-color-text-primary",
+    "--utui-color-text-secondary",
+    "--utui-font-size-text-sm",
+    "--utui-font-weight-regular",
+    "--utui-font-weight-semibold",
+    "--utui-inform-bg",
+    "--utui-inform-bg-brand",
+    "--utui-inform-bg-error",
+    "--utui-inform-bg-success",
+    "--utui-inform-bg-warning",
+    "--utui-inform-close-inset",
+    "--utui-inform-close-size",
+    "--utui-inform-content-gap",
+    "--utui-inform-gap",
+    "--utui-inform-icon",
+    "--utui-inform-icon-brand",
+    "--utui-inform-icon-error",
+    "--utui-inform-icon-size",
+    "--utui-inform-icon-success",
+    "--utui-inform-icon-warning",
+    "--utui-inform-padding",
+    "--utui-inform-radius",
+    "--utui-inform-supporting",
+    "--utui-inform-text-gap",
+    "--utui-inform-title",
+    "--utui-line-height-text-sm",
+    "--utui-spacing-04",
+    "--utui-spacing-08"
+  ],
+  "breakpoints": [],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component attachment. Hướng dẫn dùng nằm ở attachment.md.",
+  "name": "attachment",
+  "block": ".attachment-pane",
+  "sources": {
+    "stylesheet": "ds/styles/attachment.css",
+    "contract": "ds/components/attachment.md"
+  },
+  "api": {
+    "modifiers": [
+      ".attachment-pane--bare"
+    ],
+    "parts": [
+      ".attachment-pane__body",
+      ".attachment-pane__collapse",
+      ".attachment-pane__expand",
+      ".attachment-pane__file",
+      ".attachment-pane__footer",
+      ".attachment-pane__header",
+      ".attachment-pane__heading",
+      ".attachment-pane__icon",
+      ".attachment-pane__lead",
+      ".attachment-pane__page",
+      ".attachment-pane__pager",
+      ".attachment-pane__title"
+    ],
+    "stateClasses": [
+      ".is-collapsed"
+    ],
+    "pseudoStates": [
+      ":focus-visible",
+      ":hover"
+    ],
+    "attributes": [
+      "[hidden]"
+    ]
+  },
+  "tokens": [
+    "--utui-attachment-bar-gap",
+    "--utui-attachment-bg",
+    "--utui-attachment-collapse-height",
+    "--utui-attachment-collapse-padding-x",
+    "--utui-attachment-collapse-text",
+    "--utui-attachment-expand-size",
+    "--utui-attachment-footer-gap",
+    "--utui-attachment-icon-ring",
+    "--utui-attachment-lead-gap",
+    "--utui-attachment-padding",
+    "--utui-attachment-page-radius",
+    "--utui-attachment-page-size",
+    "--utui-attachment-radius",
+    "--utui-attachment-shadow",
+    "--utui-attachment-supporting-text",
+    "--utui-attachment-text-gap",
+    "--utui-color-bg-surface-hover",
+    "--utui-font-size-text-lg",
+    "--utui-font-size-text-sm",
+    "--utui-font-weight-semibold",
+    "--utui-line-height-text-lg",
+    "--utui-line-height-text-sm",
+    "--utui-spacing-02"
+  ],
+  "breakpoints": [],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

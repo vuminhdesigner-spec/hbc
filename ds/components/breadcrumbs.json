@@ -1,0 +1,42 @@
+{
+  "$schema": "https://design-system.local/component.schema.json",
+  "$description": "Registry của component breadcrumbs. Hướng dẫn dùng nằm ở breadcrumbs.md.",
+  "name": "breadcrumbs",
+  "block": ".breadcrumbs",
+  "sources": {
+    "stylesheet": "ds/styles/breadcrumbs.css",
+    "contract": "ds/components/breadcrumbs.md"
+  },
+  "api": {
+    "modifiers": [],
+    "parts": [
+      ".breadcrumbs__current",
+      ".breadcrumbs__item",
+      ".breadcrumbs__label-hidden",
+      ".breadcrumbs__link",
+      ".breadcrumbs__list",
+      ".breadcrumbs__separator"
+    ],
+    "stateClasses": [],
+    "pseudoStates": [
+      ":hover"
+    ],
+    "attributes": []
+  },
+  "tokens": [
+    "--utui-breadcrumbs-gap",
+    "--utui-breadcrumbs-separator-size",
+    "--utui-breadcrumbs-text",
+    "--utui-breadcrumbs-text-current",
+    "--utui-font-size-text-sm",
+    "--utui-font-weight-medium",
+    "--utui-font-weight-semibold",
+    "--utui-line-height-text-sm",
+    "--utui-radius-sm",
+    "--utui-spacing-02"
+  ],
+  "breakpoints": [],
+  "audit": {
+    "hardcodedColors": []
+  }
+}

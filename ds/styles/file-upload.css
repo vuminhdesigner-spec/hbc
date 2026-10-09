@@ -1,0 +1,391 @@
+/* file-upload.css — see design-system/components/file-upload.md
+   The upload surface of `Tải lên hồ sơ` (MDM V2, tS8dUB2qWLc28gZbtj8IIL,
+   nodes 11420:76339 = empty and 11420:76690 = a file chosen).
+
+   First implementation of the Untitled UI `File upload` dropzone in this
+   package: design-system/components/attachment-list.md documents the same source component
+   with its dropzone switched OFF and records the absence of this one.
+
+   One block, two states. `.file-upload` is the bordered pane; `.is-filled`
+   swaps which child is painted, so the markup for both states lives in the
+   document once and the JS toggles a class rather than rebuilding a subtree.
+   No values are hard-coded where a token exists; the pane's own size is
+   composition and belongs to the screen that places it. */
+
+.file-upload {
+  position: relative;
+  display: grid;
+  /* The dropzone is centred in the empty state and the preview fills the pane
+     in the filled one, so the single grid cell is stretched and the dropzone
+     centres itself (below) instead of the pane centring its child.
+     minmax(0, 1fr), not the implicit auto column: an auto column is sized to its
+     content, so a long file name in the caption would widen the cell past the
+     pane and be clipped by `overflow: hidden` instead of ellipsised. */
+  grid-template-columns: minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--app-border);
+  /* 12px and WHITE since 2026-09-22, read off the DS component set itself
+     (OMEU DS V2 `SFo9P9PCVQiuOk2SqjZYKQ`, `File upload` 9826:63774 →
+     `_File upload base` 9826:63790): `bg-white`, `border 1px #E4E7EC`,
+     `rounded-[12px]`. Both values were 16px/#F5F5F5 here until that read, taken
+     from the MDM product nodes this contract cites — and those three nodes no
+     longer resolve in `tS8dUB2qWLc28gZbtj8IIL`, so the DS set is now the only
+     readable source for them. The fill and the tile below were INVERTED against
+     it: grey pane with a white tile, where the set draws a white pane with a
+     grey tile. Changed at the requester's explicit direction; see
+     design-system/components/file-upload.md, revision 2026-09-22.
+
+     The border stays `--app-border` (#E5E5E5) rather than the set's #E4E7EC —
+     the same decision ./attachment-list.css already records for the same stroke
+     on the same frame: one border token, not a second Gray-ramp literal. */
+  border-radius: var(--utui-radius-lg);
+  background: var(--utui-color-bg-surface);
+}
+
+/* Fill: the pane takes the rest of a flex-column parent (a large drop target, as in Drive/Dropbox) and the dropzone content centres in it. The parent must be a flex column with a definite height; with no room it keeps the floor token. */
+.file-upload--fill {
+  flex: 1 1 auto;
+  min-block-size: var(--utui-file-upload-fill-min-block-size);
+  /* Dashed rim marks a drop target (USER DECISION 2026-10); the error rule below keeps it and only recolours. */
+  border-style: dashed;
+  border-color: var(--utui-file-upload-fill-border);
+}
+
+/* display:grid above beats the UA [hidden] rule — restate it. */
+.file-upload[hidden] {
+  display: none;
+}
+
+/* Hover (State A only): grey fill, dashed rim unchanged; the tile moves to white so it does not vanish on the same neutral-100 (USER DECISION 2026-10-06). */
+.file-upload:not(.is-filled):not(.is-unsupported):hover {
+  background: var(--utui-file-upload-hover-bg);
+}
+
+.file-upload:not(.is-filled):not(.is-unsupported):not(.is-dragover):hover .file-upload__tile {
+  background: var(--utui-file-upload-hover-tile-bg);
+}
+
+/* Drag-over (Figma _File upload base State=Drag-over 9826:63648): white fill, solid 2px brand rim (inset ring, no layout shift); outranks the error rim below (USER DECISION 2026-10-06). */
+.file-upload:not(.is-filled):not(.is-unsupported).is-dragover {
+  border-style: solid;
+  border-color: var(--utui-file-upload-dragover-border);
+  background: var(--utui-color-bg-surface);
+  box-shadow: inset 0 0 0 1px var(--utui-file-upload-dragover-border);
+}
+
+/* Whole dropzone opens the picker (script forwards to the trigger); keyboard still uses the button only. */
+.file-upload__dropzone {
+  cursor: pointer;
+}
+
+/* Error state — an empty pane blocking a save. The pane IS the control, so the
+   consumer puts the shared `.form-field__control--error` on it
+   (design-system/components/inputs.md). This rule exists because file-upload.css is
+   imported after form-field.css and the `border` shorthand above wins at equal
+   specificity, so the shared rule's `border-color` alone cannot repaint the rim.
+   Declared here rather than won from a screen file, which would need a doubled
+   selector or a component declaration inside a screen bundle — both forbidden.
+   First consumer: `setUploadError()` in screens/du-an/ho-so/tai-len.js. */
+.file-upload.form-field__control--error,
+.file-upload.form-field__control--error:hover {
+  border-color: var(--utui-field-border-error);
+}
+
+/* Live region for the A→B swap. Visually hidden, never a layout participant:
+   `position: absolute` takes it out of the single-cell grid, so adding it did not
+   give the pane a second row. It sits outside both states on purpose — a live
+   region has to be rendered *before* its text arrives, and the caption that names
+   the file is inside a subtree that was `display: none` until the same frame.
+   Not `display: none` and not `hidden`, either: both remove the node from the
+   accessibility tree, which is the failure this part exists to fix. */
+.file-upload__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- State A: nothing chosen yet ---------------------------- */
+
+/* 16px / 24px and a 4px base gap, per `_File upload base` (9826:63790): the set
+   draws `px-[24px] py-[16px]`, 12px between the icon tile and the text block and
+   4px inside that block. The 12px is spent as this 4px gap plus the tile's own
+   8px margin below, because the three parts are one flat grid rather than a
+   nested text block — see `.file-upload__tile`. */
+.file-upload__dropzone {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--utui-spacing-01);
+  padding: var(--utui-spacing-04) var(--utui-spacing-06);
+  text-align: center;
+}
+
+/* A 40px GREY DISC, not the white bordered square this was until 2026-09-22.
+   `_File upload base` (9826:63790) draws `Featured icon` as `p-[10px]` around a
+   20px glyph on `Neutral/100` with `rounded-[20px]` — i.e. a 40px pill-radius
+   chip, no border and no shadow. The white-square-with-shadow reading came from
+   the product nodes that no longer resolve; see the note on `.file-upload` and
+   design-system/components/file-upload.md, revision 2026-09-22.
+
+   `margin-bottom` is 8px so the gap to the prompt is 12px on the dropzone's 4px
+   base gap — the set's `gap-[12px]` between the tile and the text block. The
+   glyph keeps `--utui-color-icon-default` (Neutral/500): the set paints it from
+   the Gray ramp (#475467), which is the SAME ramp divergence
+   design-system/components/data-table.md records as its divergence 4 and decides
+   in the Neutral ramp's favour. Not re-litigated here. */
+.file-upload__tile {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: var(--utui-spacing-02);
+  border-radius: var(--utui-radius-pill);
+  background: var(--utui-color-bg-surface-subtle);
+  color: var(--utui-color-icon-default);
+}
+
+/* `Tải lên hoặc kéo thả tài liệu vào đây`. Only the first two words are the
+   control; the rest is prose, so the row is inline text and not a flex row —
+   it has to be able to wrap mid-sentence in a narrow pane. */
+.file-upload__prompt {
+  margin: 0;
+  color: var(--app-text-muted);
+  font-size: var(--utui-font-size-text-sm);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+/* The trigger is a real <button> composed from design-system/components/button.md
+   Hierarchy=Link color; only the semibold weight is added here, because the
+   word carries the affordance inside a sentence. */
+.file-upload__trigger {
+  font-weight: var(--utui-font-weight-semibold);
+}
+
+.file-upload__hint {
+  margin: 0;
+  color: var(--app-text-subtle);
+  font-size: var(--utui-font-size-text-xs);
+  line-height: var(--utui-line-height-text-xs);
+}
+
+/* Optional link at the end of the hint (e.g. "Tải tệp mẫu"); takes the hint's size, stays inline. */
+.file-upload__hint-action {
+  display: inline;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* --- State B: a file is chosen ------------------------------ */
+/* Both children stay in the DOM; `.is-filled` decides which one is rendered.
+   `display: none` rather than `hidden`/`visibility` so the hidden state costs
+   no layout in a single-cell grid, and so neither branch is focusable while it
+   is not the current state. */
+
+.file-upload__preview {
+  display: none;
+}
+
+.file-upload.is-filled .file-upload__dropzone {
+  display: none;
+}
+
+.file-upload.is-filled .file-upload__preview {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
+  margin: 0;
+  min-height: 0;
+}
+
+/* Names the file being previewed. It is a caption, not chrome: it stays in the
+   flow above the sheet so it never covers the document. */
+.file-upload__caption {
+  display: flex;
+  align-items: center;
+  gap: var(--utui-spacing-02);
+  padding: var(--utui-spacing-03) var(--utui-spacing-04);
+  border-bottom: 1px solid var(--app-border);
+  background: var(--utui-color-bg-surface);
+  color: var(--app-text);
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-medium);
+  line-height: var(--utui-line-height-text-sm);
+  /* One line: the label must not break in two while the name beside it still has
+     room to ellipsise. */
+  white-space: nowrap;
+}
+
+.file-upload__filename {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The preview body scrolls in its own box: a document is taller than the pane
+   and the page must not gain a second scrollbar because of it. Announced and
+   keyboard-reachable in the markup (role="region" + tabindex="0"), per
+   .claude/skills/responsive/SKILL.md. */
+.file-upload__viewport {
+  overflow: auto;
+  padding: var(--utui-spacing-06);
+  /* The grey the PANE carried until 2026-09-22. The white sheet inside it is
+     drawn against a tinted surface in every node that draws a preview, and the
+     pane itself is white now, so the tint moves here rather than disappearing —
+     otherwise `.file-upload__sheet` is a white page on a white pane held apart
+     by its shadow alone. */
+  background: var(--utui-color-bg-surface-subtle);
+}
+
+/* CONDITIONAL ON THE OVERLAY, 2026-08-26. The bottom padding clears the overlaid
+   `.file-upload__swap` button — its own 24px offset plus its height — so the last
+   line of a scrolled document is never trapped underneath it. It used to be
+   unconditional, which was correct while the overlay was the only placement of that
+   action; a consumer that puts the action in a footer row of its own instead
+   (`.upload-source__foot` on screens/du-an/ho-so/tai-len.html) was paying 84px of
+   bottom padding for a button that is not there.
+
+   `:has()` rather than a modifier class, so the clearance follows the button's
+   actual presence and cannot be left behind when the button moves. The package
+   already depends on `:has()` in ./form-field.css. */
+.file-upload:has(.file-upload__swap) .file-upload__viewport {
+  padding-bottom: calc(var(--utui-spacing-06) * 2 + var(--utui-button-height-lg));
+}
+
+/* Stand-in for the rendered document. The demo has no real file to paint, so
+   this is a page-shaped placeholder rather than a fake screenshot: white sheet,
+   card shadow, skeleton text lines. Marked aria-hidden in the markup — the
+   caption is what tells a screen reader which file is open. */
+.file-upload__sheet {
+  display: grid;
+  gap: var(--utui-spacing-03);
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--utui-spacing-10);
+  border-radius: var(--app-radius);
+  background: var(--utui-color-bg-surface);
+  box-shadow: var(--utui-shadow-lg);
+}
+
+.file-upload__line {
+  height: 12px;
+  border-radius: var(--app-radius-pill);
+  background: var(--utui-color-bg-surface-subtle);
+}
+
+.file-upload__line--title {
+  width: 55%;
+  height: 20px;
+  margin-bottom: var(--utui-spacing-03);
+  background: var(--utui-color-bg-surface-muted);
+}
+
+.file-upload__line--short {
+  width: 62%;
+}
+
+.file-upload__line--gap {
+  margin-top: var(--utui-spacing-06);
+}
+
+/* --- State C: a file is chosen but cannot be previewed -------
+   Node 12042:69782, `preview-not-support-format-file`, read 2026-08-26. It
+   closes half of the "the document preview is a placeholder" gap this contract
+   records: the download-only fallback is now drawn.
+
+   A THIRD STATE, NOT AN ERROR. A file IS chosen — the pane has a name to print
+   and a file to hand back — so the pane keeps its normal rim and the consumer's
+   own validation still passes. The pane simply cannot render this format.
+   `.form-field__control--error` above is the different fact that no file was
+   chosen at all, and the two must never be set together.
+
+   The parts are ../styles/empty-state.css's page variant, composed here rather
+   than copied: the same 4px-gapped text block, the same 16/24 title clamped to
+   352px and the same 14/20 supporting line. What is NOT taken is `.empty-page`
+   itself — its 512px column and 160px of block padding are page scale, and this
+   sits inside a 600px pane that centres its own content. Minh hoạ: `.empty-illustration`. */
+
+.file-upload__unsupported {
+  display: none;
+}
+
+.file-upload.is-unsupported .file-upload__dropzone {
+  display: none;
+}
+
+.file-upload.is-unsupported .file-upload__unsupported {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  /* Same move as the viewport above: this state was drawn on the grey pane. */
+  background: var(--utui-color-bg-surface-subtle);
+  /* Khoảng cách lấy từ empty-state.css: minh hoạ sát chữ, action cách 24px. */
+  padding: var(--utui-spacing-08);
+  text-align: center;
+}
+
+/* Same clearance the preview viewport pays for the overlaid swap button, and
+   conditional for the same reason — see the note above
+   `.file-upload:has(.file-upload__swap)`. Without the overlay this state centres in
+   its own box, which is what the node draws. */
+.file-upload:has(.file-upload__swap).is-unsupported .file-upload__unsupported {
+  padding-bottom: calc(var(--utui-spacing-06) * 2 + var(--utui-button-height-lg));
+}
+
+/* A file name has no spaces to break at, so it must be allowed to break anywhere
+   or it overflows the 352px measure `.empty-page__title` sets. Same treatment as
+   `.notification__description`. */
+.file-upload__unsupported .empty-page__title {
+  overflow-wrap: anywhere;
+}
+
+/* Bottom-centre overlay. Secondary button with the Brand/50 tint the source
+   draws instead of a white fill, so it reads as an action on the document
+   rather than a control of the page.
+
+   NO CURRENT CONSUMER, 2026-08-26. Its only one — the upload screen — moved this
+   action into a footer row below the pane, following the productized `Attachment`
+   component (OMEU DS V2 `SFo9P9PCVQiuOk2SqjZYKQ`, node `10964:9598`), which draws
+   `Đổi tài liệu` and `Tải xuống` as secondary buttons in a footer rather than
+   overlaid on the body. The rule stays because the overlay is still a valid
+   placement for a consumer with no footer of its own, and because the clearances
+   above are now keyed on it — deleting it would have to delete those too. Both
+   placements are documented in design-system/components/file-upload.md. */
+.file-upload__swap {
+  position: absolute;
+  bottom: var(--utui-spacing-06);
+  left: 50%;
+  transform: translateX(-50%);
+  border-color: var(--utui-color-border-brand-subtle);
+  background: var(--utui-color-bg-brand-subtle);
+  color: var(--utui-color-text-brand);
+  box-shadow: var(--utui-shadow-sm);
+}
+
+.file-upload__swap:hover {
+  background: var(--utui-color-brand-100);
+  color: var(--utui-color-text-brand);
+}
+
+/* The swap button belongs to BOTH states that hold a file. State C draws it in
+   the same place for the same reason state B does — it is the way back out of a
+   document the operator picked by mistake, and on state C it is the only thing
+   on the pane that changes anything. */
+.file-upload:not(.is-filled):not(.is-unsupported) .file-upload__swap {
+  display: none;
+}
+
+/* The <input type="file"> is never styled and never shown; both triggers call
+   .click() on it. Not `display: none` on a focusable control by accident —
+   it is deliberately outside the tab order, because the two visible buttons
+   are its label. */
+.file-upload__input {
+  display: none;
+}

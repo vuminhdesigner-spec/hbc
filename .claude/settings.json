@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node tools/hook_clarify.mjs",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node tools/hook_flow.mjs",
+            "timeout": 150,
+            "statusMessage": "Build + verify flow"
+          }
+        ]
+      }
+    ]
+  }
+}

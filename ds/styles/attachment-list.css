@@ -1,0 +1,221 @@
+/* attachment-list.css — a card list of files attached to a record.
+   Source: MDM V2 `Chủ đầu tư` (10840:73734) > `Tài liệu đính kèm` > the
+   `File upload` instance's `File queue` frame: items 12px apart, each 293 x 72,
+   12px radius, 1px border on surface, 12/16px padding, a 40px file-type chip, 12px
+   gap, then the file name over its size.
+
+   This is the SAME file-type chip as the documents table (`.file-chip` in
+   ./data-table.css, `--utui-file-chip-*`) in a different container — a card list
+   rather than a table cell. The chip is deliberately not restyled here; format
+   colour is format identity and must read the same in both places.
+
+   New in this package on 2026-08-12; recorded as a stub contract in
+   design-system/components/attachment-list.md, not a fully specified component. */
+
+.attachment-list {
+  display: grid;
+  /* `File queue` gap; the surrounding 16px belongs to .section-body. */
+  gap: var(--utui-spacing-03);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* --grid: tracks capped at the max and packed left, so items stay one width and align in every row (USER DECISION 2026-10). */
+.attachment-list--grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--utui-attachment-list-grid-min)), var(--utui-attachment-list-grid-max)));
+  justify-content: start;
+}
+
+/* display:grid above beats the UA [hidden] rule — restate it. */
+.attachment-list[hidden] {
+  display: none;
+}
+
+.attachment {
+  display: flex;
+  align-items: center;
+  gap: var(--utui-spacing-03);
+  min-width: 0;
+  padding: var(--utui-spacing-03) var(--utui-spacing-04);
+  /* Source stroke is #E4E7EC, the same untokenised Gray-ramp value as the
+     section divider; this uses the package's border token (#E5E5E5) rather than
+     pinning a second literal. Recorded in design-system/components/attachment-list.md. */
+  border: 1px solid var(--app-border);
+  border-radius: var(--utui-radius-lg);
+  background: var(--utui-color-bg-surface, #ffffff);
+}
+
+/* No gap: the source stacks the two lines inside one 40px text block, so the
+   name's and the size's line boxes touch (20 + 20 = 40). */
+.attachment__body {
+  display: grid;
+  min-width: 0;
+}
+
+/* Clamped to one line, as the source draws it. The full name stays in the DOM,
+   so the ellipsis costs a sighted reader the tail of a long file name and costs
+   a screen-reader user nothing. There is no tooltip in the source — see
+   design-system/components/attachment-list.md Known Gaps. */
+.attachment__name {
+  overflow: hidden;
+  color: var(--utui-color-gray-700);
+  font-size: var(--utui-font-size-text-sm);
+  font-weight: var(--utui-font-weight-medium);
+  line-height: var(--utui-line-height-text-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Same colour as the name in the source, one weight down — not the tertiary
+   grey the table's `entity-subtitle` uses for the same fact. */
+.attachment__meta {
+  color: var(--utui-color-gray-700);
+  font-size: var(--utui-font-size-text-sm);
+  line-height: var(--utui-line-height-text-sm);
+}
+
+/* --- Trailing action: 40px hit box (glyph is 20px), pinned to the row end by margin-inline-start:auto; delete on a done row, cancel while uploading. --- */
+.attachment__action {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-inline-start: auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--app-radius);
+  background: transparent;
+  color: var(--utui-color-icon-default);
+}
+
+.attachment__action:hover {
+  background: var(--utui-color-bg-surface-subtle);
+  color: var(--utui-color-text-secondary);
+}
+
+/* --- Select (opt-in): one real <button> for the row body, sibling of __action — never a button inside a button. --- */
+.attachment__select {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--utui-spacing-03);
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Selected — SPEC "border brand + 4px focus ring brand-50". Persists after the
+   pointer or keyboard focus moves on, so it cannot be a hover/focus rule: the
+   fact "this is the open row" outlives the interaction that set it, same as
+   `.folder-item.is-active` beside it. */
+.attachment.is-selected {
+  border-color: var(--utui-color-border-focus);
+  /* 4px spread — no dedicated focus-shadow token resolves to Brand/50; reuses --utui-spacing-01 (R8, review 2026-09-29), same precedent --utui-featured-icon-ring-sm sets. */
+  box-shadow: 0 0 0 var(--utui-spacing-01) var(--utui-color-bg-brand-subtle);
+}
+
+/* --- Uploading: consumer sets --progress inline; __select/__action get z-index 1 so the absolute fill paints behind them. --- */
+.attachment.is-uploading {
+  position: relative;
+}
+
+.attachment.is-uploading::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: var(--progress, 0%);
+  border-radius: inherit;
+  background: var(--utui-color-bg-surface-subtle);
+  content: "";
+}
+
+/* Scoped to `.is-uploading` only — a row with no fill has nothing to sit
+   above, and this must not add `position`/`z-index` to `.attachment__action`
+   on every OTHER consumer's row (screens/doi-tac/ho-so-nang-luc.html's
+   delete-only queue never sets `.is-uploading`, and a computed-style diff on
+   an untouched screen is exactly what `npm run snapshot --compare` exists to
+   catch, even where nothing paints differently). */
+.attachment.is-uploading .attachment__select,
+.attachment.is-uploading .attachment__action,
+.attachment.is-uploading > :is(.file-chip, .attachment__body) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Spinner — the "in flight, no hover" row state SPEC draws in place of the cancel control. A plain CSS ring; the consumer decides when it shows one instead of the cancel button. */
+.attachment__spinner {
+  display: inline-block;
+  width: var(--utui-attachment-spinner-size);
+  height: var(--utui-attachment-spinner-size);
+  /* Figma Loading indicator: ¾ arc + track; GAP: 3px stroke has no token, track Gray/100 #F2F4F7 → border-subtle #F5F5F5. */
+  border: 3px solid var(--utui-color-icon-success);
+  border-left-color: var(--utui-color-border-subtle);
+  border-radius: var(--app-radius-pill);
+  animation: attachment-spin 800ms linear infinite;
+}
+
+/* Spinner inside the cancel button: spinner at rest, cancel glyph on row hover or when the button itself has keyboard focus (SPEC uploading vs uploading-hover). */
+.attachment.is-uploading .attachment__action > .attachment__spinner + .material-symbols-outlined {
+  display: none;
+}
+
+.attachment.is-uploading:hover .attachment__action > .attachment__spinner,
+.attachment.is-uploading:has(.attachment__action:focus-visible) .attachment__action > .attachment__spinner {
+  display: none;
+}
+
+.attachment.is-uploading:hover .attachment__action > .attachment__spinner + .material-symbols-outlined,
+.attachment.is-uploading:has(.attachment__action:focus-visible) .attachment__action > .attachment__spinner + .material-symbols-outlined {
+  display: inline-flex;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .attachment__spinner {
+    animation: none;
+  }
+}
+
+@keyframes attachment-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Failed: error rim like .form-field__control--error; the reason sits in a tooltip on the error icon (AUTHORED, Figma has no error state). GAP: no copy for why a file failed. --- */
+.attachment.is-failed {
+  border-color: var(--utui-field-border-error);
+}
+
+/* Icon cell before the action: auto margin here pushes icon + action to the row end; the action right after it takes 0. */
+.attachment__error {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  margin-inline-start: auto;
+  border-radius: var(--app-radius);
+  color: var(--utui-color-icon-error);
+}
+
+.attachment__error:not([hidden]) + .attachment__action {
+  margin-inline-start: 0;
+}
+
+.attachment__error:focus-visible {
+  box-shadow: var(--app-focus);
+  outline: none;
+}
+
+.attachment__error[hidden] {
+  display: none;
+}
+
+.attachment__error .material-symbols-outlined {
+  font-size: 20px; /* GAP: icon size literal, same as the 20px glyph elsewhere in this file */
+}
