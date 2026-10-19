@@ -1,0 +1,212 @@
+/* Bản thử W1 (phương án B): index.css giữ nguyên, nạp đè bộ token v2-glass (bản 38 đã duyệt). */
+@import "./index.css";
+@import "../../tokens/v2-glass/theme.css";
+
+/* Nhóm token mở rộng của v2-glass → utility Tailwind. Tên khác tên biến gốc để không tự trỏ vào mình. */
+@theme inline {
+  --color-canvas-from: var(--glass-canvas-from);
+  --color-canvas-to: var(--glass-canvas-to);
+  --color-glass-card-to: var(--glass-card-to);
+  --color-glass-edge: var(--glass-card-edge);
+  --color-glass-highlight: var(--glass-card-highlight);
+  --color-scrim: var(--glass-scrim);
+  --color-cta-from: var(--cta-from);
+  --color-cta-to: var(--cta-to);
+  --color-cta-foreground: var(--cta-foreground);
+  --color-hero-from: var(--kpi-hero-from);
+  --color-hero-to: var(--kpi-hero-to);
+  --color-hero-track: var(--kpi-hero-track);
+  --color-warning-solid: var(--status-warning-solid);
+  --color-warning-solid-foreground: var(--status-warning-solid-foreground);
+  --color-destructive-solid: var(--status-destructive-solid);
+  --color-destructive-solid-foreground: var(--status-destructive-solid-foreground);
+  --color-destructive-foreground: var(--status-destructive-foreground);
+  --color-risk-good: var(--risk-good);
+  --color-risk-caution: var(--risk-caution);
+  --color-risk-warning: var(--risk-warning);
+  --color-risk-critical: var(--risk-critical);
+  --color-chart-volume: var(--chart-ext-volume);
+  --color-chart-track: var(--chart-ext-track);
+  --color-chart-axis: var(--chart-ext-axis);
+  --color-chart-1-foreground: var(--chart-ext-chart-1-foreground);
+  --color-chart-1-deep: var(--chart-ext-chart-1-deep);
+  --color-sidebar-open: var(--sidebar-ext-open);
+
+  --shadow-glass: var(--shadow-card);
+  --shadow-glass-pill: var(--shadow-pill);
+  --shadow-glass-glow: var(--shadow-glow);
+  --radius-glass: var(--radius-card);
+  --radius-glass-inner: var(--radius-inner);
+  --blur-glass-card: var(--blur-glass);
+  --blur-glass-rail: var(--blur-sidebar);
+
+  /* Cỡ chữ dày dữ liệu của W1 (bản 38) */
+  --text-3xs: 0.625rem;
+  --text-3xs--line-height: 1.4;
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1.45;
+  --text-body: 0.8125rem;
+  --text-body--line-height: 1.45;
+  --text-kpi: 1.625rem;
+  --text-kpi--line-height: 1.15;
+}
+
+/* Card kính: viền sáng + bóng xanh nhạt + nhoè nền. Nền đi riêng (glass-bg, kpi-tint, kpi-hero) để không đè nhau. */
+@utility glass-bg {
+  background-image: linear-gradient(180deg, var(--card), var(--glass-card-to));
+}
+
+@utility glass-card {
+  border: 1px solid var(--glass-card-edge);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card), inset 0 1px 0 var(--glass-card-highlight);
+  backdrop-filter: blur(var(--blur-glass));
+}
+
+/* Nút chính, tab đang chọn, mục menu đang chọn */
+@utility glass-cta {
+  background-image: linear-gradient(180deg, var(--cta-from), var(--cta-to));
+  color: var(--cta-foreground);
+  box-shadow: var(--shadow-glow);
+}
+
+@utility glass-pill {
+  background-color: var(--popover);
+  border: 1px solid var(--glass-card-edge);
+  box-shadow: var(--shadow-pill);
+}
+
+/* Thẻ KPI: vệt màu chuỗi ở góc trái-trên (--tint đặt theo chuỗi) */
+@utility kpi-tint {
+  background-image:
+    radial-gradient(120% 100% at 0% 0%, color-mix(in srgb, var(--tint) 16%, transparent), transparent 62%),
+    linear-gradient(180deg, var(--card), var(--glass-card-to));
+}
+
+@utility kpi-hero {
+  background-image:
+    radial-gradient(120% 100% at 0% 0%, color-mix(in srgb, var(--tint) 18%, transparent), transparent 60%),
+    linear-gradient(135deg, var(--kpi-hero-from), var(--kpi-hero-to));
+}
+
+@utility kpi-tile {
+  background-image: linear-gradient(160deg, color-mix(in srgb, var(--tint) 82%, var(--popover)), var(--tint));
+  box-shadow: 0 6px 14px -4px var(--tint);
+}
+
+@utility risk-bar {
+  background-image: linear-gradient(90deg, var(--risk-good), var(--risk-caution) 55%, var(--risk-warning) 85%, var(--risk-critical));
+}
+
+/* Nhãn số trên đồ thị: viền màu card để đọc được khi đè lên đường/vùng */
+@utility chart-label {
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  paint-order: stroke;
+  stroke: var(--card);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+/* Tooltip, popover, menu thả xuống: chỉ mờ dần vào/ra, bỏ trượt và phóng to (người dùng thấy phiền, 2026-10-19).
+   Không có layer nên thắng các class slide-in/zoom-in trong component. */
+[data-slot="tooltip-content"],
+[data-slot="popover-content"],
+[data-slot="dropdown-menu-content"] {
+  --tw-enter-translate-x: 0;
+  --tw-enter-translate-y: 0;
+  --tw-enter-scale: 1;
+  --tw-exit-translate-x: 0;
+  --tw-exit-translate-y: 0;
+  --tw-exit-scale: 1;
+  --tw-duration: 120ms;
+}
+
+/* Chuyển động (đề xuất 2026-10-19, theo Carbon "productive"): ngắn, giảm tốc mượt, không nảy. */
+:root {
+  --motion-fast: 120ms;   /* hover, tooltip, đổi trạng thái nút */
+  --motion-base: 200ms;   /* drawer, menu, mờ chéo nội dung */
+  --motion-data: 300ms;   /* đường/cột đồ thị biến hình khi đổi bộ lọc */
+  --ease-standard: cubic-bezier(0.2, 0, 0.38, 0.9);
+  --ease-enter: cubic-bezier(0, 0, 0.38, 0.9);
+  --ease-exit: cubic-bezier(0.2, 0, 1, 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-fast: 0ms; --motion-base: 0ms; --motion-data: 0ms; }
+}
+
+/* Trang demo bật "giả lập giảm chuyển động" */
+:root[data-reduce-motion] { --motion-fast: 0ms; --motion-base: 0ms; --motion-data: 0ms; }
+
+/* Làm mờ chuỗi khác khi trỏ vào chú thích */
+@utility series {
+  transition: opacity var(--motion-fast) var(--ease-standard);
+}
+@utility series-dim {
+  opacity: 0.2;
+}
+
+/* Cảnh báo mới: tô nền cam nhạt một lần rồi tắt dần */
+@keyframes flash-once {
+  from { background-color: var(--warning-subtle); }
+  to { background-color: transparent; }
+}
+@utility flash-once {
+  animation: flash-once 1.2s var(--ease-standard);
+}
+
+/* Đang tải số mới: thanh tiến trình mảnh chạy qua lại */
+@keyframes progress-slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(250%); }
+}
+@utility progress-slide {
+  animation: progress-slide 0.9s var(--ease-standard) infinite;
+}
+
+/* Drawer, menu: mở 200 ms giảm tốc, đóng 150 ms tăng tốc; lớp phủ mờ dần cùng nhịp */
+[data-slot="sheet-content"],
+[data-slot="sheet-overlay"] {
+  transition-duration: var(--motion-base);
+  transition-timing-function: var(--ease-enter);
+}
+[data-slot="sheet-content"][data-ending-style],
+[data-slot="sheet-overlay"][data-ending-style] {
+  transition-duration: calc(var(--motion-base) * 0.75);
+  transition-timing-function: var(--ease-exit);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flash-once, .progress-slide { animation: none; }
+}
+
+/* Nền trang theo loại năng lượng của tab: thay hẳn dải nền xanh lá của Tổng quan bằng dải cùng kiểu nhưng tông màu của tab
+   (--tint = chart-1/2/3), pha từ nền trung tính. Lớp phủ kín, mờ chéo khi đổi tab. */
+@utility canvas-tint {
+  background-image: linear-gradient(135deg, color-mix(in oklab, var(--tint) var(--tint-strong), var(--background)), color-mix(in oklab, var(--tint) var(--tint-soft), var(--background)));
+}
+:root { --tint-strong: 14%; --tint-soft: 6%; }
+.dark { --tint-strong: 7%; --tint-soft: 3%; }
+
+/* Khung giờ điện: 3 bậc cùng sắc vàng nhưng khác hẳn độ sáng để phân biệt (cao điểm đậm nhất). */
+:root {
+  --tou-peak: color-mix(in oklab, var(--chart-ext-chart-1-deep) 55%, var(--foreground));
+  --tou-normal: var(--chart-ext-chart-1-deep);
+  --tou-low: color-mix(in oklab, var(--chart-1) 35%, var(--card));
+}
+.dark {
+  --tou-peak: var(--chart-1);
+  --tou-normal: color-mix(in oklab, var(--chart-ext-chart-1-deep) 55%, var(--card));
+  --tou-low: color-mix(in oklab, var(--chart-ext-chart-1-deep) 22%, var(--card));
+}
+
+/* Bóng card/pill đổi theo tab cùng nền (bóng xanh lá của Tổng quan → bóng sắc màu của tab). Chỉ chế độ sáng; tối dùng bóng đen. */
+:root[data-tab="dien"]:not(.dark) { --tab-shadow: color-mix(in oklab, var(--chart-ext-chart-1-deep) 70%, black); }
+:root[data-tab="nuoc"]:not(.dark) { --tab-shadow: color-mix(in oklab, var(--chart-2) 70%, black); }
+:root[data-tab="hoi"]:not(.dark) { --tab-shadow: color-mix(in oklab, var(--chart-3) 60%, black); }
+:root[data-tab]:not([data-tab="overview"]):not(.dark) {
+  --shadow-card: 0 1px 2px color-mix(in srgb, var(--tab-shadow) 6%, transparent), 0 14px 34px -16px color-mix(in srgb, var(--tab-shadow) 38%, transparent);
+  --shadow-pill: 0 1px 2px color-mix(in srgb, var(--tab-shadow) 8%, transparent), 0 4px 12px -6px color-mix(in srgb, var(--tab-shadow) 30%, transparent);
+}
