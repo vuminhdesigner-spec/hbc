@@ -1,0 +1,276 @@
+{
+  "background": {
+    "$type": "color",
+    "$value": "#0d110f"
+  },
+  "foreground": {
+    "$type": "color",
+    "$value": "#e8ece9"
+  },
+  "card": {
+    "$type": "color",
+    "$value": "#1c221fd6"
+  },
+  "card-foreground": {
+    "$type": "color",
+    "$value": "#e8ece9"
+  },
+  "popover": {
+    "$type": "color",
+    "$value": "#1a211d"
+  },
+  "popover-foreground": {
+    "$type": "color",
+    "$value": "#e8ece9"
+  },
+  "primary": {
+    "$type": "color",
+    "$value": "#5fae7f"
+  },
+  "primary-foreground": {
+    "$type": "color",
+    "$value": "#051009"
+  },
+  "secondary": {
+    "$type": "color",
+    "$value": "#1a221d"
+  },
+  "secondary-foreground": {
+    "$type": "color",
+    "$value": "#e8ece9"
+  },
+  "muted": {
+    "$type": "color",
+    "$value": "#1a221d"
+  },
+  "muted-foreground": {
+    "$type": "color",
+    "$value": "#a0a8a3"
+  },
+  "accent": {
+    "$type": "color",
+    "$value": "#1c2a22"
+  },
+  "accent-foreground": {
+    "$type": "color",
+    "$value": "#eaf0eb"
+  },
+  "destructive": {
+    "$type": "color",
+    "$value": "#f0625a"
+  },
+  "border": {
+    "$type": "color",
+    "$value": "#263029"
+  },
+  "input": {
+    "$type": "color",
+    "$value": "#35423a"
+  },
+  "ring": {
+    "$type": "color",
+    "$value": "#6aa8ec"
+  },
+  "highlight": {
+    "$type": "color",
+    "$value": "#13301f"
+  },
+  "highlight-foreground": {
+    "$type": "color",
+    "$value": "#e9cf74"
+  },
+  "highlight-border": {
+    "$type": "color",
+    "$value": "#3c5a2a"
+  },
+  "warning": {
+    "$type": "color",
+    "$value": "#f27a3a"
+  },
+  "warning-subtle": {
+    "$type": "color",
+    "$value": "#3d2414"
+  },
+  "warning-foreground": {
+    "$type": "color",
+    "$value": "#ffad7a"
+  },
+  "success": {
+    "$type": "color",
+    "$value": "#5fae7f"
+  },
+  "chart-1": {
+    "$type": "color",
+    "$value": "#fce526"
+  },
+  "chart-2": {
+    "$type": "color",
+    "$value": "#2f93f0"
+  },
+  "chart-3": {
+    "$type": "color",
+    "$value": "#22b04c"
+  },
+  "chart-4": {
+    "$type": "color",
+    "$value": "#7d8a96"
+  },
+  "chart-5": {
+    "$type": "color",
+    "$value": "#5fae7f"
+  },
+  "sidebar": {
+    "$type": "color",
+    "$value": "#ffffff0a"
+  },
+  "sidebar-foreground": {
+    "$type": "color",
+    "$value": "#c3cbc6"
+  },
+  "sidebar-primary": {
+    "$type": "color",
+    "$value": "#5fae7f"
+  },
+  "sidebar-primary-foreground": {
+    "$type": "color",
+    "$value": "#051009"
+  },
+  "sidebar-accent": {
+    "$type": "color",
+    "$value": "#ffffff14"
+  },
+  "sidebar-accent-foreground": {
+    "$type": "color",
+    "$value": "#e8ece9"
+  },
+  "sidebar-border": {
+    "$type": "color",
+    "$value": "#ffffff14"
+  },
+  "sidebar-ring": {
+    "$type": "color",
+    "$value": "#6aa8ec"
+  },
+  "glass": {
+    "canvas-from": {
+      "$type": "color",
+      "$value": "#111714"
+    },
+    "canvas-to": {
+      "$type": "color",
+      "$value": "#0e1311"
+    },
+    "card-to": {
+      "$type": "color",
+      "$value": "#151b18c7"
+    },
+    "card-edge": {
+      "$type": "color",
+      "$value": "#ffffff12"
+    },
+    "card-highlight": {
+      "$type": "color",
+      "$value": "#ffffff0f"
+    },
+    "scrim": {
+      "$type": "color",
+      "$value": "#00000080"
+    }
+  },
+  "cta": {
+    "from": {
+      "$type": "color",
+      "$value": "#74c091"
+    },
+    "to": {
+      "$type": "color",
+      "$value": "#5fae7f"
+    },
+    "foreground": {
+      "$type": "color",
+      "$value": "#051009"
+    }
+  },
+  "kpi-hero": {
+    "from": {
+      "$type": "color",
+      "$value": "#18261d"
+    },
+    "to": {
+      "$type": "color",
+      "$value": "#1e3527"
+    },
+    "track": {
+      "$type": "color",
+      "$value": "#ffffff1f"
+    }
+  },
+  "status": {
+    "warning-solid": {
+      "$type": "color",
+      "$value": "#f97316"
+    },
+    "warning-solid-foreground": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "destructive-solid": {
+      "$type": "color",
+      "$value": "#dc2626"
+    },
+    "destructive-solid-foreground": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "destructive-foreground": {
+      "$type": "color",
+      "$value": "#f6a39c"
+    }
+  },
+  "risk": {
+    "good": {
+      "$type": "color",
+      "$value": "#3dbb5c"
+    },
+    "caution": {
+      "$type": "color",
+      "$value": "#e8bb2a"
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "#f27a3a"
+    },
+    "critical": {
+      "$type": "color",
+      "$value": "#f0625a"
+    }
+  },
+  "chart-ext": {
+    "volume": {
+      "$type": "color",
+      "$value": "#555a56"
+    },
+    "track": {
+      "$type": "color",
+      "$value": "#1e2621"
+    },
+    "axis": {
+      "$type": "color",
+      "$value": "#879089"
+    },
+    "chart-1-foreground": {
+      "$type": "color",
+      "$value": "#3a3000"
+    },
+    "chart-1-deep": {
+      "$type": "color",
+      "$value": "#f2bf00"
+    }
+  },
+  "sidebar-ext": {
+    "open": {
+      "$type": "color",
+      "$value": "#131916f7"
+    }
+  }
+}
