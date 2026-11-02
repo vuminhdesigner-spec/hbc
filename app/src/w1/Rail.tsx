@@ -23,7 +23,8 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { cn } from '@/lib/utils'
 import hopMark from '@/assets/hop-mark.svg'
 
-type Item = { label: string; icon: LucideIcon }
+/** href: trang đã dựng trong bản thử (cùng thư mục); mục chưa có trang thì không chuyển. */
+type Item = { label: string; icon: LucideIcon; href?: string }
 
 // 13 mục menu theo Main.dc.html, chia nhóm bằng divider (không nhãn nhóm).
 const GROUPS: Item[][] = [
@@ -34,8 +35,8 @@ const GROUPS: Item[][] = [
     { label: 'Báo cáo BTP-TP', icon: FileText },
     { label: 'Báo cáo SL TP', icon: TrendingUp },
     { label: 'Báo cáo Nhập – Xuất – Tồn', icon: Repeat },
-    { label: 'Báo cáo Chất lượng', icon: ShieldCheck },
-    { label: 'Báo cáo Năng lượng (mới)', icon: Zap },
+    { label: 'Báo cáo Chất lượng', icon: ShieldCheck, href: 'chat-luong.html' },
+    { label: 'Báo cáo Năng lượng (mới)', icon: Zap, href: 'index.html' },
     { label: 'Báo cáo Khai thác nước & Xả thải', icon: Droplet },
   ],
   [
@@ -53,6 +54,7 @@ function NavItem({ item, wide, current }: { item: Item; wide: boolean; current: 
       variant="ghost"
       aria-current={current ? 'page' : undefined}
       aria-label={wide ? undefined : item.label}
+      onClick={item.href && !current ? () => window.location.assign(item.href!) : undefined}
       className={cn(
         'h-9.5 rounded-glass-inner text-sidebar-foreground hover:bg-sidebar-accent',
         wide ? 'w-full justify-start gap-3.5 px-3' : 'w-11',
