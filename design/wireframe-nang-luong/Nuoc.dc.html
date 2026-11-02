@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>Nước — cây đồng hồ và cân bằng nước</title>
+<title>Nước — cây đồng hồ và giếng</title>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -17,7 +17,7 @@ a{color:#106138}a:hover{color:#0b3f25}
 <div style="width: 1440px; height: 900px; box-sizing: border-box; display: flex; background: #f5f5f1; color: #17201a; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 13px; overflow: hidden">
 
   <nav aria-label="Menu chính" style="width: 64px; flex-shrink: 0; background: #ffffff; border-right: 1px solid #e1e2da; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 14px 0">
-    <img src="/_blob/7852d35d575d094203ff871916e69c97" alt="Habeco" width="34" height="32" style="width: 34px; height: 32px; object-fit: contain; margin-bottom: 8px">
+    <img src="/_blob/d9b768f3ce484a7427ead7ed49158f6a" alt="Habeco" width="34" height="32" style="width: 34px; height: 32px; object-fit: contain; margin-bottom: 8px">
     <a href="#" aria-label="Bảng điều khiển" title="Bảng điều khiển" style="width: 40px; height: 36px; border-radius: 8px; display: grid; place-items: center; color: #7a8279"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 20V10M12 20V4M19 20v-7"/></svg></a>
     <span style="width: 28px; height: 1px; background: #e1e2da; margin: 4px 0"></span>
     <a href="#" aria-label="Kết quả báo cáo" title="Kết quả báo cáo" style="width: 40px; height: 36px; border-radius: 8px; display: grid; place-items: center; color: #7a8279"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 12l3 3 5-6"/></svg></a>
@@ -40,69 +40,105 @@ a{color:#106138}a:hover{color:#0b3f25}
   <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column">
     <header style="height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 24px; padding: 0 24px; background: #ffffff; border-bottom: 1px solid #e1e2da">
       <div style="display: flex; flex-direction: column">
-        <span style="font-size: 11px; color: #5b645d">AI Brewmaster · Báo cáo</span>
         <h1 style="margin: 0; font-size: 17px; font-weight: 600">Báo cáo năng lượng</h1>
       </div>
       <div role="tablist" style="display: flex; gap: 4px; height: 100%; align-items: stretch">
         <a role="tab" href="Main.dc.html" style="display: flex; align-items: center; padding: 0 14px; color: #5b645d; text-decoration: none">Tổng quan</a>
         <a role="tab" href="Dien.dc.html" style="display: flex; align-items: center; padding: 0 14px; color: #5b645d; text-decoration: none">Điện</a>
         <a role="tab" aria-selected="true" href="Nuoc.dc.html" style="display: flex; align-items: center; padding: 0 14px; color: #106138; font-weight: 600; text-decoration: none; box-shadow: inset 0 -2px 0 #106138">Nước</a>
-        <a role="tab" href="#" style="display: flex; align-items: center; padding: 0 14px; color: #5b645d; text-decoration: none">Hơi</a>
       </div>
       <div style="flex-grow: 1"></div>
       <span style="font-size: 11px; font-weight: 600; color: #434b45; background: #f2f1ec; padding: 3px 8px; border-radius: 999px">Số minh hoạ</span>
-      <button type="button" style="height: 34px; padding: 0 14px; border-radius: 8px; border: 0; background: #106138; color: #ffffff; font-weight: 600; font-family: inherit">Xuất Excel</button><button type="button" style="height: 34px; padding: 0 12px; border-radius: 8px; border: 1px solid #c9cbc2; background: #ffffff; color: #17201a; font-family: inherit">PDF</button><button type="button" aria-label="Tài khoản" style="height: 34px; padding: 0 8px; border-radius: 8px; border: 1px solid #e1e2da; background: #ffffff; display: flex; align-items: center; gap: 6px; font-family: inherit; color: #17201a"><span style="width: 24px; height: 24px; border-radius: 999px; background: #eef7f1; color: #106138; display: grid; place-items: center; font-size: 11px; font-weight: 700">A</span>Admin</button>
+      <button type="button" style="height: 34px; padding: 0 14px; border-radius: 8px; border: 0; background: #106138; color: #ffffff; font-weight: 600; font-family: inherit">Xuất Excel</button><button type="button" aria-label="Tài khoản" style="height: 34px; padding: 0 8px; border-radius: 8px; border: 1px solid #e1e2da; background: #ffffff; display: flex; align-items: center; gap: 6px; font-family: inherit; color: #17201a"><span style="width: 24px; height: 24px; border-radius: 999px; background: #eef7f1; color: #106138; display: grid; place-items: center; font-size: 11px; font-weight: 700">A</span>Admin</button>
     </header>
     <div role="toolbar" aria-label="Bộ lọc" style="height: 52px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 0 24px; background: #ffffff; border-bottom: 1px solid #e1e2da">
-      <span style="height: 34px; padding: 0 12px; border: 1px solid #c9cbc2; border-radius: 8px; display: flex; align-items: center">Tháng 9/2026</span>
-      <span style="height: 34px; padding: 0 12px; border: 1px solid #106138; border-radius: 8px; display: flex; align-items: center; gap: 6px"><span style="color: #5b645d">So với</span> Tháng 9/2025</span>
+      <span style="height: 34px; padding: 0 12px; border: 1px solid #c9cbc2; border-radius: 8px; display: flex; align-items: center">Tháng · 01/09 – 30/09/2026</span>
+      <span style="height: 34px; padding: 0 12px; border: 1px solid #106138; border-radius: 8px; display: flex; align-items: center; gap: 6px"><span style="color: #5b645d">So với</span> Cùng kỳ · 01/09 – 30/09/2025</span>
       <span style="height: 34px; padding: 0 12px; border: 1px solid #c9cbc2; border-radius: 8px; display: flex; align-items: center; gap: 6px"><span style="color: #5b645d">Loại nước</span> Tất cả</span>
     </div>
 
-    <main style="flex-grow: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 12px; padding: 14px 24px 16px">
+    <main style="flex-grow: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 460px; gap: 12px; padding: 14px 24px 16px">
       <div style="display: grid; grid-template-rows: 104px minmax(0, 1fr); gap: 12px; min-width: 0; min-height: 0">
         <section aria-label="Chỉ số" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
-          <div style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #5b645d">Khai thác giếng</span><span style="font-size: 22px; font-weight: 700">23.000 <span style="font-size: 12px; font-weight: 500; color: #5b645d">m³</span></span><span style="font-size: 11.5px; color: #434b45">Cấp phép: [ngưỡng] m³/tháng</span></div>
-          <div style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #5b645d">Đến hộ tiêu thụ</span><span style="font-size: 22px; font-weight: 700">21.300 <span style="font-size: 12px; font-weight: 500; color: #5b645d">m³</span></span><span style="font-size: 11.5px; color: #434b45">▼ 1,2% so cùng kỳ</span></div>
-          <div style="background: #f2f1ec; border: 1px solid #c9cbc2; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #434b45; display: flex; align-items: center; gap: 4px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 4l9 16H3z"/></svg>Chưa đo / thất thoát</span><span style="font-size: 22px; font-weight: 700; color: #434b45">1.700 <span style="font-size: 12px; font-weight: 500">m³ · 7,4%</span></span><span style="font-size: 11.5px; color: #434b45">Ngưỡng cảnh báo: [chờ chốt] %</span></div>
-          <div style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #5b645d">Suất tiêu hao nước</span><span style="font-size: 22px; font-weight: 700">2,97 <span style="font-size: 12px; font-weight: 500; color: #5b645d">m³/nghìn lít</span></span><span style="font-size: 11.5px; color: #434b45">▼ 0,8% so cùng kỳ</span></div>
+          <div style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #5b645d">Nước / 1.000 L</span><span style="font-size: 22px; font-weight: 700">3,40 <span style="font-size: 12px; font-weight: 500; color: #5b645d">m³</span></span><span style="font-size: 11.5px; color: #434b45">▼ 2,9% cùng kỳ · kỳ vọng 3,38</span></div>
+          <div style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #5b645d">Khai thác giếng</span><span style="font-size: 22px; font-weight: 700">29.900 <span style="font-size: 12px; font-weight: 500; color: #5b645d">m³</span></span><span style="font-size: 11.5px; color: #434b45">Ngày cao nhất 1.180 m³ · cấp phép: chờ giấy phép</span></div>
+          <div style="background: #f2f1ec; border: 1px solid #c9cbc2; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #17201a; font-weight: 600; display: flex; align-items: center; gap: 4px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 4l9 16H3z"/></svg>Cảnh báo · lệch cha – con</span><span style="font-size: 22px; font-weight: 700">12,6 <span style="font-size: 12px; font-weight: 500; color: #434b45">%</span></span><span style="font-size: 11.5px; color: #434b45">Nước sạch SX → hộ dùng · ngưỡng 10%</span></div>
+          <div style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #5b645d">Ghi chỉ số tháng 9</span><span style="font-size: 22px; font-weight: 700">45 / 45 <span style="font-size: 12px; font-weight: 500; color: #5b645d">đồng hồ</span></span><span style="font-size: 11.5px; color: #434b45">Đủ số · 0 cần kiểm tra</span></div>
         </section>
 
-        <figure style="margin: 0; background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; min-height: 0">
-          <figcaption style="display: flex; justify-content: space-between; align-items: baseline">
-            <span style="font-size: 13px; font-weight: 600">Cân bằng nước tháng 9: từ giếng đến hộ tiêu thụ</span>
-            <span style="font-size: 11px; color: #5b645d">Độ rộng dải = m³ · dải cam = phần chưa đo hoặc thất thoát · bấm một nút để mở nhánh trong cây</span>
+        <section aria-label="Cây đồng hồ nước" style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; display: flex; flex-direction: column; min-height: 0; overflow: hidden">
+          <div style="padding: 12px 14px; border-bottom: 1px solid #e1e2da; display: flex; justify-content: space-between; align-items: baseline">
+            <span style="font-size: 13px; font-weight: 600">Cây đồng hồ nước · đối chiếu cha – con</span>
+            <span style="font-size: 11px; color: #5b645d">Chênh = cha − Σ con trực tiếp · cảnh báo khi quá 10%</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) 80px 80px 72px 190px; gap: 8px; padding: 8px 14px; font-size: 11px; font-weight: 600; color: #5b645d; background: #f9f9f6; border-bottom: 1px solid #e1e2da"><span>Đồng hồ</span><span style="text-align: right">m³</span><span style="text-align: right">Σ con</span><span style="text-align: right">Chênh</span><span>Trạng thái</span></div>
+          <div style="overflow-y: auto; min-height: 0">
+            <sc-for list="{{ tree }}" as="t" hint-placeholder-count="18">
+              <div style="display: grid; grid-template-columns: minmax(0, 1fr) 80px 80px 72px 190px; gap: 8px; align-items: center; min-height: 28px; padding: 2px 14px 2px {{ t.pad }}; border-bottom: 1px solid #f2f1ec; background: {{ t.bg }}; font-size: 12px; font-variant-numeric: tabular-nums">
+                <span style="display: flex; flex-direction: column; min-width: 0">
+                  <span style="display: flex; gap: 6px; align-items: center; min-width: 0"><span style="width: 10px; color: #7a8279">{{ t.caret }}</span><span style="font-weight: {{ t.w }}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ t.name }}</span></span>
+                  <span style="padding-left: 16px; font-size: 10.5px; color: #5b645d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ t.sub }}</span>
+                </span>
+                <span style="text-align: right">{{ t.v }}</span>
+                <span style="text-align: right; color: #5b645d">{{ t.sum }}</span>
+                <span style="text-align: right; font-weight: 600">{{ t.diff }}</span>
+                <span><sc-if value="{{ t.hasSt }}" hint-placeholder-val="{{ false }}"><span style="display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: {{ t.sbg }}; border: 1px solid {{ t.sbd }}; color: #17201a"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="{{ t.icon }}"/></svg>{{ t.st }}</span></sc-if></span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top: auto; padding: 8px 14px; border-top: 1px solid #e1e2da; font-size: 11px; color: #5b645d">Qua bể chứa: nước còn trong bể nên chỉ hiện chênh, không cảnh báo. Nước mềm chưa có đồng hồ đầu vào nên lấy Σ đầu ra. Đồng hồ chưa lắp không hiện trên cây.</div>
+        </section>
+      </div>
+
+      <div style="display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 12px; min-height: 0">
+        <section aria-label="Giếng" style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; display: flex; flex-direction: column">
+          <div style="padding: 12px 14px 8px; display: flex; justify-content: space-between; align-items: baseline">
+            <span style="font-size: 13px; font-weight: 600">Giếng · m³ / ngày đêm</span>
+            <a href="#" style="font-size: 11px">Báo cáo Khai thác nước &amp; Xả thải →</a>
+          </div>
+          <div style="display: grid; grid-template-columns: 60px 1fr 64px 64px 96px; gap: 8px; padding: 6px 14px; font-size: 11px; font-weight: 600; color: #5b645d; background: #f9f9f6; border-top: 1px solid #e1e2da; border-bottom: 1px solid #e1e2da"><span>Giếng</span><span></span><span style="text-align: right">TB</span><span style="text-align: right">Cao nhất</span><span>Cấp phép</span></div>
+          <sc-for list="{{ wells }}" as="w" hint-placeholder-count="4">
+            <div style="display: grid; grid-template-columns: 60px 1fr 64px 64px 96px; gap: 8px; align-items: center; padding: 0 14px; height: 30px; border-bottom: 1px solid #f2f1ec; font-size: 12px; font-variant-numeric: tabular-nums">
+              <span style="font-weight: 600">{{ w.name }}</span>
+              <span style="position: relative; height: 10px; background: #f2f1ec; border-radius: 3px"><i style="position: absolute; left: 0; top: 0; bottom: 0; width: {{ w.avgW }}; background: #7a8279; border-radius: 3px"></i><i style="position: absolute; left: {{ w.maxW }}; top: -3px; bottom: -3px; width: 2px; background: #17201a"></i></span>
+              <span style="text-align: right">{{ w.avg }}</span>
+              <span style="text-align: right; font-weight: 600">{{ w.max }}</span>
+              <span style="font-size: 11px; color: #5b645d; display: inline-flex; align-items: center; gap: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/></svg>Chờ giấy phép</span>
+            </div>
+          </sc-for>
+          <span style="padding: 8px 14px; font-size: 11px; color: #5b645d">Đường kẻ = ngày cao nhất. Khi có giấy phép: thêm vạch cấp phép, vượt thì cảnh báo.</span>
+        </section>
+
+        <figure style="margin: 0; background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; min-height: 0">
+          <figcaption style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+            <span style="display: flex; flex-direction: column; gap: 2px">
+              <span style="font-size: 13px; font-weight: 600">Nước / 1.000 L theo sản lượng</span>
+              <span style="font-size: 11px; color: #5b645d">Mỗi điểm 1 tháng · kỳ vọng ±15% từ lịch sử</span>
+            </span>
+            <span style="display: flex; border: 1px solid #c9cbc2; border-radius: 6px; overflow: hidden; flex-shrink: 0">
+              <button type="button" aria-pressed="true" style="height: 24px; padding: 0 8px; border: 0; background: #eef7f1; color: #0b3f25; font-weight: 600; font-size: 11.5px">Tháng</button>
+              <button type="button" style="height: 24px; padding: 0 8px; border: 0; border-left: 1px solid #e1e2da; background: #ffffff; color: #5b645d; font-size: 11.5px">Ca (xưởng)</button>
+            </span>
           </figcaption>
-          <svg width="100%" height="520" viewBox="0 0 860 520" role="img" aria-label="Sơ đồ luồng nước từ giếng qua xử lý tới hộ tiêu thụ">
-            <sc-for list="{{ links }}" as="l" hint-placeholder-count="10">
-              <path d="{{ l.d }}" fill="{{ l.fill }}" fill-opacity="{{ l.op }}"/>
+          <svg width="100%" height="220" viewBox="0 0 430 220" role="img" aria-label="Đồ thị điểm: sản lượng tháng và nước trên 1.000 lít, kèm đường kỳ vọng và dải cộng trừ 15%">
+            <sc-for list="{{ sg.gy }}" as="g" hint-placeholder-count="4">
+              <line x1="36" x2="422" y1="{{ g.y }}" y2="{{ g.y }}" stroke="#ecece6"/>
+              <text x="30" y="{{ g.ty }}" font-size="10" fill="#7a8279" text-anchor="end">{{ g.v }}</text>
             </sc-for>
-            <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="10">
-              <rect x="{{ n.x }}" y="{{ n.y }}" width="14" height="{{ n.h }}" rx="3" fill="{{ n.fill }}"/>
-              <text x="{{ n.tx }}" y="{{ n.ty }}" font-size="12" font-weight="600" fill="#17201a" text-anchor="{{ n.anchor }}">{{ n.name }}</text>
-              <text x="{{ n.tx }}" y="{{ n.ty2 }}" font-size="11" fill="#5b645d" text-anchor="{{ n.anchor }}">{{ n.val }}</text>
+            <sc-for list="{{ sg.gx }}" as="g" hint-placeholder-count="4">
+              <text x="{{ g.x }}" y="196" font-size="10" fill="#7a8279" text-anchor="middle">{{ g.v }}</text>
             </sc-for>
+            <path d="{{ sg.band }}" fill="#a1a69d" fill-opacity="0.18"/>
+            <polyline points="{{ sg.exp }}" fill="none" stroke="#5b645d" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <sc-for list="{{ sg.pts }}" as="p" hint-placeholder-count="30">
+              <circle cx="{{ p.x }}" cy="{{ p.y }}" r="{{ p.r }}" fill="{{ p.f }}" stroke="{{ p.s }}" stroke-width="1.2"/>
+            </sc-for>
+            <text x="{{ sg.lx }}" y="{{ sg.ly }}" font-size="10.5" font-weight="600" fill="#17201a" text-anchor="end" stroke="#ffffff" stroke-width="3" paint-order="stroke">{{ sg.label }}</text>
+            <text x="422" y="214" font-size="10" fill="#5b645d" text-anchor="end">Sản lượng thành phẩm tháng, triệu L</text>
+            <text x="36" y="8" font-size="10" fill="#5b645d">m³/1.000 L</text>
           </svg>
         </figure>
       </div>
-
-      <aside aria-label="Cây đồng hồ nước" style="background: #ffffff; border: 1px solid #e1e2da; border-radius: 10px; display: flex; flex-direction: column; min-height: 0">
-        <div style="padding: 12px 14px; border-bottom: 1px solid #e1e2da; display: flex; flex-direction: column; gap: 2px">
-          <span style="font-size: 13px; font-weight: 600">Cây đồng hồ · đối chiếu cha – con</span>
-          <span style="font-size: 11px; color: #5b645d">Đang mở: NST · Nước sạch tổng</span>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr 64px 64px; gap: 6px; padding: 8px 14px; font-size: 11px; font-weight: 600; color: #5b645d; background: #f9f9f6; border-bottom: 1px solid #e1e2da"><span>Đồng hồ</span><span style="text-align: right">m³</span><span style="text-align: right">Chênh</span></div>
-        <div style="overflow-y: auto; min-height: 0">
-          <sc-for list="{{ tree }}" as="t" hint-placeholder-count="14">
-            <div style="display: grid; grid-template-columns: 1fr 64px 64px; gap: 6px; align-items: center; height: 28px; padding: 0 14px 0 {{ t.pad }}; border-bottom: 1px solid #f2f1ec; background: {{ t.bg }}; font-size: 12px; font-variant-numeric: tabular-nums">
-              <span style="display: flex; gap: 6px; align-items: center; min-width: 0"><span style="width: 10px; color: #7a8279">{{ t.caret }}</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #434b45">{{ t.code }}</span><span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: {{ t.c }}">{{ t.name }}</span></span>
-              <span style="text-align: right; color: {{ t.c }}">{{ t.v }}</span>
-              <span style="text-align: right; font-weight: 600; color: {{ t.dc }}">{{ t.diff }}</span>
-            </div>
-          </sc-for>
-        </div>
-        <div style="margin-top: auto; padding: 10px 14px; border-top: 1px solid #e1e2da; font-size: 11px; color: #5b645d; line-height: 1.5">Chênh = đồng hồ cha − Σ đồng hồ con trực tiếp. Gồm cả nhánh chưa lắp đồng hồ, nên không tự gọi là thất thoát. "Đề xuất" = đồng hồ chưa có, chưa xác nhận với phòng Kỹ thuật.</div>
-      </aside>
     </main>
   </div>
 </div>
@@ -110,62 +146,58 @@ a{color:#106138}a:hover{color:#0b3f25}
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
   renderVals() {
-    // Số minh hoạ. Mã G/GTT/NST/NS/NM/NN theo file theo dõi đồng hồ nước; cấu trúc luồng rút gọn.
-    var S = 0.019; // px mỗi m³
-    var col = [20, 250, 480, 720];
-    var N = {
-      gieng: { x: col[0], y: 40, v: 23000, name: 'Giếng G1–G4', fill: '#7a8279' },
-      gtt: { x: col[1], y: 40, v: 22700, name: 'Nước thô GTT', fill: '#7a8279' },
-      nst: { x: col[2], y: 40, v: 22300, name: 'Nước sạch NST', fill: '#7a8279' },
-      nn: { x: col[3], y: 20, v: 6900, name: 'Nước nấu NN', fill: '#7a8279' },
-      nm: { x: col[3], y: 170, v: 5800, name: 'Nước mềm NM', fill: '#7a8279' },
-      ns: { x: col[3], y: 300, v: 8600, name: 'Hộ dùng nước sạch NS', fill: '#7a8279' },
-      loss: { x: col[3], y: 486, v: 1000, name: 'Chưa đo / thất thoát', fill: '#27312b' },
-      loss1: { x: col[1], y: 492, v: 300, name: 'Xử lý thô', fill: '#27312b' },
-      loss2: { x: col[2], y: 492, v: 400, name: 'Xử lý tinh', fill: '#27312b' }
-    };
-    var h = function (n) { return Math.max(n.v * S, 4); };
-    var fmt = function (v) { return v.toLocaleString('vi-VN'); };
-    var nodes = Object.keys(N).map(function (k) {
-      var n = N[k], right = n.x >= col[3];
-      return { x: n.x, y: n.y, h: h(n), fill: n.fill, name: n.name, val: fmt(n.v) + ' m³',
-        tx: right ? n.x + 20 : n.x + 20, ty: n.y + (k.indexOf('loss') === 0 ? -14 : 14), ty2: n.y + (k.indexOf('loss') === 0 ? -1 : 28), anchor: 'start' };
-    });
-    var off = {};
-    var band = function (a, b, v, loss) {
-      var A = N[a], B = N[b];
-      var ya = A.y + (off[a] || 0), yb = B.y + (off['in_' + b] || 0), w = v * S;
-      off[a] = (off[a] || 0) + w; off['in_' + b] = (off['in_' + b] || 0) + w;
-      var x1 = A.x + 14, x2 = B.x, mx = (x1 + x2) / 2;
-      var d = 'M' + x1 + ',' + ya + ' C' + mx + ',' + ya + ' ' + mx + ',' + yb + ' ' + x2 + ',' + yb +
-        ' L' + x2 + ',' + (yb + w) + ' C' + mx + ',' + (yb + w) + ' ' + mx + ',' + (ya + w) + ' ' + x1 + ',' + (ya + w) + ' Z';
-      return { d: d, fill: loss ? '#27312b' : '#7a8279', op: loss ? '0.45' : '0.18' };
-    };
-    var links = [
-      band('gieng', 'gtt', 22700), band('gieng', 'loss1', 300, true),
-      band('gtt', 'nst', 22300), band('gtt', 'loss2', 400, true),
-      band('nst', 'nn', 6900), band('nst', 'nm', 5800), band('nst', 'ns', 8600), band('nst', 'loss', 1000, true)
-    ];
+    // Số minh hoạ: tỷ lệ theo file theo dõi đồng hồ nước Q1/2026. Cây theo sơ đồ đồng hồ nước và file theo dõi:
+    // giếng → bể thô → NTT → lọc, bể sạch → NS2 (NS1 đã dừng) → các nhánh. NS26 rửa bình lọc lấy từ bể sạch nên không qua NS2.
+    // NN4 là nhánh của NN3. Nước mềm không có đồng hồ đầu vào.
+    var fmt1 = function (v) { return v.toFixed(1).replace('.', ','); };
+    var fmt2 = function (v) { return v.toFixed(2).replace('.', ','); };
+    var IC = { warn: 'M12 4l9 16H3z', tank: 'M4 7h16v12H4zM4 11h16' };
     var tree = [
-      ['NST', 'Nước sạch tổng', '22.300', '1.000', 0, true, true, ''],
-      ['NN', 'Nước nấu', '6.900', '120', 1, true, false, ''],
-      ['NM', 'Nước mềm', '5.800', '210', 1, true, false, ''],
-      ['NS24', 'Điểm trung chuyển', '600', '40', 1, true, false, ''],
-      ['NS11', 'Nhánh NS11', '180', '', 2, false, false, ''],
-      ['NS6', 'Nhánh NS6', '150', '', 2, false, false, ''],
-      ['NS5', 'Nhánh NS5', '130', '', 2, false, false, ''],
-      ['NS4', 'Nhánh NS4', '100', '', 2, false, false, ''],
-      ['NS14', 'Nhà nấu', '3.100', '', 1, false, false, ''],
-      ['NS9', 'Lạnh 2', '1.900', '', 1, false, false, ''],
-      ['NS16', 'Hội trường, nhà ăn', '700', '', 1, false, false, ''],
-      ['NS.X1', 'Rửa tay kiot bia hơi', 'Đề xuất', '', 1, false, false, 'v'],
-      ['NS.X2', 'Nước đi VSCC, ô tô', 'Đề xuất', '', 1, false, false, 'v']
+      ['Giếng G1–G4', '29.900', '29.500', '1,3%', 0, 'c', 'G1 7.600 · G2 7.900 · G3 6.900 · G4 7.500', 'tank'],
+      ['Nước thô NTT', '29.500', '26.660', '9,6%', 1, true, 'Qua lọc thô, lọc tinh, bể sạch 246 m³', 'tank'],
+      ['Tổng nước sạch NS2', '25.900', '22.640', '12,6%', 2, true, 'NST cùng điểm 26.080 · lệch −0,7% · NS1 đã dừng', 'warn'],
+      ['Nước nấu NN1', '10.900', '11.230', '−3,0%', 3, true, '', null],
+      ['NN3 · Nhà nấu, chiết nước', '9.270', '680', '', 4, true, '', null],
+      ['NN4 · Chiết nước', '680', '', '', 5, false, '', null],
+      ['NN5 · Lên men', '1.930', '', '', 4, false, '', null],
+      ['NN6 · Thanh trùng nhanh', '30', '', '', 4, false, '', null],
+      ['Nước mềm', '—', '5.740', '', 3, 'c', 'Lò trấu NM1 1.590 · khu vực NM3 2.860 · Keg 3 1.280', null],
+      ['NS8 · Men 2', '2.260', '', '', 3, false, '', null],
+      ['NS18 · Trading', '930', '', '', 3, false, '', null],
+      ['NS25 · Rửa tái sinh', '650', '', '', 3, false, 'Bình làm mềm', null],
+      ['NS3 · Xử lý nước thải', '590', '', '', 3, false, '', null],
+      ['15 nhánh nhỏ', '1.570', '', '', 3, 'c', 'Men 1, HC nhà máy, tưới cây, Keg, nhà nấu…', null],
+      ['NS26 · Rửa bình lọc', '760', '', '', 2, false, 'Lấy từ bể sạch, không qua NS2', null]
     ].map(function (r) {
-      var big = r[3] && parseInt(r[3].replace('.', ''), 10) / parseInt(r[2].replace('.', ''), 10) > 0.05;
-      return { code: r[0], name: r[1], v: r[2], diff: r[3] ? '−' + r[3] : '', pad: (14 + r[4] * 14) + 'px', caret: r[5] ? '▾' : '',
-        bg: r[6] ? '#eef7f1' : 'transparent', c: r[7] ? '#7a8279' : '#17201a', dc: big ? '#434b45' : '#434b45' };
+      var s = r[7];
+      return { name: r[0], v: r[1], sum: r[2], diff: r[3], pad: (14 + r[4] * 16) + 'px', caret: r[5] === 'c' ? '▸' : r[5] ? '▾' : '', w: r[5] ? 600 : 400, sub: r[6],
+        bg: s === 'warn' ? '#f9f9f6' : 'transparent', hasSt: !!s, icon: s ? IC[s] : '', st: s === 'warn' ? 'Cảnh báo · quá 10%' : 'Qua bể chứa',
+        sbg: s === 'warn' ? '#f2f1ec' : '#ffffff', sbd: s === 'warn' ? '#c9cbc2' : '#e1e2da' };
     });
-    return { nodes: nodes, links: links, tree: tree };
+    var wells = [['G1', 253, 310], ['G2', 263, 325], ['G3', 230, 290], ['G4', 250, 305]].map(function (w) {
+      return { name: w[0], avg: w[1], max: w[2], avgW: (w[1] / 350 * 100).toFixed(0) + '%', maxW: (w[2] / 350 * 100).toFixed(0) + '%' };
+    });
+    // Kỳ vọng minh hoạ f(x) = 1,9 + 12/x; điểm tháng là số giả lập quanh đường.
+    var X0 = 3, X1 = 11.5, Y0 = 2.5, Y1 = 6.5;
+    var sx = function (v) { return 36 + (v - X0) / (X1 - X0) * 386; };
+    var sy = function (v) { return 14 + (Y1 - v) / (Y1 - Y0) * 168; };
+    var f = function (x) { return 1.9 + 12 / x; };
+    var up = [], dn = [], exp = [];
+    for (var x = 3.4; x <= 11.41; x += 0.4) {
+      exp.push(sx(x).toFixed(1) + ',' + sy(f(x)).toFixed(1));
+      up.push(sx(x).toFixed(1) + ',' + sy(f(x) * 1.15).toFixed(1));
+      dn.unshift(sx(x).toFixed(1) + ',' + sy(f(x) * 0.85).toFixed(1));
+    }
+    var vols = [6.2, 3.9, 7.4, 8.8, 9.6, 10.2, 10.0, 8.7, 7.9, 8.4, 7.1, 8.9, 6.5, 4.0, 7.7, 9.0, 9.9, 10.6, 10.3, 8.8, 8.0, 8.6, 7.3, 9.2, 6.8, 4.1, 7.9, 9.2, 10.1, 10.8, 10.4, 9.0];
+    var noise = [-0.03, 0.05, 0.01, -0.02, 0.04, -0.05, 0.02, 0.0, 0.03, -0.04, 0.06, 0.01, -0.02, 0.03, -0.01, 0.05, -0.03, 0.02, 0.0, -0.06, 0.04, 0.01, -0.02, 0.03, 0.02, -0.04, 0.01, 0.03, -0.02, 0.0, 0.02, -0.01];
+    var pts = vols.map(function (v, i) { return { x: sx(v).toFixed(1), y: sy(f(v) * (1 + noise[i])).toFixed(1), r: 3, f: '#ffffff', s: '#7a8279' }; });
+    var cx = sx(8.1), cy = sy(3.40);
+    pts.push({ x: cx.toFixed(1), y: cy.toFixed(1), r: 5, f: '#17201a', s: '#17201a' });
+    var gy = [3, 4, 5, 6].map(function (v) { return { y: sy(v).toFixed(1), ty: (sy(v) + 3).toFixed(1), v: v }; });
+    var gx = [4, 6, 8, 10].map(function (v) { return { x: sx(v).toFixed(1), v: v }; });
+    var sg = { band: 'M' + up.join(' L') + ' L' + dn.join(' L') + ' Z', exp: exp.join(' '), pts: pts, gy: gy, gx: gx,
+      lx: (cx - 8).toFixed(1), ly: (cy - 24).toFixed(1), label: 'T9/2026: 3,40 · kỳ vọng ' + fmt2(f(8.1)) };
+    return { tree: tree, wells: wells, sg: sg };
   }
 }
 </script>

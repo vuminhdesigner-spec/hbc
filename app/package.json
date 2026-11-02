@@ -9,6 +9,7 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "build:artifact": "tsc -b && vite build --mode artifact",
+    "build:qc": "tsc -b && vite build --mode qc",
     "build:motion": "tsc -b && vite build --mode motion"
   },
   "dependencies": {

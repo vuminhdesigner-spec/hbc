@@ -3,3 +3,7 @@ node_modules/
 .claude/settings.local.json
 dist/
 app/dist/
+
+# Tài liệu khách hàng và ảnh nguồn: không đưa lên repo public
+docs/
+design/nguon/

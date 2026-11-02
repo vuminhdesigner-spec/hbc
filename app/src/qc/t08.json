@@ -1,0 +1,3008 @@
+{
+ "thang": 8,
+ "nam": 2026,
+ "co_du_lieu_thuc_te": true,
+ "tong_so_ban_ghi_qc": 7672,
+ "muc_1_nuoc": {
+  "dong_nuoc": {
+   "nuoc_nau": {
+    "tc": "pH: 6.8-7.2, Trong: ≤0.5, Kiềm: 30-60, Cứng: ≤6.0, Ca²⁺: 30-80, Mg²⁺: ≤20, Clo: <0.01",
+    "max": 7,
+    "min": 6.8,
+    "tb": 6.911,
+    "metrics": {
+     "ph": {
+      "min": 6.8,
+      "max": 7,
+      "tb": 6.911
+     },
+     "do_trong": {
+      "min": 0.03,
+      "max": 0.04,
+      "tb": 0.034
+     },
+     "kiem_tong": {
+      "min": 35,
+      "max": 47.5,
+      "tb": 40.556
+     },
+     "do_cung": {
+      "min": 1.12,
+      "max": 2.24,
+      "tb": 1.571
+     },
+     "ca2": {
+      "min": 34,
+      "max": 40,
+      "tb": 35.2
+     },
+     "mg2": {
+      "min": 0.6,
+      "max": 4.8,
+      "tb": 2.232
+     },
+     "clo_du": {
+      "min": 0.01,
+      "max": 0.01,
+      "tb": 0.01
+     },
+     "fe2": {
+      "min": 0.05,
+      "max": 0.05,
+      "tb": 0.05
+     },
+     "mn2": {
+      "min": 0.05,
+      "max": 0.05,
+      "tb": 0.05
+     },
+     "arsen": {
+      "min": 0,
+      "max": 0,
+      "tb": 0
+     }
+    },
+    "danh_gia": "ĐẠT 100%"
+   },
+   "nuoc_mem": {
+    "tc": "pH: 6.8-7.2, Trong: ≤0.5, Cứng: ≤1.4 °H, Clo: <0.01",
+    "max": 7.4,
+    "min": 7.2,
+    "tb": 7.28,
+    "metrics": {
+     "ph": {
+      "min": 7.2,
+      "max": 7.4,
+      "tb": 7.28
+     },
+     "do_trong": {
+      "min": 0.05,
+      "max": 0.08,
+      "tb": 0.066
+     },
+     "kiem_tong": {
+      "min": 187.5,
+      "max": 225,
+      "tb": 205
+     },
+     "do_cung": {
+      "min": 0.56,
+      "max": 1.26,
+      "tb": 0.912
+     },
+     "ca2": {
+      "min": 1,
+      "max": 2,
+      "tb": 1.32
+     },
+     "mg2": {
+      "min": 1.44,
+      "max": 4.8,
+      "tb": 3.144
+     },
+     "clo_du": {
+      "min": 0.09,
+      "max": 0.103,
+      "tb": 0.096
+     },
+     "fe2": {
+      "min": 0.1,
+      "max": 0.1,
+      "tb": 0.1
+     },
+     "mn2": {
+      "min": 0.05,
+      "max": 0.05,
+      "tb": 0.05
+     },
+     "arsen": {
+      "min": 0,
+      "max": 0,
+      "tb": 0
+     }
+    },
+    "danh_gia": "ĐẠT 100%"
+   },
+   "nuoc_sinh_hoat": {
+    "tc": "pH: 6.5-8.5, Trong: ≤2.0, Cứng: ≤30.0 °H",
+    "max": 7.4,
+    "min": 7.3,
+    "tb": 7.35,
+    "metrics": {
+     "ph": {
+      "min": 7.3,
+      "max": 7.4,
+      "tb": 7.35
+     },
+     "do_trong": {
+      "min": 0.07,
+      "max": 0.09,
+      "tb": 0.085
+     },
+     "kiem_tong": {
+      "min": 200,
+      "max": 206.2,
+      "tb": 201.55
+     },
+     "do_cung": {
+      "min": 5.04,
+      "max": 5.6,
+      "tb": 5.44
+     },
+     "ca2": {
+      "min": 17,
+      "max": 19.2,
+      "tb": 18.1
+     },
+     "mg2": {
+      "min": 1.4,
+      "max": 13.8,
+      "tb": 8.25
+     },
+     "clo_du": {
+      "min": 0.212,
+      "max": 0.302,
+      "tb": 0.262
+     },
+     "fe2": {
+      "min": 0.2,
+      "max": 0.2,
+      "tb": 0.2
+     },
+     "mn2": {
+      "min": 0.5,
+      "max": 0.5,
+      "tb": 0.5
+     },
+     "arsen": {
+      "min": 0,
+      "max": 0,
+      "tb": 0
+     }
+    },
+    "danh_gia": "ĐẠT 100%"
+   }
+  },
+  "spc_records": [
+   {
+    "ngay": "01/08/2026",
+    "ph": 6.9,
+    "kiem_tong": 40,
+    "do_cung": 1.24,
+    "ca2": 34,
+    "mg2": 3.36,
+    "do_trong": 0.03
+   },
+   {
+    "ngay": "04/08/2026",
+    "ph": 7,
+    "kiem_tong": 37.5,
+    "do_cung": 1.23,
+    "ca2": null,
+    "mg2": null,
+    "do_trong": 0.03
+   },
+   {
+    "ngay": "10/08/2026",
+    "ph": 6.8,
+    "kiem_tong": 47.5,
+    "do_cung": 1.79,
+    "ca2": null,
+    "mg2": null,
+    "do_trong": 0.03
+   },
+   {
+    "ngay": "13/08/2026",
+    "ph": 6.8,
+    "kiem_tong": 35,
+    "do_cung": 1.37,
+    "ca2": 34,
+    "mg2": 1.2,
+    "do_trong": 0.04
+   },
+   {
+    "ngay": "16/08/2026",
+    "ph": 6.9,
+    "kiem_tong": 45,
+    "do_cung": 1.9,
+    "ca2": null,
+    "mg2": null,
+    "do_trong": 0.04
+   },
+   {
+    "ngay": "18/08/2026",
+    "ph": 6.9,
+    "kiem_tong": 45,
+    "do_cung": 2.24,
+    "ca2": 34,
+    "mg2": 0.6,
+    "do_trong": 0.04
+   },
+   {
+    "ngay": "23/08/2026",
+    "ph": 7,
+    "kiem_tong": 37.5,
+    "do_cung": null,
+    "ca2": null,
+    "mg2": null,
+    "do_trong": 0.04
+   },
+   {
+    "ngay": "25/08/2026",
+    "ph": 7,
+    "kiem_tong": 40,
+    "do_cung": 1.68,
+    "ca2": 40,
+    "mg2": 4.8,
+    "do_trong": 0.03
+   },
+   {
+    "ngay": "29/08/2026",
+    "ph": 6.9,
+    "kiem_tong": 37.5,
+    "do_cung": 1.12,
+    "ca2": 34,
+    "mg2": 1.2,
+    "do_trong": 0.03
+   }
+  ],
+  "danh_gia_chung": "100% CHỈ TIÊU ĐẠT TIÊU CHUẨN"
+ },
+ "muc_2_dich_nha": {
+  "loai_dich_nha": "Hơi cao độ",
+  "so_me_nau": 150,
+  "tong_san_luong_hl": 61880.7,
+  "san_luong_tb_me": 412.538,
+  "chi_tieus": {
+   "san_luong": {
+    "ma_chi_tieu": "HL",
+    "ten_chi_tieu": "Sản lượng",
+    "don_vi": "hl",
+    "tieu_chuan": "-",
+    "min": 402.1,
+    "max": 421.3,
+    "trung_binh": 412.538,
+    "so_mau": 150,
+    "danh_gia": "ĐẠT"
+   },
+   "do_chua": {
+    "ma_chi_tieu": "10000092",
+    "ten_chi_tieu": "Độ chua",
+    "don_vi": "ml NaOH 0.1N",
+    "tieu_chuan": "0.85 - 1.15",
+    "min": 0.9,
+    "max": 0.95,
+    "trung_binh": 0.93,
+    "so_mau": 150,
+    "danh_gia": "ĐẠT"
+   },
+   "do_duong": {
+    "ma_chi_tieu": "10000001",
+    "ten_chi_tieu": "Độ đường  Nha lạnh",
+    "don_vi": "°P",
+    "tieu_chuan": "13.1 - 13.7",
+    "min": 13.4,
+    "max": 13.9,
+    "trung_binh": 13.68,
+    "so_mau": 150,
+    "danh_gia": "NGOÀI TC"
+   },
+   "do_mau": {
+    "ma_chi_tieu": "10000094",
+    "ten_chi_tieu": "Độ màu",
+    "don_vi": "EBC",
+    "tieu_chuan": "9.0 - 10.5",
+    "min": 7.92,
+    "max": 12.91,
+    "trung_binh": 9.58,
+    "so_mau": 150,
+    "danh_gia": "NGOÀI TC"
+   },
+   "do_trong": {
+    "ma_chi_tieu": "10000093",
+    "ten_chi_tieu": "Độ trong",
+    "don_vi": "EBC",
+    "tieu_chuan": "< 25",
+    "min": 10.16,
+    "max": 19.75,
+    "trung_binh": 14.28,
+    "so_mau": 150,
+    "danh_gia": "ĐẠT"
+   },
+   "ph": {
+    "ma_chi_tieu": "10000046",
+    "ten_chi_tieu": "pH",
+    "don_vi": "",
+    "tieu_chuan": "5.2 - 5.8",
+    "min": 5.7,
+    "max": 5.92,
+    "trung_binh": 5.78,
+    "so_mau": 150,
+    "danh_gia": "NGOÀI TC"
+   },
+   "do_dang": {
+    "ma_chi_tieu": "",
+    "ten_chi_tieu": "Độ đắng",
+    "don_vi": "BU",
+    "tieu_chuan": "35±2",
+    "min": null,
+    "max": null,
+    "trung_binh": null,
+    "so_mau": 0,
+    "danh_gia": "-"
+   },
+   "polyphenol": {
+    "ma_chi_tieu": "",
+    "ten_chi_tieu": "Polyphenol",
+    "don_vi": "mg/l",
+    "tieu_chuan": "-",
+    "min": null,
+    "max": null,
+    "trung_binh": null,
+    "so_mau": 0,
+    "danh_gia": "-"
+   },
+   "fan": {
+    "ma_chi_tieu": "",
+    "ten_chi_tieu": "FAN",
+    "don_vi": "mg/l",
+    "tieu_chuan": "-",
+    "min": null,
+    "max": null,
+    "trung_binh": null,
+    "so_mau": 0,
+    "danh_gia": "-"
+   },
+   "duong_sot": {
+    "ma_chi_tieu": "BA_NHA_NAU",
+    "ten_chi_tieu": "Đường sót + bột sót",
+    "don_vi": "%",
+    "tieu_chuan": "< 2.9",
+    "min": 1.94,
+    "max": 2.02,
+    "trung_binh": 1.98,
+    "so_mau": 2,
+    "danh_gia": "ĐẠT"
+   }
+  },
+  "danh_gia_chung": "ĐẠT 100%"
+ },
+ "muc_3_len_men": {
+  "loai_bia": "Hơi cao độ",
+  "so_tank": 42,
+  "tc_pz_ha_lanh": "3.5 - 3.7",
+  "so_tank_pz_trong_tc": 42,
+  "so_tank_pz_ngoai_tc": 0,
+  "pz_ha_lanh_tb": 3.67,
+  "pz_ha_lanh_min": 3.5,
+  "pz_ha_lanh_max": 3.7,
+  "nhiet_do_cuc_dai_tb": 12.4,
+  "nhiet_do_cuc_dai_max": 12.5,
+  "nhiet_do_cuc_dai_min": 12.3,
+  "ap_suat_tb": 0.26,
+  "danh_gia_len_men": "ĐẠT 100%",
+  "sinh_khoi_men": {
+   "day_bon": {
+    "ma_chi_tieu": "10000047",
+    "ten_chi_tieu": "Mật độ tế bào",
+    "don_vi": "triệu/ml",
+    "tieu_chuan": "4.5 - 25.0",
+    "min": 4.5,
+    "max": 24,
+    "trung_binh": 11.57,
+    "so_mau": 40,
+    "danh_gia": "ĐẠT"
+   },
+   "cuc_dai": {
+    "ma_chi_tieu": "CUC_DAI",
+    "ten_chi_tieu": "Mật độ TB nấm men cực đại",
+    "don_vi": "triệu/ml",
+    "tieu_chuan": "30.0 - 60.0",
+    "min": 42,
+    "max": 59,
+    "trung_binh": 48.15,
+    "so_mau": 33,
+    "danh_gia": "RẤT TỐT"
+   },
+   "ha_lanh": {
+    "ma_chi_tieu": "10000047",
+    "ten_chi_tieu": "Mật độ tế bào",
+    "don_vi": "triệu/ml",
+    "tieu_chuan": "10.0 - 18.0",
+    "min": 9,
+    "max": 16,
+    "trung_binh": 12,
+    "so_mau": 9,
+    "danh_gia": "ĐẠT"
+   },
+   "truoc_loc": {
+    "ma_chi_tieu": "10000047",
+    "ten_chi_tieu": "Mật độ tế bào",
+    "don_vi": "triệu/ml",
+    "tieu_chuan": "≤ 5.0",
+    "min": 0.9,
+    "max": 50,
+    "trung_binh": 3.43,
+    "so_mau": 30,
+    "danh_gia": "ĐẠT"
+   }
+  },
+  "danh_gia_sinh_khoi": "RẤT TỐT",
+  "so_bon_pz_duoi_tc": 0,
+  "so_bon_pz_trong_tc": 42,
+  "so_bon_pz_tren_tc": 0,
+  "so_ngay_lmc_tb": 5.3,
+  "so_ngay_lmc_min": 3,
+  "so_ngay_lmc_max": 7,
+  "so_tank_duoi_4_ngay": 1,
+  "so_tank_tren_7_ngay": 0,
+  "bao_quan_men": {
+   "loai_men": "Bia hơi",
+   "thoi_gian_bao_quan_tb": 46.96,
+   "thoi_gian_bao_quan_max": 71,
+   "thoi_gian_bao_quan_tc": "< 72h",
+   "ty_le_chet_tb": 2.47,
+   "ty_le_chet_max": 4.51,
+   "so_bon_men_chet_tren_5": 0,
+   "so_bon_men_tren_8_doi": 0,
+   "so_bon_men_bao_quan_tren_3_ngay": 0
+  }
+ },
+ "muc_4_btp": {
+  "loai_bia": "Hơi BTP",
+  "so_mau": 53,
+  "chi_tieus": {
+   "chua": {
+    "ma_chi_tieu": "10000092",
+    "ten_chi_tieu": "Độ chua",
+    "don_vi": "ml NaOH 0.1 N",
+    "tieu_chuan": "1.30 - 1.50",
+    "min": 1.4,
+    "max": 1.45,
+    "trung_binh": 1.43,
+    "so_mau": 106,
+    "danh_gia": "ĐẠT"
+   },
+   "do_chua": {
+    "ma_chi_tieu": "10000092",
+    "ten_chi_tieu": "Độ chua",
+    "don_vi": "ml NaOH 0.1 N",
+    "tieu_chuan": "1.30 - 1.50",
+    "min": 1.4,
+    "max": 1.45,
+    "trung_binh": 1.43,
+    "so_mau": 106,
+    "danh_gia": "ĐẠT"
+   },
+   "do_mau": {
+    "ma_chi_tieu": "10000094",
+    "ten_chi_tieu": "Độ màu",
+    "don_vi": "EBC",
+    "tieu_chuan": "7.0 - 9.5",
+    "min": 7.54,
+    "max": 8.99,
+    "trung_binh": 8.15,
+    "so_mau": 106,
+    "danh_gia": "ĐẠT"
+   },
+   "do_trong": {
+    "ma_chi_tieu": "10000093",
+    "ten_chi_tieu": "Độ trong",
+    "don_vi": "EBC",
+    "tieu_chuan": "≤ 18.0",
+    "min": 10.22,
+    "max": 17.16,
+    "trung_binh": 13.69,
+    "so_mau": 106,
+    "danh_gia": "ĐẠT"
+   },
+   "duong_tong": {
+    "ma_chi_tieu": "10000088",
+    "ten_chi_tieu": "HL chất hòa tan ban đầu",
+    "don_vi": "°P",
+    "tieu_chuan": "13.1 - 14.0",
+    "min": 13.46,
+    "max": 13.95,
+    "trung_binh": 13.72,
+    "so_mau": 106,
+    "danh_gia": "ĐẠT"
+   },
+   "ea": {
+    "ma_chi_tieu": "10000089",
+    "ten_chi_tieu": "HL chất hòa tan biểu kiến",
+    "don_vi": "%m",
+    "tieu_chuan": "2.4 - 3.5",
+    "min": 2.49,
+    "max": 3.44,
+    "trung_binh": 3.08,
+    "so_mau": 106,
+    "danh_gia": "ĐẠT"
+   },
+   "er": {
+    "ma_chi_tieu": "10000090",
+    "ten_chi_tieu": "HL chất hòa tan còn lại",
+    "don_vi": "%m",
+    "tieu_chuan": "4.5 - 5.5",
+    "min": 4.64,
+    "max": 5.46,
+    "trung_binh": 5.13,
+    "so_mau": 106,
+    "danh_gia": "ĐẠT"
+   },
+   "co2": {
+    "ma_chi_tieu": "10000091",
+    "ten_chi_tieu": "HL CO2 hòa tan",
+    "don_vi": "g/l",
+    "tieu_chuan": "≥ 6.00",
+    "min": 6.3,
+    "max": 6.8,
+    "trung_binh": 6.65,
+    "so_mau": 106,
+    "danh_gia": "ĐẠT"
+   },
+   "con": {
+    "ma_chi_tieu": "10000087",
+    "ten_chi_tieu": "HL cồn ở 20 độ C",
+    "don_vi": "%v",
+    "tieu_chuan": "≥ 5.50",
+    "min": 5.51,
+    "max": 6,
+    "trung_binh": 5.73,
+    "so_mau": 106,
+    "danh_gia": "ĐẠT"
+   },
+   "vdk": {
+    "ma_chi_tieu": "10000138",
+    "ten_chi_tieu": "HL VDK",
+    "don_vi": "mg/l",
+    "tieu_chuan": "≤ 0.10",
+    "min": 0.06,
+    "max": 0.11,
+    "trung_binh": 0.07,
+    "so_mau": 106,
+    "danh_gia": "NGOÀI TC"
+   },
+   "ph": {
+    "ma_chi_tieu": "10000046",
+    "ten_chi_tieu": "pH",
+    "don_vi": "",
+    "tieu_chuan": "3.9 - 4.5",
+    "min": 3.92,
+    "max": 4.48,
+    "trung_binh": 4.34,
+    "so_mau": 106,
+    "danh_gia": "ĐẠT"
+   },
+   "do_dang": {
+    "ma_chi_tieu": "",
+    "ten_chi_tieu": "Độ đắng",
+    "don_vi": "BU",
+    "tieu_chuan": "22.0 - 25.0",
+    "min": null,
+    "max": null,
+    "trung_binh": null,
+    "so_mau": 0,
+    "danh_gia": "-"
+   }
+  },
+  "danh_gia_chung": "ĐẠT 100%",
+  "so_ngay_cho_loc": {
+   "loai_bia": "Hơi cao độ",
+   "tieu_chuan": "11 - 45 ngày",
+   "thoi_gian_lm_tb": 11,
+   "thoi_gian_lm_max": 11,
+   "thoi_gian_lm_min": 11,
+   "tong_so_tank_da_loc": 31,
+   "so_tank_loc_som": 0,
+   "so_tank_loc_muon": 0
+  }
+ },
+ "muc_5_sau_loc": {
+  "dong_san_pham": {
+   "keg": {
+    "ten": "BTP bia hơi Hanoi Lọc",
+    "ma_sp": "12000020",
+    "so_mau": 78,
+    "chi_tieus": {
+     "do_chua": {
+      "ma_chi_tieu": "10000092",
+      "ten_chi_tieu": "Độ chua",
+      "don_vi": "ml NaOH",
+      "tieu_chuan": "0.9 - 1.2",
+      "min": 1,
+      "max": 1,
+      "trung_binh": 1,
+      "so_mau": 78,
+      "danh_gia": "ĐẠT"
+     },
+     "do_mau": {
+      "ma_chi_tieu": "10000094",
+      "ten_chi_tieu": "Độ màu",
+      "don_vi": "EBC",
+      "tieu_chuan": "5.0 - 6.0",
+      "min": 5,
+      "max": 5.83,
+      "trung_binh": 5.41,
+      "so_mau": 78,
+      "danh_gia": "ĐẠT"
+     },
+     "do_trong": {
+      "ma_chi_tieu": "10000093",
+      "ten_chi_tieu": "Độ trong",
+      "don_vi": "EBC",
+      "tieu_chuan": "≤ 0.50",
+      "min": 0.16,
+      "max": 0.24,
+      "trung_binh": 0.19,
+      "so_mau": 78,
+      "danh_gia": "ĐẠT"
+     },
+     "duong_ban_dau": {
+      "ma_chi_tieu": "10000088",
+      "ten_chi_tieu": "HL chất hòa tan ban đầu",
+      "don_vi": "g/l",
+      "tieu_chuan": "9.9 - 10.3",
+      "min": 9.82,
+      "max": 10.2,
+      "trung_binh": 10.06,
+      "so_mau": 78,
+      "danh_gia": "NGOÀI TC"
+     },
+     "ea": {
+      "ma_chi_tieu": "10000089",
+      "ten_chi_tieu": "HL chất hòa tan biểu kiến",
+      "don_vi": "%m",
+      "tieu_chuan": "1.9 - 2.4",
+      "min": 1.86,
+      "max": 2.4,
+      "trung_binh": 2.12,
+      "so_mau": 78,
+      "danh_gia": "NGOÀI TC"
+     },
+     "er": {
+      "ma_chi_tieu": "10000090",
+      "ten_chi_tieu": "HL chất hòa tan còn lại",
+      "don_vi": "%m",
+      "tieu_chuan": "3.4 - 3.9",
+      "min": 3.43,
+      "max": 3.88,
+      "trung_binh": 3.65,
+      "so_mau": 78,
+      "danh_gia": "ĐẠT"
+     },
+     "co2": {
+      "ma_chi_tieu": "10000091",
+      "ten_chi_tieu": "HL CO2 hòa tan",
+      "don_vi": "%m",
+      "tieu_chuan": "≥ 4.80",
+      "min": 4.57,
+      "max": 5.5,
+      "trung_binh": 5.09,
+      "so_mau": 78,
+      "danh_gia": "NGOÀI TC"
+     },
+     "con": {
+      "ma_chi_tieu": "10000087",
+      "ten_chi_tieu": "HL cồn ở 20 độ C",
+      "don_vi": "% vol",
+      "tieu_chuan": "4.0 - 4.4",
+      "min": 4,
+      "max": 4.29,
+      "trung_binh": 4.17,
+      "so_mau": 78,
+      "danh_gia": "ĐẠT"
+     },
+     "ph": {
+      "ma_chi_tieu": "10000046",
+      "ten_chi_tieu": "pH",
+      "don_vi": "",
+      "tieu_chuan": "4.1 - 4.5",
+      "min": 4.15,
+      "max": 4.44,
+      "trung_binh": 4.33,
+      "so_mau": 78,
+      "danh_gia": "ĐẠT"
+     },
+     "do": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "DO",
+      "don_vi": "mg/l",
+      "tieu_chuan": "≤ 0.15",
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     }
+    },
+    "danh_gia": "ĐẠT 100%"
+   },
+   "pet": {
+    "ten": "BTP bia hơi Hanoi Lọc MN PET",
+    "ma_sp": "12000081",
+    "so_mau": 13,
+    "chi_tieus": {
+     "do_chua": {
+      "ma_chi_tieu": "10000092",
+      "ten_chi_tieu": "Độ chua",
+      "don_vi": "ml NaOH",
+      "tieu_chuan": "0.9 - 1.2",
+      "min": 1,
+      "max": 1,
+      "trung_binh": 1,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "do_mau": {
+      "ma_chi_tieu": "10000094",
+      "ten_chi_tieu": "Độ màu",
+      "don_vi": "EBC",
+      "tieu_chuan": "5.0 - 6.0",
+      "min": 5.13,
+      "max": 5.63,
+      "trung_binh": 5.34,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "do_trong": {
+      "ma_chi_tieu": "10000093",
+      "ten_chi_tieu": "Độ trong",
+      "don_vi": "EBC",
+      "tieu_chuan": "≤ 0.50",
+      "min": 0.16,
+      "max": 0.2,
+      "trung_binh": 0.18,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "duong_ban_dau": {
+      "ma_chi_tieu": "10000088",
+      "ten_chi_tieu": "HL chất hòa tan ban đầu",
+      "don_vi": "g/l",
+      "tieu_chuan": "9.9 - 10.3",
+      "min": 10.06,
+      "max": 10.15,
+      "trung_binh": 10.11,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "ea": {
+      "ma_chi_tieu": "10000089",
+      "ten_chi_tieu": "HL chất hòa tan biểu kiến",
+      "don_vi": "%m",
+      "tieu_chuan": "1.9 - 2.4",
+      "min": 1.98,
+      "max": 2.26,
+      "trung_binh": 2.11,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "er": {
+      "ma_chi_tieu": "10000090",
+      "ten_chi_tieu": "HL chất hòa tan còn lại",
+      "don_vi": "%m",
+      "tieu_chuan": "3.4 - 3.9",
+      "min": 3.54,
+      "max": 3.77,
+      "trung_binh": 3.65,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "co2": {
+      "ma_chi_tieu": "10000091",
+      "ten_chi_tieu": "HL CO2 hòa tan",
+      "don_vi": "%m",
+      "tieu_chuan": "≥ 5.00",
+      "min": 5.05,
+      "max": 5.55,
+      "trung_binh": 5.23,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "con": {
+      "ma_chi_tieu": "10000087",
+      "ten_chi_tieu": "HL cồn ở 20 độ C",
+      "don_vi": "% vol",
+      "tieu_chuan": "4.0 - 4.4",
+      "min": 4.11,
+      "max": 4.27,
+      "trung_binh": 4.2,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "ph": {
+      "ma_chi_tieu": "10000046",
+      "ten_chi_tieu": "pH",
+      "don_vi": "",
+      "tieu_chuan": "4.1 - 4.5",
+      "min": 4.18,
+      "max": 4.44,
+      "trung_binh": 4.32,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "do": {
+      "ma_chi_tieu": "10000095",
+      "ten_chi_tieu": "DO",
+      "don_vi": "mg/l",
+      "tieu_chuan": "≤ 0.15",
+      "min": 0.04,
+      "max": 0.08,
+      "trung_binh": 0.06,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     }
+    },
+    "danh_gia": "ĐẠT 100%"
+   }
+  },
+  "danh_gia_chung": "ĐẠT 100%"
+ },
+ "muc_6_thanh_pham": {
+  "san_phams": {
+   "keg_50l_mb": {
+    "ten": "Hơi thành phẩm KEG MB",
+    "ma_sp": "11000107",
+    "so_mau": 193,
+    "dung_tich": "50 L",
+    "chi_tieus": {
+     "con": {
+      "ma_chi_tieu": "10000087",
+      "ten_chi_tieu": "HL cồn ở 20 độ C",
+      "don_vi": "%v",
+      "tieu_chuan": "3.8-4.4",
+      "min": 4.01,
+      "max": 4.31,
+      "trung_binh": 4.16,
+      "so_mau": 193,
+      "danh_gia": "ĐẠT"
+     },
+     "co2": {
+      "ma_chi_tieu": "10000091",
+      "ten_chi_tieu": "HL CO2 hòa tan",
+      "don_vi": "g/l",
+      "tieu_chuan": ">3.8",
+      "min": 4.9,
+      "max": 5.1,
+      "trung_binh": 5.02,
+      "so_mau": 193,
+      "danh_gia": "ĐẠT"
+     },
+     "duong_tong": {
+      "ma_chi_tieu": "10000088",
+      "ten_chi_tieu": "HL chất hòa tan ban đầu",
+      "don_vi": "°P",
+      "tieu_chuan": "9.9-10.2",
+      "min": 9.98,
+      "max": 10.17,
+      "trung_binh": 10.06,
+      "so_mau": 193,
+      "danh_gia": "ĐẠT"
+     },
+     "ea": {
+      "ma_chi_tieu": "10000089",
+      "ten_chi_tieu": "HL chất hòa tan biểu kiến",
+      "don_vi": "%m",
+      "tieu_chuan": "1.9-2.5",
+      "min": 1.9,
+      "max": 2.36,
+      "trung_binh": 2.12,
+      "so_mau": 193,
+      "danh_gia": "ĐẠT"
+     },
+     "er": {
+      "ma_chi_tieu": "10000090",
+      "ten_chi_tieu": "HL chất hòa tan còn lại",
+      "don_vi": "%m",
+      "tieu_chuan": null,
+      "min": 3.48,
+      "max": 3.85,
+      "trung_binh": 3.65,
+      "so_mau": 193,
+      "danh_gia": "ĐẠT"
+     },
+     "ph": {
+      "ma_chi_tieu": "10000046",
+      "ten_chi_tieu": "pH",
+      "don_vi": "",
+      "tieu_chuan": "4.0000 - 4.8000",
+      "min": 4.21,
+      "max": 4.44,
+      "trung_binh": 4.34,
+      "so_mau": 193,
+      "danh_gia": "ĐẠT"
+     },
+     "do_mau": {
+      "ma_chi_tieu": "10000094",
+      "ten_chi_tieu": "Độ màu",
+      "don_vi": "EBC",
+      "tieu_chuan": "4.5-6",
+      "min": 5.15,
+      "max": 5.75,
+      "trung_binh": 5.41,
+      "so_mau": 193,
+      "danh_gia": "ĐẠT"
+     },
+     "do_trong": {
+      "ma_chi_tieu": "10000093",
+      "ten_chi_tieu": "Độ trong",
+      "don_vi": "EBC",
+      "tieu_chuan": "<0.5",
+      "min": 0.17,
+      "max": 0.21,
+      "trung_binh": 0.19,
+      "so_mau": 193,
+      "danh_gia": "ĐẠT"
+     },
+     "do_chua": {
+      "ma_chi_tieu": "10000092",
+      "ten_chi_tieu": "Độ chua",
+      "don_vi": "ml NaOH",
+      "tieu_chuan": "0.9-1.3",
+      "min": 1,
+      "max": 1,
+      "trung_binh": 1,
+      "so_mau": 193,
+      "danh_gia": "ĐẠT"
+     },
+     "do": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "DO",
+      "don_vi": "mg/l",
+      "tieu_chuan": null,
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     },
+     "tpo": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "TPO",
+      "don_vi": "mg/l",
+      "tieu_chuan": null,
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     },
+     "do_dang": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "Độ đắng",
+      "don_vi": "BU",
+      "tieu_chuan": "15-19",
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     }
+    },
+    "danh_gia": "ĐẠT 100%"
+   },
+   "keg_50l_mn": {
+    "ten": "Hơi thành phẩm MN",
+    "ma_sp": "11000106",
+    "so_mau": 13,
+    "dung_tich": "50 L",
+    "chi_tieus": {
+     "con": {
+      "ma_chi_tieu": "10000087",
+      "ten_chi_tieu": "HL cồn ở 20 độ C",
+      "don_vi": "%v",
+      "tieu_chuan": "3.8-4.4",
+      "min": 4.1,
+      "max": 4.25,
+      "trung_binh": 4.18,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "co2": {
+      "ma_chi_tieu": "10000091",
+      "ten_chi_tieu": "HL CO2 hòa tan",
+      "don_vi": "g/l",
+      "tieu_chuan": "3.8000 - 0.0000",
+      "min": 5,
+      "max": 5.1,
+      "trung_binh": 5.05,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "duong_tong": {
+      "ma_chi_tieu": "10000088",
+      "ten_chi_tieu": "HL chất hòa tan ban đầu",
+      "don_vi": "°P",
+      "tieu_chuan": "10-10.2",
+      "min": 10.03,
+      "max": 10.16,
+      "trung_binh": 10.08,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "ea": {
+      "ma_chi_tieu": "10000089",
+      "ten_chi_tieu": "HL chất hòa tan biểu kiến",
+      "don_vi": "%m",
+      "tieu_chuan": "1.9-2.5",
+      "min": 1.98,
+      "max": 2.26,
+      "trung_binh": 2.11,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "er": {
+      "ma_chi_tieu": "10000090",
+      "ten_chi_tieu": "HL chất hòa tan còn lại",
+      "don_vi": "%m",
+      "tieu_chuan": null,
+      "min": 3.54,
+      "max": 3.75,
+      "trung_binh": 3.64,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "ph": {
+      "ma_chi_tieu": "10000046",
+      "ten_chi_tieu": "pH",
+      "don_vi": "",
+      "tieu_chuan": "4.0000 - 4.8000",
+      "min": 4.25,
+      "max": 4.44,
+      "trung_binh": 4.34,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "do_mau": {
+      "ma_chi_tieu": "10000094",
+      "ten_chi_tieu": "Độ màu",
+      "don_vi": "EBC",
+      "tieu_chuan": "4.5000 - 6.5000",
+      "min": 5.15,
+      "max": 5.6,
+      "trung_binh": 5.36,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "do_trong": {
+      "ma_chi_tieu": "10000093",
+      "ten_chi_tieu": "Độ trong",
+      "don_vi": "EBC",
+      "tieu_chuan": "0.0000 - 0.5000",
+      "min": 0.18,
+      "max": 0.2,
+      "trung_binh": 0.19,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "do_chua": {
+      "ma_chi_tieu": "10000092",
+      "ten_chi_tieu": "Độ chua",
+      "don_vi": "ml NaOH",
+      "tieu_chuan": "0.9000 - 1.3000",
+      "min": 1,
+      "max": 1,
+      "trung_binh": 1,
+      "so_mau": 13,
+      "danh_gia": "ĐẠT"
+     },
+     "do": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "DO",
+      "don_vi": "mg/l",
+      "tieu_chuan": null,
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     },
+     "tpo": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "TPO",
+      "don_vi": "mg/l",
+      "tieu_chuan": null,
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     },
+     "do_dang": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "Độ đắng",
+      "don_vi": "BU",
+      "tieu_chuan": "15-19",
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     }
+    },
+    "danh_gia": "ĐẠT 100%"
+   },
+   "keg_30l_mb": {
+    "ten": "Hơi TP MT",
+    "ma_sp": "11000396",
+    "so_mau": 14,
+    "dung_tich": "30L & 50L",
+    "chi_tieus": {
+     "con": {
+      "ma_chi_tieu": "10000087",
+      "ten_chi_tieu": "HL cồn ở 20 độ C",
+      "don_vi": "%v",
+      "tieu_chuan": "3.8000 - 4.4000",
+      "min": 4.1,
+      "max": 4.25,
+      "trung_binh": 4.17,
+      "so_mau": 14,
+      "danh_gia": "ĐẠT"
+     },
+     "co2": {
+      "ma_chi_tieu": "10000091",
+      "ten_chi_tieu": "HL CO2 hòa tan",
+      "don_vi": "g/l",
+      "tieu_chuan": "3.8000 - 0.0000",
+      "min": 4.98,
+      "max": 5.1,
+      "trung_binh": 5.05,
+      "so_mau": 14,
+      "danh_gia": "ĐẠT"
+     },
+     "duong_tong": {
+      "ma_chi_tieu": "10000088",
+      "ten_chi_tieu": "HL chất hòa tan ban đầu",
+      "don_vi": "°P",
+      "tieu_chuan": "9.9000 - 10.2000",
+      "min": 10.02,
+      "max": 10.12,
+      "trung_binh": 10.07,
+      "so_mau": 14,
+      "danh_gia": "ĐẠT"
+     },
+     "ea": {
+      "ma_chi_tieu": "10000089",
+      "ten_chi_tieu": "HL chất hòa tan biểu kiến",
+      "don_vi": "%m",
+      "tieu_chuan": "1.9000 - 2.5000",
+      "min": 2.01,
+      "max": 2.26,
+      "trung_binh": 2.12,
+      "so_mau": 14,
+      "danh_gia": "ĐẠT"
+     },
+     "er": {
+      "ma_chi_tieu": "10000090",
+      "ten_chi_tieu": "HL chất hòa tan còn lại",
+      "don_vi": "%m",
+      "tieu_chuan": null,
+      "min": 3.56,
+      "max": 3.75,
+      "trung_binh": 3.65,
+      "so_mau": 14,
+      "danh_gia": "ĐẠT"
+     },
+     "ph": {
+      "ma_chi_tieu": "10000046",
+      "ten_chi_tieu": "pH",
+      "don_vi": "",
+      "tieu_chuan": "4.0000 - 4.8000",
+      "min": 4.25,
+      "max": 4.44,
+      "trung_binh": 4.37,
+      "so_mau": 14,
+      "danh_gia": "ĐẠT"
+     },
+     "do_mau": {
+      "ma_chi_tieu": "10000094",
+      "ten_chi_tieu": "Độ màu",
+      "don_vi": "EBC",
+      "tieu_chuan": "4.5000 - 6.5000",
+      "min": 5.15,
+      "max": 5.6,
+      "trung_binh": 5.33,
+      "so_mau": 14,
+      "danh_gia": "ĐẠT"
+     },
+     "do_trong": {
+      "ma_chi_tieu": "10000093",
+      "ten_chi_tieu": "Độ trong",
+      "don_vi": "EBC",
+      "tieu_chuan": "0.0000 - 0.5000",
+      "min": 0.18,
+      "max": 0.2,
+      "trung_binh": 0.18,
+      "so_mau": 14,
+      "danh_gia": "ĐẠT"
+     },
+     "do_chua": {
+      "ma_chi_tieu": "10000092",
+      "ten_chi_tieu": "Độ chua",
+      "don_vi": "ml NaOH",
+      "tieu_chuan": "0.9000 - 1.3000",
+      "min": 1,
+      "max": 1,
+      "trung_binh": 1,
+      "so_mau": 14,
+      "danh_gia": "ĐẠT"
+     },
+     "do": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "DO",
+      "don_vi": "mg/l",
+      "tieu_chuan": null,
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     },
+     "tpo": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "TPO",
+      "don_vi": "mg/l",
+      "tieu_chuan": null,
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     },
+     "do_dang": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "Độ đắng",
+      "don_vi": "BU",
+      "tieu_chuan": null,
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     }
+    },
+    "danh_gia": "ĐẠT 100%"
+   },
+   "pet_1l": {
+    "ten": "Hơi thành phẩm 1 lit",
+    "ma_sp": "11000056",
+    "so_mau": 3,
+    "dung_tich": "1000 ml",
+    "chi_tieus": {
+     "con": {
+      "ma_chi_tieu": "10000087",
+      "ten_chi_tieu": "HL cồn ở 20 độ C",
+      "don_vi": "%v",
+      "tieu_chuan": "3.8000 - 4.4000",
+      "min": 4.16,
+      "max": 4.2,
+      "trung_binh": 4.18,
+      "so_mau": 3,
+      "danh_gia": "ĐẠT"
+     },
+     "co2": {
+      "ma_chi_tieu": "10000091",
+      "ten_chi_tieu": "HL CO2 hòa tan",
+      "don_vi": "g/l",
+      "tieu_chuan": "4.5-5.2",
+      "min": 5.1,
+      "max": 5.15,
+      "trung_binh": 5.12,
+      "so_mau": 3,
+      "danh_gia": "ĐẠT"
+     },
+     "duong_tong": {
+      "ma_chi_tieu": "10000088",
+      "ten_chi_tieu": "HL chất hòa tan ban đầu",
+      "don_vi": "°P",
+      "tieu_chuan": "9.9000 - 10.2000",
+      "min": 10.05,
+      "max": 10.11,
+      "trung_binh": 10.08,
+      "so_mau": 3,
+      "danh_gia": "ĐẠT"
+     },
+     "ea": {
+      "ma_chi_tieu": "10000089",
+      "ten_chi_tieu": "HL chất hòa tan biểu kiến",
+      "don_vi": "%m",
+      "tieu_chuan": "1.9000 - 2.5000",
+      "min": 2.05,
+      "max": 2.12,
+      "trung_binh": 2.09,
+      "so_mau": 3,
+      "danh_gia": "ĐẠT"
+     },
+     "er": {
+      "ma_chi_tieu": "10000090",
+      "ten_chi_tieu": "HL chất hòa tan còn lại",
+      "don_vi": "%m",
+      "tieu_chuan": null,
+      "min": 3.58,
+      "max": 3.67,
+      "trung_binh": 3.63,
+      "so_mau": 3,
+      "danh_gia": "ĐẠT"
+     },
+     "ph": {
+      "ma_chi_tieu": "10000046",
+      "ten_chi_tieu": "pH",
+      "don_vi": "",
+      "tieu_chuan": "4.0000 - 4.8000",
+      "min": 4.34,
+      "max": 4.43,
+      "trung_binh": 4.37,
+      "so_mau": 3,
+      "danh_gia": "ĐẠT"
+     },
+     "do_mau": {
+      "ma_chi_tieu": "10000094",
+      "ten_chi_tieu": "Độ màu",
+      "don_vi": "EBC",
+      "tieu_chuan": "4.5000 - 6.5000",
+      "min": 5.32,
+      "max": 5.65,
+      "trung_binh": 5.44,
+      "so_mau": 3,
+      "danh_gia": "ĐẠT"
+     },
+     "do_trong": {
+      "ma_chi_tieu": "10000093",
+      "ten_chi_tieu": "Độ trong",
+      "don_vi": "EBC",
+      "tieu_chuan": "0.0000 - 0.5000",
+      "min": 0.17,
+      "max": 0.2,
+      "trung_binh": 0.19,
+      "so_mau": 3,
+      "danh_gia": "ĐẠT"
+     },
+     "do_chua": {
+      "ma_chi_tieu": "10000092",
+      "ten_chi_tieu": "Độ chua",
+      "don_vi": "ml NaOH",
+      "tieu_chuan": "0.9000 - 1.3000",
+      "min": 1,
+      "max": 1,
+      "trung_binh": 1,
+      "so_mau": 3,
+      "danh_gia": "ĐẠT"
+     },
+     "do": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "DO",
+      "don_vi": "mg/l",
+      "tieu_chuan": null,
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     },
+     "tpo": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "TPO",
+      "don_vi": "mg/l",
+      "tieu_chuan": null,
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     },
+     "do_dang": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "Độ đắng",
+      "don_vi": "BU",
+      "tieu_chuan": null,
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     }
+    },
+    "danh_gia": "ĐẠT 100%"
+   }
+  },
+  "spc_series": {
+   "daily": [
+    {
+     "ngay": "01/08",
+     "ngay_full": "01/08/2026",
+     "so_lo": 7,
+     "con": 4.12,
+     "co2": 5.02,
+     "ph": 4.31,
+     "do_mau": 5.47,
+     "do_duong": 10.05,
+     "ea": 2.2
+    },
+    {
+     "ngay": "02/08",
+     "ngay_full": "02/08/2026",
+     "so_lo": 5,
+     "con": 4.09,
+     "co2": 5.01,
+     "ph": 4.38,
+     "do_mau": 5.45,
+     "do_duong": 10.04,
+     "ea": 2.24
+    },
+    {
+     "ngay": "03/08",
+     "ngay_full": "03/08/2026",
+     "so_lo": 6,
+     "con": 4.08,
+     "co2": 4.99,
+     "ph": 4.42,
+     "do_mau": 5.42,
+     "do_duong": 10.07,
+     "ea": 2.3
+    },
+    {
+     "ngay": "04/08",
+     "ngay_full": "04/08/2026",
+     "so_lo": 10,
+     "con": 4.1,
+     "co2": 5.02,
+     "ph": 4.37,
+     "do_mau": 5.39,
+     "do_duong": 10.08,
+     "ea": 2.28
+    },
+    {
+     "ngay": "05/08",
+     "ngay_full": "05/08/2026",
+     "so_lo": 4,
+     "con": 4.11,
+     "co2": 4.97,
+     "ph": 4.31,
+     "do_mau": 5.4,
+     "do_duong": 10.03,
+     "ea": 2.2
+    },
+    {
+     "ngay": "06/08",
+     "ngay_full": "06/08/2026",
+     "so_lo": 4,
+     "con": 4.14,
+     "co2": 5.04,
+     "ph": 4.35,
+     "do_mau": 5.41,
+     "do_duong": 10.06,
+     "ea": 2.17
+    },
+    {
+     "ngay": "07/08",
+     "ngay_full": "07/08/2026",
+     "so_lo": 6,
+     "con": 4.12,
+     "co2": 5.02,
+     "ph": 4.4,
+     "do_mau": 5.58,
+     "do_duong": 10.05,
+     "ea": 2.2
+    },
+    {
+     "ngay": "08/08",
+     "ngay_full": "08/08/2026",
+     "so_lo": 6,
+     "con": 4.13,
+     "co2": 5.04,
+     "ph": 4.39,
+     "do_mau": 5.44,
+     "do_duong": 10.1,
+     "ea": 2.24
+    },
+    {
+     "ngay": "09/08",
+     "ngay_full": "09/08/2026",
+     "so_lo": 7,
+     "con": 4.07,
+     "co2": 5.03,
+     "ph": 4.36,
+     "do_mau": 5.39,
+     "do_duong": 10.07,
+     "ea": 2.32
+    },
+    {
+     "ngay": "10/08",
+     "ngay_full": "10/08/2026",
+     "so_lo": 9,
+     "con": 4.13,
+     "co2": 5.02,
+     "ph": 4.39,
+     "do_mau": 5.39,
+     "do_duong": 10.08,
+     "ea": 2.22
+    },
+    {
+     "ngay": "11/08",
+     "ngay_full": "11/08/2026",
+     "so_lo": 16,
+     "con": 4.15,
+     "co2": 5.05,
+     "ph": 4.41,
+     "do_mau": 5.38,
+     "do_duong": 10.06,
+     "ea": 2.13
+    },
+    {
+     "ngay": "12/08",
+     "ngay_full": "12/08/2026",
+     "so_lo": 4,
+     "con": 4.22,
+     "co2": 5.03,
+     "ph": 4.37,
+     "do_mau": 5.45,
+     "do_duong": 10.05,
+     "ea": 2.01
+    },
+    {
+     "ngay": "13/08",
+     "ngay_full": "13/08/2026",
+     "so_lo": 10,
+     "con": 4.2,
+     "co2": 5.06,
+     "ph": 4.31,
+     "do_mau": 5.34,
+     "do_duong": 10.03,
+     "ea": 2.02
+    },
+    {
+     "ngay": "14/08",
+     "ngay_full": "14/08/2026",
+     "so_lo": 7,
+     "con": 4.18,
+     "co2": 5.04,
+     "ph": 4.32,
+     "do_mau": 5.55,
+     "do_duong": 10.05,
+     "ea": 2.06
+    },
+    {
+     "ngay": "15/08",
+     "ngay_full": "15/08/2026",
+     "so_lo": 10,
+     "con": 4.21,
+     "co2": 5.02,
+     "ph": 4.37,
+     "do_mau": 5.36,
+     "do_duong": 10.04,
+     "ea": 1.99
+    },
+    {
+     "ngay": "16/08",
+     "ngay_full": "16/08/2026",
+     "so_lo": 10,
+     "con": 4.18,
+     "co2": 4.98,
+     "ph": 4.33,
+     "do_mau": 5.41,
+     "do_duong": 10.03,
+     "ea": 2.07
+    },
+    {
+     "ngay": "17/08",
+     "ngay_full": "17/08/2026",
+     "so_lo": 7,
+     "con": 4.21,
+     "co2": 5.01,
+     "ph": 4.25,
+     "do_mau": 5.34,
+     "do_duong": 10.07,
+     "ea": 2.04
+    },
+    {
+     "ngay": "18/08",
+     "ngay_full": "18/08/2026",
+     "so_lo": 5,
+     "con": 4.2,
+     "co2": 5.01,
+     "ph": 4.24,
+     "do_mau": 5.57,
+     "do_duong": 10.04,
+     "ea": 1.99
+    },
+    {
+     "ngay": "19/08",
+     "ngay_full": "19/08/2026",
+     "so_lo": 7,
+     "con": 4.24,
+     "co2": 5.01,
+     "ph": 4.34,
+     "do_mau": 5.34,
+     "do_duong": 10.09,
+     "ea": 2.02
+    },
+    {
+     "ngay": "20/08",
+     "ngay_full": "20/08/2026",
+     "so_lo": 4,
+     "con": 4.23,
+     "co2": 5,
+     "ph": 4.42,
+     "do_mau": 5.41,
+     "do_duong": 10.1,
+     "ea": 2.04
+    },
+    {
+     "ngay": "21/08",
+     "ngay_full": "21/08/2026",
+     "so_lo": 5,
+     "con": 4.2,
+     "co2": 5.01,
+     "ph": 4.41,
+     "do_mau": 5.31,
+     "do_duong": 10.03,
+     "ea": 2.04
+    },
+    {
+     "ngay": "22/08",
+     "ngay_full": "22/08/2026",
+     "so_lo": 5,
+     "con": 4.17,
+     "co2": 5.02,
+     "ph": 4.35,
+     "do_mau": 5.49,
+     "do_duong": 10.06,
+     "ea": 2.1
+    },
+    {
+     "ngay": "24/08",
+     "ngay_full": "24/08/2026",
+     "so_lo": 3,
+     "con": 4.22,
+     "co2": 5.05,
+     "ph": 4.25,
+     "do_mau": 5.33,
+     "do_duong": 10.12,
+     "ea": 2.05
+    },
+    {
+     "ngay": "25/08",
+     "ngay_full": "25/08/2026",
+     "so_lo": 2,
+     "con": 4.24,
+     "co2": 5.02,
+     "ph": 4.25,
+     "do_mau": 5.34,
+     "do_duong": 10.12,
+     "ea": 2.03
+    },
+    {
+     "ngay": "26/08",
+     "ngay_full": "26/08/2026",
+     "so_lo": 8,
+     "con": 4.21,
+     "co2": 5.03,
+     "ph": 4.24,
+     "do_mau": 5.43,
+     "do_duong": 10.08,
+     "ea": 2.05
+    },
+    {
+     "ngay": "27/08",
+     "ngay_full": "27/08/2026",
+     "so_lo": 7,
+     "con": 4.21,
+     "co2": 5.03,
+     "ph": 4.32,
+     "do_mau": 5.43,
+     "do_duong": 10.03,
+     "ea": 2.01
+    },
+    {
+     "ngay": "28/08",
+     "ngay_full": "28/08/2026",
+     "so_lo": 4,
+     "con": 4.21,
+     "co2": 5.01,
+     "ph": 4.37,
+     "do_mau": 5.54,
+     "do_duong": 10.07,
+     "ea": 2.05
+    },
+    {
+     "ngay": "29/08",
+     "ngay_full": "29/08/2026",
+     "so_lo": 6,
+     "con": 4.18,
+     "co2": 5,
+     "ph": 4.33,
+     "do_mau": 5.29,
+     "do_duong": 10.06,
+     "ea": 2.09
+    },
+    {
+     "ngay": "30/08",
+     "ngay_full": "30/08/2026",
+     "so_lo": 7,
+     "con": 4.14,
+     "co2": 5.01,
+     "ph": 4.29,
+     "do_mau": 5.36,
+     "do_duong": 10.03,
+     "ea": 2.14
+    },
+    {
+     "ngay": "31/08",
+     "ngay_full": "31/08/2026",
+     "so_lo": 2,
+     "con": 4.12,
+     "co2": 5,
+     "ph": 4.33,
+     "do_mau": 5.42,
+     "do_duong": 10.04,
+     "ea": 2.19
+    }
+   ],
+   "batch": [
+    {
+     "lo": "HHT26B2408",
+     "ngay": "01/08",
+     "con": 4.08,
+     "co2": 5,
+     "do_duong": 10.08,
+     "ph": 4.34,
+     "do_mau": 5.35,
+     "ea": 2.3
+    },
+    {
+     "lo": "HHT26A2409",
+     "ngay": "01/08",
+     "con": 4.17,
+     "co2": 5.05,
+     "do_duong": 10.07,
+     "ph": 4.25,
+     "do_mau": 5.56,
+     "ea": 2.13
+    },
+    {
+     "lo": "HHT26A2410",
+     "ngay": "01/08",
+     "con": 4.13,
+     "co2": 5,
+     "do_duong": 10.03,
+     "ph": 4.32,
+     "do_mau": 5.5,
+     "ea": 2.14
+    },
+    {
+     "lo": "HHT26B3444",
+     "ngay": "01/08",
+     "con": 4.08,
+     "co2": 5,
+     "do_duong": 10.08,
+     "ph": 4.34,
+     "do_mau": 5.35,
+     "ea": 2.3
+    },
+    {
+     "lo": "HHT26A3445",
+     "ngay": "01/08",
+     "con": 4.17,
+     "co2": 5.05,
+     "do_duong": 10.07,
+     "ph": 4.25,
+     "do_mau": 5.56,
+     "ea": 2.13
+    },
+    {
+     "lo": "HHT26A3446",
+     "ngay": "01/08",
+     "con": 4.13,
+     "co2": 5,
+     "do_duong": 10.03,
+     "ph": 4.32,
+     "do_mau": 5.5,
+     "ea": 2.14
+    },
+    {
+     "lo": "HHT26A3447",
+     "ngay": "01/08",
+     "con": 4.07,
+     "co2": 5.05,
+     "do_duong": 10.02,
+     "ph": 4.38,
+     "do_mau": 5.44,
+     "ea": 2.25
+    },
+    {
+     "lo": "HHT26B3447",
+     "ngay": "02/08",
+     "con": 4.07,
+     "co2": 5.05,
+     "do_duong": 10.02,
+     "ph": 4.38,
+     "do_mau": 5.44,
+     "ea": 2.25
+    },
+    {
+     "lo": "HHT26A2411",
+     "ngay": "02/08",
+     "con": 4.11,
+     "co2": 5,
+     "do_duong": 10.03,
+     "ph": 4.37,
+     "do_mau": 5.4,
+     "ea": 2.19
+    },
+    {
+     "lo": "HHT26A3448",
+     "ngay": "02/08",
+     "con": 4.11,
+     "co2": 5,
+     "do_duong": 10.03,
+     "ph": 4.37,
+     "do_mau": 5.4,
+     "ea": 2.19
+    },
+    {
+     "lo": "HHT26A2412",
+     "ngay": "02/08",
+     "con": 4.09,
+     "co2": 5,
+     "do_duong": 10.07,
+     "ph": 4.39,
+     "do_mau": 5.5,
+     "ea": 2.28
+    },
+    {
+     "lo": "HHT26A3449",
+     "ngay": "02/08",
+     "con": 4.09,
+     "co2": 5,
+     "do_duong": 10.07,
+     "ph": 4.39,
+     "do_mau": 5.5,
+     "ea": 2.28
+    },
+    {
+     "lo": "HHT26B2412",
+     "ngay": "03/08",
+     "con": 4.09,
+     "co2": 5,
+     "do_duong": 10.06,
+     "ph": 4.39,
+     "do_mau": 5.55,
+     "ea": 2.28
+    },
+    {
+     "lo": "HHT26A2413",
+     "ngay": "03/08",
+     "con": 4.1,
+     "co2": 5,
+     "do_duong": 10.06,
+     "ph": 4.39,
+     "do_mau": 5.15,
+     "ea": 2.26
+    },
+    {
+     "lo": "HHT26A2414",
+     "ngay": "03/08",
+     "con": 4.08,
+     "co2": 5,
+     "do_duong": 10.09,
+     "ph": 4.43,
+     "do_mau": 5.5,
+     "ea": 2.31
+    },
+    {
+     "lo": "HHT26A3450",
+     "ngay": "03/08",
+     "con": 4.06,
+     "co2": 5.01,
+     "do_duong": 10.05,
+     "ph": 4.42,
+     "do_mau": 5.54,
+     "ea": 2.31
+    },
+    {
+     "lo": "HHT26A3451",
+     "ngay": "03/08",
+     "con": 4.08,
+     "co2": 4.97,
+     "do_duong": 10.08,
+     "ph": 4.43,
+     "do_mau": 5.38,
+     "ea": 2.33
+    },
+    {
+     "lo": "HHT26A2415",
+     "ngay": "03/08",
+     "con": 4.08,
+     "co2": 4.97,
+     "do_duong": 10.08,
+     "ph": 4.43,
+     "do_mau": 5.38,
+     "ea": 2.33
+    },
+    {
+     "lo": "HHT26B2415",
+     "ngay": "04/08",
+     "con": 4.08,
+     "co2": 4.97,
+     "do_duong": 10.08,
+     "ph": 4.43,
+     "do_mau": 5.38,
+     "ea": 2.33
+    },
+    {
+     "lo": "HHT26B3451",
+     "ngay": "04/08",
+     "con": 4.08,
+     "co2": 4.97,
+     "do_duong": 10.08,
+     "ph": 4.43,
+     "do_mau": 5.38,
+     "ea": 2.33
+    },
+    {
+     "lo": "HHT26A3452",
+     "ngay": "04/08",
+     "con": 4.1,
+     "co2": 5,
+     "do_duong": 10.06,
+     "ph": 4.39,
+     "do_mau": 5.15,
+     "ea": 2.26
+    },
+    {
+     "lo": "HHT26B2413",
+     "ngay": "04/08",
+     "con": 4.1,
+     "co2": 5,
+     "do_duong": 10.06,
+     "ph": 4.39,
+     "do_mau": 5.15,
+     "ea": 2.26
+    },
+    {
+     "lo": "HHT26A3453",
+     "ngay": "04/08",
+     "con": 4.13,
+     "co2": 5.05,
+     "do_duong": 10.08,
+     "ph": 4.34,
+     "do_mau": 5.58,
+     "ea": 2.22
+    },
+    {
+     "lo": "HHT26A2416",
+     "ngay": "04/08",
+     "con": 4.13,
+     "co2": 5.05,
+     "do_duong": 10.08,
+     "ph": 4.34,
+     "do_mau": 5.58,
+     "ea": 2.22
+    },
+    {
+     "lo": "HHT26A3454",
+     "ngay": "04/08",
+     "con": 4.07,
+     "co2": 5.05,
+     "do_duong": 10.07,
+     "ph": 4.37,
+     "do_mau": 5.45,
+     "ea": 2.34
+    },
+    {
+     "lo": "HHT26A2417",
+     "ngay": "04/08",
+     "con": 4.07,
+     "co2": 5.05,
+     "do_duong": 10.07,
+     "ph": 4.37,
+     "do_mau": 5.45,
+     "ea": 2.34
+    },
+    {
+     "lo": "HHT26B3454",
+     "ngay": "04/08",
+     "con": 4.07,
+     "co2": 5.05,
+     "do_duong": 10.07,
+     "ph": 4.37,
+     "do_mau": 5.45,
+     "ea": 2.34
+    },
+    {
+     "lo": "HHT26A3455",
+     "ngay": "04/08",
+     "con": 4.18,
+     "co2": 5.05,
+     "do_duong": 10.14,
+     "ph": 4.29,
+     "do_mau": 5.3,
+     "ea": 2.18
+    },
+    {
+     "lo": "HHT26B2417",
+     "ngay": "05/08",
+     "con": 4.07,
+     "co2": 5.05,
+     "do_duong": 10.07,
+     "ph": 4.37,
+     "do_mau": 5.45,
+     "ea": 2.34
+    },
+    {
+     "lo": "HHT26A2418",
+     "ngay": "05/08",
+     "con": 4.12,
+     "co2": 4.9,
+     "do_duong": 10.03,
+     "ph": 4.29,
+     "do_mau": 5.4,
+     "ea": 2.16
+    },
+    {
+     "lo": "HHT26A3456",
+     "ngay": "05/08",
+     "con": 4.12,
+     "co2": 4.9,
+     "do_duong": 10.03,
+     "ph": 4.29,
+     "do_mau": 5.4,
+     "ea": 2.16
+    },
+    {
+     "lo": "HHT26A3457",
+     "ngay": "05/08",
+     "con": 4.13,
+     "co2": 5.02,
+     "do_duong": 9.99,
+     "ph": 4.27,
+     "do_mau": 5.36,
+     "ea": 2.12
+    },
+    {
+     "lo": "HHT26B3457",
+     "ngay": "06/08",
+     "con": 4.13,
+     "co2": 5.02,
+     "do_duong": 9.99,
+     "ph": 4.27,
+     "do_mau": 5.36,
+     "ea": 2.12
+    },
+    {
+     "lo": "HHT26B3455",
+     "ngay": "06/08",
+     "con": 4.18,
+     "co2": 5.05,
+     "do_duong": 10.15,
+     "ph": 4.29,
+     "do_mau": 5.32,
+     "ea": 2.18
+    },
+    {
+     "lo": "HHT26A3458",
+     "ngay": "06/08",
+     "con": 4.12,
+     "co2": 5.05,
+     "do_duong": 10.06,
+     "ph": 4.4,
+     "do_mau": 5.56,
+     "ea": 2.21
+    },
+    {
+     "lo": "HHT26A3459",
+     "ngay": "06/08",
+     "con": 4.12,
+     "co2": 5.05,
+     "do_duong": 10.03,
+     "ph": 4.42,
+     "do_mau": 5.38,
+     "ea": 2.18
+    },
+    {
+     "lo": "HHT26B3458",
+     "ngay": "07/08",
+     "con": 4.12,
+     "co2": 5.05,
+     "do_duong": 10.04,
+     "ph": 4.4,
+     "do_mau": 5.56,
+     "ea": 2.21
+    },
+    {
+     "lo": "HHT26A2419",
+     "ngay": "07/08",
+     "con": 4.06,
+     "co2": 5.02,
+     "do_duong": 9.98,
+     "ph": 4.41,
+     "do_mau": 5.51,
+     "ea": 2.23
+    },
+    {
+     "lo": "HHT26A2420",
+     "ngay": "07/08",
+     "con": 4.11,
+     "co2": 5,
+     "do_duong": 10.09,
+     "ph": 4.4,
+     "do_mau": 5.68,
+     "ea": 2.27
+    },
+    {
+     "lo": "HHT26A3460",
+     "ngay": "07/08",
+     "con": 4.11,
+     "co2": 5,
+     "do_duong": 10.09,
+     "ph": 4.4,
+     "do_mau": 5.68,
+     "ea": 2.27
+    }
+   ]
+  },
+  "danh_gia_chung": "ĐẠT 100%"
+ },
+ "muc_7_nang_cao": {
+  "dong_san_pham": {
+   "hoi_thanh_pham": {
+    "ten_dong": "Hơi thành phẩm",
+    "ma_sp": "11000107",
+    "so_mau": 193,
+    "chi_tieus": {
+     "polyphenol": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "Polyphenol",
+      "don_vi": "mg/l",
+      "tieu_chuan": "-",
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     },
+     "fan": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "FAN",
+      "don_vi": "mg/l",
+      "tieu_chuan": "-",
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     },
+     "do_dang": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "Độ đắng",
+      "don_vi": "BU",
+      "tieu_chuan": "15.0 - 19.0",
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     }
+    },
+    "ket_luan": "ĐẠT"
+   },
+   "hoi_1l": {
+    "ten_dong": "Hơi 1 L",
+    "ma_sp": "11000056",
+    "so_mau": 3,
+    "chi_tieus": {
+     "polyphenol": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "Polyphenol",
+      "don_vi": "mg/l",
+      "tieu_chuan": "-",
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     },
+     "fan": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "FAN",
+      "don_vi": "mg/l",
+      "tieu_chuan": "-",
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     },
+     "do_dang": {
+      "ma_chi_tieu": "",
+      "ten_chi_tieu": "Độ đắng",
+      "don_vi": "BU",
+      "tieu_chuan": "15.0 - 19.0",
+      "min": null,
+      "max": null,
+      "trung_binh": null,
+      "so_mau": 0,
+      "danh_gia": "-"
+     }
+    },
+    "ket_luan": "ĐẠT"
+   }
+  },
+  "danh_gia_chung": "ĐẠT 100%"
+ },
+ "muc_8_co2_daw": {
+  "co2_do_tinh_khiet_tb": 99.971,
+  "co2_do_tinh_khiet_min": 99.96,
+  "co2_do_tinh_khiet_max": 99.98,
+  "daw_do_trong_tb": 0.025,
+  "daw_do_tb": 0.02,
+  "so_mau_co2": 44,
+  "so_mau_daw": 6,
+  "danh_gia_chung": "ĐẠT TIÊU CHUẨN"
+ },
+ "muc_9_vi_sinh": {
+  "danh_sach_nhom": [
+   {
+    "loai_mau": "Bia Hơi",
+    "so_mau": 19,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "300",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "50",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "107.9",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "26.2",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "BBT Bia sau lọc trước chiết",
+    "so_mau": 8,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "16",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "13",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "11.3",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "6.6",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Nước khử khí, nước pha bia",
+    "so_mau": 3,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "-",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "-",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Dịch nha sau máy hạ nhiệt độ",
+    "so_mau": 4,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "0",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "0",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Nước nấu",
+    "so_mau": 2,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "159",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "119",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Keg sau CIP",
+    "so_mau": 9,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "5",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "2.9",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Nước sau CIP CCT",
+    "so_mau": 3,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "7",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "4",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Nước sau CIP BBT",
+    "so_mau": 3,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "8",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "7.7",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Khí CO2 (VSV yếm khí)",
+    "so_mau": 2,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "-",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "-",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Khí nén sau bộ lọc tiệt trùng",
+    "so_mau": 1,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "6",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "6",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Dịch Lên men",
+    "so_mau": 14,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "-",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "-",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Men",
+    "so_mau": 25,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "-",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "-",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Vi sinh chai bia hơi 1 L",
+    "so_mau": 17,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "200",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "50",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "11.8",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "2.9",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Nước sau XL than hoạt tính 2",
+    "so_mau": 2,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "103",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "80",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Nước sau XL than hoạt tính 1",
+    "so_mau": 1,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "81",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "81",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Men gây, men sữa",
+    "so_mau": 1,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "-",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "-",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Tạp nhiễm trong QTLM",
+    "so_mau": 1,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "-",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "-",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Vỏ chai",
+    "so_mau": 2,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "4",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "0",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "3",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "0",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "NƯỚC SAU CIP: CCT, BBT,YT, ĐƯỜNG ỐNG -  2 lần / tháng",
+    "so_mau": 1,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "20",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "20",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Nước sau CIP Pro2",
+    "so_mau": 1,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "0",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "0",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Nước sau CIP đường cấp men",
+    "so_mau": 2,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "0",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "0",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Nước sau CIP đường H1",
+    "so_mau": 1,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "4",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "4",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Nước sau CIP đường chai",
+    "so_mau": 1,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "7",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "7",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Nước sau CIP YT2",
+    "so_mau": 1,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "3",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "3",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Nước sau CIP YT5",
+    "so_mau": 1,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "0",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "0",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Không khí phòng nuôi cấy vi sinh ( 1 lần / tháng)",
+    "so_mau": 1,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "1000",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "1000",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "loai_mau": "Không khí phòng nuôi cấy vi sinh",
+    "so_mau": 1,
+    "tc": "Đạt chuẩn vi sinh kiểm soát",
+    "max": {
+     "hieuKhi": "0",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "tb": {
+     "hieuKhi": "0",
+     "coliform": "0",
+     "ecoli": "0",
+     "menMoc": "-",
+     "lactic": "0"
+    },
+    "danh_gia": "ĐẠT"
+   }
+  ],
+  "tong_so_mau": 127,
+  "danh_gia_chung": "100% MẪU KIỂM TRA ĐẠT TIÊU CHUẨN VI SINH"
+ },
+ "muc_10_khieu_nai": {
+  "tong_so_keg_doi_tra": 118,
+  "keg_50l": 109,
+  "keg_30l": 9,
+  "keg_xi_gioang_hong": 67,
+  "so_lit_bia_loi": 5720,
+  "tong_san_luong_lit": 9665470,
+  "ty_le_doi_tra_phan_tram": 0.059,
+  "nguyen_nhan_loi": {
+   "co2": 1,
+   "duc_can": 50,
+   "chua": 0,
+   "mau": 0,
+   "khac": 0
+  },
+  "danh_gia": "Trong ngưỡng kiểm soát (< 0.1%)"
+ },
+ "muc_11_nuoc_tinh_loc": null,
+ "muc_12_cam_quan": {
+  "danh_sach_mau": [
+   {
+    "lo": "Nước tinh lọc",
+    "ngay_thu": "08/2026",
+    "max": 9.75,
+    "min": 9,
+    "tb": 9.41,
+    "so_nguoi": 8,
+    "mui_vi": "ĐẠT",
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "lo": "Hơi thành phẩm",
+    "ngay_thu": "08/2026",
+    "max": 7.3,
+    "min": 6.93,
+    "tb": 7.1,
+    "so_nguoi": 8,
+    "mui_vi": "ĐẠT",
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "lo": "PET 1 L",
+    "ngay_thu": "08/2026",
+    "max": 7.2,
+    "min": 7.07,
+    "tb": 7.11,
+    "so_nguoi": 8,
+    "mui_vi": "ĐẠT",
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "lo": "BBT",
+    "ngay_thu": "08/2026",
+    "max": 7.38,
+    "min": 6.94,
+    "tb": 7.14,
+    "so_nguoi": 8,
+    "mui_vi": "ĐẠT",
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "lo": "CCT",
+    "ngay_thu": "08/2026",
+    "max": 7.38,
+    "min": 7.08,
+    "tb": 7.23,
+    "so_nguoi": 8,
+    "mui_vi": "ĐẠT",
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "lo": "NKK",
+    "ngay_thu": "08/2026",
+    "max": 7.57,
+    "min": 7.5,
+    "tb": 7.54,
+    "so_nguoi": 8,
+    "mui_vi": "ĐẠT",
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "lo": "Nước kk",
+    "ngay_thu": "08/2026",
+    "max": 7.75,
+    "min": 7.6,
+    "tb": 7.68,
+    "so_nguoi": 8,
+    "mui_vi": "ĐẠT",
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "lo": "Test mùi",
+    "ngay_thu": "08/2026",
+    "max": 7,
+    "min": 0.7,
+    "tb": 4.89,
+    "so_nguoi": 8,
+    "mui_vi": "ĐẠT",
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "lo": "Hơi 1L lưu",
+    "ngay_thu": "08/2026",
+    "max": 7.2,
+    "min": 6.81,
+    "tb": 7.04,
+    "so_nguoi": 8,
+    "mui_vi": "ĐẠT",
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "lo": "Ringtest",
+    "ngay_thu": "08/2026",
+    "max": 0,
+    "min": 0,
+    "tb": 0,
+    "so_nguoi": 8,
+    "mui_vi": "KHÔNG ĐẠT",
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "lo": "HƠI Pét lưu",
+    "ngay_thu": "08/2026",
+    "max": 6.78,
+    "min": 6.64,
+    "tb": 6.71,
+    "so_nguoi": 8,
+    "mui_vi": "oxidized2",
+    "danh_gia": "ĐẠT"
+   },
+   {
+    "lo": "Pet Lưu",
+    "ngay_thu": "08/2026",
+    "max": 7.2,
+    "min": 7.18,
+    "tb": 7.19,
+    "so_nguoi": 8,
+    "mui_vi": "ĐẠT",
+    "danh_gia": "ĐẠT"
+   }
+  ],
+  "diem_trung_binh_tong_the": 7.14,
+  "danh_gia_chung": "ĐẠT TIÊU CHUẨN CẢM QUAN HỘI ĐỒNG"
+ },
+ "muc_13_nvl": {
+  "danh_sach_lo": [
+   {
+    "nha_cung_cap": "Công ty Thái Tân",
+    "ten_nvl": "Malt Duc (roi)",
+    "thoi_diem": "18/08, 10/08, 12/08, 14/08, 19/08, 22/08, 28/08",
+    "so_luong_tan": 622.355,
+    "so_lo_count": 10,
+    "ket_luan": "Đạt",
+    "xu_ly": null
+   },
+   {
+    "nha_cung_cap": "Beerplaza",
+    "ten_nvl": "Malt Ha Lan (roi)",
+    "thoi_diem": "03/08, 05/08, 12/08",
+    "so_luong_tan": 237.09,
+    "so_lo_count": 5,
+    "ket_luan": "Đạt",
+    "xu_ly": null
+   },
+   {
+    "nha_cung_cap": "Công ty Thái Tân",
+    "ten_nvl": "Malt Dan Mach (roi)",
+    "thoi_diem": "04/08, 05/08, 07/08, 18/08, 19/08, 22/08, 24/08, 27/08",
+    "so_luong_tan": 500.665,
+    "so_lo_count": 8,
+    "ket_luan": "Đạt",
+    "xu_ly": null
+   },
+   {
+    "nha_cung_cap": "Công ty Thái Tân",
+    "ten_nvl": "Malt Dan Mach (bao)",
+    "thoi_diem": "17/08",
+    "so_luong_tan": 52.8,
+    "so_lo_count": 1,
+    "ket_luan": "Đạt",
+    "xu_ly": null
+   }
+  ],
+  "tong_so_lo": 24,
+  "tong_khoi_luong_tan": 1412.91,
+  "ty_le_dat": 100,
+  "danh_gia_chung": "24/24 ĐỢT ĐẠT CHẤT LƯỢNG (100%)"
+ },
+ "meta": {
+  "ky_bao_cao": "Tháng 08/2026",
+  "tu_ngay": "2026-08-01",
+  "den_ngay": "2026-08-31",
+  "ngay_phat_hanh": "30/10/2026",
+  "don_vi": "Nhà máy Bia Hà Nội - HHT",
+  "bo_phan": "Phòng Quản trị CL & KCS",
+  "tong_so_muc": 14,
+  "tong_so_chi_tieu": 58,
+  "ty_le_dat": 94.5
+ }
+}

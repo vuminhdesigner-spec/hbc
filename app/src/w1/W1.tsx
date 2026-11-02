@@ -37,7 +37,7 @@ type Tab = 'overview' | 'dien' | 'nuoc' | 'hoi'
 
 const PILL = 'glass-pill h-8.5 rounded-full px-3.5 text-body font-normal hover:bg-popover'
 
-function useTheme() {
+export function useTheme() {
   const [dark, setDark] = useState(() => {
     try {
       const saved = localStorage.getItem('w1-theme')

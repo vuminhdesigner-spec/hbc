@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bảng màu dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Deck 16:9 trình chiếu từ moodboard-mau.html — ảnh nguồn đặt trong design/nguon/ */
+:root{
+  --bg:#f4f4ef; --surface:#ffffff; --fg:#17201a; --muted:#5b645d; --line:#e1e2da;
+  --brand:#106138; --brand-dark:#0b3f25; --gold:#a3862c; --chip:#eef3ee; --stage:#1b211d;
+  --font:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--stage);font-family:var(--font);color:var(--fg)}
+.deck{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
+.slide{position:absolute;width:1600px;height:900px;background:var(--bg);padding:64px 80px 56px;display:none;flex-direction:column;gap:28px;transform-origin:center;overflow:hidden}
+.slide.on{display:flex}
+.slide h1,.slide h2,.slide h3{margin:0;line-height:1.2;text-wrap:balance}
+.slide h2{font-size:40px;font-weight:700;letter-spacing:-.01em}
+.slide h3{font-size:20px;font-weight:600}
+.slide p{margin:0}
+.eyebrow{font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.lead{font-size:20px;line-height:1.5;color:var(--muted);max-width:68ch}
+.note{font-size:15px;line-height:1.5;color:var(--muted)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.foot{margin-top:auto;display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.body{flex:1;min-height:0;display:grid;gap:28px}
+
+/* bìa */
+.cover{background:var(--brand-dark);color:#fff;justify-content:center;gap:24px}
+.cover .eyebrow{color:#c2a540}
+.cover h1{font-size:64px;font-weight:700;letter-spacing:-.015em;max-width:18ch}
+.cover .lead{color:#a9c8b4;font-size:22px}
+.cover .logo{position:absolute;top:64px;right:80px;height:120px;background:#fff;border-radius:14px;padding:14px 18px}
+.cover .agenda{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.cover .agenda span{border:1px solid #2b6a49;border-radius:999px;padding:8px 16px;font-size:16px;color:#d6ecdd}
+.cover .foot{color:#8fb19c}
+
+/* khung ảnh nguồn */
+.ph{position:relative;border-radius:12px;overflow:hidden;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;min-height:0}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ph.contain img{object-fit:contain;padding:16px}
+.ph .empty{display:none;text-align:center;padding:16px;color:var(--muted);font-size:14px;line-height:1.5}
+.ph.missing{border:2px dashed var(--line);background:transparent}
+.ph.missing img{display:none}
+.ph.missing .empty{display:block}
+.ph .empty b{display:block;font-family:var(--mono);font-size:13px;color:var(--fg)}
+
+/* app hiện tại */
+.s-now{grid-template-columns:1.45fr 1fr;align-items:stretch}
+.s-now .ph{min-height:560px}
+.s-now .ph .fallback{display:none;width:92%}
+.s-now .ph.missing .fallback{display:block}
+.s-now .ph.missing .empty{position:absolute;bottom:10px;left:0;right:0;font-size:13px}
+.issues{display:grid;gap:16px;align-content:start;margin:0;padding:0;list-style:none}
+.issues li{background:var(--surface);border:1px solid var(--line);border-left:4px solid #d92d20;border-radius:10px;padding:16px 20px;display:grid;gap:4px}
+.issues b{font-size:18px}
+.issues span{font-size:15px;line-height:1.5;color:var(--muted)}
+
+/* research */
+.s-mood{grid-template-columns:repeat(3,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr) auto;gap:16px}
+.s-booth{grid-template-columns:1.25fr 1fr 1fr 1.25fr;grid-template-rows:1fr auto;gap:16px}
+.chiprow{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 20px}
+.cap{display:grid;gap:8px}
+.cap b{font-size:16px}
+.mini{display:flex;gap:6px;flex-wrap:wrap}
+.mini span{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:3px 8px}
+.mini i{width:14px;height:14px;border-radius:4px;display:inline-block;border:1px solid rgba(0,0,0,.08)}
+.take{grid-column:1/-1;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-size:17px;line-height:1.5}
+
+/* phương án */
+.dir-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.fit{font-size:15px;font-weight:600;padding:6px 14px;border-radius:999px;background:var(--chip);white-space:nowrap}
+.fit.rec{background:var(--brand);color:#fff}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.why{font-size:17px;line-height:1.55;max-width:none}
+.specs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:0}
+.specs div{border-top:2px solid var(--line);padding-top:10px}
+.specs dt{color:var(--muted);font-size:13px}
+.specs dd{margin:2px 0 0;font-size:15px;font-weight:500}
+.nodark{display:grid;place-items:center;border:2px dashed var(--line);border-radius:10px;color:var(--muted);font-size:16px}
+
+/* mock — mọi màu đến từ biến --m-* theo hướng (giữ nguyên moodboard) */
+.mock{border-radius:10px;overflow:hidden;border:1px solid var(--m-line);background:var(--m-page);color:var(--m-fg);display:grid;grid-template-columns:52px 1fr;min-height:300px;font-size:12px}
+.mock .side{background:var(--m-side);display:flex;flex-direction:column;align-items:center;gap:10px;padding:12px 0}
+.mock .logo{width:26px;height:26px;border-radius:7px;background:var(--m-logo);margin-bottom:6px}
+.mock .nav{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:var(--m-sidefg)}
+.mock .nav.on{background:var(--m-navon);color:var(--m-navonfg);box-shadow:inset 3px 0 0 var(--m-navbar)}
+.mock .nav svg{width:16px;height:16px}
+.mock main{padding:12px;display:grid;gap:10px;align-content:start;min-width:0}
+.mock .top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mock .crumb{font-weight:600;font-size:13px}
+.mock .btn{background:var(--m-pri);color:var(--m-prifg);border-radius:6px;padding:4px 10px;font-weight:600;font-size:11px}
+.mock .filters{display:flex;gap:6px;flex-wrap:wrap}
+.mock .f{border:1px solid var(--m-line);background:var(--m-card);border-radius:6px;padding:3px 8px;font-size:11px;color:var(--m-muted)}
+.mock .f.on{border-color:var(--m-pri);color:var(--m-fg)}
+.mock .grid{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr;gap:8px}
+.mock .card{background:var(--m-card);border:1px solid var(--m-line);border-radius:8px;padding:8px;display:grid;gap:3px;min-width:0}
+.mock .hero{background:var(--m-hero);border-color:var(--m-heroline)}
+.mock .lbl{font-size:10.5px;color:var(--m-muted);display:flex;align-items:center;gap:5px}
+.mock .dot{width:7px;height:7px;border-radius:2px;display:inline-block}
+.mock .val{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.mock .hero .val{color:var(--m-herofg)}
+.mock .hero .lbl,.mock .hero .unit{color:var(--m-heromuted,var(--m-muted))}
+.mock .unit{font-size:10px;font-weight:500;color:var(--m-muted)}
+.mock .delta{font-size:10px;font-variant-numeric:tabular-nums;color:var(--m-muted)}
+.mock .st{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;padding:1px 6px;border-radius:999px;width:fit-content}
+.mock .st svg{width:10px;height:10px}
+.mock .chart{background:var(--m-card);border:1px solid var(--m-line);border-radius:8px;padding:8px;display:grid;gap:4px}
+.mock svg.c{width:100%;height:96px;display:block}
+.mock .legend{display:flex;gap:10px;font-size:10px;color:var(--m-muted)}
+figure{margin:0;display:grid;gap:6px}
+figcaption{font-size:13px;color:var(--muted)}
+
+/* bảng so sánh có thumbnail */
+.thumb{width:177px;height:112px;overflow:hidden;border-radius:6px}
+.thumb .mock{width:520px;transform:scale(.34);transform-origin:0 0;pointer-events:none}
+table{border-collapse:collapse;width:100%;font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:8px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+tr.rec td{background:#f3f8f4}
+td.name b{display:block;font-size:16px}
+td.name span{font-size:13px;color:var(--muted)}
+td.bad{color:#b42318;font-weight:600}
+
+/* styleguide */
+.swatches{display:grid;grid-template-columns:repeat(7,1fr);gap:14px}
+.sw{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:grid;grid-template-rows:200px auto}
+.sw i{display:block}
+.sw div{padding:14px;display:grid;gap:4px;font-size:14px}
+.sw b{font-size:16px}
+.ramps{display:grid;gap:14px}
+.ramp-row{display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:center}
+.ramp-row h3{font-size:16px}
+.ramp-row .note{font-size:13px}
+.ramp{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.ramp div{height:64px;padding:7px;display:flex;flex-direction:column;justify-content:flex-end;font-family:var(--mono);font-size:11px;line-height:1.3}
+.ramp .k{outline:3px solid var(--fg);outline-offset:-3px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:10px;align-content:start}
+.box h3{font-size:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.tok{display:flex;align-items:center;gap:8px;font-size:14px;border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--bg)}
+.tok i{width:18px;height:18px;border-radius:5px;display:inline-block;border:1px solid rgba(0,0,0,.08)}
+
+/* điều hướng */
+.ctrl{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:5;opacity:.2;transition:opacity .2s}
+.ctrl:hover,.ctrl:focus-within{opacity:1}
+.ctrl button{font:inherit;background:#2a322d;color:#fff;border:1px solid #3a443e;border-radius:8px;padding:6px 12px;cursor:pointer}
+.ctrl button:focus-visible{outline:2px solid #c2a540;outline-offset:2px}
+@media print{
+  @page{size:1600px 900px;margin:0}
+  html,body{background:none;height:auto}
+  .deck{position:static;display:block}
+  .slide{position:relative;display:flex!important;transform:none!important;page-break-after:always;break-after:page}
+  .ctrl{display:none}
+}
+</style>
+
+<div class="deck" id="deck">
+
+  <!-- 1. Bìa -->
+  <section class="slide cover" data-title="Bìa">
+    <img class="logo" src="../app/src/assets/logo1.png" alt="Logo Habeco">
+    <div class="eyebrow">Dashboard báo cáo · Màu sắc · 09/10/2026</div>
+    <h1>Bảng màu cho dashboard báo cáo Habeco</h1>
+    <p class="lead">Dùng xanh lá đậm, vàng kim và đỏ của thương hiệu ở đâu, để vẫn nhận ra Habeco mà không lẫn với màu trạng thái đạt / cảnh báo / vượt ngưỡng.</p>
+    <div class="agenda"><span>1 · App hiện tại</span><span>2 · Research</span><span>3 · Phương án</span><span>4 · So sánh</span><span>5 · Styleguide</span></div>
+    <div class="foot"><span>Số trên mock là số minh hoạ, không phải số nhà máy.</span><span>Bản nội bộ — không chia sẻ ra ngoài</span></div>
+  </section>
+
+  <!-- 2. App hiện tại + vấn đề -->
+  <section class="slide" data-title="App hiện tại">
+    <div><div class="eyebrow">1 · App hiện tại</div><h2>Tông đỏ đang trùng với màu "vượt ngưỡng"</h2></div>
+    <div class="body s-now">
+      <div class="ph contain" data-src="nguon/app-hien-tai">
+        <img alt="Ảnh chụp màn hình app hiện tại">
+        <div class="fallback" id="now-mock"></div>
+        <div class="empty">Chưa có ảnh chụp — đang hiện mock vẽ lại. Thêm <b>design/nguon/app-hien-tai.png</b></div>
+      </div>
+      <ul class="issues">
+        <li><b>Đỏ chủ đạo = đỏ cảnh báo</b><span>Nút, tab đang chọn và cảnh báo cùng một màu. Người xem phải đọc chữ mới biết cái nào là lỗi.</span></li>
+        <li><b>Lệch nhận diện</b><span>Thương hiệu là xanh lá đậm + vàng kim; JD yêu cầu đổi tông sang xanh lá đậm.</span></li>
+        <li><b>Số chính không được nhấn</b><span>SEC so với trần — mối quan tâm số một — trông như mọi thẻ khác.</span></li>
+        <li><b>Chưa có nền tối</b><span>Khó dùng khi chiếu phòng họp.</span></li>
+      </ul>
+    </div>
+    <div class="foot"><span>Nguồn: app đang chạy, JD UI/UX Designer</span><span class="pg"></span></div>
+  </section>
+
+  <!-- 3a. Research: bao bì & key visual -->
+  <section class="slide" data-title="Research · bao bì">
+    <div><div class="eyebrow">2 · Research moodboard</div><h2>Bao bì và key visual: xanh đậm làm nền, vàng kim làm điểm sáng</h2></div>
+    <div class="body s-mood">
+      <div class="ph contain"><img src="../app/src/assets/logo1.png" alt="Logo Habeco"></div>
+      <div class="ph"><img src="nguon/7.bmp" alt="Dòng sản phẩm Habeco trên nền xanh"></div>
+      <div class="ph"><img src="nguon/5.jpg" alt="Key visual hoa bia vàng kim"></div>
+      <div class="ph"><img src="nguon/1.jpg" alt="Banner Bia Hà Nội 135 năm"></div>
+      <div class="ph"><img src="nguon/2.jpg" alt="Banner Trúc Bạch nền xanh"></div>
+      <div class="ph"><img src="nguon/3.jpg" alt="Banner Hanoi Bold và Light"></div>
+      <div class="chiprow">
+        <div class="cap"><b>Logo</b><div class="mini"><span><i style="background:#106138"></i>#106138</span><span><i style="background:#C2A540"></i>#C2A540</span></div></div>
+        <div class="cap"><b>Bao bì · lon</b><div class="mini"><span><i style="background:#FCD242"></i>#FCD242</span><span><i style="background:#C00000"></i>#C00000</span></div></div>
+        <div class="cap"><b>Website (CSS)</b><div class="mini"><span><i style="background:#154F28"></i>#154F28</span><span><i style="background:#D6A733"></i>#D6A733</span><span><i style="background:#F2F1EC"></i>#F2F1EC</span></div></div>
+      </div>
+    </div>
+    <div class="foot"><span>Ảnh do người dùng cung cấp · đo pixel và CSS habeco.com.vn (09/10/2026)</span><span class="pg"></span></div>
+  </section>
+
+  <!-- 3b. Research: gian hàng & sự kiện -->
+  <section class="slide" data-title="Research · gian hàng">
+    <div><div class="eyebrow">2 · Research moodboard</div><h2>Gian hàng và sự kiện: khung xanh, sản phẩm là điểm nhấn</h2></div>
+    <div class="body s-booth">
+      <div class="ph"><img src="nguon/9.jpg" alt="Cổng gian hàng Habeco màu xanh viền vàng kim"></div>
+      <div class="ph"><img src="nguon/6.jpg" alt="Kệ trưng bày Trúc Bạch và Bia Hà Nội"></div>
+      <div class="ph"><img src="nguon/10.png" alt="Gian hàng Thương hiệu quốc gia nền xanh"></div>
+      <div class="ph"><img src="nguon/8.jpg" alt="Sân khấu lễ công bố Thương hiệu quốc gia"></div>
+      <p class="take"><b>Rút ra:</b> gian hàng dùng nền xanh làm khung, sản phẩm làm điểm nhấn — đúng cách hướng A đặt màu: menu xanh đậm, nội dung trung tính, vàng kim cho một điểm chính. Xanh logo và xanh web lệch nhau một nấc. Vàng thương hiệu là vàng kim ngả ô-liu — không phải vàng cảnh báo.</p>
+    </div>
+    <div class="foot"><span>Ảnh do người dùng cung cấp</span><span class="pg"></span></div>
+  </section>
+
+  <!-- 4–6. Phương án (sinh bằng script) -->
+  <div id="dir-slides" style="display:contents"></div>
+
+  <!-- 7. So sánh -->
+  <section class="slide" data-title="So sánh">
+    <div><div class="eyebrow">4 · So sánh</div><h2>Hướng A cân bằng thương hiệu và độ rõ dữ liệu</h2></div>
+    <div class="body" style="align-content:start"><table id="cmp"></table></div>
+    <div class="foot"><span>Đề xuất: khung theo hướng A, nền tối theo cách xử lý của hướng C</span><span class="pg"></span></div>
+  </section>
+
+  <!-- 8. Styleguide: màu gốc -->
+  <section class="slide" data-title="Màu gốc">
+    <div><div class="eyebrow">5 · Styleguide</div><h2>Màu gốc lấy từ nhận diện</h2></div>
+    <div class="body" style="align-content:start;gap:24px">
+      <div class="swatches" id="src"></div>
+      <p class="lead" style="font-size:17px">Xanh logo và xanh web lệch nhau một nấc; chọn xanh logo #106138 làm gốc (xanh 700). Đỏ #C00000 chỉ giữ cho nhận diện — không dùng trong dữ liệu, vì trên dashboard đỏ chỉ có nghĩa "vượt".</p>
+    </div>
+    <div class="foot"><span>Nguồn: ảnh do người dùng cung cấp, CSS habeco.com.vn</span><span class="pg"></span></div>
+  </section>
+
+  <!-- 9. Styleguide: thang màu -->
+  <section class="slide" data-title="Thang màu">
+    <div><div class="eyebrow">5 · Styleguide</div><h2>Thang màu đề xuất</h2></div>
+    <div class="body" style="align-content:start;gap:18px">
+      <div class="ramps">
+        <div class="ramp-row"><div><h3>Xanh Habeco</h3><p class="note">Màu chủ đạo · gốc 700</p></div><div class="ramp" id="r-green"></div></div>
+        <div class="ramp-row"><div><h3>Vàng kim</h3><p class="note">Điểm nhấn · gốc 500</p></div><div class="ramp" id="r-gold"></div></div>
+        <div class="ramp-row"><div><h3>Trung tính ấm</h3><p class="note">Nền, chữ, viền · gốc 100</p></div><div class="ramp" id="r-neutral"></div></div>
+      </div>
+      <div class="row2">
+        <div class="box"><h3>Trạng thái — tách khỏi màu thương hiệu</h3><div class="chips" id="status"></div><p class="note">Luôn kèm icon + nhãn. "Đạt" không tô màu để xanh thương hiệu không bị đọc thành "đạt".</p></div>
+        <div class="box"><h3>Biểu đồ: điện · nước · hơi (sáng / tối)</h3><div class="chips" id="series"></div><p class="note">Đã kiểm mù màu: ΔE OKLab tệ nhất 12,4 (sáng), 13,7 (tối); tương phản ≥ 3:1 cả hai nền.</p></div>
+      </div>
+    </div>
+    <div class="foot"><span>Ô viền đậm là màu gốc. Tên bước 50–950 khớp Tailwind v4 và Figma variables.</span><span class="pg"></span></div>
+  </section>
+</div>
+
+<div class="ctrl"><button type="button" id="prev" aria-label="Slide trước">←</button><button type="button" id="next" aria-label="Slide sau">→</button></div>
+
+<script>
+(function(){
+  var ico={
+    home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>',
+    bolt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>',
+    drop:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/></svg>',
+    box:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16"/></svg>',
+    flask:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v6L5 19a1 1 0 0 0 1 2h12a1 1 0 0 0 1-2l-5-10V3"/></svg>',
+    tri:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4l9 16H3z"/><path d="M12 10v4"/></svg>',
+    oct:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"/><path d="M12 8v5"/></svg>',
+    ok:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5 9-10"/></svg>'
+  };
+
+  // SEC minh hoạ theo tháng (MJ/hl), trần 196 — số minh hoạ, không phải số nhà máy
+  var sec=[188,182,179,185,191,199,203,197,190];
+  function chart(t,w){
+    w=w||300;var h=96,pl=6,pr=6,pt=8,pb=14,min=160,max=215;
+    var x=function(i){return pl+i*(w-pl-pr)/(sec.length-1)};
+    var y=function(v){return pt+(max-v)*(h-pt-pb)/(max-min)};
+    var pts=sec.map(function(v,i){return x(i).toFixed(1)+','+y(v).toFixed(1)}).join(' ');
+    var area='M'+x(0)+','+(h-pb)+' L'+pts.replace(/ /g,' L')+' L'+x(sec.length-1)+','+(h-pb)+' Z';
+    var grid=[180,200].map(function(v){return '<line x1="'+pl+'" x2="'+(w-pr)+'" y1="'+y(v)+'" y2="'+y(v)+'" stroke="'+t.grid+'" stroke-width="1"/>'}).join('');
+    var dots=sec.map(function(v,i){return v>196?'<circle cx="'+x(i)+'" cy="'+y(v)+'" r="3.5" fill="'+t.crit+'" stroke="'+t.card+'" stroke-width="2"/>':''}).join('');
+    var months=['T1','T3','T5','T7','T9'].map(function(m,j){return '<text x="'+x(j*2)+'" y="'+(h-2)+'" font-size="9" fill="'+t.muted+'" text-anchor="'+(j==0?'start':j==4?'end':'middle')+'">'+m+'</text>'}).join('');
+    return '<svg class="c" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none" role="img" aria-label="SEC theo tháng so với trần 196">'+grid+
+      '<path d="'+area+'" fill="'+t.pri+'" fill-opacity=".12"/>'+
+      '<polyline points="'+pts+'" fill="none" stroke="'+t.pri+'" stroke-width="2" stroke-linejoin="round"/>'+
+      '<line x1="'+pl+'" x2="'+(w-pr)+'" y1="'+y(196)+'" y2="'+y(196)+'" stroke="'+t.crit+'" stroke-width="1.5" stroke-dasharray="4 3"/>'+
+      '<text x="'+(w-pr)+'" y="'+(y(196)-4)+'" font-size="9" font-weight="600" fill="'+t.crit+'" text-anchor="end">Trần 196</text>'+dots+months+'</svg>';
+  }
+  function mockOnly(t,cw){
+    var v=Object.keys(t).map(function(k){return '--m-'+k+':'+t[k]}).join(';');
+    var nav=['home','bolt','drop','box','flask'].map(function(n,i){return '<span class="nav'+(i==1?' on':'')+'">'+ico[n]+'</span>'}).join('');
+    function kpi(c,name,val,unit,d){return '<div class="card"><span class="lbl"><i class="dot" style="background:'+c+'"></i>'+name+'</span><span class="val">'+val+' <span class="unit">'+unit+'</span></span><span class="delta">'+d+'</span></div>'}
+    return '<div class="mock" style="'+v+'"><div class="side"><span class="logo"></span>'+nav+'</div><main>'+
+      '<div class="top"><span class="crumb">Năng lượng / Tổng quan</span><span class="btn">Xuất báo cáo</span></div>'+
+      '<div class="filters"><span class="f on">01/01 – 30/09/2026</span><span class="f on">So cùng kỳ 2025</span><span class="f">Khu vực: tất cả</span></div>'+
+      '<div class="grid"><div class="card hero"><span class="lbl">SEC luỹ kế · MJ/hl</span><span class="val">190,4 <span class="unit">/ trần 196</span></span>'+
+      '<span class="st" style="background:'+t.warnbg+';color:'+t.warnfg+'">'+ico.tri+'Gần trần · 97%</span></div>'+
+      kpi(t.s1,'Điện','5,82','tr kWh','▲ 3,1% cùng kỳ')+kpi(t.s2,'Nước','214','nghìn m³','▼ 1,2% cùng kỳ')+kpi(t.s3,'Hơi','21,6','nghìn tấn','▲ 0,8% cùng kỳ')+'</div>'+
+      '<div class="chart"><div class="legend"><span>SEC theo tháng · MJ/hl</span><span style="display:inline-flex;align-items:center;gap:4px"><i class="dot" style="background:'+t.crit+'"></i>Tháng vượt trần</span></div>'+chart(t,cw)+'</div>'+
+      '</main></div>';
+  }
+  function mock(t,label){return '<figure>'+mockOnly(t,620)+'<figcaption>'+label+'</figcaption></figure>'}
+
+  var S={s1:'#a87400',s2:'#1f7ae0',s3:'#b0479b'}, SD={s1:'#b8860b',s2:'#3d8ef0',s3:'#d0609a'};
+  function m(a,b){var o={};for(var k in a)o[k]=a[k];for(var k2 in b)o[k2]=b[k2];return o}
+  var L={page:'#f5f5f1',card:'#ffffff',line:'#e1e2da',fg:'#17201a',muted:'#5b645d',grid:'#ecece6',crit:'#d92d20',warnbg:'#fdf0dc',warnfg:'#9a4a00'};
+  var D={page:'#0d1310',card:'#151d18',line:'#27312b',fg:'#eaf0eb',muted:'#9aa59d',grid:'#202a24',crit:'#f0625a',warnbg:'#3a2a10',warnfg:'#f6b45a'};
+  var dirs=[
+    {id:'A',name:'Hướng A · Menu xanh đậm, nội dung trung tính',short:'Menu xanh đậm',fit:'Rất hợp',rec:true,
+     why:'Thương hiệu nằm ở khung (menu trái, logo), vùng dữ liệu trung tính nên màu trạng thái và màu biểu đồ không bị lẫn. Giống cách gian hàng dùng nền xanh làm khung, sản phẩm làm điểm nhấn. Nền tối lấy cách xử lý của hướng C để chiếu phòng họp.',
+     light:m(L,m(S,{side:'#0b3f25',sidefg:'#a9c8b4',logo:'#c2a540',navon:'#145233',navonfg:'#ffffff',navbar:'#c2a540',pri:'#106138',prifg:'#ffffff',hero:'#fbf8ec',heroline:'#ebdc9c',herofg:'#5f4d1c'})),
+     dark:m(D,m(SD,{side:'#08251a',sidefg:'#8fb19c',logo:'#d6b95a',navon:'#123a26',navonfg:'#ffffff',navbar:'#d6b95a',pri:'#5fae7f',prifg:'#08251a',hero:'#1d2117',heroline:'#4a4120',herofg:'#e3c86a'})),
+     specs:[['Menu trái','Xanh 800 #0B3F25, mục chọn có vạch vàng kim'],['Nút chính','Xanh 700 #106138 (7,5:1 với chữ trắng)'],['Số chính','Nền vàng kim 50, chữ vàng kim 800'],['Nền trang','Trung tính ấm #F5F5F1']]},
+    {id:'B',name:'Hướng B · Trung tính toàn bộ, xanh chỉ ở nút và mục chọn',short:'Trung tính',fit:'Hợp một phần',
+     why:'Gọn và gần Power BI nhất, nhưng thương hiệu gần như biến mất: đặt cạnh app hiện tại chỉ khác màu nút. Khó đạt yêu cầu "đổi tông sang xanh lá đậm" mà khách nhìn thấy ngay.',
+     light:m(L,m(S,{side:'#ffffff',sidefg:'#6b746d',logo:'#106138',navon:'#e7f2eb',navonfg:'#106138',navbar:'#106138',pri:'#106138',prifg:'#ffffff',hero:'#ffffff',heroline:'#e1e2da',herofg:'#17201a'})),
+     dark:m(D,m(SD,{side:'#151d18',sidefg:'#9aa59d',logo:'#5fae7f',navon:'#1c2a21',navonfg:'#7cc497',navbar:'#5fae7f',pri:'#5fae7f',prifg:'#08251a',hero:'#151d18',heroline:'#27312b',herofg:'#eaf0eb'})),
+     specs:[['Menu trái','Trắng, mục chọn nền xanh 50'],['Nút chính','Xanh 700'],['Số chính','Không nhấn màu'],['Nền trang','Trung tính ấm']]},
+    {id:'C',name:'Hướng C · Xanh-đen và vàng kim, tối là chính',short:'Xanh-đen + vàng kim',fit:'Hợp một phần',
+     why:'Đúng không khí gian hàng và banner 135 năm, rất "wow" khi chiếu phòng họp. Dùng hằng ngày ở nền sáng thì vàng kim nhiều quá dễ bị đọc như cảnh báo, và JD vẽ bản sáng là chính.',
+     light:m(L,m(S,{page:'#f2f1ec',side:'#0b3f25',sidefg:'#c9b56e',logo:'#c2a540',navon:'#c2a540',navonfg:'#0b3f25',navbar:'#c2a540',pri:'#806823',prifg:'#ffffff',hero:'#0b3f25',heroline:'#0b3f25',herofg:'#e3c86a',heromuted:'#a9c8b4'})),
+     dark:m(D,m(SD,{page:'#07140d',card:'#0e2016',line:'#1f3a2a',side:'#051009',sidefg:'#c9b56e',logo:'#d6b95a',navon:'#d6b95a',navonfg:'#051009',navbar:'#d6b95a',pri:'#d6b95a',prifg:'#051009',hero:'#13301f',heroline:'#3c5a2a',herofg:'#e9cf74'})),
+     specs:[['Menu trái','Xanh-đen, mục chọn nền vàng kim'],['Nút chính','Vàng kim 700'],['Số chính','Khối xanh đậm, số vàng kim'],['Nền trang','Kem #F2F1EC / xanh-đen']]}
+  ];
+  var now=m(L,m(S,{side:'#ffffff',sidefg:'#6b7280',logo:'#c8102e',navon:'#fdecef',navonfg:'#c8102e',navbar:'#c8102e',pri:'#c8102e',prifg:'#ffffff',hero:'#ffffff',heroline:'#e5e7eb',herofg:'#111827',page:'#f5f6f7',line:'#e5e7eb',muted:'#6b7280',fg:'#111827',s1:'#ea580c',s2:'#2563eb',s3:'#16a34a'}));
+
+  document.getElementById('now-mock').innerHTML=mockOnly(now,680);
+
+  // phương án: mỗi hướng một slide
+  var host=document.getElementById('dir-slides');
+  host.outerHTML=dirs.map(function(d){
+    return '<section class="slide" data-title="Hướng '+d.id+'"><div><div class="eyebrow">3 · Phương án đề xuất</div>'+
+      '<div class="dir-head"><h2>'+d.name+'</h2><span class="fit'+(d.rec?' rec':'')+'">'+(d.rec?'Đề xuất · ':'')+'Độ hợp: '+d.fit+'</span></div></div>'+
+      '<div class="body" style="align-content:start;gap:22px"><div class="pair">'+mock(d.light,'Nền sáng')+mock(d.dark,'Nền tối')+'</div>'+
+      '<p class="why">'+d.why+'</p><dl class="specs">'+d.specs.map(function(s){return '<div><dt>'+s[0]+'</dt><dd>'+s[1]+'</dd></div>'}).join('')+'</dl></div>'+
+      '<div class="foot"><span>Cùng một màn: tổng quan năng lượng, thẻ SEC so với trần</span><span class="pg"></span></div></section>';
+  }).join('');
+
+  // bảng so sánh có thumbnail
+  var rows=[
+    {t:now,n:'Hiện tại',s:'App đang chạy',c:['Trắng','Đỏ','Không nhấn','Thấp (sai tông)','Cao (đỏ = vượt)','Chưa có dark','Ít hợp'],bad:[3,4,5]},
+    {t:dirs[0].light,n:'A · Đề xuất',s:dirs[0].short,c:['Xanh 800','Xanh 700','Vàng kim nhạt','Cao','Thấp','Tốt (dark từ C)','Rất hợp'],rec:true},
+    {t:dirs[1].light,n:'B',s:dirs[1].short,c:['Trắng','Xanh 700','Không nhấn','Thấp','Thấp','Trung bình','Hợp một phần'],bad:[3]},
+    {t:dirs[2].light,n:'C',s:dirs[2].short,c:['Xanh-đen','Vàng kim 700','Khối xanh, số vàng','Rất cao','Trung bình (vàng nhiều)','Rất tốt','Hợp một phần']}
+  ];
+  var head=['Phương án','','Menu trái','Nút chính','Số chính (SEC)','Nhận ra thương hiệu','Lẫn với trạng thái','Chiếu phòng họp','Độ hợp'];
+  document.getElementById('cmp').innerHTML='<thead><tr>'+head.map(function(c){return '<th>'+c+'</th>'}).join('')+'</tr></thead><tbody>'+
+    rows.map(function(r){return '<tr'+(r.rec?' class="rec"':'')+'><td><div class="thumb">'+mockOnly(r.t,430)+'</div></td><td class="name"><b>'+r.n+'</b><span>'+r.s+'</span></td>'+
+      r.c.map(function(c,i){return '<td'+((r.bad||[]).indexOf(i)>=0?' class="bad"':'')+'>'+(i==6?'<b>'+c+'</b>':c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody>';
+
+  // styleguide
+  var src=[
+    ['#106138','Xanh logo','chữ HABECO, nền gian hàng'],
+    ['#154F28','Xanh website','màu chính CSS website'],
+    ['#C2A540','Vàng kim logo','hoa bia, slogan'],
+    ['#D6A733','Vàng kim website','nút, gạch chân'],
+    ['#FCD242','Vàng Bia Hà Nội','kệ, thùng, lon'],
+    ['#C00000','Đỏ Bia Hà Nội','chữ trên lon'],
+    ['#F2F1EC','Kem website','nền khối nội dung']
+  ];
+  document.getElementById('src').innerHTML=src.map(function(s){return '<div class="sw"><i style="background:'+s[0]+'"></i><div><b>'+s[1]+'</b><span class="mono">'+s[0]+'</span><span class="note">'+s[2]+'</span></div></div>'}).join('');
+  function ramp(id,steps,key){
+    document.getElementById(id).innerHTML=steps.map(function(s,i){
+      var dark=i>=5;return '<div class="'+(s[0]===key?'k':'')+'" style="background:'+s[1]+';color:'+(dark?'#ffffff':'#17201a')+'"><b>'+s[0]+'</b>'+s[1]+'</div>'}).join('');
+  }
+  ramp('r-green',[['50','#eef7f1'],['100','#d6ecdd'],['200','#aed8bd'],['300','#7dbd95'],['400','#4a9d6c'],['500','#24804f'],['600','#16703f'],['700','#106138'],['800','#0b3f25'],['900','#08301c'],['950','#041b10']],'700');
+  ramp('r-gold',[['50','#fbf8ec'],['100','#f5eecd'],['200','#ebdc9c'],['300','#dec66a'],['400','#d0b14b'],['500','#c2a540'],['600','#a3862c'],['700','#806823'],['800','#5f4d1c'],['900','#403415'],['950','#241d0b']],'500');
+  ramp('r-neutral',[['50','#f9f9f6'],['100','#f2f1ec'],['200','#e1e2da'],['300','#c9cbc2'],['400','#a1a69d'],['500','#7a8279'],['600','#5b645d'],['700','#434b45'],['800','#27312b'],['900','#151d18'],['950','#0d1310']],'100');
+  document.getElementById('status').innerHTML=[
+    ['#5b645d','Đạt',ico.ok,'không tô nền'],
+    ['#d97706','Gần ngưỡng',ico.tri,'cam #D97706'],
+    ['#d92d20','Vượt ngưỡng',ico.oct,'đỏ #D92D20']
+  ].map(function(s){return '<span class="tok"><i style="background:'+s[0]+'"></i><span style="display:inline-flex;width:14px;height:14px;color:'+s[0]+'">'+s[2]+'</span>'+s[1]+' <span class="note">'+s[3]+'</span></span>'}).join('');
+  document.getElementById('series').innerHTML=[['Điện','#a87400','#b8860b'],['Nước','#1f7ae0','#3d8ef0'],['Hơi','#b0479b','#d0609a']].map(function(s){
+    return '<span class="tok"><i style="background:'+s[1]+'"></i><i style="background:'+s[2]+'"></i>'+s[0]+' <span class="mono" style="font-size:12px">'+s[1]+' / '+s[2]+'</span></span>'}).join('');
+
+  // ảnh nguồn: thử lần lượt các đuôi, không có thì hiện ô giữ chỗ
+  var exts=['png','jpg','jpeg','webp'];
+  document.querySelectorAll('.ph[data-src]').forEach(function(ph){
+    var img=ph.querySelector('img'),base=ph.getAttribute('data-src'),fb=ph.getAttribute('data-fallback'),i=0;
+    var list=exts.map(function(e){return base+'.'+e});if(fb)list.push(fb);
+    img.onerror=function(){i++;if(i<list.length)img.src=list[i];else ph.classList.add('missing')};
+    img.src=list[0];
+  });
+
+  // điều hướng
+  var slides=[].slice.call(document.querySelectorAll('.slide')),cur=0;
+  slides.forEach(function(s,i){var p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length});
+  function fit(){var k=Math.min(innerWidth/1600,innerHeight/900);slides.forEach(function(s){s.style.transform='scale('+k+')'})}
+  function go(n){cur=Math.max(0,Math.min(slides.length-1,n));slides.forEach(function(s,i){s.classList.toggle('on',i===cur)});
+    history.replaceState(null,'','#'+(cur+1))}
+  addEventListener('resize',fit);
+  addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(cur+1)}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1)}
+    else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+    else if(e.key==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+  });
+  document.getElementById('prev').onclick=function(){go(cur-1)};
+  document.getElementById('next').onclick=function(){go(cur+1)};
+  fit();go((parseInt(location.hash.slice(1),10)||1)-1);
+})();
+</script>

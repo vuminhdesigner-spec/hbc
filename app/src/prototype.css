@@ -1,55 +1,5 @@
-/* Bản thử W1 (phương án B): index.css giữ nguyên, nạp đè bộ token v2-glass (bản 38 đã duyệt). */
+/* Bản thử các màn review (phương án B): utility kính, chuyển động, nền theo tab. Token nằm trong index.css. */
 @import "./index.css";
-@import "../../tokens/v2-glass/theme.css";
-
-/* Nhóm token mở rộng của v2-glass → utility Tailwind. Tên khác tên biến gốc để không tự trỏ vào mình. */
-@theme inline {
-  --color-canvas-from: var(--glass-canvas-from);
-  --color-canvas-to: var(--glass-canvas-to);
-  --color-glass-card-to: var(--glass-card-to);
-  --color-glass-edge: var(--glass-card-edge);
-  --color-glass-highlight: var(--glass-card-highlight);
-  --color-scrim: var(--glass-scrim);
-  --color-cta-from: var(--cta-from);
-  --color-cta-to: var(--cta-to);
-  --color-cta-foreground: var(--cta-foreground);
-  --color-hero-from: var(--kpi-hero-from);
-  --color-hero-to: var(--kpi-hero-to);
-  --color-hero-track: var(--kpi-hero-track);
-  --color-warning-solid: var(--status-warning-solid);
-  --color-warning-solid-foreground: var(--status-warning-solid-foreground);
-  --color-destructive-solid: var(--status-destructive-solid);
-  --color-destructive-solid-foreground: var(--status-destructive-solid-foreground);
-  --color-destructive-foreground: var(--status-destructive-foreground);
-  --color-risk-good: var(--risk-good);
-  --color-risk-caution: var(--risk-caution);
-  --color-risk-warning: var(--risk-warning);
-  --color-risk-critical: var(--risk-critical);
-  --color-chart-volume: var(--chart-ext-volume);
-  --color-chart-track: var(--chart-ext-track);
-  --color-chart-axis: var(--chart-ext-axis);
-  --color-chart-1-foreground: var(--chart-ext-chart-1-foreground);
-  --color-chart-1-deep: var(--chart-ext-chart-1-deep);
-  --color-sidebar-open: var(--sidebar-ext-open);
-
-  --shadow-glass: var(--shadow-card);
-  --shadow-glass-pill: var(--shadow-pill);
-  --shadow-glass-glow: var(--shadow-glow);
-  --radius-glass: var(--radius-card);
-  --radius-glass-inner: var(--radius-inner);
-  --blur-glass-card: var(--blur-glass);
-  --blur-glass-rail: var(--blur-sidebar);
-
-  /* Cỡ chữ dày dữ liệu của W1 (bản 38) */
-  --text-3xs: 0.625rem;
-  --text-3xs--line-height: 1.4;
-  --text-2xs: 0.6875rem;
-  --text-2xs--line-height: 1.45;
-  --text-body: 0.8125rem;
-  --text-body--line-height: 1.45;
-  --text-kpi: 1.625rem;
-  --text-kpi--line-height: 1.15;
-}
 
 /* Card kính: viền sáng + bóng xanh nhạt + nhoè nền. Nền đi riêng (glass-bg, kpi-tint, kpi-hero) để không đè nhau. */
 @utility glass-bg {

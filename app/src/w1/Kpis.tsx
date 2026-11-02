@@ -19,7 +19,7 @@ function CountUp({ value, dec }: { value: number; dec: number }) {
   return <>{fmt(useCountUp(value), dec)}</>
 }
 
-function Tile({ icon: Icon, onYellow }: { icon: LucideIcon; onYellow?: boolean }) {
+export function Tile({ icon: Icon, onYellow }: { icon: LucideIcon; onYellow?: boolean }) {
   return (
     <span className={cn('kpi-tile grid size-7.5 shrink-0 place-items-center rounded-glass-inner', onYellow ? 'text-chart-1-foreground' : 'text-cta-foreground')}>
       <Icon className="size-3.75" strokeWidth={2.2} />
@@ -76,7 +76,7 @@ function Spark({ k, id }: { k: Metric; id: string }) {
   )
 }
 
-function GoButton({ label, icon: Icon, onClick, disabled }: { label: string; icon: LucideIcon; onClick?: () => void; disabled?: boolean }) {
+export function GoButton({ label, icon: Icon, onClick, disabled }: { label: string; icon: LucideIcon; onClick?: () => void; disabled?: boolean }) {
   return (
     <Tooltip>
       <TooltipTrigger render={<Button variant="ghost" size="icon-xs" aria-label={label} onClick={onClick} aria-disabled={disabled} className="glass-pill rounded-full text-muted-foreground hover:text-ring aria-disabled:opacity-50" />}>

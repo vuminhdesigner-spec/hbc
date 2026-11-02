@@ -1,0 +1,787 @@
+{
+  "color": {
+    "button": {
+      "primary-bg-from": {
+        "$type": "color",
+        "$value": "{color.cta.from}",
+        "$extensions": {
+          "com.habeco.css": "var(--button-primary-bg-from)"
+        }
+      },
+      "primary-bg-to": {
+        "$type": "color",
+        "$value": "{color.cta.to}",
+        "$extensions": {
+          "com.habeco.css": "var(--button-primary-bg-to)"
+        }
+      },
+      "primary-fg": {
+        "$type": "color",
+        "$value": "{color.cta.foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--button-primary-fg)"
+        }
+      },
+      "secondary-bg": {
+        "$type": "color",
+        "$value": "{color.popover}",
+        "$extensions": {
+          "com.habeco.css": "var(--button-secondary-bg)"
+        }
+      },
+      "secondary-fg": {
+        "$type": "color",
+        "$value": "{color.foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--button-secondary-fg)"
+        }
+      },
+      "secondary-border": {
+        "$type": "color",
+        "$value": "{color.glass.card-edge}",
+        "$extensions": {
+          "com.habeco.css": "var(--button-secondary-border)"
+        }
+      },
+      "ghost-bg-hover": {
+        "$type": "color",
+        "$value": "{color.muted}",
+        "$extensions": {
+          "com.habeco.css": "var(--button-ghost-bg-hover)"
+        }
+      },
+      "destructive-bg": {
+        "$type": "color",
+        "$value": "{color.status.destructive-solid}",
+        "$extensions": {
+          "com.habeco.css": "var(--button-destructive-bg)"
+        }
+      },
+      "destructive-fg": {
+        "$type": "color",
+        "$value": "{color.status.destructive-solid-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--button-destructive-fg)"
+        }
+      }
+    },
+    "input": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.popover}",
+        "$extensions": {
+          "com.habeco.css": "var(--input-bg)"
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--input-fg)"
+        }
+      },
+      "placeholder": {
+        "$type": "color",
+        "$value": "{color.muted-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--input-placeholder)"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.input}",
+        "$extensions": {
+          "com.habeco.css": "var(--input-border)"
+        }
+      },
+      "ring": {
+        "$type": "color",
+        "$value": "{color.ring}",
+        "$extensions": {
+          "com.habeco.css": "var(--input-ring)"
+        }
+      }
+    },
+    "card": {
+      "bg-from": {
+        "$type": "color",
+        "$value": "{color.card}",
+        "$extensions": {
+          "com.habeco.css": "var(--card-bg-from)"
+        }
+      },
+      "bg-to": {
+        "$type": "color",
+        "$value": "{color.glass.card-to}",
+        "$extensions": {
+          "com.habeco.css": "var(--card-bg-to)"
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.card-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--card-fg)"
+        }
+      },
+      "fg-muted": {
+        "$type": "color",
+        "$value": "{color.muted-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--card-fg-muted)"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.glass.card-edge}",
+        "$extensions": {
+          "com.habeco.css": "var(--card-border)"
+        }
+      },
+      "highlight": {
+        "$type": "color",
+        "$value": "{color.glass.card-highlight}",
+        "$extensions": {
+          "com.habeco.css": "var(--card-highlight)"
+        }
+      }
+    },
+    "kpi-card": {
+      "hero-from": {
+        "$type": "color",
+        "$value": "{color.kpi-hero.from}",
+        "$extensions": {
+          "com.habeco.css": "var(--kpi-card-hero-from)"
+        }
+      },
+      "hero-to": {
+        "$type": "color",
+        "$value": "{color.kpi-hero.to}",
+        "$extensions": {
+          "com.habeco.css": "var(--kpi-card-hero-to)"
+        }
+      },
+      "hero-track": {
+        "$type": "color",
+        "$value": "{color.kpi-hero.track}",
+        "$extensions": {
+          "com.habeco.css": "var(--kpi-card-hero-track)"
+        }
+      }
+    },
+    "badge": {
+      "warning-bg": {
+        "$type": "color",
+        "$value": "{color.status.warning-solid}",
+        "$extensions": {
+          "com.habeco.css": "var(--badge-warning-bg)"
+        }
+      },
+      "warning-fg": {
+        "$type": "color",
+        "$value": "{color.status.warning-solid-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--badge-warning-fg)"
+        }
+      },
+      "destructive-bg": {
+        "$type": "color",
+        "$value": "{color.status.destructive-solid}",
+        "$extensions": {
+          "com.habeco.css": "var(--badge-destructive-bg)"
+        }
+      },
+      "destructive-fg": {
+        "$type": "color",
+        "$value": "{color.status.destructive-solid-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--badge-destructive-fg)"
+        }
+      },
+      "neutral-bg": {
+        "$type": "color",
+        "$value": "{color.muted}",
+        "$extensions": {
+          "com.habeco.css": "var(--badge-neutral-bg)"
+        }
+      },
+      "neutral-fg": {
+        "$type": "color",
+        "$value": "{color.muted-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--badge-neutral-fg)"
+        }
+      }
+    },
+    "tabs": {
+      "track": {
+        "$type": "color",
+        "$value": "{color.muted}",
+        "$extensions": {
+          "com.habeco.css": "var(--tabs-track)"
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.muted-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--tabs-fg)"
+        }
+      },
+      "active-bg-from": {
+        "$type": "color",
+        "$value": "{color.cta.from}",
+        "$extensions": {
+          "com.habeco.css": "var(--tabs-active-bg-from)"
+        }
+      },
+      "active-bg-to": {
+        "$type": "color",
+        "$value": "{color.cta.to}",
+        "$extensions": {
+          "com.habeco.css": "var(--tabs-active-bg-to)"
+        }
+      },
+      "active-fg": {
+        "$type": "color",
+        "$value": "{color.cta.foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--tabs-active-fg)"
+        }
+      }
+    },
+    "pill": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.popover}",
+        "$extensions": {
+          "com.habeco.css": "var(--pill-bg)"
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--pill-fg)"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.glass.card-edge}",
+        "$extensions": {
+          "com.habeco.css": "var(--pill-border)"
+        }
+      }
+    },
+    "menu": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.sidebar}",
+        "$extensions": {
+          "com.habeco.css": "var(--menu-bg)"
+        }
+      },
+      "bg-open": {
+        "$type": "color",
+        "$value": "{color.sidebar-ext.open}",
+        "$extensions": {
+          "com.habeco.css": "var(--menu-bg-open)"
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.sidebar-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--menu-fg)"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.sidebar-border}",
+        "$extensions": {
+          "com.habeco.css": "var(--menu-border)"
+        }
+      },
+      "active-bg-from": {
+        "$type": "color",
+        "$value": "{color.cta.from}",
+        "$extensions": {
+          "com.habeco.css": "var(--menu-active-bg-from)"
+        }
+      },
+      "active-bg-to": {
+        "$type": "color",
+        "$value": "{color.cta.to}",
+        "$extensions": {
+          "com.habeco.css": "var(--menu-active-bg-to)"
+        }
+      },
+      "active-fg": {
+        "$type": "color",
+        "$value": "{color.cta.foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--menu-active-fg)"
+        }
+      },
+      "scrim": {
+        "$type": "color",
+        "$value": "{color.glass.scrim}",
+        "$extensions": {
+          "com.habeco.css": "var(--menu-scrim)"
+        }
+      }
+    },
+    "table": {
+      "header-bg": {
+        "$type": "color",
+        "$value": "{color.muted}",
+        "$extensions": {
+          "com.habeco.css": "var(--table-header-bg)"
+        }
+      },
+      "header-fg": {
+        "$type": "color",
+        "$value": "{color.muted-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--table-header-fg)"
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--table-fg)"
+        }
+      },
+      "row-hover": {
+        "$type": "color",
+        "$value": "{color.muted}",
+        "$extensions": {
+          "com.habeco.css": "var(--table-row-hover)"
+        }
+      },
+      "row-selected": {
+        "$type": "color",
+        "$value": "{color.accent}",
+        "$extensions": {
+          "com.habeco.css": "var(--table-row-selected)"
+        }
+      },
+      "row-selected-fg": {
+        "$type": "color",
+        "$value": "{color.accent-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--table-row-selected-fg)"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border}",
+        "$extensions": {
+          "com.habeco.css": "var(--table-border)"
+        }
+      }
+    },
+    "tab-bar": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.sidebar-ext.open}",
+        "$extensions": {
+          "com.habeco.css": "var(--tab-bar-bg)"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border}",
+        "$extensions": {
+          "com.habeco.css": "var(--tab-bar-border)"
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.muted-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--tab-bar-fg)"
+        }
+      },
+      "active-fg": {
+        "$type": "color",
+        "$value": "{color.primary}",
+        "$extensions": {
+          "com.habeco.css": "var(--tab-bar-active-fg)"
+        }
+      },
+      "active-bg": {
+        "$type": "color",
+        "$value": "{color.muted}",
+        "$extensions": {
+          "com.habeco.css": "var(--tab-bar-active-bg)"
+        }
+      }
+    },
+    "tooltip": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.popover}",
+        "$extensions": {
+          "com.habeco.css": "var(--tooltip-bg)"
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.popover-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--tooltip-fg)"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border}",
+        "$extensions": {
+          "com.habeco.css": "var(--tooltip-border)"
+        }
+      }
+    },
+    "sheet": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.popover}",
+        "$extensions": {
+          "com.habeco.css": "var(--sheet-bg)"
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.popover-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--sheet-fg)"
+        }
+      },
+      "scrim": {
+        "$type": "color",
+        "$value": "{color.glass.scrim}",
+        "$extensions": {
+          "com.habeco.css": "var(--sheet-scrim)"
+        }
+      }
+    },
+    "chart": {
+      "electricity": {
+        "$type": "color",
+        "$value": "{color.chart-1}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-electricity)"
+        }
+      },
+      "electricity-deep": {
+        "$type": "color",
+        "$value": "{color.chart-ext.chart-1-deep}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-electricity-deep)"
+        }
+      },
+      "electricity-on": {
+        "$type": "color",
+        "$value": "{color.chart-ext.chart-1-foreground}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-electricity-on)"
+        }
+      },
+      "water": {
+        "$type": "color",
+        "$value": "{color.chart-2}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-water)"
+        }
+      },
+      "steam": {
+        "$type": "color",
+        "$value": "{color.chart-3}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-steam)"
+        }
+      },
+      "comparison": {
+        "$type": "color",
+        "$value": "{color.chart-4}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-comparison)"
+        }
+      },
+      "sec": {
+        "$type": "color",
+        "$value": "{color.chart-5}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-sec)"
+        }
+      },
+      "volume": {
+        "$type": "color",
+        "$value": "{color.chart-ext.volume}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-volume)"
+        }
+      },
+      "track": {
+        "$type": "color",
+        "$value": "{color.chart-ext.track}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-track)"
+        }
+      },
+      "axis": {
+        "$type": "color",
+        "$value": "{color.chart-ext.axis}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-axis)"
+        }
+      },
+      "grid": {
+        "$type": "color",
+        "$value": "{color.border}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-grid)"
+        }
+      }
+    },
+    "sec-bar": {
+      "good": {
+        "$type": "color",
+        "$value": "{color.risk.good}",
+        "$extensions": {
+          "com.habeco.css": "var(--sec-bar-good)"
+        }
+      },
+      "caution": {
+        "$type": "color",
+        "$value": "{color.risk.caution}",
+        "$extensions": {
+          "com.habeco.css": "var(--sec-bar-caution)"
+        }
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{color.risk.warning}",
+        "$extensions": {
+          "com.habeco.css": "var(--sec-bar-warning)"
+        }
+      },
+      "critical": {
+        "$type": "color",
+        "$value": "{color.risk.critical}",
+        "$extensions": {
+          "com.habeco.css": "var(--sec-bar-critical)"
+        }
+      }
+    }
+  },
+  "size": {
+    "button": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{size.radius.pill}",
+        "$extensions": {
+          "com.habeco.css": "var(--button-radius)"
+        }
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "{size.control.md}",
+        "$extensions": {
+          "com.habeco.css": "var(--button-height)"
+        }
+      }
+    },
+    "input": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{size.radius.base}",
+        "$extensions": {
+          "com.habeco.css": "var(--input-radius)"
+        }
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "{size.control.md}",
+        "$extensions": {
+          "com.habeco.css": "var(--input-height)"
+        }
+      }
+    },
+    "card": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{size.radius.card}",
+        "$extensions": {
+          "com.habeco.css": "var(--card-radius)"
+        }
+      },
+      "inner-radius": {
+        "$type": "dimension",
+        "$value": "{size.radius.inner}",
+        "$extensions": {
+          "com.habeco.css": "var(--card-inner-radius)"
+        }
+      }
+    },
+    "badge": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{size.radius.pill}",
+        "$extensions": {
+          "com.habeco.css": "var(--badge-radius)"
+        }
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "{size.control.xs}",
+        "$extensions": {
+          "com.habeco.css": "var(--badge-height)"
+        }
+      }
+    },
+    "tabs": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{size.radius.pill}",
+        "$extensions": {
+          "com.habeco.css": "var(--tabs-radius)"
+        }
+      },
+      "item-height": {
+        "$type": "dimension",
+        "$value": "{size.control.sm}",
+        "$extensions": {
+          "com.habeco.css": "var(--tabs-item-height)"
+        }
+      }
+    },
+    "pill": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{size.radius.pill}",
+        "$extensions": {
+          "com.habeco.css": "var(--pill-radius)"
+        }
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "{size.control.md}",
+        "$extensions": {
+          "com.habeco.css": "var(--pill-height)"
+        }
+      }
+    },
+    "menu": {
+      "width-collapsed": {
+        "$type": "dimension",
+        "$value": "{size.layout.menu-collapsed}",
+        "$extensions": {
+          "com.habeco.css": "var(--menu-width-collapsed)"
+        }
+      },
+      "width-expanded": {
+        "$type": "dimension",
+        "$value": "{size.layout.menu-expanded}",
+        "$extensions": {
+          "com.habeco.css": "var(--menu-width-expanded)"
+        }
+      },
+      "item-height": {
+        "$type": "dimension",
+        "$value": "{size.control.lg}",
+        "$extensions": {
+          "com.habeco.css": "var(--menu-item-height)"
+        }
+      }
+    },
+    "header": {
+      "height": {
+        "$type": "dimension",
+        "$value": "{size.layout.header}",
+        "$extensions": {
+          "com.habeco.css": "var(--header-height)"
+        }
+      },
+      "padding-x": {
+        "$type": "dimension",
+        "$value": "{size.layout.gutter}",
+        "$extensions": {
+          "com.habeco.css": "var(--header-padding-x)"
+        }
+      }
+    },
+    "table": {
+      "row-height": {
+        "$type": "dimension",
+        "$value": "{size.layout.table-row}",
+        "$extensions": {
+          "com.habeco.css": "var(--table-row-height)"
+        }
+      }
+    },
+    "tab-bar": {
+      "height": {
+        "$type": "dimension",
+        "$value": "{size.layout.tab-bar}",
+        "$extensions": {
+          "com.habeco.css": "var(--tab-bar-height)"
+        }
+      }
+    }
+  },
+  "typography": {
+    "kpi-card": {
+      "value-size": {
+        "$type": "dimension",
+        "$value": "{typography.kpi.font-size}",
+        "$extensions": {
+          "com.habeco.css": "var(--kpi-card-value-size)"
+        }
+      },
+      "value-line-height": {
+        "$type": "dimension",
+        "$value": "{typography.kpi.line-height}",
+        "$extensions": {
+          "com.habeco.css": "var(--kpi-card-value-line-height)"
+        }
+      }
+    },
+    "badge": {
+      "text-size": {
+        "$type": "dimension",
+        "$value": "{typography.3xs.font-size}",
+        "$extensions": {
+          "com.habeco.css": "var(--badge-text-size)"
+        }
+      }
+    },
+    "table": {
+      "text-size": {
+        "$type": "dimension",
+        "$value": "{typography.body.font-size}",
+        "$extensions": {
+          "com.habeco.css": "var(--table-text-size)"
+        }
+      }
+    },
+    "tab-bar": {
+      "label-size": {
+        "$type": "dimension",
+        "$value": "{typography.3xs.font-size}",
+        "$extensions": {
+          "com.habeco.css": "var(--tab-bar-label-size)"
+        }
+      }
+    },
+    "chart": {
+      "label-size": {
+        "$type": "dimension",
+        "$value": "{typography.2xs.font-size}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-label-size)"
+        }
+      }
+    }
+  }
+}

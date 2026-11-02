@@ -61,6 +61,7 @@ section{display:grid;gap:18px}
 .mock .dot{width:7px;height:7px;border-radius:2px;display:inline-block}
 .mock .val{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
 .mock .hero .val{color:var(--m-herofg)}
+.mock .hero .lbl,.mock .hero .unit{color:var(--m-heromuted,var(--m-muted))}
 .mock .unit{font-size:10px;font-weight:500;color:var(--m-muted)}
 .mock .delta{font-size:10px;font-variant-numeric:tabular-nums;color:var(--m-muted)}
 .mock .st{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;padding:1px 6px;border-radius:999px;width:fit-content}
@@ -174,12 +175,12 @@ ul.take{margin:0;padding-left:20px;display:grid;gap:8px;max-width:80ch}
   };
   var src=[
     ['#106138','Xanh logo','chữ HABECO, nền gian hàng'],
-    ['#154F28','Xanh website','màu chính CSS habeco.com.vn'],
+    ['#154F28','Xanh website','màu chính CSS website'],
     ['#C2A540','Vàng kim logo','hoa bia, slogan'],
     ['#D6A733','Vàng kim website','nút, gạch chân'],
     ['#FCD242','Vàng Bia Hà Nội','kệ, thùng, lon'],
     ['#C00000','Đỏ Bia Hà Nội','chữ trên lon'],
-    ['#F2F1EC','Kem website','nền khối nội dung']
+    ['#FFFFFF','Trắng website','nền khối nội dung']
   ];
   document.getElementById('src').innerHTML=src.map(function(s){return '<div class="sw"><i style="background:'+s[0]+'"></i><div><b>'+s[1]+'</b><span class="mono">'+s[0]+'</span><span class="note">'+s[2]+'</span></div></div>'}).join('');
 
@@ -218,7 +219,7 @@ ul.take{margin:0;padding-left:20px;display:grid;gap:8px;max-width:80ch}
   var L={page:'#f5f5f1',card:'#ffffff',line:'#e1e2da',fg:'#17201a',muted:'#5b645d',grid:'#ecece6',crit:'#d92d20',warnbg:'#fdf0dc',warnfg:'#9a4a00'};
   var D={page:'#0d1310',card:'#151d18',line:'#27312b',fg:'#eaf0eb',muted:'#9aa59d',grid:'#202a24',crit:'#f0625a',warnbg:'#3a2a10',warnfg:'#f6b45a'};
   var dirs=[
-    {id:'A',name:'Hướng A · Menu xanh đậm, nội dung trung tính',fit:'Rất hợp',rec:true,
+    {id:'A',name:'Hướng A · Menu màu brand identify, nội dung trung tính',fit:'Rất hợp',rec:true,
      why:'Thương hiệu nằm ở khung (menu trái, logo), vùng dữ liệu trung tính nên màu trạng thái và màu biểu đồ không bị lẫn. Giống cách gian hàng dùng nền xanh làm khung, sản phẩm làm điểm nhấn.',
      light:m(L,m(S,{side:'#0b3f25',sidefg:'#a9c8b4',logo:'#c2a540',navon:'#145233',navonfg:'#ffffff',navbar:'#c2a540',pri:'#106138',prifg:'#ffffff',hero:'#fbf8ec',heroline:'#ebdc9c',herofg:'#5f4d1c',line2:'',line:'#e1e2da'})),
      dark:m(D,m(SD,{side:'#08251a',sidefg:'#8fb19c',logo:'#d6b95a',navon:'#123a26',navonfg:'#ffffff',navbar:'#d6b95a',pri:'#5fae7f',prifg:'#08251a',hero:'#1d2117',heroline:'#4a4120',herofg:'#e3c86a',line:'#27312b'})),
@@ -228,9 +229,9 @@ ul.take{margin:0;padding-left:20px;display:grid;gap:8px;max-width:80ch}
      light:m(L,m(S,{side:'#ffffff',sidefg:'#6b746d',logo:'#106138',navon:'#e7f2eb',navonfg:'#106138',navbar:'#106138',pri:'#106138',prifg:'#ffffff',hero:'#ffffff',heroline:'#e1e2da',herofg:'#17201a'})),
      dark:m(D,m(SD,{side:'#151d18',sidefg:'#9aa59d',logo:'#5fae7f',navon:'#1c2a21',navonfg:'#7cc497',navbar:'#5fae7f',pri:'#5fae7f',prifg:'#08251a',hero:'#151d18',heroline:'#27312b',herofg:'#eaf0eb'})),
      specs:[['Menu trái','Trắng, mục chọn nền xanh 50'],['Nút chính','Xanh 700'],['Số chính','Không nhấn màu'],['Nền trang','Trung tính ấm']]},
-    {id:'C',name:'Hướng C · Xanh-đen và vàng kim, tối là chính',fit:'Hợp một phần',
+    {id:'C',name:'Hướng C · Nhấn màu brand nhiều hơn trong nội dung',fit:'Hợp một phần',
      why:'Đúng không khí gian hàng và banner 135 năm, rất "wow" khi chiếu phòng họp. Dùng hằng ngày ở nền sáng thì vàng kim nhiều quá dễ bị đọc như cảnh báo, và JD vẽ bản sáng là chính.',
-     light:m(L,m(S,{page:'#f2f1ec',side:'#0b3f25',sidefg:'#c9b56e',logo:'#c2a540',navon:'#c2a540',navonfg:'#0b3f25',navbar:'#c2a540',pri:'#806823',prifg:'#ffffff',hero:'#0b3f25',heroline:'#0b3f25',herofg:'#e3c86a'})),
+     light:m(L,m(S,{page:'#f2f1ec',side:'#0b3f25',sidefg:'#c9b56e',logo:'#c2a540',navon:'#c2a540',navonfg:'#0b3f25',navbar:'#c2a540',pri:'#806823',prifg:'#ffffff',hero:'#0b3f25',heroline:'#0b3f25',herofg:'#e3c86a',heromuted:'#a9c8b4'})),
      dark:m(D,m(SD,{page:'#07140d',card:'#0e2016',line:'#1f3a2a',side:'#051009',sidefg:'#c9b56e',logo:'#d6b95a',navon:'#d6b95a',navonfg:'#051009',navbar:'#d6b95a',pri:'#d6b95a',prifg:'#051009',hero:'#13301f',heroline:'#3c5a2a',herofg:'#e9cf74'})),
      specs:[['Menu trái','Xanh-đen, mục chọn nền vàng kim'],['Nút chính','Vàng kim 700'],['Số chính','Khối xanh đậm, số vàng kim'],['Nền trang','Kem #F2F1EC / xanh-đen']]},
     {id:'H',name:'Hiện tại · App đang chạy (tông đỏ)',fit:'Ít hợp',
@@ -260,11 +261,11 @@ ul.take{margin:0;padding-left:20px;display:grid;gap:8px;max-width:80ch}
   document.getElementById('series').innerHTML=[['Điện','#a87400','#b8860b'],['Nước','#1f7ae0','#3d8ef0'],['Hơi','#b0479b','#d0609a']].map(function(s){
     return '<span class="tok"><i style="background:'+s[1]+'"></i><i style="background:'+s[2]+'"></i>'+s[0]+' <span class="mono">'+s[1]+' / '+s[2]+'</span></span>'}).join('');
   var rows=[
-    ['Phương án','Menu trái','Nút chính','Số chính (SEC)','Thương hiệu nhận ra','Lẫn với trạng thái','Chiếu phòng họp','Độ hợp'],
-    ['A · Đề xuất','Xanh 800','Xanh 700','Vàng kim nhạt','Cao','Thấp','Tốt (dark từ C)','Rất hợp'],
-    ['B','Trắng','Xanh 700','Không nhấn','Thấp','Thấp','Trung bình','Hợp một phần'],
-    ['C','Xanh-đen','Vàng kim 700','Khối xanh, số vàng','Rất cao','Trung bình (vàng nhiều)','Rất tốt','Hợp một phần'],
-    ['Hiện tại','Trắng','Đỏ','Không nhấn','Thấp (sai tông)','Cao (đỏ = vượt)','Chưa có dark','Ít hợp']
+    ['Phương án','Menu trái','Nút chính','Số chính (SEC)','Nhận ra thương hiệu','Lẫn với trạng thái','Chiếu phòng họp','Độ hợp'],
+    ['A · Đề xuất<br><span class="note">Menu xanh đậm</span>','Xanh 800','Xanh 700','Vàng kim nhạt','Cao','Thấp','Tốt (dark từ C)','Rất hợp'],
+    ['B<br><span class="note">Trung tính</span>','Trắng','Xanh 700','Không nhấn','Thấp','Thấp','Trung bình','Hợp một phần'],
+    ['C<br><span class="note">Xanh-đen + vàng kim</span>','Xanh-đen','Vàng kim 700','Khối xanh, số vàng','Rất cao','Trung bình (vàng nhiều)','Rất tốt','Hợp một phần'],
+    ['Hiện tại<br><span class="note">App đang chạy</span>','Trắng','Đỏ','Không nhấn','Thấp (sai tông)','Cao (đỏ = vượt)','Chưa có dark','Ít hợp']
   ];
   document.getElementById('cmp').innerHTML='<thead><tr>'+rows[0].map(function(c){return '<th>'+c+'</th>'}).join('')+'</tr></thead><tbody>'+rows.slice(1).map(function(r){return '<tr>'+r.map(function(c,i){return i?'<td>'+c+'</td>':'<td><b>'+c+'</b></td>'}).join('')+'</tr>'}).join('')+'</tbody>';
 

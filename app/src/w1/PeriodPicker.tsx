@@ -120,14 +120,15 @@ type Props = {
   onPeriod: (p: Period) => void
   range: Range
   onRange: (r: Range) => void
-  compare: Compare
-  onCompare: (c: Compare) => void
+  /** Bỏ trống thì không hiện nút "So với" (báo cáo chưa có số kỳ trước). */
+  compare?: Compare
+  onCompare?: (c: Compare) => void
 }
 
 export function PeriodPicker({ period, onPeriod, range, onRange, compare, onCompare }: Props) {
   const [open, setOpen] = useState(false)
   const [cmpOpen, setCmpOpen] = useState(false)
-  const [cmpCustom, setCmpCustom] = useState(compare.kind === 'custom')
+  const [cmpCustom, setCmpCustom] = useState(compare?.kind === 'custom')
   const pick = (r: Range) => {
     onRange(r)
     setOpen(false)
@@ -139,7 +140,7 @@ export function PeriodPicker({ period, onPeriod, range, onRange, compare, onComp
     if (p === 'year') onRange(yearRange(LAST_DAY.getFullYear()))
     setOpen(true)
   }
-  const cmp = compareRange(compare, range)
+  const cmp = compare ? compareRange(compare, range) : range
 
   return (
     <>
@@ -168,6 +169,7 @@ export function PeriodPicker({ period, onPeriod, range, onRange, compare, onComp
         </PopoverContent>
       </Popover>
 
+      {compare && onCompare && (
       <Popover
         open={cmpOpen}
         onOpenChange={(o) => {
@@ -220,6 +222,7 @@ export function PeriodPicker({ period, onPeriod, range, onRange, compare, onComp
           )}
         </PopoverContent>
       </Popover>
+      )}
     </>
   )
 }

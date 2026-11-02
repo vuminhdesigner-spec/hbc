@@ -1,0 +1,106 @@
+{
+  "light": {
+    "card": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "rgba(20,50,30,.04)",
+          "offsetX": "0px",
+          "offsetY": "1px",
+          "blur": "2px",
+          "spread": "0px"
+        },
+        {
+          "color": "rgba(60,135,82,.3)",
+          "offsetX": "0px",
+          "offsetY": "14px",
+          "blur": "34px",
+          "spread": "-16px"
+        }
+      ]
+    },
+    "pill": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "rgba(20,50,30,.06)",
+          "offsetX": "0px",
+          "offsetY": "1px",
+          "blur": "2px",
+          "spread": "0px"
+        },
+        {
+          "color": "rgba(60,135,82,.24)",
+          "offsetX": "0px",
+          "offsetY": "4px",
+          "blur": "12px",
+          "spread": "-6px"
+        }
+      ]
+    },
+    "glow": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "rgba(16,97,56,.6)",
+          "offsetX": "0px",
+          "offsetY": "6px",
+          "blur": "18px",
+          "spread": "-6px"
+        }
+      ]
+    }
+  },
+  "dark": {
+    "card": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "rgba(0,0,0,.4)",
+          "offsetX": "0px",
+          "offsetY": "1px",
+          "blur": "2px",
+          "spread": "0px"
+        },
+        {
+          "color": "rgba(0,0,0,.75)",
+          "offsetX": "0px",
+          "offsetY": "16px",
+          "blur": "32px",
+          "spread": "-16px"
+        }
+      ]
+    },
+    "pill": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "rgba(0,0,0,.4)",
+          "offsetX": "0px",
+          "offsetY": "1px",
+          "blur": "2px",
+          "spread": "0px"
+        },
+        {
+          "color": "rgba(0,0,0,.6)",
+          "offsetX": "0px",
+          "offsetY": "4px",
+          "blur": "12px",
+          "spread": "-6px"
+        }
+      ]
+    },
+    "glow": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "rgba(95,174,127,.45)",
+          "offsetX": "0px",
+          "offsetY": "6px",
+          "blur": "18px",
+          "spread": "-6px"
+        }
+      ]
+    }
+  }
+}

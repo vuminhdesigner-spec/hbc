@@ -13,11 +13,12 @@ Mỗi màn: brief → wireframe (kèm lý do chọn đồ thị) → Figma hoàn
 
 ```
 app/                       Vite + React + TS + Tailwind v4 + shadcn/ui (style base-nova, icon lucide)
-app/src/index.css          token theme shadcn (CSS variables) — nguồn màu duy nhất
+app/src/index.css          token 3 layer primitive → semantic (light/dark) → component — nguồn token duy nhất
 app/src/components/ui/     component shadcn (thêm bằng CLI, không tự viết)
-tokens/                    JSON (DTCG) cho Figma variables — sinh từ app/src/index.css + thang 50–950
+tokens/                    JSON (DTCG) cho Figma variables — sinh bằng `node tools/gen_tokens.mjs`, không sửa tay
 design/                    moodboard đã duyệt (màu: hướng A, dark từ C — 2026-10-09)
 docs/                      tài liệu đối tác — che dữ liệu (om-kit-data-mask) trước khi đọc
+tools/gen_tokens.mjs       index.css → tokens/{primitive,semantic.light,semantic.dark,component,effects}.tokens.json
 tools/hook_clarify.mjs     hook UserPromptSubmit: bước làm rõ trước khi sửa
 ```
 
@@ -33,16 +34,18 @@ tools/hook_clarify.mjs     hook UserPromptSubmit: bước làm rõ trước khi 
 Bộ lọc thời gian toàn cục: tháng, năm, khoảng tuỳ chọn, so cùng kỳ. Người dùng: vận hành, trưởng phòng, ban giám đốc.
 Ngoài phạm vi: backend SAP ERP, chatbot AI, design system đầy đủ giai đoạn đầu.
 
-Màu đã chốt (moodboard `design/moodboard-mau.html`): menu trái xanh 800, nút xanh 700, vàng kim chỉ cho số chính/mục chọn;
-đạt không tô màu, cảnh báo cam, vượt đỏ, luôn kèm icon + nhãn; đỏ thương hiệu không dùng trong dữ liệu. Font Be Vietnam Pro.
+Màu đã chốt (Base, 2026-10-22): bộ v2-glass từ W1 bản 38 — nền trắng ngả xanh rất nhẹ, card kính, CTA gradient xanh thương hiệu
+#1f7d4c→#106138 (nút chính, tab và mục menu đang chọn); đạt không tô màu, cảnh báo cam đặc, vượt đỏ đặc, luôn kèm icon + nhãn;
+đỏ thương hiệu không dùng trong dữ liệu. Font Be Vietnam Pro. Chi tiết và ngoại lệ tương phản: `tokens/README.md`.
 
 ## Luật
 
-1. Chỉ dùng component shadcn và token theme (`bg-primary`, `text-muted-foreground`, `var(--chart-1)`…).
-   Không viết màu/kích thước cứng — Figma Variables phải ánh xạ 1-1 với token.
-2. Màu biểu đồ cố định: `chart-1` điện, `chart-2` nước, `chart-3` hơi (đã kiểm CVD), `chart-4` kỳ so sánh, `chart-5` một chuỗi chung.
-   Đổi màu thì sửa `index.css` rồi sinh lại `tokens/`.
-3. UI tiếng Việt, desktop-first, WCAG 2.1 AA.
+1. Chỉ dùng component shadcn và token semantic/component (`bg-primary`, `text-muted-foreground`, `var(--chart-1)`, `var(--card-radius)`…),
+   không dùng primitive (`--green-700`) trên màn. Không viết màu/kích thước cứng — Figma Variables (collection primitive /
+   semantic / component, nhóm color / size / typography, tên tiếng Anh) phải ánh xạ 1-1 với token.
+2. Màu biểu đồ cố định: `chart-1` điện, `chart-2` nước, `chart-3` hơi, `chart-4` kỳ so sánh, `chart-5` SEC / một chuỗi chung.
+   Đổi màu thì sửa `index.css` rồi chạy `node tools/gen_tokens.mjs`.
+3. UI tiếng Việt, desktop-first, WCAG 2.1 AA — trừ 3 ngoại lệ đã chốt ghi trong `tokens/README.md`.
 4. **Không bịa dữ liệu, không thêm feature ngoài yêu cầu.** Dữ liệu mẫu ghi rõ là fixture.
 5. Recap có câu hỏi mở → hỏi bằng `AskUserQuestion`, phương án đề xuất đặt đầu, gắn "(Recommended)".
 

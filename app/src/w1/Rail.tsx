@@ -23,7 +23,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { cn } from '@/lib/utils'
 import hopMark from '@/assets/hop-mark.svg'
 
-type Item = { label: string; icon: LucideIcon; current?: boolean }
+type Item = { label: string; icon: LucideIcon }
 
 // 13 mục menu theo Main.dc.html, chia nhóm bằng divider (không nhãn nhóm).
 const GROUPS: Item[][] = [
@@ -35,7 +35,7 @@ const GROUPS: Item[][] = [
     { label: 'Báo cáo SL TP', icon: TrendingUp },
     { label: 'Báo cáo Nhập – Xuất – Tồn', icon: Repeat },
     { label: 'Báo cáo Chất lượng', icon: ShieldCheck },
-    { label: 'Báo cáo Năng lượng (mới)', icon: Zap, current: true },
+    { label: 'Báo cáo Năng lượng (mới)', icon: Zap },
     { label: 'Báo cáo Khai thác nước & Xả thải', icon: Droplet },
   ],
   [
@@ -46,17 +46,17 @@ const GROUPS: Item[][] = [
   ],
 ]
 
-function NavItem({ item, wide }: { item: Item; wide: boolean }) {
+function NavItem({ item, wide, current }: { item: Item; wide: boolean; current: boolean }) {
   const Icon = item.icon
   const btn = (
     <Button
       variant="ghost"
-      aria-current={item.current ? 'page' : undefined}
+      aria-current={current ? 'page' : undefined}
       aria-label={wide ? undefined : item.label}
       className={cn(
         'h-9.5 rounded-glass-inner text-sidebar-foreground hover:bg-sidebar-accent',
         wide ? 'w-full justify-start gap-3.5 px-3' : 'w-11',
-        item.current && 'glass-cta font-semibold text-cta-foreground hover:bg-transparent hover:text-cta-foreground',
+        current && 'glass-cta font-semibold text-cta-foreground hover:bg-transparent hover:text-cta-foreground',
       )}
     >
       <Icon />
@@ -86,18 +86,19 @@ function Brand({ wide }: { wide: boolean }) {
   )
 }
 
-function Items({ wide }: { wide: boolean }) {
+function Items({ wide, current }: { wide: boolean; current: string }) {
   return GROUPS.map((g, i) => (
     <div key={i} className={cn('flex flex-col gap-0.5', wide ? 'items-stretch' : 'items-center')}>
       {i > 0 && <Separator className={cn('my-2 bg-sidebar-border', wide ? 'mx-2 w-auto!' : 'w-7!')} />}
       {g.map((it) => (
-        <NavItem key={it.label} item={it} wide={wide} />
+        <NavItem key={it.label} item={it} wide={wide} current={it.label === current} />
       ))}
     </div>
   ))
 }
 
-export function Rail() {
+/** current: nhãn mục menu đang chọn (mặc định màn năng lượng). */
+export function Rail({ current = 'Báo cáo Năng lượng (mới)' }: { current?: string }) {
   const [open, setOpen] = useState(false)
   return (
     <>
@@ -107,7 +108,7 @@ export function Rail() {
         className="fixed inset-y-0 left-0 z-30 flex w-16 flex-col items-center gap-0.5 border-r border-glass-edge bg-sidebar pt-4 pb-3.5 backdrop-blur-glass-rail"
       >
         <Brand wide={false} />
-        <Items wide={false} />
+        <Items wide={false} current={current} />
         <span className="flex-1" />
         <Tooltip>
           <TooltipTrigger
@@ -131,7 +132,7 @@ export function Rail() {
           <SheetTitle className="sr-only">Menu chính</SheetTitle>
           <div className="relative flex flex-1 flex-col gap-0.5">
             <Brand wide />
-            <Items wide />
+            <Items wide current={current} />
             <span className="flex-1" />
             <Button variant="ghost" className="h-9.5 w-full justify-start gap-3.5 px-3 text-sidebar-foreground" onClick={() => setOpen(false)}>
               <ChevronLeft />

@@ -1,154 +1,896 @@
 {
-  "background": {
-    "$type": "color",
-    "$value": "#07140d"
+  "color": {
+    "background": {
+      "$type": "color",
+      "$value": "{color.gray.975}",
+      "$extensions": {
+        "com.habeco.css": "var(--background)"
+      }
+    },
+    "foreground": {
+      "$type": "color",
+      "$value": "{color.gray.200}",
+      "$extensions": {
+        "com.habeco.css": "var(--foreground)"
+      }
+    },
+    "card": {
+      "$type": "color",
+      "$value": "{color.gray-925-alpha.84}",
+      "$extensions": {
+        "com.habeco.css": "var(--card)"
+      }
+    },
+    "card-foreground": {
+      "$type": "color",
+      "$value": "{color.gray.200}",
+      "$extensions": {
+        "com.habeco.css": "var(--card-foreground)"
+      }
+    },
+    "popover": {
+      "$type": "color",
+      "$value": "{color.gray.925}",
+      "$extensions": {
+        "com.habeco.css": "var(--popover)"
+      }
+    },
+    "popover-foreground": {
+      "$type": "color",
+      "$value": "{color.gray.200}",
+      "$extensions": {
+        "com.habeco.css": "var(--popover-foreground)"
+      }
+    },
+    "primary": {
+      "$type": "color",
+      "$value": "{color.green.400}",
+      "$extensions": {
+        "com.habeco.css": "var(--primary)"
+      }
+    },
+    "primary-foreground": {
+      "$type": "color",
+      "$value": "{color.green.950}",
+      "$extensions": {
+        "com.habeco.css": "var(--primary-foreground)"
+      }
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": "{color.gray.925}",
+      "$extensions": {
+        "com.habeco.css": "var(--secondary)"
+      }
+    },
+    "secondary-foreground": {
+      "$type": "color",
+      "$value": "{color.gray.200}",
+      "$extensions": {
+        "com.habeco.css": "var(--secondary-foreground)"
+      }
+    },
+    "muted": {
+      "$type": "color",
+      "$value": "{color.gray.925}",
+      "$extensions": {
+        "com.habeco.css": "var(--muted)"
+      }
+    },
+    "muted-foreground": {
+      "$type": "color",
+      "$value": "{color.gray.500}",
+      "$extensions": {
+        "com.habeco.css": "var(--muted-foreground)"
+      }
+    },
+    "accent": {
+      "$type": "color",
+      "$value": "{color.gray.900}",
+      "$extensions": {
+        "com.habeco.css": "var(--accent)"
+      }
+    },
+    "accent-foreground": {
+      "$type": "color",
+      "$value": "{color.gray.150}",
+      "$extensions": {
+        "com.habeco.css": "var(--accent-foreground)"
+      }
+    },
+    "destructive": {
+      "$type": "color",
+      "$value": "{color.red.400}",
+      "$extensions": {
+        "com.habeco.css": "var(--destructive)"
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": "{color.gray.850}",
+      "$extensions": {
+        "com.habeco.css": "var(--border)"
+      }
+    },
+    "input": {
+      "$type": "color",
+      "$value": "{color.gray.800}",
+      "$extensions": {
+        "com.habeco.css": "var(--input)"
+      }
+    },
+    "ring": {
+      "$type": "color",
+      "$value": "{color.blue.400}",
+      "$extensions": {
+        "com.habeco.css": "var(--ring)"
+      }
+    },
+    "highlight": {
+      "$type": "color",
+      "$value": "{color.green.900}",
+      "$extensions": {
+        "com.habeco.css": "var(--highlight)"
+      }
+    },
+    "highlight-foreground": {
+      "$type": "color",
+      "$value": "{color.gold.300}",
+      "$extensions": {
+        "com.habeco.css": "var(--highlight-foreground)"
+      }
+    },
+    "highlight-border": {
+      "$type": "color",
+      "$value": "{color.leaf.800}",
+      "$extensions": {
+        "com.habeco.css": "var(--highlight-border)"
+      }
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "{color.orange.500}",
+      "$extensions": {
+        "com.habeco.css": "var(--warning)"
+      }
+    },
+    "warning-subtle": {
+      "$type": "color",
+      "$value": "{color.orange.950}",
+      "$extensions": {
+        "com.habeco.css": "var(--warning-subtle)"
+      }
+    },
+    "warning-foreground": {
+      "$type": "color",
+      "$value": "{color.orange.300}",
+      "$extensions": {
+        "com.habeco.css": "var(--warning-foreground)"
+      }
+    },
+    "success": {
+      "$type": "color",
+      "$value": "{color.green.400}",
+      "$extensions": {
+        "com.habeco.css": "var(--success)"
+      }
+    },
+    "chart-1": {
+      "$type": "color",
+      "$value": "{color.yellow.200}",
+      "$extensions": {
+        "com.habeco.css": "var(--chart-1)"
+      }
+    },
+    "chart-2": {
+      "$type": "color",
+      "$value": "{color.blue.500}",
+      "$extensions": {
+        "com.habeco.css": "var(--chart-2)"
+      }
+    },
+    "chart-3": {
+      "$type": "color",
+      "$value": "{color.leaf.500}",
+      "$extensions": {
+        "com.habeco.css": "var(--chart-3)"
+      }
+    },
+    "chart-4": {
+      "$type": "color",
+      "$value": "{color.slate.500}",
+      "$extensions": {
+        "com.habeco.css": "var(--chart-4)"
+      }
+    },
+    "chart-5": {
+      "$type": "color",
+      "$value": "{color.green.400}",
+      "$extensions": {
+        "com.habeco.css": "var(--chart-5)"
+      }
+    },
+    "sidebar": {
+      "$type": "color",
+      "$value": "{color.white-alpha.4}",
+      "$extensions": {
+        "com.habeco.css": "var(--sidebar)"
+      }
+    },
+    "sidebar-foreground": {
+      "$type": "color",
+      "$value": "{color.gray.300}",
+      "$extensions": {
+        "com.habeco.css": "var(--sidebar-foreground)"
+      }
+    },
+    "sidebar-primary": {
+      "$type": "color",
+      "$value": "{color.green.400}",
+      "$extensions": {
+        "com.habeco.css": "var(--sidebar-primary)"
+      }
+    },
+    "sidebar-primary-foreground": {
+      "$type": "color",
+      "$value": "{color.green.950}",
+      "$extensions": {
+        "com.habeco.css": "var(--sidebar-primary-foreground)"
+      }
+    },
+    "sidebar-accent": {
+      "$type": "color",
+      "$value": "{color.white-alpha.8}",
+      "$extensions": {
+        "com.habeco.css": "var(--sidebar-accent)"
+      }
+    },
+    "sidebar-accent-foreground": {
+      "$type": "color",
+      "$value": "{color.gray.200}",
+      "$extensions": {
+        "com.habeco.css": "var(--sidebar-accent-foreground)"
+      }
+    },
+    "sidebar-border": {
+      "$type": "color",
+      "$value": "{color.white-alpha.8}",
+      "$extensions": {
+        "com.habeco.css": "var(--sidebar-border)"
+      }
+    },
+    "sidebar-ring": {
+      "$type": "color",
+      "$value": "{color.blue.400}",
+      "$extensions": {
+        "com.habeco.css": "var(--sidebar-ring)"
+      }
+    },
+    "glass": {
+      "canvas-from": {
+        "$type": "color",
+        "$value": "{color.gray.950}",
+        "$extensions": {
+          "com.habeco.css": "var(--glass-canvas-from)"
+        }
+      },
+      "canvas-to": {
+        "$type": "color",
+        "$value": "{color.gray.975}",
+        "$extensions": {
+          "com.habeco.css": "var(--glass-canvas-to)"
+        }
+      },
+      "card-to": {
+        "$type": "color",
+        "$value": "{color.gray-950-alpha.78}",
+        "$extensions": {
+          "com.habeco.css": "var(--glass-card-to)"
+        }
+      },
+      "card-edge": {
+        "$type": "color",
+        "$value": "{color.white-alpha.7}",
+        "$extensions": {
+          "com.habeco.css": "var(--glass-card-edge)"
+        }
+      },
+      "card-highlight": {
+        "$type": "color",
+        "$value": "{color.white-alpha.6}",
+        "$extensions": {
+          "com.habeco.css": "var(--glass-card-highlight)"
+        }
+      },
+      "scrim": {
+        "$type": "color",
+        "$value": "{color.black-alpha.50}",
+        "$extensions": {
+          "com.habeco.css": "var(--glass-scrim)"
+        }
+      }
+    },
+    "cta": {
+      "from": {
+        "$type": "color",
+        "$value": "{color.green.300}",
+        "$extensions": {
+          "com.habeco.css": "var(--cta-from)"
+        }
+      },
+      "to": {
+        "$type": "color",
+        "$value": "{color.green.400}",
+        "$extensions": {
+          "com.habeco.css": "var(--cta-to)"
+        }
+      },
+      "foreground": {
+        "$type": "color",
+        "$value": "{color.green.950}",
+        "$extensions": {
+          "com.habeco.css": "var(--cta-foreground)"
+        }
+      }
+    },
+    "kpi-hero": {
+      "from": {
+        "$type": "color",
+        "$value": "{color.gray.925}",
+        "$extensions": {
+          "com.habeco.css": "var(--kpi-hero-from)"
+        }
+      },
+      "to": {
+        "$type": "color",
+        "$value": "{color.green.800}",
+        "$extensions": {
+          "com.habeco.css": "var(--kpi-hero-to)"
+        }
+      },
+      "track": {
+        "$type": "color",
+        "$value": "{color.white-alpha.12}",
+        "$extensions": {
+          "com.habeco.css": "var(--kpi-hero-track)"
+        }
+      }
+    },
+    "status": {
+      "warning-solid": {
+        "$type": "color",
+        "$value": "{color.orange.500}",
+        "$extensions": {
+          "com.habeco.css": "var(--status-warning-solid)"
+        }
+      },
+      "warning-solid-foreground": {
+        "$type": "color",
+        "$value": "{color.white}",
+        "$extensions": {
+          "com.habeco.css": "var(--status-warning-solid-foreground)"
+        }
+      },
+      "destructive-solid": {
+        "$type": "color",
+        "$value": "{color.red.600}",
+        "$extensions": {
+          "com.habeco.css": "var(--status-destructive-solid)"
+        }
+      },
+      "destructive-solid-foreground": {
+        "$type": "color",
+        "$value": "{color.white}",
+        "$extensions": {
+          "com.habeco.css": "var(--status-destructive-solid-foreground)"
+        }
+      },
+      "destructive-foreground": {
+        "$type": "color",
+        "$value": "{color.red.300}",
+        "$extensions": {
+          "com.habeco.css": "var(--status-destructive-foreground)"
+        }
+      }
+    },
+    "risk": {
+      "good": {
+        "$type": "color",
+        "$value": "{color.leaf.400}",
+        "$extensions": {
+          "com.habeco.css": "var(--risk-good)"
+        }
+      },
+      "caution": {
+        "$type": "color",
+        "$value": "{color.yellow.300}",
+        "$extensions": {
+          "com.habeco.css": "var(--risk-caution)"
+        }
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{color.orange.500}",
+        "$extensions": {
+          "com.habeco.css": "var(--risk-warning)"
+        }
+      },
+      "critical": {
+        "$type": "color",
+        "$value": "{color.red.400}",
+        "$extensions": {
+          "com.habeco.css": "var(--risk-critical)"
+        }
+      }
+    },
+    "chart-ext": {
+      "volume": {
+        "$type": "color",
+        "$value": "{color.gray.700}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-ext-volume)"
+        }
+      },
+      "track": {
+        "$type": "color",
+        "$value": "{color.gray.900}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-ext-track)"
+        }
+      },
+      "axis": {
+        "$type": "color",
+        "$value": "{color.gray.600}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-ext-axis)"
+        }
+      },
+      "chart-1-foreground": {
+        "$type": "color",
+        "$value": "{color.yellow.900}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-ext-chart-1-foreground)"
+        }
+      },
+      "chart-1-deep": {
+        "$type": "color",
+        "$value": "{color.yellow.300}",
+        "$extensions": {
+          "com.habeco.css": "var(--chart-ext-chart-1-deep)"
+        }
+      }
+    },
+    "sidebar-ext": {
+      "open": {
+        "$type": "color",
+        "$value": "{color.gray-950-alpha.97}",
+        "$extensions": {
+          "com.habeco.css": "var(--sidebar-ext-open)"
+        }
+      }
+    }
   },
-  "foreground": {
-    "$type": "color",
-    "$value": "#eaf0eb"
+  "size": {
+    "radius": {
+      "xs": {
+        "$type": "dimension",
+        "$value": "{size.2}",
+        "$description": "rounded-xs",
+        "$extensions": {
+          "com.habeco.css": "var(--radius-xs)"
+        }
+      },
+      "sm": {
+        "$type": "dimension",
+        "$value": "{size.6}",
+        "$description": "rounded-sm",
+        "$extensions": {
+          "com.habeco.css": "var(--radius-sm)"
+        }
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{size.8}",
+        "$description": "rounded-md",
+        "$extensions": {
+          "com.habeco.css": "var(--radius-md)"
+        }
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{size.10}",
+        "$description": "rounded-lg",
+        "$extensions": {
+          "com.habeco.css": "var(--radius-lg)"
+        }
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "{size.14}",
+        "$description": "rounded-xl",
+        "$extensions": {
+          "com.habeco.css": "var(--radius-xl)"
+        }
+      },
+      "2xl": {
+        "$type": "dimension",
+        "$value": "{size.18}",
+        "$description": "rounded-2xl",
+        "$extensions": {
+          "com.habeco.css": "var(--radius-2xl)"
+        }
+      },
+      "3xl": {
+        "$type": "dimension",
+        "$value": "{size.22}",
+        "$description": "rounded-3xl",
+        "$extensions": {
+          "com.habeco.css": "var(--radius-3xl)"
+        }
+      },
+      "4xl": {
+        "$type": "dimension",
+        "$value": "{size.26}",
+        "$description": "rounded-4xl",
+        "$extensions": {
+          "com.habeco.css": "var(--radius-4xl)"
+        }
+      }
+    },
+    "spacing": {
+      "0": {
+        "$type": "dimension",
+        "$value": "{size.0}",
+        "$description": "Tailwind 0 (p-0, gap-0)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 0)"
+        }
+      },
+      "1": {
+        "$type": "dimension",
+        "$value": "{size.4}",
+        "$description": "Tailwind 1 (p-1, gap-1)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 1)"
+        }
+      },
+      "2": {
+        "$type": "dimension",
+        "$value": "{size.8}",
+        "$description": "Tailwind 2 (p-2, gap-2)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 2)"
+        }
+      },
+      "3": {
+        "$type": "dimension",
+        "$value": "{size.12}",
+        "$description": "Tailwind 3 (p-3, gap-3)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 3)"
+        }
+      },
+      "4": {
+        "$type": "dimension",
+        "$value": "{size.16}",
+        "$description": "Tailwind 4 (p-4, gap-4)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 4)"
+        }
+      },
+      "5": {
+        "$type": "dimension",
+        "$value": "{size.20}",
+        "$description": "Tailwind 5 (p-5, gap-5)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 5)"
+        }
+      },
+      "6": {
+        "$type": "dimension",
+        "$value": "{size.24}",
+        "$description": "Tailwind 6 (p-6, gap-6)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 6)"
+        }
+      },
+      "8": {
+        "$type": "dimension",
+        "$value": "{size.32}",
+        "$description": "Tailwind 8 (p-8, gap-8)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 8)"
+        }
+      },
+      "10": {
+        "$type": "dimension",
+        "$value": "{size.40}",
+        "$description": "Tailwind 10 (p-10, gap-10)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 10)"
+        }
+      },
+      "12": {
+        "$type": "dimension",
+        "$value": "{size.48}",
+        "$description": "Tailwind 12 (p-12, gap-12)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 12)"
+        }
+      },
+      "14": {
+        "$type": "dimension",
+        "$value": "{size.56}",
+        "$description": "Tailwind 14 (p-14, gap-14)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 14)"
+        }
+      },
+      "16": {
+        "$type": "dimension",
+        "$value": "{size.64}",
+        "$description": "Tailwind 16 (p-16, gap-16)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 16)"
+        }
+      },
+      "0_5": {
+        "$type": "dimension",
+        "$value": "{size.2}",
+        "$description": "Tailwind 0.5 (p-0.5, gap-0.5)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 0.5)"
+        }
+      },
+      "1_5": {
+        "$type": "dimension",
+        "$value": "{size.6}",
+        "$description": "Tailwind 1.5 (p-1.5, gap-1.5)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 1.5)"
+        }
+      },
+      "2_5": {
+        "$type": "dimension",
+        "$value": "{size.10}",
+        "$description": "Tailwind 2.5 (p-2.5, gap-2.5)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 2.5)"
+        }
+      },
+      "3_5": {
+        "$type": "dimension",
+        "$value": "{size.14}",
+        "$description": "Tailwind 3.5 (p-3.5, gap-3.5)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 3.5)"
+        }
+      },
+      "4_5": {
+        "$type": "dimension",
+        "$value": "{size.18}",
+        "$description": "Tailwind 4.5 (p-4.5, gap-4.5)",
+        "$extensions": {
+          "com.habeco.css": "calc(var(--spacing) * 4.5)"
+        }
+      }
+    }
   },
-  "card": {
-    "$type": "color",
-    "$value": "#0e2016"
-  },
-  "card-foreground": {
-    "$type": "color",
-    "$value": "#eaf0eb"
-  },
-  "popover": {
-    "$type": "color",
-    "$value": "#0e2016"
-  },
-  "popover-foreground": {
-    "$type": "color",
-    "$value": "#eaf0eb"
-  },
-  "primary": {
-    "$type": "color",
-    "$value": "#5fae7f"
-  },
-  "primary-foreground": {
-    "$type": "color",
-    "$value": "#051009"
-  },
-  "secondary": {
-    "$type": "color",
-    "$value": "#13261b"
-  },
-  "secondary-foreground": {
-    "$type": "color",
-    "$value": "#eaf0eb"
-  },
-  "muted": {
-    "$type": "color",
-    "$value": "#13261b"
-  },
-  "muted-foreground": {
-    "$type": "color",
-    "$value": "#9aa59d"
-  },
-  "accent": {
-    "$type": "color",
-    "$value": "#163222"
-  },
-  "accent-foreground": {
-    "$type": "color",
-    "$value": "#eaf0eb"
-  },
-  "destructive": {
-    "$type": "color",
-    "$value": "#f0625a"
-  },
-  "border": {
-    "$type": "color",
-    "$value": "#1f3a2a"
-  },
-  "input": {
-    "$type": "color",
-    "$value": "#2a4a37"
-  },
-  "ring": {
-    "$type": "color",
-    "$value": "#5fae7f"
-  },
-  "highlight": {
-    "$type": "color",
-    "$value": "#13301f"
-  },
-  "highlight-foreground": {
-    "$type": "color",
-    "$value": "#e9cf74"
-  },
-  "highlight-border": {
-    "$type": "color",
-    "$value": "#3c5a2a"
-  },
-  "warning": {
-    "$type": "color",
-    "$value": "#f08c3a"
-  },
-  "warning-subtle": {
-    "$type": "color",
-    "$value": "#3a2a10"
-  },
-  "warning-foreground": {
-    "$type": "color",
-    "$value": "#f6b45a"
-  },
-  "success": {
-    "$type": "color",
-    "$value": "#5fae7f"
-  },
-  "chart-1": {
-    "$type": "color",
-    "$value": "#b8860b"
-  },
-  "chart-2": {
-    "$type": "color",
-    "$value": "#3d8ef0"
-  },
-  "chart-3": {
-    "$type": "color",
-    "$value": "#d0609a"
-  },
-  "chart-4": {
-    "$type": "color",
-    "$value": "#7a8279"
-  },
-  "chart-5": {
-    "$type": "color",
-    "$value": "#5fae7f"
-  },
-  "sidebar": {
-    "$type": "color",
-    "$value": "#051009"
-  },
-  "sidebar-foreground": {
-    "$type": "color",
-    "$value": "#c9d6cd"
-  },
-  "sidebar-primary": {
-    "$type": "color",
-    "$value": "#d6b95a"
-  },
-  "sidebar-primary-foreground": {
-    "$type": "color",
-    "$value": "#051009"
-  },
-  "sidebar-accent": {
-    "$type": "color",
-    "$value": "#0e2016"
-  },
-  "sidebar-accent-foreground": {
-    "$type": "color",
-    "$value": "#ffffff"
-  },
-  "sidebar-border": {
-    "$type": "color",
-    "$value": "#1f3a2a"
-  },
-  "sidebar-ring": {
-    "$type": "color",
-    "$value": "#d6b95a"
+  "typography": {
+    "3xs": {
+      "font-size": {
+        "$type": "dimension",
+        "$value": "{typography.font-size.10}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-3xs)"
+        }
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{typography.line-height.14}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-3xs--line-height)"
+        }
+      }
+    },
+    "2xs": {
+      "font-size": {
+        "$type": "dimension",
+        "$value": "{typography.font-size.11}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-2xs)"
+        }
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{typography.line-height.16}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-2xs--line-height)"
+        }
+      }
+    },
+    "xs": {
+      "font-size": {
+        "$type": "dimension",
+        "$value": "{typography.font-size.12}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-xs)"
+        }
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{typography.line-height.16}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-xs--line-height)"
+        }
+      }
+    },
+    "body": {
+      "font-size": {
+        "$type": "dimension",
+        "$value": "{typography.font-size.13}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-body)"
+        }
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{typography.line-height.20}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-body--line-height)"
+        }
+      }
+    },
+    "sm": {
+      "font-size": {
+        "$type": "dimension",
+        "$value": "{typography.font-size.14}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-sm)"
+        }
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{typography.line-height.20}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-sm--line-height)"
+        }
+      }
+    },
+    "base": {
+      "font-size": {
+        "$type": "dimension",
+        "$value": "{typography.font-size.16}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-base)"
+        }
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{typography.line-height.24}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-base--line-height)"
+        }
+      }
+    },
+    "lg": {
+      "font-size": {
+        "$type": "dimension",
+        "$value": "{typography.font-size.18}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-lg)"
+        }
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{typography.line-height.28}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-lg--line-height)"
+        }
+      }
+    },
+    "xl": {
+      "font-size": {
+        "$type": "dimension",
+        "$value": "{typography.font-size.20}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-xl)"
+        }
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{typography.line-height.28}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-xl--line-height)"
+        }
+      }
+    },
+    "2xl": {
+      "font-size": {
+        "$type": "dimension",
+        "$value": "{typography.font-size.24}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-2xl)"
+        }
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{typography.line-height.32}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-2xl--line-height)"
+        }
+      }
+    },
+    "kpi": {
+      "font-size": {
+        "$type": "dimension",
+        "$value": "{typography.font-size.26}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-kpi)"
+        }
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{typography.line-height.32}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-kpi--line-height)"
+        }
+      }
+    },
+    "display": {
+      "font-size": {
+        "$type": "dimension",
+        "$value": "{typography.font-size.40}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-display)"
+        }
+      },
+      "line-height": {
+        "$type": "dimension",
+        "$value": "{typography.line-height.48}",
+        "$extensions": {
+          "com.habeco.css": "var(--text-display--line-height)"
+        }
+      }
+    },
+    "weight": {
+      "normal": {
+        "$type": "fontWeight",
+        "$value": "{typography.font-weight.400}",
+        "$extensions": {
+          "com.habeco.css": "var(--font-weight-normal)"
+        }
+      },
+      "medium": {
+        "$type": "fontWeight",
+        "$value": "{typography.font-weight.500}",
+        "$extensions": {
+          "com.habeco.css": "var(--font-weight-medium)"
+        }
+      },
+      "semibold": {
+        "$type": "fontWeight",
+        "$value": "{typography.font-weight.600}",
+        "$extensions": {
+          "com.habeco.css": "var(--font-weight-semibold)"
+        }
+      },
+      "bold": {
+        "$type": "fontWeight",
+        "$value": "{typography.font-weight.700}",
+        "$extensions": {
+          "com.habeco.css": "var(--font-weight-bold)"
+        }
+      }
+    },
+    "family": {
+      "sans": {
+        "$type": "fontFamily",
+        "$value": "{typography.font-family.be-vietnam-pro}",
+        "$extensions": {
+          "com.habeco.css": "var(--font-sans)"
+        }
+      }
+    }
   }
 }

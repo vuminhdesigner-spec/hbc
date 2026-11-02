@@ -13,7 +13,7 @@
 (async function () {
   var board = new URLSearchParams(location.search).get('board') || 'Main';
   var src = await (await fetch(board + '.dc.html')).text();
-  src = src.replace(/\/_blob\/7852d35d575d094203ff871916e69c97/g, 'logo-ic.png');
+  src = src.replace(/\/_blob\/d9b768f3ce484a7427ead7ed49158f6a/g, 'logo-ic.png');
   var doc = new DOMParser().parseFromString(src, 'text/html');
   document.title = doc.title;
   function DCLogic(props) { this.props = props || {}; this.state = {}; }

@@ -1,0 +1,1243 @@
+{
+  "color": {
+    "white": {
+      "$type": "color",
+      "$value": "#ffffff",
+      "$extensions": {
+        "com.habeco.css": "var(--white)"
+      }
+    },
+    "black": {
+      "$type": "color",
+      "$value": "#000000",
+      "$extensions": {
+        "com.habeco.css": "var(--black)"
+      }
+    },
+    "green": {
+      "50": {
+        "$type": "color",
+        "$value": "#e6f5e9",
+        "$extensions": {
+          "com.habeco.css": "var(--green-50)"
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#d6ecdd",
+        "$extensions": {
+          "com.habeco.css": "var(--green-100)"
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#bde4c7",
+        "$extensions": {
+          "com.habeco.css": "var(--green-200)"
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#74c091",
+        "$extensions": {
+          "com.habeco.css": "var(--green-300)"
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#5fae7f",
+        "$extensions": {
+          "com.habeco.css": "var(--green-400)"
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#1f7d4c",
+        "$extensions": {
+          "com.habeco.css": "var(--green-500)"
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#16703f",
+        "$extensions": {
+          "com.habeco.css": "var(--green-600)"
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#106138",
+        "$extensions": {
+          "com.habeco.css": "var(--green-700)"
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#1e3527",
+        "$extensions": {
+          "com.habeco.css": "var(--green-800)"
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#13301f",
+        "$extensions": {
+          "com.habeco.css": "var(--green-900)"
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#051009",
+        "$extensions": {
+          "com.habeco.css": "var(--green-950)"
+        }
+      }
+    },
+    "leaf": {
+      "50": {
+        "$type": "color",
+        "$value": "#eafaeb",
+        "$extensions": {
+          "com.habeco.css": "var(--leaf-50)"
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#d9f1dc",
+        "$extensions": {
+          "com.habeco.css": "var(--leaf-100)"
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#bce6c1",
+        "$extensions": {
+          "com.habeco.css": "var(--leaf-200)"
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#95d79e",
+        "$extensions": {
+          "com.habeco.css": "var(--leaf-300)"
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#3dbb5c",
+        "$extensions": {
+          "com.habeco.css": "var(--leaf-400)"
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#22b04c",
+        "$extensions": {
+          "com.habeco.css": "var(--leaf-500)"
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#0e9f3e",
+        "$extensions": {
+          "com.habeco.css": "var(--leaf-600)"
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#1b7732",
+        "$extensions": {
+          "com.habeco.css": "var(--leaf-700)"
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#1c5c2a",
+        "$extensions": {
+          "com.habeco.css": "var(--leaf-800)"
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#1a3f20",
+        "$extensions": {
+          "com.habeco.css": "var(--leaf-900)"
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#122715",
+        "$extensions": {
+          "com.habeco.css": "var(--leaf-950)"
+        }
+      }
+    },
+    "gray": {
+      "50": {
+        "$type": "color",
+        "$value": "#f5f6f5",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-50)"
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#f0f4f1",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-100)"
+        }
+      },
+      "150": {
+        "$type": "color",
+        "$value": "#e5efe7",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-150)"
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#e8ece9",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-200)"
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#c3cbc6",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-300)"
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#b5b8b5",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-400)"
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#a0a8a3",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-500)"
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#879089",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-600)"
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#555a56",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-700)"
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#35423a",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-800)"
+        }
+      },
+      "850": {
+        "$type": "color",
+        "$value": "#263029",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-850)"
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#1c2a22",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-900)"
+        }
+      },
+      "925": {
+        "$type": "color",
+        "$value": "#1a221d",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-925)"
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#111714",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-950)"
+        }
+      },
+      "975": {
+        "$type": "color",
+        "$value": "#0d110f",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-975)"
+        }
+      }
+    },
+    "slate": {
+      "50": {
+        "$type": "color",
+        "$value": "#f2f6f8",
+        "$extensions": {
+          "com.habeco.css": "var(--slate-50)"
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#dfe8ef",
+        "$extensions": {
+          "com.habeco.css": "var(--slate-100)"
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#c3d2de",
+        "$extensions": {
+          "com.habeco.css": "var(--slate-200)"
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#b8c6d2",
+        "$extensions": {
+          "com.habeco.css": "var(--slate-300)"
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#8a96a1",
+        "$extensions": {
+          "com.habeco.css": "var(--slate-400)"
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#7d8a96",
+        "$extensions": {
+          "com.habeco.css": "var(--slate-500)"
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#6b7783",
+        "$extensions": {
+          "com.habeco.css": "var(--slate-600)"
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#56626e",
+        "$extensions": {
+          "com.habeco.css": "var(--slate-700)"
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#434e5a",
+        "$extensions": {
+          "com.habeco.css": "var(--slate-800)"
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#1d2731",
+        "$extensions": {
+          "com.habeco.css": "var(--slate-900)"
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#1a232b",
+        "$extensions": {
+          "com.habeco.css": "var(--slate-950)"
+        }
+      }
+    },
+    "blue": {
+      "50": {
+        "$type": "color",
+        "$value": "#eff6fd",
+        "$extensions": {
+          "com.habeco.css": "var(--blue-50)"
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#e3effb",
+        "$extensions": {
+          "com.habeco.css": "var(--blue-100)"
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#c2dcf8",
+        "$extensions": {
+          "com.habeco.css": "var(--blue-200)"
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#a0c8f4",
+        "$extensions": {
+          "com.habeco.css": "var(--blue-300)"
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#6aa8ec",
+        "$extensions": {
+          "com.habeco.css": "var(--blue-400)"
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#2f93f0",
+        "$extensions": {
+          "com.habeco.css": "var(--blue-500)"
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#0a7fe6",
+        "$extensions": {
+          "com.habeco.css": "var(--blue-600)"
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#2f74c0",
+        "$extensions": {
+          "com.habeco.css": "var(--blue-700)"
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#1d4f86",
+        "$extensions": {
+          "com.habeco.css": "var(--blue-800)"
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#193658",
+        "$extensions": {
+          "com.habeco.css": "var(--blue-900)"
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#142334",
+        "$extensions": {
+          "com.habeco.css": "var(--blue-950)"
+        }
+      }
+    },
+    "yellow": {
+      "50": {
+        "$type": "color",
+        "$value": "#fdf7c6",
+        "$extensions": {
+          "com.habeco.css": "var(--yellow-50)"
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#fced7a",
+        "$extensions": {
+          "com.habeco.css": "var(--yellow-100)"
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#fce526",
+        "$extensions": {
+          "com.habeco.css": "var(--yellow-200)"
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#f2bf00",
+        "$extensions": {
+          "com.habeco.css": "var(--yellow-300)"
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#cfa500",
+        "$extensions": {
+          "com.habeco.css": "var(--yellow-400)"
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#b08e00",
+        "$extensions": {
+          "com.habeco.css": "var(--yellow-500)"
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#937700",
+        "$extensions": {
+          "com.habeco.css": "var(--yellow-600)"
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#776100",
+        "$extensions": {
+          "com.habeco.css": "var(--yellow-700)"
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#5c4c00",
+        "$extensions": {
+          "com.habeco.css": "var(--yellow-800)"
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#3a3000",
+        "$extensions": {
+          "com.habeco.css": "var(--yellow-900)"
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#272209",
+        "$extensions": {
+          "com.habeco.css": "var(--yellow-950)"
+        }
+      }
+    },
+    "gold": {
+      "50": {
+        "$type": "color",
+        "$value": "#fbf8ec",
+        "$extensions": {
+          "com.habeco.css": "var(--gold-50)"
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#f5eecd",
+        "$extensions": {
+          "com.habeco.css": "var(--gold-100)"
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#ebdc9c",
+        "$extensions": {
+          "com.habeco.css": "var(--gold-200)"
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#e9cf74",
+        "$extensions": {
+          "com.habeco.css": "var(--gold-300)"
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#d0b14b",
+        "$extensions": {
+          "com.habeco.css": "var(--gold-400)"
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#c2a540",
+        "$extensions": {
+          "com.habeco.css": "var(--gold-500)"
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#a3862c",
+        "$extensions": {
+          "com.habeco.css": "var(--gold-600)"
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#806823",
+        "$extensions": {
+          "com.habeco.css": "var(--gold-700)"
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#5f4d1c",
+        "$extensions": {
+          "com.habeco.css": "var(--gold-800)"
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#403415",
+        "$extensions": {
+          "com.habeco.css": "var(--gold-900)"
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#241d0b",
+        "$extensions": {
+          "com.habeco.css": "var(--gold-950)"
+        }
+      }
+    },
+    "orange": {
+      "50": {
+        "$type": "color",
+        "$value": "#fff2ea",
+        "$extensions": {
+          "com.habeco.css": "var(--orange-50)"
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#ffdcc6",
+        "$extensions": {
+          "com.habeco.css": "var(--orange-100)"
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#ffcdae",
+        "$extensions": {
+          "com.habeco.css": "var(--orange-200)"
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#ffad7a",
+        "$extensions": {
+          "com.habeco.css": "var(--orange-300)"
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#fb873f",
+        "$extensions": {
+          "com.habeco.css": "var(--orange-400)"
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#f97316",
+        "$extensions": {
+          "com.habeco.css": "var(--orange-500)"
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#f0641e",
+        "$extensions": {
+          "com.habeco.css": "var(--orange-600)"
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#a83c00",
+        "$extensions": {
+          "com.habeco.css": "var(--orange-700)"
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#7c3509",
+        "$extensions": {
+          "com.habeco.css": "var(--orange-800)"
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#502a12",
+        "$extensions": {
+          "com.habeco.css": "var(--orange-900)"
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#3d2414",
+        "$extensions": {
+          "com.habeco.css": "var(--orange-950)"
+        }
+      }
+    },
+    "red": {
+      "50": {
+        "$type": "color",
+        "$value": "#fff1f0",
+        "$extensions": {
+          "com.habeco.css": "var(--red-50)"
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#fee2df",
+        "$extensions": {
+          "com.habeco.css": "var(--red-100)"
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#fcccc7",
+        "$extensions": {
+          "com.habeco.css": "var(--red-200)"
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#f6a39c",
+        "$extensions": {
+          "com.habeco.css": "var(--red-300)"
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#f0625a",
+        "$extensions": {
+          "com.habeco.css": "var(--red-400)"
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#e5322d",
+        "$extensions": {
+          "com.habeco.css": "var(--red-500)"
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#dc2626",
+        "$extensions": {
+          "com.habeco.css": "var(--red-600)"
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#b4231f",
+        "$extensions": {
+          "com.habeco.css": "var(--red-700)"
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#89221d",
+        "$extensions": {
+          "com.habeco.css": "var(--red-800)"
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#5c1d18",
+        "$extensions": {
+          "com.habeco.css": "var(--red-900)"
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#371713",
+        "$extensions": {
+          "com.habeco.css": "var(--red-950)"
+        }
+      }
+    },
+    "brand-red": {
+      "500": {
+        "$type": "color",
+        "$value": "#c00000",
+        "$extensions": {
+          "com.habeco.css": "var(--brand-red-500)"
+        }
+      }
+    },
+    "white-alpha": {
+      "4": {
+        "$type": "color",
+        "$value": "#ffffff0a",
+        "$extensions": {
+          "com.habeco.css": "var(--white-a4)"
+        }
+      },
+      "6": {
+        "$type": "color",
+        "$value": "#ffffff0f",
+        "$extensions": {
+          "com.habeco.css": "var(--white-a6)"
+        }
+      },
+      "7": {
+        "$type": "color",
+        "$value": "#ffffff12",
+        "$extensions": {
+          "com.habeco.css": "var(--white-a7)"
+        }
+      },
+      "8": {
+        "$type": "color",
+        "$value": "#ffffff14",
+        "$extensions": {
+          "com.habeco.css": "var(--white-a8)"
+        }
+      },
+      "12": {
+        "$type": "color",
+        "$value": "#ffffff1f",
+        "$extensions": {
+          "com.habeco.css": "var(--white-a12)"
+        }
+      },
+      "55": {
+        "$type": "color",
+        "$value": "#ffffff8c",
+        "$extensions": {
+          "com.habeco.css": "var(--white-a55)"
+        }
+      },
+      "70": {
+        "$type": "color",
+        "$value": "#ffffffb2",
+        "$extensions": {
+          "com.habeco.css": "var(--white-a70)"
+        }
+      },
+      "80": {
+        "$type": "color",
+        "$value": "#ffffffcc",
+        "$extensions": {
+          "com.habeco.css": "var(--white-a80)"
+        }
+      },
+      "90": {
+        "$type": "color",
+        "$value": "#ffffffe6",
+        "$extensions": {
+          "com.habeco.css": "var(--white-a90)"
+        }
+      },
+      "92": {
+        "$type": "color",
+        "$value": "#ffffffeb",
+        "$extensions": {
+          "com.habeco.css": "var(--white-a92)"
+        }
+      },
+      "95": {
+        "$type": "color",
+        "$value": "#fffffff2",
+        "$extensions": {
+          "com.habeco.css": "var(--white-a95)"
+        }
+      },
+      "97": {
+        "$type": "color",
+        "$value": "#fffffff7",
+        "$extensions": {
+          "com.habeco.css": "var(--white-a97)"
+        }
+      }
+    },
+    "black-alpha": {
+      "50": {
+        "$type": "color",
+        "$value": "#00000080",
+        "$extensions": {
+          "com.habeco.css": "var(--black-a50)"
+        }
+      }
+    },
+    "slate-900-alpha": {
+      "10": {
+        "$type": "color",
+        "$value": "#1d27311a",
+        "$extensions": {
+          "com.habeco.css": "var(--slate-900-a10)"
+        }
+      },
+      "22": {
+        "$type": "color",
+        "$value": "#1d273138",
+        "$extensions": {
+          "com.habeco.css": "var(--slate-900-a22)"
+        }
+      }
+    },
+    "gray-925-alpha": {
+      "84": {
+        "$type": "color",
+        "$value": "#1a221dd6",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-925-a84)"
+        }
+      }
+    },
+    "gray-950-alpha": {
+      "78": {
+        "$type": "color",
+        "$value": "#111714c7",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-950-a78)"
+        }
+      },
+      "97": {
+        "$type": "color",
+        "$value": "#111714f7",
+        "$extensions": {
+          "com.habeco.css": "var(--gray-950-a97)"
+        }
+      }
+    }
+  },
+  "size": {
+    "0": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-0)"
+      }
+    },
+    "2": {
+      "$type": "dimension",
+      "$value": "2px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-2)"
+      }
+    },
+    "4": {
+      "$type": "dimension",
+      "$value": "4px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-4)"
+      }
+    },
+    "6": {
+      "$type": "dimension",
+      "$value": "6px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-6)"
+      }
+    },
+    "8": {
+      "$type": "dimension",
+      "$value": "8px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-8)"
+      }
+    },
+    "10": {
+      "$type": "dimension",
+      "$value": "10px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-10)"
+      }
+    },
+    "12": {
+      "$type": "dimension",
+      "$value": "12px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-12)"
+      }
+    },
+    "14": {
+      "$type": "dimension",
+      "$value": "14px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-14)"
+      }
+    },
+    "16": {
+      "$type": "dimension",
+      "$value": "16px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-16)"
+      }
+    },
+    "18": {
+      "$type": "dimension",
+      "$value": "18px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-18)"
+      }
+    },
+    "20": {
+      "$type": "dimension",
+      "$value": "20px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-20)"
+      }
+    },
+    "22": {
+      "$type": "dimension",
+      "$value": "22px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-22)"
+      }
+    },
+    "24": {
+      "$type": "dimension",
+      "$value": "24px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-24)"
+      }
+    },
+    "26": {
+      "$type": "dimension",
+      "$value": "26px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-26)"
+      }
+    },
+    "28": {
+      "$type": "dimension",
+      "$value": "28px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-28)"
+      }
+    },
+    "32": {
+      "$type": "dimension",
+      "$value": "32px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-32)"
+      }
+    },
+    "36": {
+      "$type": "dimension",
+      "$value": "36px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-36)"
+      }
+    },
+    "40": {
+      "$type": "dimension",
+      "$value": "40px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-40)"
+      }
+    },
+    "48": {
+      "$type": "dimension",
+      "$value": "48px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-48)"
+      }
+    },
+    "52": {
+      "$type": "dimension",
+      "$value": "52px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-52)"
+      }
+    },
+    "56": {
+      "$type": "dimension",
+      "$value": "56px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-56)"
+      }
+    },
+    "64": {
+      "$type": "dimension",
+      "$value": "64px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-64)"
+      }
+    },
+    "264": {
+      "$type": "dimension",
+      "$value": "264px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-264)"
+      }
+    },
+    "999": {
+      "$type": "dimension",
+      "$value": "999px",
+      "$extensions": {
+        "com.habeco.css": "var(--size-999)"
+      }
+    }
+  },
+  "typography": {
+    "font-size": {
+      "10": {
+        "$type": "dimension",
+        "$value": "10px",
+        "$extensions": {
+          "com.habeco.css": "var(--font-size-10)"
+        }
+      },
+      "11": {
+        "$type": "dimension",
+        "$value": "11px",
+        "$extensions": {
+          "com.habeco.css": "var(--font-size-11)"
+        }
+      },
+      "12": {
+        "$type": "dimension",
+        "$value": "12px",
+        "$extensions": {
+          "com.habeco.css": "var(--font-size-12)"
+        }
+      },
+      "13": {
+        "$type": "dimension",
+        "$value": "13px",
+        "$extensions": {
+          "com.habeco.css": "var(--font-size-13)"
+        }
+      },
+      "14": {
+        "$type": "dimension",
+        "$value": "14px",
+        "$extensions": {
+          "com.habeco.css": "var(--font-size-14)"
+        }
+      },
+      "16": {
+        "$type": "dimension",
+        "$value": "16px",
+        "$extensions": {
+          "com.habeco.css": "var(--font-size-16)"
+        }
+      },
+      "18": {
+        "$type": "dimension",
+        "$value": "18px",
+        "$extensions": {
+          "com.habeco.css": "var(--font-size-18)"
+        }
+      },
+      "20": {
+        "$type": "dimension",
+        "$value": "20px",
+        "$extensions": {
+          "com.habeco.css": "var(--font-size-20)"
+        }
+      },
+      "24": {
+        "$type": "dimension",
+        "$value": "24px",
+        "$extensions": {
+          "com.habeco.css": "var(--font-size-24)"
+        }
+      },
+      "26": {
+        "$type": "dimension",
+        "$value": "26px",
+        "$extensions": {
+          "com.habeco.css": "var(--font-size-26)"
+        }
+      },
+      "40": {
+        "$type": "dimension",
+        "$value": "40px",
+        "$extensions": {
+          "com.habeco.css": "var(--font-size-40)"
+        }
+      }
+    },
+    "line-height": {
+      "14": {
+        "$type": "dimension",
+        "$value": "14px",
+        "$extensions": {
+          "com.habeco.css": "var(--line-height-14)"
+        }
+      },
+      "16": {
+        "$type": "dimension",
+        "$value": "16px",
+        "$extensions": {
+          "com.habeco.css": "var(--line-height-16)"
+        }
+      },
+      "20": {
+        "$type": "dimension",
+        "$value": "20px",
+        "$extensions": {
+          "com.habeco.css": "var(--line-height-20)"
+        }
+      },
+      "24": {
+        "$type": "dimension",
+        "$value": "24px",
+        "$extensions": {
+          "com.habeco.css": "var(--line-height-24)"
+        }
+      },
+      "28": {
+        "$type": "dimension",
+        "$value": "28px",
+        "$extensions": {
+          "com.habeco.css": "var(--line-height-28)"
+        }
+      },
+      "32": {
+        "$type": "dimension",
+        "$value": "32px",
+        "$extensions": {
+          "com.habeco.css": "var(--line-height-32)"
+        }
+      },
+      "48": {
+        "$type": "dimension",
+        "$value": "48px",
+        "$extensions": {
+          "com.habeco.css": "var(--line-height-48)"
+        }
+      }
+    },
+    "font-weight": {
+      "400": {
+        "$type": "fontWeight",
+        "$value": 400,
+        "$extensions": {
+          "com.habeco.css": "var(--font-weight-400)"
+        }
+      },
+      "500": {
+        "$type": "fontWeight",
+        "$value": 500,
+        "$extensions": {
+          "com.habeco.css": "var(--font-weight-500)"
+        }
+      },
+      "600": {
+        "$type": "fontWeight",
+        "$value": 600,
+        "$extensions": {
+          "com.habeco.css": "var(--font-weight-600)"
+        }
+      },
+      "700": {
+        "$type": "fontWeight",
+        "$value": 700,
+        "$extensions": {
+          "com.habeco.css": "var(--font-weight-700)"
+        }
+      }
+    },
+    "font-family": {
+      "be-vietnam-pro": {
+        "$type": "fontFamily",
+        "$value": "Be Vietnam Pro",
+        "$extensions": {
+          "com.habeco.css": "var(--font-family-be-vietnam-pro)"
+        }
+      }
+    }
+  }
+}
